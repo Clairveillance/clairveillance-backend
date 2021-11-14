@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('country');
             $table->string('state')->nullable();
             $table->string('city')->nullable();
-            $table->unsignedBigInteger('zip')->nullable();
+            // 'zip' is not an integer to prevent error using 'en_US' locale.
+            $table->string('zip')->nullable();
             $table->string('address')->nullable();
             $table->string('address_2')->nullable();
             $table->string('phone')->nullable();

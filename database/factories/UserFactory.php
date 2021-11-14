@@ -14,6 +14,18 @@ class UserFactory extends Factory
         $updated_date = $this->faker->dateTimeBetween($created_date, now());
         $address = $this->faker->randomElement([null, $this->faker->streetAddress()]);
 
+        switch (env('APP_FAKER_LOCALE')) {
+            case 'fr_FR':
+                $state = $this->faker->region();
+                break;
+            case 'en_US':
+                $state = $this->faker->state();
+                break;
+            default:
+                $state = $this->faker->word();
+                break;
+        }
+
         return [
             'uuid' => $this->faker->uuid(),
             'first_name' => $this->faker->firstName(),
@@ -23,9 +35,9 @@ class UserFactory extends Factory
             'company' => $this->faker->randomElement([null, $this->faker->company()]),
             'website' => $this->faker->randomElement([null, $this->faker->url()]),
             'country' => $this->faker->country(),
-            'state' => $this->faker->randomElement([null, $this->faker->region()]),
+            'state' => $this->faker->randomElement([null, $state]),
             'city' => $this->faker->randomElement([null, $this->faker->city()]),
-            'zip' => $this->faker->randomElement([null, $this->faker->buildingNumber()]),
+            'zip' => $this->faker->randomElement([null, $this->faker->postcode()]),
             'address' => $address,
             'address_2' => $address ? $this->faker->randomElement([null, $this->faker->streetAddress()]) : null,
             'phone' => $this->faker->randomElement([null, $this->faker->phoneNumber()]),
