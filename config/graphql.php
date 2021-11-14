@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 return [
     // The prefix for routes
@@ -110,7 +110,7 @@ return [
             'types' => [
                 // ExampleType::class,
             ],
-            'middleware' => [],
+            'middleware' => ['checkAccess'],
             'method' => ['get', 'post'],
         ],
     ],

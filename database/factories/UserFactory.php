@@ -10,10 +10,25 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'uuid' => $this->faker->uuid(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'avatar' => $this->faker->imageUrl(),
+            'description' => $this->faker->sentence(random_int(1, 25)),
+            'company' => $this->faker->company(),
+            'website' => $this->faker->url(),
+            'country' => $this->faker->country(),
+            'state' => $this->faker->region(),
+            'city' => $this->faker->city(),
+            'zip' => $this->faker->buildingNumber(),
+            'address' => $this->faker->streetAddress(),
+            'address_2' => $this->faker->streetAddress(),
+            'phone' => $this->faker->phoneNumber(),
+            'theme' => $this->faker->randomElement(['light', 'dark']),
+            'language' => $this->faker->languageCode(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => hash('sha256', 'password'),
             'remember_token' => Str::random(10),
         ];
     }
