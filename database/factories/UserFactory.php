@@ -9,27 +9,33 @@ class UserFactory extends Factory
 {
     public function definition()
     {
+        $created_date = $this->faker->dateTimeBetween('-5 years', now());
+        $updated_date = $this->faker->dateTimeBetween($created_date, now());
+        $address = $this->faker->randomElement([null, $this->faker->streetAddress()]);
+
         return [
             'uuid' => $this->faker->uuid(),
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'avatar' => $this->faker->imageUrl(),
-            'description' => $this->faker->sentence(random_int(1, 25)),
-            'company' => $this->faker->company(),
-            'website' => $this->faker->url(),
+            'avatar' => $this->faker->randomElement([null, $this->faker->imageUrl()]),
+            'description' => $this->faker->randomElement([null, $this->faker->sentence(random_int(1, 25))]),
+            'company' => $this->faker->randomElement([null, $this->faker->company()]),
+            'website' => $this->faker->randomElement([null, $this->faker->url()]),
             'country' => $this->faker->country(),
-            'state' => $this->faker->region(),
-            'city' => $this->faker->city(),
-            'zip' => $this->faker->buildingNumber(),
-            'address' => $this->faker->streetAddress(),
-            'address_2' => $this->faker->streetAddress(),
-            'phone' => $this->faker->phoneNumber(),
-            'theme' => $this->faker->randomElement(['light', 'dark']),
-            'language' => $this->faker->languageCode(),
+            'state' => $this->faker->randomElement([null, $this->faker->region()]),
+            'city' => $this->faker->randomElement([null, $this->faker->city()]),
+            'zip' => $this->faker->randomElement([null, $this->faker->buildingNumber()]),
+            'address' => $address,
+            'address_2' => $address ? $this->faker->randomElement([null, $this->faker->streetAddress()]) : null,
+            'phone' => $this->faker->randomElement([null, $this->faker->phoneNumber()]),
+            'theme' => $this->faker->randomElement([null, $this->faker->randomElement(['light', 'dark'])]),
+            'language' => $this->faker->randomElement([null, $this->faker->languageCode()]),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => hash('sha256', 'password'),
-            'remember_token' => Str::random(10),
+            'email_verified_at' => $this->faker->randomElement([null, $this->faker->dateTimeBetween($created_date, $updated_date)]),
+            'password' => hash('sha256', $this->faker->word()),
+            'remember_token' => $this->faker->randomElement([null, $this->faker->md5()]),
+            'created_at' => $created_date,
+            'updated_at' => $updated_date,
         ];
     }
 
