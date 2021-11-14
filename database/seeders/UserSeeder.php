@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\User;
@@ -14,6 +16,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(150)->create();
+        User::factory(500)->create();
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
@@ -30,12 +31,11 @@ class UserFactory extends Factory
             'phone' => $this->faker->randomElement([null, $this->faker->phoneNumber()]),
             'theme' => $this->faker->randomElement([null, $this->faker->randomElement(['light', 'dark'])]),
             'language' => $this->faker->randomElement([null, $this->faker->languageCode()]),
-            'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => $this->faker->randomElement([null, $this->faker->dateTimeBetween($created_date, $updated_date)]),
-            'password' => hash('sha256', $this->faker->word()),
+            'email' => $this->faker->unique()->safeEmail(), 'password' => hash('sha256', $this->faker->word()),
             'remember_token' => $this->faker->randomElement([null, $this->faker->md5()]),
             'created_at' => $created_date,
             'updated_at' => $updated_date,
+            'email_verified_at' => $this->faker->randomElement([null, $this->faker->dateTimeBetween($created_date, $updated_date)]),
         ];
     }
 
