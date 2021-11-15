@@ -52,7 +52,7 @@ return [
     // The name of the default schema used when no argument is provided
     // to GraphQL::schema() or when the route is used without the graphql_schema
     // parameter.
-    'default_schema' => 'default',
+    'default_schema' => 'users',
 
     'batching' => [
         // Whether to support GraphQL batching or not.
@@ -61,57 +61,40 @@ return [
         'enable' => true,
     ],
 
+    // The name of the default schema used when no argument is provided
+    // to GraphQL::schema() or when the route is used without the graphql_schema
+    // parameter.
+    'default_schema' => 'users',
+
     // The schemas for query and/or mutation. It expects an array of schemas to provide
     // both the 'query' fields and the 'mutation' fields.
     //
     // You can also provide a middleware that will only apply to the given schema
     //
-    // Example:
-    //
-    //  'schema' => 'default',
-    //
-    //  'schemas' => [
-    //      'default' => [
-    //          'query' => [
-    //              'users' => App\GraphQL\Query\UsersQuery::class
-    //          ],
-    //          'mutation' => [
-    //
-    //          ]
-    //      ],
-    //      'user' => [
-    //          'query' => [
-    //              'profile' => App\GraphQL\Query\ProfileQuery::class
-    //          ],
-    //          'mutation' => [
-    //
-    //          ],
-    //          'middleware' => ['auth'],
-    //      ],
-    //      'user/me' => [
-    //          'query' => [
-    //              'profile' => App\GraphQL\Query\MyProfileQuery::class
-    //          ],
-    //          'mutation' => [
-    //
-    //          ],
-    //          'middleware' => ['auth'],
-    //      ],
-    //  ]
-    //
     'schemas' => [
-        'default' => [
+        'user' => [
             'query' => [
-                // ExampleQuery::class,
+                'user' => App\GraphQL\Queries\UserQuery::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
             ],
             'types' => [
-                // ExampleType::class,
+                'User' => App\GraphQL\Types\UserType::class,
             ],
-            'middleware' => ['checkAccess'],
+            // 'middleware' => ['checkAccess'],
+            'middleware' => [],
             'method' => ['get', 'post'],
+        ],
+        'users' => [
+            'query' => [
+                'users' => App\GraphQL\Queries\UsersQuery::class,
+            ],
+            'types' => [
+                'User' => App\GraphQL\Types\UserType::class,
+            ],
+            'middleware' => [],
+            'method' => ['get'],
         ],
     ],
 
