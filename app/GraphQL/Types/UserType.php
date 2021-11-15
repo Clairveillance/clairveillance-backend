@@ -43,28 +43,32 @@ class UserType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Uuid of the user',
             ],
-            'first_name' => [
+            // 'username' => [
+            // 'type' => Type::nonNull(Type::string()),
+            // 'description' => 'The screen name of the user',
+            // ],
+            'firstname' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The first name of the user',
             ],
-            'last_name' => [
+            'lastname' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The last name of the user',
             ],
             'avatar' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The avatar url of the user',
             ],
             'description' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'Short description of the user',
             ],
             'company' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The company name of the user',
             ],
             'website' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The website url of the user',
             ],
             'country' => [
@@ -72,35 +76,35 @@ class UserType extends GraphQLType
                 'description' => 'The country of origin of the user',
             ],
             'state' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The state/region of the user',
             ],
             'city' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The city of the user',
             ],
             'zip' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The zip/postcode of the user',
             ],
             'address' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The address of the user',
             ],
             'address_2' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The address (second line) of the user',
             ],
             'phone' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The phone number of the user',
             ],
             'theme' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The theme specified by the user',
             ],
             'language' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The language specified by the the user',
             ],
             'email' => [
@@ -124,7 +128,7 @@ class UserType extends GraphQLType
                 'description' => 'The date and time of the last update of the user',
             ],
             'email_verified_at' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The date and time of the email validation of the user',
             ]
         ];

@@ -10,6 +10,10 @@ class UserFactory extends Factory
 {
     public function definition()
     {
+        $firstname = $this->faker->firstName();
+        $lastname = $this->faker->lastName();
+        $initial_firstname = mb_substr($firstname, 0, 1);
+        $initial_lastname = mb_substr($lastname, 0, 1);
         $created_date = $this->faker->dateTimeBetween('-5 years', now());
         $updated_date = $this->faker->dateTimeBetween($created_date, now());
         $address = $this->faker->randomElement([null, $this->faker->streetAddress()]);
@@ -28,9 +32,10 @@ class UserFactory extends Factory
 
         return [
             'uuid' => $this->faker->uuid(),
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
-            'avatar' => $this->faker->randomElement([null, $this->faker->imageUrl()]),
+            // 'username' => $this->faker->unique()->userName(),
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'avatar' => $this->faker->randomElement([null, $this->faker->imageUrl(80, 80, null, false, strtoupper($initial_firstname . "\u{0020}" . $initial_lastname))]),
             'description' => $this->faker->randomElement([null, $this->faker->sentence(random_int(1, 25))]),
             'company' => $this->faker->randomElement([null, $this->faker->company()]),
             'website' => $this->faker->randomElement([null, $this->faker->url()]),
