@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
-    public function definition()
+    public function definition(): array
     {
         $firstname = $this->faker->firstName();
         $lastname = $this->faker->lastName();
@@ -17,18 +17,10 @@ class UserFactory extends Factory
         $created_date = $this->faker->dateTimeBetween('-5 years', now());
         $updated_date = $this->faker->dateTimeBetween($created_date, now());
         $address = $this->faker->randomElement([null, $this->faker->streetAddress()]);
-
-        switch (env('APP_FAKER_LOCALE')) {
-            case 'fr_FR':
-                $state = $this->faker->region();
-                break;
-            case 'en_US':
-                $state = $this->faker->state();
-                break;
-            default:
-                $state = $this->faker->word();
-                break;
-        }
+        $state = match (env('APP_FAKER_LOCALE')) {
+            'fr_FR' => $this->faker->region(),
+            'en_US' => $this->faker->state(),
+        };
 
         return [
             'uuid' => $this->faker->uuid(),
@@ -56,7 +48,7 @@ class UserFactory extends Factory
         ];
     }
 
-    public function unverified()
+    public function unverified(): static
     {
         return $this->state(function (array $attributes) {
             return [
