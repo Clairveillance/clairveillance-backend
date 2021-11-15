@@ -58,9 +58,9 @@ class UserQuery extends Query
      * 
      * @param mixed $root
      * @param array<string,object|string> $args
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \App\Models\User|null
      **/
-    public function resolve($root, $args): Collection
+    public function resolve($root, $args): ?User
     {
         return User::findOrFail($args['id']);
     }

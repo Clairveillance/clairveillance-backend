@@ -34,7 +34,7 @@ class UsersQuery extends Query
      **/
     public function type(): Type
     {
-        return Type::listOf(GraphQL::type('User'));
+        return Type::listOf(GraphQL::type('user'));
     }
 
     /**

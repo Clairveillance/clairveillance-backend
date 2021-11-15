@@ -49,11 +49,6 @@ return [
     //
     'route_group_attributes' => [],
 
-    // The name of the default schema used when no argument is provided
-    // to GraphQL::schema() or when the route is used without the graphql_schema
-    // parameter.
-    'default_schema' => 'users',
-
     'batching' => [
         // Whether to support GraphQL batching or not.
         // See e.g. https://www.apollographql.com/blog/batching-client-graphql-queries-a685f5bcd41b/
@@ -72,29 +67,17 @@ return [
     // You can also provide a middleware that will only apply to the given schema
     //
     'schemas' => [
-        'user' => [
+        'users' => [
             'query' => [
                 'user' => App\GraphQL\Queries\UserQuery::class,
-            ],
-            'mutation' => [
-                // ExampleMutation::class,
+                'users' => App\GraphQL\Queries\UsersQuery::class,
             ],
             'types' => [
-                'User' => App\GraphQL\Types\UserType::class,
+                'user' => App\GraphQL\Types\UserType::class,
             ],
             // 'middleware' => ['checkAccess'],
             'middleware' => [],
             'method' => ['get', 'post'],
-        ],
-        'users' => [
-            'query' => [
-                'users' => App\GraphQL\Queries\UsersQuery::class,
-            ],
-            'types' => [
-                'User' => App\GraphQL\Types\UserType::class,
-            ],
-            'middleware' => [],
-            'method' => ['get'],
         ],
     ],
 
