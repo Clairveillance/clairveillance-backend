@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Redis;
 
-use Illuminate\Support\Facades\Redis as BaseRedis;
 use App\Interfaces\Redis\RedisInterface;
 use Illuminate\Redis\Connections\Connection;
+use Illuminate\Support\Facades\Redis as BaseRedis;
 
 /**
- * * Redis
- * 
+ * * Redis.
+ *
  * @method static \App\Redis\Redis\connect()
  */
 final class Redis extends BaseRedis implements RedisInterface
@@ -25,6 +25,7 @@ final class Redis extends BaseRedis implements RedisInterface
     {
         $connection = $name != '' ? $name : config('database.redis.connection');
         $redis = BaseRedis::connection($connection);
+
         return $redis;
     }
 }

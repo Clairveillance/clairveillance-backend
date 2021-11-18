@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "barryvdh/laravel-debugbar": "^3.6",
+        "friendsofphp/php-cs-fixer": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.65|^8.0",
@@ -19,6 +20,7 @@
         "rebing/graphql-laravel": "^7.2"
     },
     "require-dev": {
+        "eduarguz/shift-php-cs": "^2.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/framework": "^8.65|^8.0",

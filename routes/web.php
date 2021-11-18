@@ -10,7 +10,8 @@ Route::get('/redis', function () {
     // We need to call Redis::connect() from App\Redis\Redis to be able to use the custom connection that is specified in Environment variables config file.
     $redis = Redis::connect();
     // After that we can use any allowed method defined in the default Redis class (Illuminate\Support\Facades\Redis).
-    $visits = (int)$redis->incr('visits');
+    $visits = (int) $redis->incr('visits');
+
     return $visits;
 });
 

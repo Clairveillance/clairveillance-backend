@@ -6,21 +6,21 @@ namespace App\GraphQL\Queries;
 
 use App\Models\User;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Query;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Illuminate\Database\Eloquent\Collection;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use Rebing\GraphQL\Support\Query;
 
 /**
- * Class UserQuery
- * 
+ * Class UserQuery.
+ *
  * @property array<string> $attributes
  * @method type
  */
 class UserQuery extends Query
 {
     /**
-     * Property $attributes
-     * 
+     * Property $attributes.
+     *
      * @var array<string>
      **/
     protected $attributes = [
@@ -28,8 +28,8 @@ class UserQuery extends Query
     ];
 
     /**
-     * Method type
-     * 
+     * Method type.
+     *
      * @return \GraphQL\Type\Definition\Type
      **/
     public function type(): Type
@@ -38,8 +38,8 @@ class UserQuery extends Query
     }
 
     /**
-     * Method args
-     * 
+     * Method args.
+     *
      * @return array<string,object|string>
      **/
     public function args(): array
@@ -48,14 +48,14 @@ class UserQuery extends Query
             'id' => [
                 'name' => 'id',
                 'type' => Type::int(),
-                'rules' => ['required']
+                'rules' => ['required'],
             ],
         ];
     }
 
     /**
-     * Method resolve
-     * 
+     * Method resolve.
+     *
      * @param mixed $root
      * @param array<string,object|string> $args
      * @return \App\Models\User|null
