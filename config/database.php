@@ -137,6 +137,24 @@ return [
             // 'read_write_timeout' => 60,
         ],
 
+        'redislabs_cloud' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDISLABS_HOST', '127.0.0.1'),
+            'password' => env('REDISLABS_PASSWORD', null),
+            'port' => env('REDISLABS_PORT', '6379'),
+            'database' => env('REDISLABS_DB', '0'),
+            'read_write_timeout' => 60,
+        ],
+
+        'upstash_cloud' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('UPSTASH_HOST', '127.0.0.1'),
+            'password' => env('UPSTASH_PASSWORD', null),
+            'port' => env('UPSTASH_PORT', '6379'),
+            'database' => env('UPSTASH_DB', '0'),
+            'read_write_timeout' => 60,
+        ],
+
         'cache' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
