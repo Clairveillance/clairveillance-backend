@@ -13,7 +13,7 @@
         "/users": {
             "get": {
                 "tags": [
-                    "user"
+                    "User"
                 ],
                 "summary": "Users list.",
                 "description": "Display a listing of all users.",

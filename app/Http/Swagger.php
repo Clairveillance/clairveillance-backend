@@ -15,7 +15,7 @@ declare(strict_types=1);
  *     ),
  * ),
  * @OA\Get(path="/users",
- *   tags={"user"},
+ *   tags={"User"},
  *   summary="Users list.",
  *   description="Display a listing of all users.",
  *   operationId="index",

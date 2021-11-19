@@ -7,7 +7,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'API Documentation',
+                'title' => env('APP_NAME', 'API Documentation'),
             ],
 
             'routes' => [
@@ -84,7 +84,7 @@ return [
             /*
              * Absolute path to directory where to export views
             */
-            'views' => base_path('resources/views/vendor/l5-swagger'),
+            'views' => base_path('resources/views/l5-swagger'),
 
             /*
              * Edit to set the api's base path
