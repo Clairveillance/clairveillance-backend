@@ -1,7 +1,11 @@
 {
-  "name": "clairveillance/backend",
+  "name": "clairveillance/clairveillance",
   "version": "0.1.0",
-  "author": "Clairveillance",
+  "authors": [
+    {
+      "name": "Clairveillance"
+    }
+  ],
   "license": "MIT",
   "require": {
     "php": "^7.3|^8.0",
