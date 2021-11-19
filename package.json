@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "author": "Clairveillance",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "npm run development",
     "development": "mix",
@@ -12,9 +13,7 @@
     "prod": "npm run production",
     "production": "mix --production"
   },
-  "private": true,
   "devDependencies": {
-    "@angular-eslint/eslint-plugin": "^13.0.0",
     "axios": "^0.21",
     "laravel-mix": "^6.0.6",
     "lodash": "^4.17.19",
