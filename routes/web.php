@@ -15,7 +15,7 @@ Route::get('/redis', function () {
     return $visits;
 });
 
-// Route::get() must be declared last or it will overwrite all other route methods.
+// Route::get('/{any?}') must be declared last or it will overwrite all other route methods.
 Route::get('/{any?}', function () {
     return view('welcome');
 })->where('any', '.*');
