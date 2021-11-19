@@ -99,12 +99,12 @@ check_namespaces = true
 ; The location of your compiled CSS file
 ; to convert. By default Shift uses
 ; `public/css/app.css`
-compiled_css = ""
+compiled_css = "public/css/app.css"
 
 ; The path to your CSS source files where
 ; Shift will save generated stylesheets.
 ; By default Shift uses `resources/css`
-source_path = ""
+source_path = "resources/css"
 
 ; The path to your HTML templates Shift should
 ; scan for CSS class or style changes. By

@@ -63,4 +63,15 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'rebing/graphql-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Rebing\\GraphQL\\GraphQLServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'GraphQL' => 'Rebing\\GraphQL\\Support\\Facades\\GraphQL',
+    ),
+  ),
 );
