@@ -10,6 +10,17 @@
       'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
     ),
   ),
+  'darkaonline/l5-swagger' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'L5Swagger\\L5SwaggerServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'L5Swagger' => 'L5Swagger\\L5SwaggerFacade',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
