@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: Clairveillance
+  description: 'Clairveillance API Documentation.'
+  license:
+    name: MIT
+    url: 'https://github.com/Clairveillance/clairveillance-backend/blob/master/LICENSE.md'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8001/api/v1'
+    description: 'Version 1'
+paths:
+  /users:
+    get:
+      tags:
+        - Users
+      summary: 'Show users list.'
+      description: 'Display a listing of all users.'
+      responses:
+        200:
+          description: Success
+  '/user/{id}':
+    get:
+      tags:
+        - Users
+      summary: 'Show user data.'
+      description: 'Display a specified user.'
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Unsigned biginteger, not null'
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        200:
+          description: Success
+        404:
+          description: 'Not found'
+security:
+  - []
