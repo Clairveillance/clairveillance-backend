@@ -24,9 +24,7 @@ declare(strict_types=1);
  *   tags={"Users"},
  *   summary="Show users list.",
  *   description="Display a listing of all users.",
- *   @OA\Response(response=200, description="Success"),
- *   @OA\Response(response=404, description="Not found"),
- *   @OA\Response(response=422, description="Unprocessable entity"),
+ *   @OA\Response(response=200, description="Success")
  * ),
  * 
  * @OA\Get(path="/user/{id}",
@@ -36,15 +34,15 @@ declare(strict_types=1);
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
- *         description="Identifier of the user.",
+ *         description="Unsigned biginteger, not null",
  *         required=true,
  *         @OA\Schema(
  *           type="integer",
- *           format="int32"
+ *           format="int64",
+ *           minimum=1
  *         )
  *     ),
  *   @OA\Response(response=200, description="Success"),
- *   @OA\Response(response=404, description="Not found"),
- *   @OA\Response(response=422, description="Unprocessable entity"),
+ *   @OA\Response(response=404, description="Not found")
  * )
  */

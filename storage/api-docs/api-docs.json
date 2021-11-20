@@ -26,12 +26,6 @@
                 "responses": {
                     "200": {
                         "description": "Success"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Unprocessable entity"
                     }
                 }
             }
@@ -47,11 +41,12 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Identifier of the user.",
+                        "description": "Unsigned biginteger, not null",
                         "required": true,
                         "schema": {
                             "type": "integer",
-                            "format": "int32"
+                            "format": "int64",
+                            "minimum": 1
                         }
                     }
                 ],
@@ -61,9 +56,6 @@
                     },
                     "404": {
                         "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Unprocessable entity"
                     }
                 }
             }
