@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 
-class ShowController extends Controller
+final class ShowController extends Controller
 {
-    public function __invoke(Request $request, int $id)
+    public function __invoke(Request $request, int $id): UserResource|JsonResponse
     {
         try {
             return new UserResource(User::findOrFail($id));

@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Models\User;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class UserCollection extends ResourceCollection
+final class UserCollection extends ResourceCollection
 {
     public static $wrap = 'data';
 
