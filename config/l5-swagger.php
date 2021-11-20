@@ -7,7 +7,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => env('APP_NAME', 'API Documentation'),
+                'title' => env('L5_PAGE_TITLE', 'API Documentation'),
             ],
 
             'routes' => [
@@ -249,7 +249,9 @@ return [
          * Uncomment to add constants which can be used in annotations
          */
         'constants' => [
-            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'localhost'),
+            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', env('APP_URL', 'localhost') . '/api'),
+            'L5_SWAGGER_CONST_API' => env('L5_SWAGGER_CONST_HOST', 'localhost') . env('L5_SWAGGER_API_PATH', '/api'),
+            'L5_SWAGGER_CONST_API_V1' => env('L5_SWAGGER_CONST_HOST', 'localhost') . env('L5_SWAGGER_API_PATH_V1', '/api/v1'),
         ],
     ],
 ];
