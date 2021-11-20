@@ -13,15 +13,15 @@ use Illuminate\Http\Request;
 
 final class ShowController extends Controller
 {
-    public function __invoke(Request $request, int $id): UserResource|JsonResponse
+    public function __invoke(Request $request, string $uuid): UserResource|JsonResponse
     {
         try {
-            return new UserResource(User::findOrFail($id));
+            return new UserResource(User::where('uuid', $uuid)->firstOrfail());
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'succes' => false,
                 'status' => 404,
-                'message' => 'No user found with id '.$id,
+                'message' => 'No user found with uuid ' . $uuid,
             ], 404);
         } catch (\Exception $e) {
             return response()->json([
