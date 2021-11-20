@@ -13,5 +13,8 @@ use App\Http\Controllers\Api\V1\Users\IndexController;
 
 Route::prefix('users')->as('users.')->group(function () {
     Route::get('/', IndexController::class)->name('index');
+});
+
+Route::prefix('user')->as('user.')->group(function () {
     Route::get('/{id}', ShowController::class)->name('show');
 });
