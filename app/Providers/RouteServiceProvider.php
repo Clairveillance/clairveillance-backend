@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -20,12 +20,12 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
 
-            /**
+            /*
              * Api routes.
              */
             Route::prefix('api')->middleware('api')->as('api.')->group(function () {
 
-                /**
+                /*
                  * v1
                  */
                 Route::prefix('v1')->as('v1.')->group(
@@ -33,7 +33,7 @@ class RouteServiceProvider extends ServiceProvider
                 );
             });
 
-            /**
+            /*
              * Web routes.
              * Route::middleware('web') must be declared last or it will overwrite all other routes.
              */

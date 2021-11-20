@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
             'local' => $this->call(
                 class: [
                     DefaultUserSeeder::class,
-                    UserSeeder::class
+                    UserSeeder::class,
                 ],
             ),
             'production' => $this->call(
