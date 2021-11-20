@@ -12,7 +12,7 @@ $finder = Finder::create()
         $project_path . '/routes',
         $project_path . '/tests',
     ])
-    ->exclude('Swagger')
+    ->exclude(['Swagger'])
     ->name('*.php')
     ->notName(['*.blade.php'])
     ->ignoreDotFiles(true)
