@@ -48,7 +48,7 @@ final class UserResource extends JsonResource
                 'links' => [
                     'self' => route('api.v1.users.show', $this->id),
                     'parent' => route('api.v1.users.index'),
-                ]
+                ],
             ],
         ];
     }

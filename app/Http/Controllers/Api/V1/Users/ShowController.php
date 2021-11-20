@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1\Users;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 final class ShowController extends Controller
 {
@@ -21,13 +21,13 @@ final class ShowController extends Controller
             return response()->json([
                 'succes' => false,
                 'status' => 404,
-                'message' => 'No user found with id ' . $id
+                'message' => 'No user found with id '.$id,
             ], 404);
         } catch (\Exception $e) {
             return response()->json([
                 'succes' => false,
                 'status' => 422,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 422);
         }
     }

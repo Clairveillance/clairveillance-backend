@@ -50,10 +50,10 @@ final class UserCollection extends ResourceCollection
                         'links' => [
                             'self' => route('api.v1.users.show', $item->id),
                             'parent' => route('api.v1.users.index'),
-                        ]
+                        ],
                     ]);
                 }
-            )
+            ),
         ];
     }
 }
