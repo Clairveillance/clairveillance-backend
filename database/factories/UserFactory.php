@@ -27,7 +27,6 @@ final class UserFactory extends Factory
         };
 
         return [
-            'uuid' => $this->faker->uuid(),
             'username' => $this->faker->unique()->userName(),
             'firstname' => $firstname,
             'lastname' => $lastname,

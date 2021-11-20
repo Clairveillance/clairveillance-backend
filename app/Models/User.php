@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUuid;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,11 +14,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use HasUuid;
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
     use HasApiTokens;
 
+    /**
+     * @var array<string> $fillable 
+     */
     protected $fillable = [
         'uuid',
         'username',
@@ -40,11 +45,17 @@ class User extends Authenticatable
         'password',
     ];
 
+    /**
+     * @var array<string> $hidden 
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    /**
+     * @var array<string,string> $casts 
+     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
