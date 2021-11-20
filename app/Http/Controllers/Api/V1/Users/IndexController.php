@@ -13,6 +13,6 @@ class IndexController extends Controller
 {
     public function __invoke(Request $request)
     {
-        return new UserCollection(User::all());
+        return response()->json(new UserCollection(User::all()), 200, [], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     }
 }

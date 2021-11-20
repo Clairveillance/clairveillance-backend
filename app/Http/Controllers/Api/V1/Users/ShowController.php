@@ -13,6 +13,6 @@ class ShowController extends Controller
 {
     public function __invoke(Request $request, int $id)
     {
-        return new UserResource(User::findOrFail($id));
+        return response()->json(new UserResource(User::findOrFail($id)), 200, [], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     }
 }

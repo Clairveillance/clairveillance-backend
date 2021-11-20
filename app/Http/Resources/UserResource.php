@@ -12,10 +12,14 @@ class UserResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request): array
+    public function toArray($request)
     {
         return [
-            $this::$wrap => parent::toArray($request)
+            $this::$wrap => parent::toArray($request),
+            'links' => [
+                'self' => route('api.v1.user.show', $this->id),
+                'parent' => route('api.v1.users.index'),
+            ]
         ];
     }
 
