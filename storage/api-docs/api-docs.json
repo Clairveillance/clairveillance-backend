@@ -9,24 +9,53 @@
         },
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "../api/v1",
+            "description": "version 1"
+        }
+    ],
     "paths": {
         "/users": {
             "get": {
                 "tags": [
-                    "User"
+                    "Users"
                 ],
-                "summary": "Users list.",
+                "summary": "Show users list.",
                 "description": "Display a listing of all users.",
-                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Show user data.",
+                "description": "Display a specified user.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unsigned biginteger, not null",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 1
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success"
                     },
                     "404": {
                         "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Unprocessable entity"
                     }
                 }
             }

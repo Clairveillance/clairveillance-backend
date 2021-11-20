@@ -4,20 +4,28 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUuid;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
+    use HasUuid;
     use HasFactory;
     use Notifiable;
+    use SoftDeletes;
+    use HasApiTokens;
 
+    /**
+     * @var array<string> $fillable 
+     */
     protected $fillable = [
-        // 'username',
+        'uuid',
+        'username',
         'firstname',
         'lastname',
         'avatar',
@@ -37,11 +45,17 @@ class User extends Authenticatable
         'password',
     ];
 
+    /**
+     * @var array<string> $hidden 
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    /**
+     * @var array<string,string> $casts 
+     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

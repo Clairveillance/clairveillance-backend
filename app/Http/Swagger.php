@@ -14,13 +14,35 @@ declare(strict_types=1);
  *         )
  *     ),
  * ),
+ * 
+ * @OA\Server(
+ *   description="version 1",
+ *   url="../api/v1"
+ * ),
+ * 
  * @OA\Get(path="/users",
- *   tags={"User"},
- *   summary="Users list.",
+ *   tags={"Users"},
+ *   summary="Show users list.",
  *   description="Display a listing of all users.",
- *   operationId="index",
+ *   @OA\Response(response=200, description="Success")
+ * ),
+ * 
+ * @OA\Get(path="/user/{id}",
+ *   tags={"Users"},
+ *   summary="Show user data.",
+ *   description="Display a specified user.",
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="Unsigned biginteger, not null",
+ *         required=true,
+ *         @OA\Schema(
+ *           type="integer",
+ *           format="int64",
+ *           minimum=1
+ *         )
+ *     ),
  *   @OA\Response(response=200, description="Success"),
- *   @OA\Response(response=404, description="Not found"),
- *   @OA\Response(response=422, description="Unprocessable entity"),
+ *   @OA\Response(response=404, description="Not found")
  * )
  */
