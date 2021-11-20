@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Models\User;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UserCollection extends ResourceCollection
 {
+    public static $wrap = 'data';
+
     /**
      * Transform the resource collection into an array.
      *
@@ -18,6 +22,7 @@ class UserCollection extends ResourceCollection
     {
         return [
             'succes' => true,
+            'status' => 200,
             $this::$wrap => $this->collection->map(
                 function ($item) {
                     return collect([
@@ -53,6 +58,4 @@ class UserCollection extends ResourceCollection
             )
         ];
     }
-
-    public static $wrap = 'users';
 }
