@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\Users\ShowController;
 use App\Http\Controllers\Api\V1\Users\IndexController;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::prefix('users')->as('users:')->group(function () {
+Route::prefix('users')->as('users.')->group(function () {
     Route::get('/', IndexController::class)->name('index');
     Route::get('/{id}', ShowController::class)->name('show');
 });
