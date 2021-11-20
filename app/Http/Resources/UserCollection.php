@@ -48,7 +48,7 @@ final class UserCollection extends ResourceCollection
                         'email_verified_at' => null === $item->email_verified_at ? $item->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $item->email_verified_at)),
                         'deleted_at' => null === $item->deleted_at ? $item->deleted_at : date('Y-m-d H:i:s', strtotime((string) $item->deleted_at)),
                         'links' => [
-                            'self' => route('api.v1.user.show', $item->id),
+                            'self' => route('api.v1.users.show', $item->id),
                             'parent' => route('api.v1.users.index'),
                         ]
                     ]);

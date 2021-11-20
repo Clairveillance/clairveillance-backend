@@ -46,7 +46,7 @@ final class UserResource extends JsonResource
                 'email_verified_at' => null === $this->email_verified_at ? $this->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $this->email_verified_at)),
                 'deleted_at' => null === $this->deleted_at ? $this->deleted_at : date('Y-m-d H:i:s', strtotime((string) $this->deleted_at)),
                 'links' => [
-                    'self' => route('api.v1.user.show', $this->id),
+                    'self' => route('api.v1.users.show', $this->id),
                     'parent' => route('api.v1.users.index'),
                 ]
             ],
