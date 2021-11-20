@@ -26,11 +26,14 @@
                 "responses": {
                     "200": {
                         "description": "Success"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
                     }
                 }
             }
         },
-        "/user/{id}": {
+        "/users/{id}": {
             "get": {
                 "tags": [
                     "Users"
@@ -56,6 +59,9 @@
                     },
                     "404": {
                         "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
                     }
                 }
             }

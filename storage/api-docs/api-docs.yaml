@@ -20,7 +20,9 @@ paths:
       responses:
         200:
           description: Success
-  '/user/{id}':
+        422:
+          description: 'Unprocessable entity'
+  '/users/{id}':
     get:
       tags:
         - Users
@@ -41,5 +43,7 @@ paths:
           description: Success
         404:
           description: 'Not found'
+        422:
+          description: 'Unprocessable entity'
 security:
   - []

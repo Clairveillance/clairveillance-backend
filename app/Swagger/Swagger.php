@@ -24,10 +24,11 @@ declare(strict_types=1);
  *   tags={"Users"},
  *   summary="Show users list.",
  *   description="Display a listing of all users.",
- *   @OA\Response(response=200, description="Success")
+ *   @OA\Response(response=200, description="Success"),
+ *   @OA\Response(response=422, description="Unprocessable entity")
  * ),
  *
- * @OA\Get(path="/user/{id}",
+ * @OA\Get(path="/users/{id}",
  *   tags={"Users"},
  *   summary="Show user data.",
  *   description="Display a specified user.",
@@ -45,6 +46,7 @@ declare(strict_types=1);
  *         )
  *     ),
  *   @OA\Response(response=200, description="Success"),
- *   @OA\Response(response=404, description="Not found")
+ *   @OA\Response(response=404, description="Not found"),
+ *   @OA\Response(response=422, description="Unprocessable entity")
  * )
  */
