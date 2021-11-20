@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Api\V1\Users\IndexController;
+use App\Http\Controllers\Api\V1\Users\ShowController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\Users\ShowController;
-use App\Http\Controllers\Api\V1\Users\IndexController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

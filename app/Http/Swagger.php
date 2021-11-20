@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-/**
+/*
  * @OA\OpenApi(
  *     @OA\Info(
  *         version="1.0.0",
@@ -14,19 +14,19 @@ declare(strict_types=1);
  *         )
  *     ),
  * ),
- * 
+ *
  * @OA\Server(
  *   description="Version 1",
  *   url=L5_SWAGGER_CONST_API_V1
  * ),
- * 
+ *
  * @OA\Get(path="/users",
  *   tags={"Users"},
  *   summary="Show users list.",
  *   description="Display a listing of all users.",
  *   @OA\Response(response=200, description="Success")
  * ),
- * 
+ *
  * @OA\Get(path="/user/{id}",
  *   tags={"Users"},
  *   summary="Show user data.",
