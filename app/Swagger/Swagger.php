@@ -34,7 +34,9 @@ declare(strict_types=1);
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
- *         description="Unsigned biginteger, not null",
+ *         description="
+ *     unsigned biginteger 
+ *     minimum value = 1",
  *         required=true,
  *         @OA\Schema(
  *           type="integer",

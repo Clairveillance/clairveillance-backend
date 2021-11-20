@@ -41,7 +41,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Unsigned biginteger, not null",
+                        "description": "\r\n *     unsigned biginteger \r\n *     minimum value = 1",
                         "required": true,
                         "schema": {
                             "type": "integer",
