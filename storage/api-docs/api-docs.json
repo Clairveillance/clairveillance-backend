@@ -11,8 +11,8 @@
     },
     "servers": [
         {
-            "url": "../api/v1",
-            "description": "version 1"
+            "url": "http://localhost:8001/api/v1",
+            "description": "Version 1"
         }
     ],
     "paths": {

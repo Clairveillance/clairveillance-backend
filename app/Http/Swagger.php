@@ -16,8 +16,8 @@ declare(strict_types=1);
  * ),
  * 
  * @OA\Server(
- *   description="version 1",
- *   url="../api/v1"
+ *   description="Version 1",
+ *   url=L5_SWAGGER_CONST_API_V1
  * ),
  * 
  * @OA\Get(path="/users",
