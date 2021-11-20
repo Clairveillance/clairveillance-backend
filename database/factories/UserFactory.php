@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 final class UserFactory extends Factory
 {
+    protected $model = User::class;
+
     public function definition(): array
     {
         $firstname = $this->faker->firstName();
@@ -24,10 +28,10 @@ final class UserFactory extends Factory
 
         return [
             'uuid' => $this->faker->uuid(),
-            // 'username' => $this->faker->unique()->userName(),
+            'username' => $this->faker->unique()->userName(),
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'avatar' => $this->faker->randomElement([null, $this->faker->imageUrl(80, 80, null, false, strtoupper($initial_firstname."\u{0020}".$initial_lastname))]),
+            'avatar' => $this->faker->randomElement([null, $this->faker->imageUrl(80, 80, null, false, strtoupper($initial_firstname . "\u{0020}" . $initial_lastname))]),
             'description' => $this->faker->randomElement([null, $this->faker->sentence(random_int(1, 25))]),
             'company' => $this->faker->randomElement([null, $this->faker->company()]),
             'website' => $this->faker->randomElement([null, $this->faker->url()]),
@@ -40,7 +44,8 @@ final class UserFactory extends Factory
             'phone' => $this->faker->randomElement([null, $this->faker->phoneNumber()]),
             'theme' => $this->faker->randomElement([null, $this->faker->randomElement(['light', 'dark'])]),
             'language' => $this->faker->randomElement([null, $this->faker->languageCode()]),
-            'email' => $this->faker->unique()->safeEmail(), 'password' => hash('sha256', $this->faker->word()),
+            'email' => $this->faker->unique()->safeEmail(),
+            'password' => Hash::make($this->faker->word()),
             'remember_token' => $this->faker->randomElement([null, $this->faker->md5()]),
             'created_at' => $created_date,
             'updated_at' => $updated_date,
@@ -48,7 +53,7 @@ final class UserFactory extends Factory
         ];
     }
 
-    public function unverified(): static
+    public function unverified(): Factory
     {
         return $this->state(function (array $attributes) {
             return [
