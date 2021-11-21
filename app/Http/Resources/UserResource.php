@@ -19,9 +19,6 @@ final class UserResource extends JsonResource
     public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
-            'succes' => true,
-            'status' => 200,
-            'message' => 'OK',
             $this::$wrap => [
                 'id' => $this->uuid,
                 'type' => 'users',
