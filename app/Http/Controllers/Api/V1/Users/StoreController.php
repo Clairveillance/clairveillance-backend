@@ -11,5 +11,9 @@ class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
+        return response()->json(
+            data: null,
+            status: 201
+        );
     }
 }

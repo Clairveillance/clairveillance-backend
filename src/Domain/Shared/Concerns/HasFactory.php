@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Shared\Models\Concerns;
+namespace Domain\Shared\Concerns;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
