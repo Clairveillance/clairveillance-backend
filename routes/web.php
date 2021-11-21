@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Redis\Redis;
 use Illuminate\Support\Facades\Route;
+use Redis\Redis;
 
 // Redis connection and testing.
 Route::get('/redis', function () {
