@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQL\Queries;
 
-use Domain\Shared\Models\User;
+use Domain\User\Models\User;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
@@ -15,7 +15,7 @@ use Rebing\GraphQL\Support\Query;
  * @property array<string> $attributes
  * @method type
  */
-class UserQuery extends Query
+final class UserQuery extends Query
 {
     /**
      * Property $attributes.

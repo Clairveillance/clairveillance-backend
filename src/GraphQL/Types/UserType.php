@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GraphQL\Types;
 
-use Domain\Shared\Models\User;
+use Domain\User\Models\User;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -14,7 +14,7 @@ use Rebing\GraphQL\Support\Type as GraphQLType;
  * @property array<string,object|string> $attributes
  * @method fields
  */
-class UserType extends GraphQLType
+final class UserType extends GraphQLType
 {
     /**
      * Property $attributes.

@@ -5,11 +5,22 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1\Users;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\Users\DeleteRequest;
+use Domain\User\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class DeleteController extends Controller
+final class DeleteController extends Controller
 {
-    public function __invoke(DeleteRequest $request)
+    public function __invoke(Request $request, User $user): JsonResponse
     {
+        //TODO: Auth.
+        //TODO: Move this to job.
+
+        $user->delete();
+
+        return response()->json(
+            data: null,
+            status: 202
+        );
     }
 }

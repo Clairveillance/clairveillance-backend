@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Shared\Models\Builders;
+namespace Domain\User\Models\Builders;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class UserBuilder extends Builder
+final class UserBuilder extends Builder
 {
     public function orderByUsername(): self
     {
