@@ -14,7 +14,7 @@ return [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/documentation',
+                'api' => env('L5_SWAGGER_ROUTE_URL', 'api/documentation'),
             ],
             'paths' => [
                 /*
@@ -41,7 +41,7 @@ return [
                  * Absolute paths to directory containing the swagger annotations are stored.
                 */
                 'annotations' => [
-                    base_path('app'),
+                    base_path('src'),
                 ],
 
             ],
