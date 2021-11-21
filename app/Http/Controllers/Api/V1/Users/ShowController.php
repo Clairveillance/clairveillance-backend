@@ -26,7 +26,7 @@ final class ShowController extends Controller
             return response()->json([
                 'succes' => false,
                 'status' => 404,
-                'message' => 'No user found with uuid ' . $uuid,
+                'message' => 'No user found with uuid '.$uuid,
             ], 404);
         } catch (\Exception $e) {
             return response()->json([

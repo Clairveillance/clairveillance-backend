@@ -85,4 +85,11 @@
       'GraphQL' => 'Rebing\\GraphQL\\Support\\Facades\\GraphQL',
     ),
   ),
+  'spatie/laravel-query-builder' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
+    ),
+  ),
 );
