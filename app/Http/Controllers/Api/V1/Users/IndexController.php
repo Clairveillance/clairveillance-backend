@@ -15,7 +15,7 @@ final class IndexController extends Controller
 
     public function __invoke(Request $request): UserCollection
     {
-        // FIXME: Used to debug the time of execution of a script.
+        // NOTE: Used to debug the time of execution of a script.
         // $time_start = microtime(true);
 
         $users = new UserCollection(
