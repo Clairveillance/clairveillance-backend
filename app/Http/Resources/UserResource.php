@@ -21,6 +21,7 @@ final class UserResource extends JsonResource
         return [
             'succes' => true,
             'status' => 200,
+            'message' => 'OK',
             $this::$wrap => [
                 'id' => $this->uuid,
                 'type' => 'users',

@@ -21,6 +21,7 @@ final class UserCollection extends ResourceCollection
         return [
             'succes' => true,
             'status' => 200,
+            'message' => 'OK',
             $this::$wrap => $this->collection->map(
                 function ($item) {
                     return collect([
