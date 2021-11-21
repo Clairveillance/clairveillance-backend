@@ -15,13 +15,4 @@ final class UserBuilder extends Builder
             direction: 'asc'
         );
     }
-
-    public function deleted(): self
-    {
-        return $this->where(
-            column: 'deleted_at',
-            operator: '!=',
-            value: null
-        );
-    }
 }

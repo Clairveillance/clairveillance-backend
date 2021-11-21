@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-return [
+return (array) [
 
     /*
     |--------------------------------------------------------------------------
@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => (string) env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => (string) env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,9 +54,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => (string) env('APP_URL', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_url' => (string) env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => (string) env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => (string) env('APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    'fallback_locale' => (string) env('APP_FALLBACK_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -108,18 +108,18 @@ return [
     |
     */
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'faker_locale' => (string) env('APP_FAKER_LOCALE', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
-    | Them
+    | Theme
     |--------------------------------------------------------------------------
     |
     | This locale will be used to determine the default theme ('light','dark').
     |
     */
 
-    'theme' => env('APP_THEME', 'light'),
+    'theme' => (string) env('APP_THEME', 'light'),
 
     /*
     |--------------------------------------------------------------------------
@@ -132,9 +132,9 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => (string) env('APP_KEY'),
 
-    'cipher' => 'AES-256-CBC',
+    'cipher' => (string) 'AES-256-CBC',
 
     /*
     |--------------------------------------------------------------------------
@@ -147,7 +147,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => (array) [
 
         /*
          * Laravel Framework Service Providers...
@@ -201,7 +201,7 @@ return [
     |
     */
 
-    'aliases' => [
+    'aliases' => (array) [
 
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,

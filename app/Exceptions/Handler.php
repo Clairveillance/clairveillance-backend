@@ -8,12 +8,10 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
-use Throwable;
 
-class Handler extends ExceptionHandler
+final class Handler extends ExceptionHandler
 {
     protected $dontReport = [
         //
@@ -27,12 +25,12 @@ class Handler extends ExceptionHandler
 
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
+        $this->reportable(function (\Throwable $e) {
             //
         });
     }
 
-    public function render($request, Throwable $exception): Response
+    public function render($request, \Throwable $exception): Response
     {
         /*
         if ($request->wantsJson()) {   //add Accept: application/json in request
@@ -42,11 +40,12 @@ class Handler extends ExceptionHandler
         }
 
         return $retval;
- */
+        */
+
         return $this->handleApiException($request, $exception);
     }
 
-    private function handleApiException($request, \Exception $exception): JsonResponse
+    private function handleApiException($request, \Throwable $exception): JsonResponse
     {
         $exception = $this->prepareException($exception);
 
@@ -65,7 +64,7 @@ class Handler extends ExceptionHandler
         return $this->customApiResponse($exception);
     }
 
-    private function customApiResponse($exception): JsonResponse
+    private function customApiResponse(mixed $exception): JsonResponse
     {
         if (method_exists($exception, 'getStatusCode')) {
             $statusCode = $exception->getStatusCode();
@@ -77,32 +76,25 @@ class Handler extends ExceptionHandler
         $response['success'] = false;
         $response['status'] = $statusCode;
 
-        switch ($statusCode) {
-            case 401:
-                $response['message'] = 'Unauthorized';
-                break;
-            case 403:
-                $response['message'] = 'Forbidden';
-                break;
-            case 404:
-                $response['message'] = 'Not Found';
-                break;
-            case 405:
-                $response['message'] = 'Method Not Allowed';
-                break;
-            case 422:
-                $response['message'] = $exception->original['message'];
-                $response['errors'] = $exception->original['errors'];
-                break;
-            default:
-                $response['message'] = ($statusCode == 500) ? 'Whoops, looks like something went wrong' : $exception->getMessage();
-                break;
-        }
+        match ($statusCode) {
+            401 => $response['message'] = 'Unauthorized',
+            403 => $response['message'] = 'Forbidden',
+            404 => $response['message'] = 'Not Found',
+            405 => $response['message'] = 'Method Not Allowed',
+            422 => [
+                $response['message'] = 'Unprocessable Entity',
+                $response['errors'] = $exception->original['errors'],
+            ],
+            429 => $response['message'] = 'Too Many Requests',
+            default => $response['message'] = ($statusCode == 500) ? 'Internal Server Error' : $exception->getMessage(),
+        };
 
+        /*
         if (config('app.debug')) {
             $response['trace'] = $exception->getTrace();
-            // $response['code'] = $exception->getCode();
+            $response['code'] = $exception->getCode();
         }
+        */
 
         return response()->json($response, $statusCode);
     }
