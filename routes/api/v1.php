@@ -2,11 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Api\V1\Users\IndexController;
-use App\Http\Controllers\Api\V1\Users\ShowController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\Users\ShowController;
+use App\Http\Controllers\Api\V1\Users\IndexController;
+use App\Http\Controllers\Api\V1\Users\StoreController;
+use App\Http\Controllers\Api\V1\Users\DeleteController;
+use App\Http\Controllers\Api\V1\Users\UpdateController;
 
-Route::prefix('users')->as('users.')->group(function () {
-    Route::get('/', IndexController::class)->name('index');
-    Route::get('{user:uuid}', ShowController::class)->name('show');
+Route::prefix(prefix: 'users')->as(value: 'users.')->group(function () {
+    Route::get(uri: '/', action: IndexController::class)->name(name: 'index');
+    Route::post(uri: '/', action: StoreController::class)->name(name: 'store');
+    Route::get(uri: '{user:uuid}', action: ShowController::class)->name(name: 'show');
+    Route::patch(uri: '{user:uuid}', action: UpdateController::class)->name(name: 'update');
+    Route::delete(uri: '{user:uuid}', action: DeleteController::class)->name(name: 'delete');
 });
