@@ -43,7 +43,6 @@ final class UserResource extends JsonResource
                     'created_at' => null === $this->created_at ? $this->created_at : date('Y-m-d H:i:s', strtotime((string) $this->created_at)),
                     'updated_at' => null === $this->updated_at ? $this->updated_at : date('Y-m-d H:i:s', strtotime((string) $this->updated_at)),
                     'email_verified_at' => null === $this->email_verified_at ? $this->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $this->email_verified_at)),
-                    'deleted_at' => null === $this->deleted_at ? $this->deleted_at : date('Y-m-d H:i:s', strtotime((string) $this->deleted_at)),
                 ],
                 'relationships' => [],
                 'links' => [

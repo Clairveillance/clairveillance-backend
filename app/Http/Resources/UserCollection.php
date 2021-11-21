@@ -48,7 +48,6 @@ final class UserCollection extends ResourceCollection
                             'created_at' => null === $item->created_at ? $item->created_at : date('Y-m-d H:i:s', strtotime((string) $item->created_at)),
                             'updated_at' => null === $item->updated_at ? $item->updated_at : date('Y-m-d H:i:s', strtotime((string) $item->updated_at)),
                             'email_verified_at' => null === $item->email_verified_at ? $item->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $item->email_verified_at)),
-                            'deleted_at' => null === $item->deleted_at ? $item->deleted_at : date('Y-m-d H:i:s', strtotime((string) $item->deleted_at)),
                         ],
                         'relationships' => [],
                         'links' => [
