@@ -32,7 +32,7 @@ declare(strict_types=1);
  *   @OA\Response(response=403, description="Forbidden"),
  *   @OA\Response(response=404, description="Not Found"),
  *   @OA\Response(response=405, description="Method Not Allowed"),
- *   @OA\Response(response=422, description="Unprocessable entity"),
+ *   @OA\Response(response=422, description="Unprocessable Entity"),
  *   @OA\Response(response=429, description="Too Many Requests"),
  *   @OA\Response(response=500, description="Internal Server Error")
  * ),
@@ -58,7 +58,7 @@ declare(strict_types=1);
  *   @OA\Response(response=403, description="Forbidden"),
  *   @OA\Response(response=404, description="Not Found"),
  *   @OA\Response(response=405, description="Method Not Allowed"),
- *   @OA\Response(response=422, description="Unprocessable entity"),
+ *   @OA\Response(response=422, description="Unprocessable Entity"),
  *   @OA\Response(response=429, description="Too Many Requests"),
  *   @OA\Response(response=500, description="Internal Server Error")
  * )
