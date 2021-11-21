@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Models;
 
+use Domain\Shared\Models\Builders\UserBuilder;
 use Domain\Shared\Models\Concerns\HasUuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,5 +64,12 @@ class User extends Authenticatable
     public function getRouteKeyName(): string
     {
         return 'uuid';
+    }
+
+    public function newEloquentBuilder($query): UserBuilder
+    {
+        return new UserBuilder(
+            query: $query
+        );
     }
 }

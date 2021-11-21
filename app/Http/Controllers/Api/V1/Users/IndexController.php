@@ -14,9 +14,10 @@ final class IndexController extends Controller
 {
     public function __invoke(Request $request): UserCollection|JsonResponse
     {
-        $users = new UserCollection(User::orderBy('username')->paginate(20));
         try {
-            return $users;
+            return new UserCollection(
+                resource: User::orderByUsername()->paginate(20)
+            );
         } catch (\Exception $e) {
             return response()->json([
                 'succes' => false,
