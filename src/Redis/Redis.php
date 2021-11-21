@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Redis;
+namespace Redis;
 
-use App\Interfaces\Redis\RedisInterface;
+use Redis\Concerns\RedisInterface;
 use Illuminate\Redis\Connections\Connection;
 use Illuminate\Support\Facades\Redis as BaseRedis;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Interfaces\Redis;
+namespace Redis\Concerns;
 
 use Illuminate\Redis\Connections\Connection;
 
