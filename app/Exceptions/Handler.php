@@ -89,7 +89,7 @@ final class Handler extends ExceptionHandler
             default => $response['message'] = ($statusCode == 500) ? 'Internal Server Error' : $exception->getMessage(),
         };
 
-        /*  
+        /*
         if (config('app.debug')) {
             $response['trace'] = $exception->getTrace();
             $response['code'] = $exception->getCode();

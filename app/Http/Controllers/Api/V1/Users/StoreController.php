@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1\Users;
 
-use Illuminate\Http\JsonResponse;
-use Domain\User\Actions\CreateUser;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use Domain\User\Factories\UserFactory;
 use App\Http\Requests\Api\V1\Users\StoreRequest;
+use App\Http\Resources\UserResource;
+use Domain\User\Actions\CreateUser;
+use Domain\User\Factories\UserFactory;
+use Illuminate\Http\JsonResponse;
 
 final class StoreController extends Controller
 {
@@ -31,8 +31,8 @@ final class StoreController extends Controller
                 'data' => [
                     new UserResource(
                         resource: $user
-                    )
-                ]
+                    ),
+                ],
             ],
             status: 201
         );

@@ -24,10 +24,10 @@ final class ShowController extends Controller
                 'data' => [
                     new UserResource(
                         resource: $user
-                    )
-                ]
+                    ),
+                ],
             ],
-            status: 200,
+            status: 200
         );
     }
 }
