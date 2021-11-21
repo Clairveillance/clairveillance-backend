@@ -23,7 +23,7 @@ final class DeleteController extends Controller
                 'success' => true,
                 'status' => 202,
                 'message' => 'Accepted',
-                'data' => null
+                'data' => null,
             ],
             status: 202
         );
