@@ -15,16 +15,17 @@ final class IndexController extends Controller
 
     public function __invoke(Request $request): UserCollection
     {
+        // FIXME: Used to debug the time of execution of a script.
         // $time_start = microtime(true);
 
         $users = new UserCollection(
             resource: User::orderByUsername()->paginate(20)
         );
 
-        /* 
+        /*
         $time_end = microtime(true);
         $time = $time_end - $time_start;
-        dump((($time) * 1000));
+        dump(round((($time) * 1000), 2) . "ms");
         */
 
         return $users;
