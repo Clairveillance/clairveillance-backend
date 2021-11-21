@@ -8,5 +8,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('users')->as('users.')->group(function () {
     Route::get('/', IndexController::class)->name('index');
-    Route::get('/{id}', ShowController::class)->name('show');
+    Route::get('/{uuid}', ShowController::class)->name('show');
 });

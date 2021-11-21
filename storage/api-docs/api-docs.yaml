@@ -22,7 +22,7 @@ paths:
           description: Success
         422:
           description: 'Unprocessable entity'
-  '/users/{id}':
+  '/users/{uuid}':
     get:
       tags:
         - Users
@@ -30,14 +30,11 @@ paths:
       description: 'Display a specified user.'
       parameters:
         -
-          name: id
+          name: uuid
           in: path
-          description: "\r\n *     unsigned biginteger \r\n *     minimum value = 1"
           required: true
           schema:
-            type: integer
-            format: int64
-            minimum: 1
+            type: string
       responses:
         200:
           description: Success

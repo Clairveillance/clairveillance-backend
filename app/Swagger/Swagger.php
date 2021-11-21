@@ -28,21 +28,16 @@ declare(strict_types=1);
  *   @OA\Response(response=422, description="Unprocessable entity")
  * ),
  *
- * @OA\Get(path="/users/{id}",
+ * @OA\Get(path="/users/{uuid}",
  *   tags={"Users"},
  *   summary="Show user data.",
  *   description="Display a specified user.",
  *     @OA\Parameter(
- *         name="id",
+ *         name="uuid",
  *         in="path",
- *         description="
- *     unsigned biginteger 
- *     minimum value = 1",
  *         required=true,
  *         @OA\Schema(
- *           type="integer",
- *           format="int64",
- *           minimum=1
+ *           type="string"
  *         )
  *     ),
  *   @OA\Response(response=200, description="Success"),

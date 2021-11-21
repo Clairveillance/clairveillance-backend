@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\Models\User;
+use Domain\Shared\Models\User;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Database\Eloquent\Collection;
 use Rebing\GraphQL\Support\Facades\GraphQL;

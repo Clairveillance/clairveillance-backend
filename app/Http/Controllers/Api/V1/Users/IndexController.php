@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Api\V1\Users;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserCollection;
-use App\Models\User;
+use Domain\Shared\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -14,9 +14,10 @@ final class IndexController extends Controller
 {
     public function __invoke(Request $request): UserCollection|JsonResponse
     {
-        $users = new UserCollection(User::paginate(20));
         try {
-            return $users;
+            return new UserCollection(
+                resource: User::orderByUsername()->paginate(20)
+            );
         } catch (\Exception $e) {
             return response()->json([
                 'succes' => false,
