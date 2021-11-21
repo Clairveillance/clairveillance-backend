@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Domain\User\Models\Builders\UserBuilder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+final class User extends Authenticatable
 {
     use HasUuid;
     use HasFactory;

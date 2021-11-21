@@ -6,11 +6,10 @@ namespace Database\Seeders;
 
 use Domain\User\Models\User;
 use Faker\Factory as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class DefaultUserSeeder extends Seeder
+final class DefaultUserSeeder extends Seeder
 {
     public function run(): void
     {

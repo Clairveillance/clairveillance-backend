@@ -6,7 +6,7 @@ namespace App\Http\Requests\Api\V1\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+final class StoreRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -101,7 +101,7 @@ class StoreRequest extends FormRequest
                 'required',
                 'email:rfc,dns',
                 'max:255',
-                'unique:users,email'
+                'unique:users,email',
             ],
             'password' => [
                 'required',

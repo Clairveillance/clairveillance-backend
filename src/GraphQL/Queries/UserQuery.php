@@ -15,7 +15,7 @@ use Rebing\GraphQL\Support\Query;
  * @property array<string> $attributes
  * @method type
  */
-class UserQuery extends Query
+final class UserQuery extends Query
 {
     /**
      * Property $attributes.

@@ -7,7 +7,7 @@ namespace Domain\User\Actions;
 use Domain\User\Models\User;
 use Domain\User\ValueObjects\UserValueObject;
 
-class CreateUser
+final class CreateUser
 {
     public static function handle(UserValueObject $object): User
     {

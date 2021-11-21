@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 
 final class IndexController extends Controller
 {
+    //TODO: Auth.
+
     public function __invoke(Request $request): UserCollection|JsonResponse
     {
         return new UserCollection(

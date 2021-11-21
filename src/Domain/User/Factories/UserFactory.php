@@ -7,7 +7,7 @@ namespace Domain\User\Factories;
 use Illuminate\Support\Facades\Hash;
 use Domain\User\ValueObjects\UserValueObject;
 
-class UserFactory
+final class UserFactory
 {
     public static function create(array $attributes): UserValueObject
     {

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Api\V1\Users\DeleteController;
 use App\Http\Controllers\Api\V1\Users\IndexController;
 use App\Http\Controllers\Api\V1\Users\ShowController;

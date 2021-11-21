@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\User\ValueObjects;
 
-class UserValueObject
+final class UserValueObject
 {
     public function __construct(
         public string $username,

@@ -14,7 +14,7 @@ use Rebing\GraphQL\Support\Type as GraphQLType;
  * @property array<string,object|string> $attributes
  * @method fields
  */
-class UserType extends GraphQLType
+final class UserType extends GraphQLType
 {
     /**
      * Property $attributes.
