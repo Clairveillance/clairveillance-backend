@@ -7,33 +7,19 @@ namespace App\Http\Controllers\Api\V1\Users;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Domain\Shared\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class ShowController extends Controller
 {
-    public function __invoke(Request $request, string $uuid): JsonResponse
+    public function __invoke(Request $request, User $user): JsonResponse
     {
-        try {
-            return response()->json(
-                data: new UserResource(
-                    resource: User::where('uuid', $uuid)->firstOrfail(),
-                ),
-                status: 200,
-            );
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'succes' => false,
-                'status' => 404,
-                'message' => 'No user found with uuid '.$uuid,
-            ], 404);
-        } catch (\Exception $e) {
-            return response()->json([
-                'succes' => false,
-                'status' => 422,
-                'message' => $e->getMessage(),
-            ], 422);
-        }
+        return response()->json(
+            data: new UserResource(
+                resource: $user,
+            ),
+            status: 200,
+        );
     }
 }

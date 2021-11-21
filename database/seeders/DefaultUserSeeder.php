@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Faker\Factory;
+use Domain\Shared\Models\User;
+use Faker\Factory as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,7 +14,7 @@ class DefaultUserSeeder extends Seeder
 {
     public function run(): void
     {
-        $faker = Factory::create();
+        $faker = Faker::create();
 
         User::factory()->create([
             'username' => env('DEFAULT_USERNAME', $faker->userName()),

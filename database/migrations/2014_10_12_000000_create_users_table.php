@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('firstname');
             $table->string('lastname');
             $table->string('avatar')->nullable();
-            $table->longText('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('company')->nullable();
             $table->string('website')->nullable();
             $table->string('country');

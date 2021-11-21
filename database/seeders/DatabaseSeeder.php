@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use Database\Seeders\DefaultUserSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 

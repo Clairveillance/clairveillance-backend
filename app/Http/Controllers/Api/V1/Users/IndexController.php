@@ -14,16 +14,8 @@ final class IndexController extends Controller
 {
     public function __invoke(Request $request): UserCollection|JsonResponse
     {
-        try {
-            return new UserCollection(
-                resource: User::orderByUsername()->paginate(20)
-            );
-        } catch (\Exception $e) {
-            return response()->json([
-                'succes' => false,
-                'status' => 422,
-                'message' => $e->getMessage(),
-            ], 422);
-        }
+        return new UserCollection(
+            resource: User::orderByUsername()->paginate(20)
+        );
     }
 }

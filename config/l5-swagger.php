@@ -52,7 +52,7 @@ return [
             /*
              * Route for accessing parsed swagger annotations.
             */
-            'docs' => 'docs',
+            'docs' => env('L5_SWAGGER_ROUTE_URL', 'docs'),
 
             /*
              * Route for Oauth2 authentication callback.
