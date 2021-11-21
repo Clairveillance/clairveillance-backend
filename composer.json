@@ -37,7 +37,8 @@
       "App\\": "app/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/",
-      "Domain\\": "src/Domain"
+      "Domain\\": "src/Domain",
+      "GraphQL\\": "src/GraphQL"
     }
   },
   "autoload-dev": {

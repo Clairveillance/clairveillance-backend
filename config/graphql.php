@@ -69,11 +69,11 @@ return [
     'schemas' => [
         'users' => [
             'query' => [
-                'user' => App\GraphQL\Queries\UserQuery::class,
-                'users' => App\GraphQL\Queries\UsersQuery::class,
+                'user' => GraphQL\Queries\UserQuery::class,
+                'users' => GraphQL\Queries\UsersQuery::class,
             ],
             'types' => [
-                'user' => App\GraphQL\Types\UserType::class,
+                'user' => GraphQL\Types\UserType::class,
             ],
             // 'middleware' => ['checkAccess'],
             'middleware' => [],
