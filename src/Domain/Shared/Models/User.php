@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Models;
 
-use Domain\Shared\Models\Builders\UserBuilder;
-use Domain\Shared\Models\Concerns\HasUuid;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Domain\Shared\Models\Concerns\HasUuid;
+use Domain\Shared\Models\Concerns\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Domain\Shared\Models\Builders\UserBuilder;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
