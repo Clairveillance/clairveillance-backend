@@ -9,6 +9,17 @@ use App\Http\Controllers\Api\V1\Users\StoreController;
 use App\Http\Controllers\Api\V1\Users\UpdateController;
 use Illuminate\Support\Facades\Route;
 
+Route::group(
+    [
+        'middleware' => [
+            'json.response',
+        ],
+    ],
+    function () {
+        //
+    }
+);
+
 Route::prefix('users')->as('users.')->group(function () {
     Route::get(uri: '/', action: IndexController::class)->name(name: 'index');
     Route::post(uri: '/', action: StoreController::class)->name(name: 'store');
