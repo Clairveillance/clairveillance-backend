@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Domain\Shared\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 final class UserFactory extends Factory
 {
@@ -30,7 +30,7 @@ final class UserFactory extends Factory
             'username' => $this->faker->unique()->userName(),
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'avatar' => $this->faker->randomElement([null, $this->faker->imageUrl(80, 80, null, false, strtoupper($initial_firstname . "\u{0020}" . $initial_lastname))]),
+            'avatar' => $this->faker->randomElement([null, $this->faker->imageUrl(80, 80, null, false, strtoupper($initial_firstname."\u{0020}".$initial_lastname))]),
             'description' => $this->faker->randomElement([null, $this->faker->sentence(random_int(1, 25))]),
             'company' => $this->faker->randomElement([null, $this->faker->company()]),
             'website' => $this->faker->randomElement([null, $this->faker->url()]),
