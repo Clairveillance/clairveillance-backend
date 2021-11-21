@@ -19,7 +19,12 @@ final class DeleteController extends Controller
         $user->delete();
 
         return response()->json(
-            data: null,
+            data: [
+                'success' => true,
+                'status' => 202,
+                'message' => 'Accepted',
+                'data' => null
+            ],
             status: 202
         );
     }

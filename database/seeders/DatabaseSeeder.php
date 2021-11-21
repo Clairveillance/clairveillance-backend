@@ -12,7 +12,7 @@ final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        match (env('APP_ENV')) {
+        match (config('app.env')) {
             'local' => $this->call(
                 class: [
                     DefaultUserSeeder::class,
