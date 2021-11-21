@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Shared\Concerns;
+namespace Domain\Shared\Models\Concerns;
 
 use Faker\Factory;
 use Illuminate\Database\Eloquent\Model;
