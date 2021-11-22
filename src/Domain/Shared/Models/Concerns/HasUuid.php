@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Domain\Shared\Models\Concerns;
 
-use Faker\Factory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 trait HasUuid
 {
+    // NOTE: We generate a random and unique 'uuid' everytime we create a new User.
     public static function bootHasUuid(): void
     {
-        $faker = Factory::create();
-        static::creating(fn (Model $model) => $model->uuid = $faker->unique()->uuid());
+        static::creating(fn (Model $model) => $model->uuid = Str::uuid());
     }
 }
