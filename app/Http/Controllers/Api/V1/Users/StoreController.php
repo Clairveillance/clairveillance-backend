@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1\Users;
 
-use Illuminate\Http\JsonResponse;
-use Domain\User\Actions\CreateUser;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use Domain\User\Factories\UserFactory;
-use App\Jobs\Users\CreateUser as CreateUserJob;
 use App\Http\Requests\Api\V1\Users\StoreRequest;
+use App\Http\Resources\UserResource;
+use App\Jobs\Users\CreateUser as CreateUserJob;
+use Domain\User\Actions\CreateUser;
+use Domain\User\Factories\UserFactory;
+use Illuminate\Http\JsonResponse;
 
 final class StoreController extends Controller
 {
-
     public function __invoke(StoreRequest $request): JsonResponse
     {
         // TODO: Auth.
@@ -37,7 +36,7 @@ final class StoreController extends Controller
             status: 202
         );
 
-        /* 
+        /*
         $user = CreateUser::handle(
             object: UserFactory::create(
                 attributes: $request->validated(),
@@ -56,7 +55,7 @@ final class StoreController extends Controller
                 ],
             ],
             status: 201
-        ); 
+        );
         */
     }
 }

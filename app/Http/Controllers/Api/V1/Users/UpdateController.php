@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1\Users;
 
-use Domain\User\Models\User;
-use App\Jobs\Users\UpdateUser;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use Domain\User\Factories\UserFactory;
 use App\Http\Requests\Api\V1\Users\UpdateRequest;
+use App\Http\Resources\UserResource;
+use App\Jobs\Users\UpdateUser;
+use Domain\User\Factories\UserFactory;
+use Domain\User\Models\User;
+use Illuminate\Http\JsonResponse;
 
 final class UpdateController extends Controller
 {
@@ -27,7 +27,6 @@ final class UpdateController extends Controller
             UserFactory::create(
                 attributes: $request->validated(),
             ),
-
         );
 
         return response()->json(
@@ -40,13 +39,13 @@ final class UpdateController extends Controller
             status: 202
         );
 
-        /* 
+        /*
         UpdateUser::handle(
             object: UserFactory::create(
                 attributes: $request->validated(),
             ),
             user: $user
-        ); 
+        );
 
         return response()->json(
             data: [
