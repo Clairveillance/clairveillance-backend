@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 /*
  * User Endpoints.
  */
+
 Route::prefix('users')->as('users.')->group(function () {
     Route::get(uri: '/', action: IndexController::class)->name(name: 'index');
     Route::post(uri: '/', action: StoreController::class)->name(name: 'store');

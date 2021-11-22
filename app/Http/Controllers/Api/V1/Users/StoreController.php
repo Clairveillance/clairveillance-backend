@@ -14,10 +14,11 @@ use App\Http\Requests\Api\V1\Users\StoreRequest;
 
 final class StoreController extends Controller
 {
-    //TODO: Auth.
 
     public function __invoke(StoreRequest $request): JsonResponse
     {
+        // TODO: Auth.
+
         // NOTE: We use job to be able processing the action in the background.
         // We return nothing but status 202 with its corresponding message.
         CreateUserJob::dispatch(
