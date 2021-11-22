@@ -47,7 +47,7 @@ declare(strict_types=1);
  *         required=true,
  *         @OA\Schema(
  *           type="string",
- *           maximum=255
+ *           maximum=36
  *         )
  *     ),
  *   @OA\Response(response=200, description="OK"),
