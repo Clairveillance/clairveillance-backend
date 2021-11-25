@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace {{ namespace }};
+namespace {{namespace}};
 
 use Domain\Shared\Models\Concerns\HasUuid;
 use Domain\Shared\Models\Concerns\HasSlug;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class {{ class }} extends Model
 {
     use HasUuid;
+    use HasSlug;
     use HasFactory;
-    use Notifiable;
     use SoftDeletes;
 }
