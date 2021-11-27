@@ -9,14 +9,15 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 final class UserCollection extends ResourceCollection
 {
     public static $wrap = 'data';
+    protected $preserveAllQueryParameters = true;
 
     /**
      * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable;
      */
-    public function toArray($request): array
+    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return [
             'succes' => true,

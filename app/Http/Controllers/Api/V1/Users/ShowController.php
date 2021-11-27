@@ -16,16 +16,16 @@ final class ShowController extends Controller
 
     public function __invoke(Request $request, User $user): JsonResponse
     {
+        $user = new UserResource(
+            resource: $user
+        );
+
         return response()->json(
             data: [
                 'succes' => true,
                 'status' => 200,
                 'message' => 'OK',
-                'data' => [
-                    new UserResource(
-                        resource: $user
-                    ),
-                ],
+                'data' => $user,
             ],
             status: 200
         );
