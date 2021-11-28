@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Database\GraphQL\Queries;
+namespace Infrastructure\Database\GraphQL\Queries;
 
 use Domain\User\Models\User;
 use GraphQL\Type\Definition\Type;

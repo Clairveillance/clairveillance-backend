@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class DeleteUserJob implements ShouldQueue
+final class DeleteUserJob implements ShouldQueue
 {
     use Queueable;
     use Dispatchable;

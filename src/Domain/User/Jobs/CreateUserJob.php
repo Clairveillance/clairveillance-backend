@@ -12,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class CreateUserJob implements ShouldQueue
+final class CreateUserJob implements ShouldQueue
 {
     use Queueable;
     use Dispatchable;
