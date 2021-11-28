@@ -6,9 +6,9 @@ namespace Database\GraphQL\Queries;
 
 use Domain\User\Models\User;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Database\Eloquent\Collection;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class UsersQuery.
@@ -25,6 +25,7 @@ final class UsersQuery extends Query
      **/
     protected $attributes = [
         'name' => 'users',
+        'description' => 'Display the list of all users.'
     ];
 
     /**
@@ -38,6 +39,25 @@ final class UsersQuery extends Query
     }
 
     /**
+     * Method args.
+     *
+     * @return array<string,object|string>
+     **/
+    public function args(): array
+    {
+        return [
+            'column' => [
+                'name' => 'column',
+                'type' => Type::string(),
+            ],
+            'direction' => [
+                'name' => 'direction',
+                'type' => Type::string(),
+            ],
+        ];
+    }
+
+    /**
      * Method resolve.
      *
      * @param mixed $root
@@ -46,6 +66,9 @@ final class UsersQuery extends Query
      **/
     public function resolve($root, $args): Collection
     {
-        return User::all();
+        return User::orderByUsername(
+            column: $args['column'] ?? 'username',
+            direction: $args['direction'] ?? 'asc'
+        )->get();
     }
 }

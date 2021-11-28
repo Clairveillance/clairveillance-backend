@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 final class UserBuilder extends Builder
 {
-    public function orderByUsername(): self
+    public function orderByUsername(string $column = 'username', string $direction = 'asc'): self
     {
         return $this->orderBy(
-            column: 'username',
-            direction: 'asc'
+            column: $column,
+            direction: $direction
         );
     }
 }

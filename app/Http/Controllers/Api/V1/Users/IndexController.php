@@ -19,7 +19,10 @@ final class IndexController extends Controller
         // $time_start = microtime(true);
 
         $users = new UserCollection(
-            resource: User::orderByUsername()->paginate(20)
+            resource: User::orderByUsername(
+                column: 'username',
+                direction: 'asc'
+            )->paginate(20)
         );
 
         $users::$wrap = 'data';
