@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+use Rebing\GraphQL\GraphQLController;
+use Rebing\GraphQL\Support\PaginationType;
+use Rebing\GraphQL\Support\SimplePaginationType;
+use Infrastructure\Database\GraphQL\Types\UserType;
+use Infrastructure\Database\GraphQL\Queries\UserQuery;
+use Infrastructure\Database\GraphQL\Queries\UsersQuery;
+
 return [
     // The prefix for routes
     'prefix' => 'graphql',
@@ -36,7 +43,7 @@ return [
     //     'mutation' => '\Rebing\GraphQL\GraphQLController@mutation'
     // ]
     //
-    'controllers' => \Rebing\GraphQL\GraphQLController::class.'@query',
+    'controllers' => GraphQLController::class . '@query',
 
     // Any middleware for the graphql route group
     'middleware' => [],
@@ -69,11 +76,11 @@ return [
     'schemas' => [
         'users' => [
             'query' => [
-                'users' => Database\GraphQL\Queries\UsersQuery::class,
-                'user' => Database\GraphQL\Queries\UserQuery::class,
+                'users' => UsersQuery::class,
+                'user' => UserQuery::class,
             ],
             'types' => [
-                'user' => Database\GraphQL\Types\UserType::class,
+                'user' => UserType::class,
             ],
             // 'middleware' => ['checkAccess'],
             'middleware' => [],
@@ -91,7 +98,7 @@ return [
     // ]
     //
     'types' => [
-        'user' => Database\GraphQL\Types\UserType::class,
+        'user' => UserType::class,
         // ExampleType::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
@@ -109,7 +116,7 @@ return [
     //     'message' => '',
     //     'locations' => []
     // ]
-    'error_formatter' => [\Rebing\GraphQL\GraphQL::class, 'formatError'],
+    'error_formatter' => [GraphQL::class, 'formatError'],
 
     /*
      * Custom Error Handling
@@ -118,7 +125,7 @@ return [
      *
      * The default handler will pass exceptions to laravel Error Handling mechanism
      */
-    'errors_handler' => [\Rebing\GraphQL\GraphQL::class, 'handleErrors'],
+    'errors_handler' => [GraphQL::class, 'handleErrors'],
 
     // You can set the key, which will be used to retrieve the dynamic variables
     'params_key' => 'variables',
@@ -138,20 +145,20 @@ return [
      * You can define your own pagination type.
      * Reference \Rebing\GraphQL\Support\PaginationType::class
      */
-    'pagination_type' => \Rebing\GraphQL\Support\PaginationType::class,
+    'pagination_type' => PaginationType::class,
 
     /*
      * You can define your own simple pagination type.
      * Reference \Rebing\GraphQL\Support\SimplePaginationType::class
      */
-    'simple_pagination_type' => \Rebing\GraphQL\Support\SimplePaginationType::class,
+    'simple_pagination_type' => SimplePaginationType::class,
 
     /*
      * Config for GraphiQL (see (https://github.com/graphql/graphiql).
      */
     'graphiql' => [
         'prefix' => '/graphiql',
-        'controller' => \Rebing\GraphQL\GraphQLController::class.'@graphiql',
+        'controller' => GraphQLController::class . '@graphiql',
         'middleware' => [],
         'view' => 'graphql::graphiql',
         'display' => env('ENABLE_GRAPHIQL', true),
@@ -197,7 +204,7 @@ return [
         'cache_driver' => env('GRAPHQL_APQ_CACHE_DRIVER', config('cache.default')),
 
         // The cache prefix
-        'cache_prefix' => config('cache.prefix').':graphql.apq',
+        'cache_prefix' => config('cache.prefix') . ':graphql.apq',
 
         // The cache ttl in minutes - See https://www.apollographql.com/docs/apollo-server/performance/apq/#adjusting-cache-time-to-live-ttl
         'cache_ttl' => 300,

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Database\Redis\Redis;
 use Illuminate\Support\Facades\Route;
+use Infrastructure\Database\Redis\Redis;
 
 // FIXME: Add Redis connection and testing.
 Route::get('/redis', function () {
