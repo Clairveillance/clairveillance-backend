@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use JsonSerializable;
 use Illuminate\Http\Resources\Json\JsonResource;
+use JsonSerializable;
 
 final class UserResource extends JsonResource
 {
@@ -15,7 +15,7 @@ final class UserResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|JsonSerializable
     {
         return [
             'id' => $this->uuid,

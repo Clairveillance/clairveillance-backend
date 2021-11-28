@@ -59,7 +59,7 @@ return [
     // The name of the default schema used when no argument is provided
     // to GraphQL::schema() or when the route is used without the graphql_schema
     // parameter.
-    'default_schema' => 'users',
+    // 'default_schema' => 'users',
 
     // The schemas for query and/or mutation. It expects an array of schemas to provide
     // both the 'query' fields and the 'mutation' fields.
@@ -69,11 +69,21 @@ return [
     'schemas' => [
         'users' => [
             'query' => [
-                'user' => GraphQL\Queries\UserQuery::class,
-                'users' => GraphQL\Queries\UsersQuery::class,
+                'users' => Database\GraphQL\Queries\UsersQuery::class,
             ],
             'types' => [
-                'user' => GraphQL\Types\UserType::class,
+                'user' => Database\GraphQL\Types\UserType::class,
+            ],
+            // 'middleware' => ['checkAccess'],
+            'middleware' => [],
+            'method' => ['get', 'post'],
+        ],
+        'user' => [
+            'query' => [
+                'user' => Database\GraphQL\Queries\UserQuery::class,
+            ],
+            'types' => [
+                'user' => Database\GraphQL\Types\UserType::class,
             ],
             // 'middleware' => ['checkAccess'],
             'middleware' => [],
@@ -87,7 +97,7 @@ return [
     // Example:
     //
     // 'types' => [
-    //     App\GraphQL\Type\UserType::class
+    //     Database\GraphQL\Type\UserType::class
     // ]
     //
     'types' => [

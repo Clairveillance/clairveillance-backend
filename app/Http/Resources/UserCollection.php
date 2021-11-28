@@ -9,6 +9,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 final class UserCollection extends ResourceCollection
 {
     public static $wrap = 'data';
+
     protected $preserveAllQueryParameters = true;
 
     /**
