@@ -65,13 +65,22 @@ final class UserQuery extends Query
     {
         return User::where(function ($query) use ($args) {
             if (isset($args['uuid'])) {
-                $query->where('uuid', $args['uuid']);
+                $query->where(
+                    column: 'uuid',
+                    value: $args['uuid']
+                );
             }
             if (isset($args['username'])) {
-                $query->where('username', $args['username']);
+                $query->where(
+                    column: 'username',
+                    value: $args['username']
+                );
             }
             if (isset($args['email'])) {
-                $query->where('email', $args['email']);
+                $query->where(
+                    column: 'email',
+                    value: $args['email']
+                );
             }
         })->firstOrFail();
     }
