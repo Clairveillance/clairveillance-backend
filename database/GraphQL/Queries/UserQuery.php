@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\GraphQL\Queries;
 
 use Domain\User\Models\User;
+use Exception;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
@@ -44,10 +45,17 @@ final class UserQuery extends Query
     public function args(): array
     {
         return [
-            'uiid' => [
-                'name' => 'uiid',
+            'uuid' => [
+                'name' => 'uuid',
                 'type' => Type::string(),
-                'rules' => ['required'],
+            ],
+            'username' => [
+                'name' => 'username',
+                'type' => Type::string(),
+            ],
+            'email' => [
+                'name' => 'email',
+                'type' => Type::string(),
             ],
         ];
     }
@@ -57,10 +65,20 @@ final class UserQuery extends Query
      *
      * @param mixed $root
      * @param array<string,object|string> $args
-     * @return \App\Models\User|null
+     * @return \App\Models\User
      **/
-    public function resolve($root, $args): ?User
+    public function resolve($root, $args): User
     {
-        return User::where('uuid', $args['uiid'])->firstOrFail();
+        return User::where(function ($query) use ($args) {
+            if (isset($args['uuid'])) {
+                $query->where('uuid', $args['uuid']);
+            }
+            if (isset($args['username'])) {
+                $query->where('username', $args['username']);
+            }
+            if (isset($args['email'])) {
+                $query->where('email', $args['email']);
+            }
+        })->firstOrFail();
     }
 }

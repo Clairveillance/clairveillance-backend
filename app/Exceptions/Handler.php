@@ -9,7 +9,6 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpFoundation\Response;
 
 final class Handler extends ExceptionHandler
 {
@@ -30,7 +29,7 @@ final class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, \Throwable $exception): Response
+    public function render($request, \Throwable $exception): JsonResponse
     {
         /*
         if ($request->wantsJson()) {   //add Accept: application/json in request
