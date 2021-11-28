@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1\Users;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\Users\DeleteUser;
+use Domain\User\Jobs\DeleteUserJob;
 use Domain\User\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ final class DeleteController extends Controller
 
         // NOTE: We use job to be able processing the action in the background.
         // We return nothing but status 202 with its corresponding message.
-        DeleteUser::dispatch(
+        DeleteUserJob::dispatch(
             $user->id,
         );
 

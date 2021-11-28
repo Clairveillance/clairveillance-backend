@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Jobs\Users;
+declare(strict_types=1);
+
+namespace Domain\User\Jobs;
 
 use Domain\User\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class DeleteUser implements ShouldQueue
+class DeleteUserJob implements ShouldQueue
 {
     use Queueable;
     use Dispatchable;
@@ -24,7 +25,7 @@ class DeleteUser implements ShouldQueue
 
     public function handle(): void
     {
-        $user = User::find($this->userId);
+        $user = User::findOrFail($this->userId);
         $user->delete();
     }
 }

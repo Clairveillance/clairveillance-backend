@@ -9,7 +9,6 @@ use Illuminate\Http\Response;
 
 class Cors
 {
-
     /**
      * Handle an incoming request.
      *
@@ -29,7 +28,7 @@ class Cors
             'Accept' => 'application/json',
         ];
 
-        if ($request->getMethod() == "OPTIONS") {
+        if ($request->getMethod() == 'OPTIONS') {
             // The client-side application can set only headers allowed in Access-Control-Allow-Headers
             return Response::make('OK', 200, $headers);
         }

@@ -14,10 +14,12 @@ final class ShowController extends Controller
 {
     //TODO: Auth.
 
-    public function __invoke(Request $request, User $user): JsonResponse
+    public function __invoke(Request $request, string $uuid): JsonResponse
     {
         $user = new UserResource(
-            resource: $user
+            resource: User::where('uuid', $uuid)
+                // ->withTrashed()
+                ->firstOrFail()
         );
 
         return response()->json(

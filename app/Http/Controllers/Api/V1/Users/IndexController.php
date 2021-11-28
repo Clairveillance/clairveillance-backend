@@ -22,7 +22,10 @@ final class IndexController extends Controller
             resource: User::orderByUsername(
                 column: 'username',
                 direction: 'asc'
-            )->paginate(20)
+            )
+                // ->withTrashed()
+                // ->onlyTrashed()
+                ->paginate(20)
         );
 
         $users::$wrap = 'data';

@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Jobs\Users;
+declare(strict_types=1);
+
+namespace Domain\User\Jobs;
 
 use Domain\User\Models\User;
 use Domain\User\ValueObjects\UserValueObject;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class UpdateUser implements ShouldQueue
+class UpdateUserJob implements ShouldQueue
 {
     use Queueable;
     use Dispatchable;
@@ -26,7 +27,7 @@ class UpdateUser implements ShouldQueue
 
     public function handle(): void
     {
-        $user = User::find($this->userId);
+        $user = User::findOrFail($this->userId);
         $user->update($this->object->toArray());
     }
 }
