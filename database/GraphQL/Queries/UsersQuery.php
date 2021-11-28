@@ -98,48 +98,56 @@ final class UsersQuery extends Query
             if (isset($args['firstname'])) {
                 $query->where(
                     column: 'firstname',
+                    operator: '=',
                     value: $args['firstname']
                 );
             }
             if (isset($args['lastname'])) {
                 $query->where(
                     column: 'lastname',
+                    operator: '=',
                     value: $args['lastname']
                 );
             }
             if (isset($args['company'])) {
                 $query->where(
                     column: 'company',
+                    operator: '=',
                     value: $args['company']
                 );
             }
             if (isset($args['country'])) {
                 $query->where(
                     column: 'country',
+                    operator: '=',
                     value: $args['country']
                 );
             }
             if (isset($args['state'])) {
                 $query->where(
                     column: 'state',
+                    operator: '=',
                     value: $args['state']
                 );
             }
             if (isset($args['city'])) {
                 $query->where(
                     column: 'city',
+                    operator: '=',
                     value: $args['city']
                 );
             }
             if (isset($args['theme'])) {
                 $query->where(
                     column: 'theme',
+                    operator: '=',
                     value: $args['theme']
                 );
             }
             if (isset($args['language'])) {
                 $query->where(
                     column: 'language',
+                    operator: '=',
                     value: $args['language']
                 );
             }

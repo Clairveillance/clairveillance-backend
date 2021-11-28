@@ -67,18 +67,21 @@ final class UserQuery extends Query
             if (isset($args['uuid'])) {
                 $query->where(
                     column: 'uuid',
+                    operator: '=',
                     value: $args['uuid']
                 );
             }
             if (isset($args['username'])) {
                 $query->where(
                     column: 'username',
+                    operator: '=',
                     value: $args['username']
                 );
             }
             if (isset($args['email'])) {
                 $query->where(
                     column: 'email',
+                    operator: '=',
                     value: $args['email']
                 );
             }
