@@ -36,7 +36,7 @@ return [
     //     'mutation' => '\Rebing\GraphQL\GraphQLController@mutation'
     // ]
     //
-    'controllers' => \Rebing\GraphQL\GraphQLController::class.'@query',
+    'controllers' => \Rebing\GraphQL\GraphQLController::class . '@query',
 
     // Any middleware for the graphql route group
     'middleware' => [],
@@ -70,16 +70,6 @@ return [
         'users' => [
             'query' => [
                 'users' => Database\GraphQL\Queries\UsersQuery::class,
-            ],
-            'types' => [
-                'user' => Database\GraphQL\Types\UserType::class,
-            ],
-            // 'middleware' => ['checkAccess'],
-            'middleware' => [],
-            'method' => ['get', 'post'],
-        ],
-        'user' => [
-            'query' => [
                 'user' => Database\GraphQL\Queries\UserQuery::class,
             ],
             'types' => [
@@ -88,7 +78,7 @@ return [
             // 'middleware' => ['checkAccess'],
             'middleware' => [],
             'method' => ['get', 'post'],
-        ],
+        ]
     ],
 
     // The types available in the application. You can then access it from the
@@ -101,6 +91,7 @@ return [
     // ]
     //
     'types' => [
+        'user' => Database\GraphQL\Types\UserType::class,
         // ExampleType::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
@@ -160,7 +151,7 @@ return [
      */
     'graphiql' => [
         'prefix' => '/graphiql',
-        'controller' => \Rebing\GraphQL\GraphQLController::class.'@graphiql',
+        'controller' => \Rebing\GraphQL\GraphQLController::class . '@graphiql',
         'middleware' => [],
         'view' => 'graphql::graphiql',
         'display' => env('ENABLE_GRAPHIQL', true),
@@ -206,7 +197,7 @@ return [
         'cache_driver' => env('GRAPHQL_APQ_CACHE_DRIVER', config('cache.default')),
 
         // The cache prefix
-        'cache_prefix' => config('cache.prefix').':graphql.apq',
+        'cache_prefix' => config('cache.prefix') . ':graphql.apq',
 
         // The cache ttl in minutes - See https://www.apollographql.com/docs/apollo-server/performance/apq/#adjusting-cache-time-to-live-ttl
         'cache_ttl' => 300,

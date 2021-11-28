@@ -10,12 +10,6 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Field;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-/**
- * Class UserType.
- *
- * @property array<string,object|string> $attributes
- * @method fields
- */
 final class UserType extends GraphQLType
 {
     /**
@@ -25,7 +19,7 @@ final class UserType extends GraphQLType
      **/
     protected $attributes = [
         'name' => 'User',
-        'description' => 'Details about a user',
+        'description' => 'Details about a user.',
         'model' => User::class,
     ];
 
@@ -37,10 +31,6 @@ final class UserType extends GraphQLType
     public function fields(): array
     {
         return [
-            'id' => [
-                'type' => Type::nonNull(Type::int()),
-                'description' => 'Id of the user',
-            ],
             'uuid' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Uuid of the user',
