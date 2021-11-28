@@ -5,26 +5,20 @@ declare(strict_types=1);
 namespace Database\GraphQL\Queries;
 
 use Domain\User\Models\User;
-use Exception;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 
-/**
- * Class UserQuery.
- *
- * @property array<string> $attributes
- * @method type
- */
 final class UserQuery extends Query
 {
     /**
      * Property $attributes.
      *
-     * @var array<string>
+     * @var array<string,object|string>
      **/
     protected $attributes = [
         'name' => 'user',
+        'description' => 'Display a specified user. Find by uuid, username and/or email.'
     ];
 
     /**
@@ -67,7 +61,7 @@ final class UserQuery extends Query
      * @param array<string,object|string> $args
      * @return \App\Models\User
      **/
-    public function resolve($root, $args): User
+    public function resolve(mixed $root, array $args): User
     {
         return User::where(function ($query) use ($args) {
             if (isset($args['uuid'])) {
