@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\User\Jobs;
 
-use Domain\User\Actions\CreateUser as CreateUserAction;
+use Domain\User\Actions\CreateUserAction;
 use Domain\User\ValueObjects\UserValueObject;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class CreateUser implements ShouldQueue
+class CreateUserJob implements ShouldQueue
 {
     use Queueable;
     use Dispatchable;

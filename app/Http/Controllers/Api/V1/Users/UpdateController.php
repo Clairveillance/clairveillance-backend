@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Api\V1\Users;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Users\UpdateRequest;
 use Domain\User\Factories\UserFactory;
-use Domain\User\Jobs\UpdateUser as UpdateUserJob;
+use Domain\User\Jobs\UpdateUserJob;
 use Domain\User\Models\User;
 use Illuminate\Http\JsonResponse;
 
@@ -39,7 +39,7 @@ final class UpdateController extends Controller
         );
 
         /*
-        UpdateUser::handle(
+        UpdateUserAction::handle(
             object: UserFactory::create(
                 attributes: $request->validated(),
             ),

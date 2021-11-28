@@ -7,7 +7,7 @@ namespace Domain\User\Actions;
 use Domain\User\Models\User;
 use Domain\User\ValueObjects\UserValueObject;
 
-final class UpdateUser
+final class UpdateUserAction
 {
     public static function handle(UserValueObject $object, User $user): bool
     {
