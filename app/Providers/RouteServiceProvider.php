@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Api routes.
              */
-            Route::prefix('api')->middleware('api')->as('api.')->group(function () {
+            Route::prefix('api')->middleware(['api', 'cors'])->as('api.')->group(function () {
 
                 /*
                  * Version 1
