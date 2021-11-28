@@ -22,6 +22,8 @@ final class IndexController extends Controller
             resource: User::orderByUsername()->paginate(20)
         );
 
+        $users::$wrap = 'data';
+
         /*
         $time_end = microtime(true);
         $time = $time_end - $time_start;

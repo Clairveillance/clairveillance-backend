@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace GraphQL\Types;
+namespace Database\GraphQL\Types;
 
 use Domain\User\Models\User;
+use GraphQL\Type\Definition\FieldDefinition;
 use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Field;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
 /**
@@ -30,7 +32,7 @@ final class UserType extends GraphQLType
     /**
      * Method fields.
      *
-     * @return array<string,object|string>
+     * @return array<int|string,array|string|FieldDefinition|Field>
      **/
     public function fields(): array
     {
@@ -43,10 +45,10 @@ final class UserType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Uuid of the user',
             ],
-            // 'username' => [
-            // 'type' => Type::nonNull(Type::string()),
-            // 'description' => 'The screen name of the user',
-            // ],
+            'username' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'The screen name of the user',
+            ],
             'firstname' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The first name of the user',
@@ -111,14 +113,6 @@ final class UserType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The email address of the user',
             ],
-            'password' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'The encrypted password of the user',
-            ],
-            'remember_token' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'The remember token of the user',
-            ],
             'created_at' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The date and time of the creation of the user',
@@ -126,10 +120,6 @@ final class UserType extends GraphQLType
             'updated_at' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The date and time of the last update of the user',
-            ],
-            'email_verified_at' => [
-                'type' => Type::string(),
-                'description' => 'The date and time of the email validation of the user',
             ],
         ];
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GraphQL\Queries;
+namespace Database\GraphQL\Queries;
 
 use Domain\User\Models\User;
 use GraphQL\Type\Definition\Type;
@@ -44,9 +44,9 @@ final class UserQuery extends Query
     public function args(): array
     {
         return [
-            'id' => [
-                'name' => 'id',
-                'type' => Type::int(),
+            'uiid' => [
+                'name' => 'uiid',
+                'type' => Type::string(),
                 'rules' => ['required'],
             ],
         ];
@@ -61,6 +61,6 @@ final class UserQuery extends Query
      **/
     public function resolve($root, $args): ?User
     {
-        return User::findOrFail($args['id']);
+        return User::where('uuid', $args['uiid'])->firstOrFail();
     }
 }

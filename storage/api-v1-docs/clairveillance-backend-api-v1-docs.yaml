@@ -53,7 +53,7 @@ paths:
           required: true
           schema:
             type: string
-            maximum: 255
+            maximum: 36
       responses:
         200:
           description: OK
