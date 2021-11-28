@@ -6,7 +6,7 @@ namespace Infrastructure\Http\Responses;
 
 use Illuminate\Http\JsonResponse;
 
-class ApiResponse
+final class ApiResponse
 {
     private static array $headers = [
         'Content-Type' => 'application/json',
