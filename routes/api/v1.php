@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('users')->as('users.')->group(function () {
     Route::get(uri: '/', action: IndexController::class)->name(name: 'index');
     Route::post(uri: '/', action: StoreController::class)->name(name: 'store');
-    Route::get(uri: '{user:uuid}', action: ShowController::class)->name(name: 'show');
+    Route::get(uri: '{uuid}', action: ShowController::class)->name(name: 'show');
     Route::patch(uri: '{user:uuid}', action: UpdateController::class)->name(name: 'update');
     Route::delete(uri: '{user:uuid}', action: DeleteController::class)->name(name: 'delete');
 });

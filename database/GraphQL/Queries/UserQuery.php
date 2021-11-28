@@ -18,7 +18,7 @@ final class UserQuery extends Query
      **/
     protected $attributes = [
         'name' => 'user',
-        'description' => 'Display a specified user. Find by uuid, username and/or email.'
+        'description' => 'Display a specified user. Find by uuid, username and/or email.',
     ];
 
     /**
@@ -85,6 +85,8 @@ final class UserQuery extends Query
                     value: $args['email']
                 );
             }
-        })->firstOrFail();
+        })
+            // ->withTrashed()
+            ->firstOrFail();
     }
 }

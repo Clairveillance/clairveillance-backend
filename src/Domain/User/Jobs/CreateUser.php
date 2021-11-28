@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Jobs\Users;
+namespace Domain\User\Jobs;
 
 use Domain\User\Actions\CreateUser as CreateUserAction;
 use Domain\User\ValueObjects\UserValueObject;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;

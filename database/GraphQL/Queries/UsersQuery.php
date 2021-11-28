@@ -6,9 +6,9 @@ namespace Database\GraphQL\Queries;
 
 use Domain\User\Models\User;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Query;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Illuminate\Database\Eloquent\Collection;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use Rebing\GraphQL\Support\Query;
 
 final class UsersQuery extends Query
 {
@@ -19,7 +19,7 @@ final class UsersQuery extends Query
      **/
     protected $attributes = [
         'name' => 'users',
-        'description' => 'Display the list of all users. Find by firstname, lastname, company, country, state, city, theme and/or language. Order by column (default: username) and/or direction (default: asc).'
+        'description' => 'Display the list of all users. Find by firstname, lastname, company, country, state, city, theme and/or language. Order by column (default: username) and/or direction (default: asc).',
     ];
 
     /**
@@ -151,9 +151,13 @@ final class UsersQuery extends Query
                     value: $args['language']
                 );
             }
-        })->orderByUsername(
-            column: $args['column'] ?? 'username',
-            direction: $args['direction'] ?? 'asc'
-        )->get();
+        })
+            ->orderByUsername(
+                column: $args['column'] ?? 'username',
+                direction: $args['direction'] ?? 'asc'
+            )
+            // ->withTrashed()
+            // ->onlyTrashed()
+            ->get();
     }
 }
