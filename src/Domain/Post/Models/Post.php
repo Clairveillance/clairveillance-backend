@@ -21,8 +21,6 @@ class Post extends Model
      * @var array<string>
      */
     protected $fillable = [
-        'uuid',
-        'slug',
         'title',
         'image',
         'description',
