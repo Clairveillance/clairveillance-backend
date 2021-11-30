@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Domain\Post\Models\Post;
 use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 final class PostFactory extends Factory
 {
@@ -35,7 +35,7 @@ final class PostFactory extends Factory
             'created_at' => $created_date,
             'updated_at' => $updated_date,
             'published' => $published,
-            'published_at' => !$published ? null : $this->faker->dateTimeBetween($created_date, $updated_date),
+            'published_at' => ! $published ? null : $this->faker->dateTimeBetween($created_date, $updated_date),
         ];
     }
 }

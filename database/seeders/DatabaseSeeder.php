@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
+use Database\Seeders\DefaultUserSeeder;
 use Database\Seeders\PostSeeder;
 use Database\Seeders\UserSeeder;
-use Database\Seeders\DefaultUserSeeder;
+use Illuminate\Database\Seeder;
 
 final class DatabaseSeeder extends Seeder
 {
