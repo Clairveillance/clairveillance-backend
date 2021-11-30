@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+use Infrastructure\Database\GraphQL\Queries\UserQuery;
+use Infrastructure\Database\GraphQL\Queries\UsersQuery;
+use Infrastructure\Database\GraphQL\Types\UserType;
 use Rebing\GraphQL\GraphQLController;
 use Rebing\GraphQL\Support\PaginationType;
 use Rebing\GraphQL\Support\SimplePaginationType;
-use Infrastructure\Database\GraphQL\Types\UserType;
-use Infrastructure\Database\GraphQL\Queries\UserQuery;
-use Infrastructure\Database\GraphQL\Queries\UsersQuery;
 
 return [
     // The prefix for routes
@@ -43,7 +43,7 @@ return [
     //     'mutation' => '\Rebing\GraphQL\GraphQLController@mutation'
     // ]
     //
-    'controllers' => GraphQLController::class . '@query',
+    'controllers' => GraphQLController::class.'@query',
 
     // Any middleware for the graphql route group
     'middleware' => [],
@@ -158,7 +158,7 @@ return [
      */
     'graphiql' => [
         'prefix' => '/graphiql',
-        'controller' => GraphQLController::class . '@graphiql',
+        'controller' => GraphQLController::class.'@graphiql',
         'middleware' => [],
         'view' => 'graphql::graphiql',
         'display' => env('ENABLE_GRAPHIQL', true),
@@ -204,7 +204,7 @@ return [
         'cache_driver' => env('GRAPHQL_APQ_CACHE_DRIVER', config('cache.default')),
 
         // The cache prefix
-        'cache_prefix' => config('cache.prefix') . ':graphql.apq',
+        'cache_prefix' => config('cache.prefix').':graphql.apq',
 
         // The cache ttl in minutes - See https://www.apollographql.com/docs/apollo-server/performance/apq/#adjusting-cache-time-to-live-ttl
         'cache_ttl' => 300,

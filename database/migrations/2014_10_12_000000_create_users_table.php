@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
+        // NOTE: 'zip' is not an integer to prevent errors (i.e. using 'en_US' locale).
         Schema::create('users', function (Blueprint $table): void {
             $table->id();
             $table->uuid('uuid')->unique();
@@ -22,7 +23,6 @@ return new class extends Migration {
             $table->string('country');
             $table->string('state')->nullable();
             $table->string('city')->nullable();
-            // 'zip' is not an integer to prevent error using 'en_US' locale.
             $table->string('zip')->nullable();
             $table->string('address')->nullable();
             $table->string('address_2')->nullable();
