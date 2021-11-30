@@ -14,50 +14,152 @@ final class UserFactory extends Factory
 
     public function definition(): array
     {
-        $firstname = $this->faker->firstName();
+        $firstname = $this->faker->firstName(
+            gender: null
+        );
         $lastname = $this->faker->lastName();
-        $initial_firstname = mb_substr($firstname, 0, 1);
-        $initial_lastname = mb_substr($lastname, 0, 1);
-        $created_date = $this->faker->dateTimeBetween('-5 years', now());
-        $updated_date = $this->faker->dateTimeBetween($created_date, now());
-        $address = $this->faker->randomElement([null, $this->faker->streetAddress()]);
-        $state = match (env('APP_FAKER_LOCALE')) {
+        $initial_firstname = mb_substr(
+            string: $firstname,
+            start: 0,
+            length: 1
+        );
+        $initial_lastname = mb_substr(
+            string: $lastname,
+            start: 0,
+            length: 1
+        );
+        $created_date = $this->faker->dateTimeBetween(
+            startDate: '-5 years',
+            endDate: now(
+                tz: env(
+                    key: 'APP_TIMEZONE',
+                    default: 'UTC'
+                )
+            ),
+            timezone: env(
+                key: 'APP_TIMEZONE',
+                default: 'UTC'
+            )
+        );
+        $updated_date = $this->faker->dateTimeBetween(
+            startDate: $created_date,
+            endDate: now(
+                tz: env(
+                    key: 'APP_TIMEZONE',
+                    default: 'UTC'
+                )
+            ),
+            timezone: env(
+                key: 'APP_TIMEZONE',
+                default: 'UTC'
+            )
+        );
+        $address = $this->faker->randomElement(
+            array: [null, $this->faker->streetAddress()]
+        );
+        $state = match (env(
+            key: 'APP_FAKER_LOCALE',
+            default: 'en_US'
+        )) {
             'fr_FR' => $this->faker->region(),
             'en_US' => $this->faker->state(),
         };
 
         return [
-            'username' => $this->faker->unique()->userName(),
+            'username' => $this->faker->unique(
+                reset: false,
+                maxRetries: 10000
+            )->userName(),
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'avatar' => $this->faker->randomElement([null, $this->faker->imageUrl(80, 80, null, false, strtoupper($initial_firstname."\u{0020}".$initial_lastname))]),
-            'description' => $this->faker->randomElement([null, $this->faker->sentence(random_int(1, 25))]),
-            'company' => $this->faker->randomElement([null, $this->faker->company()]),
-            'website' => $this->faker->randomElement([null, $this->faker->url()]),
+            'avatar' => $this->faker->randomElement(
+                array: [null, $this->faker->imageUrl(
+                    width: 80,
+                    height: 80,
+                    category: null,
+                    randomize: false,
+                    word: strtoupper(
+                        string: $initial_firstname . "\u{0020}" . $initial_lastname
+                    ),
+                    gray: false
+                )]
+            ),
+            'description' => $this->faker->randomElement(
+                array: [null, $this->faker->sentence(
+                    nbWords: random_int(
+                        min: 1,
+                        max: 25
+                    ),
+                    variableNbWords: true
+                )]
+            ),
+            'company' => $this->faker->randomElement(
+                array: [null, $this->faker->company()]
+            ),
+            'website' => $this->faker->randomElement(
+                array: [null, $this->faker->url()]
+            ),
             'country' => $this->faker->country(),
-            'state' => $this->faker->randomElement([null, $state]),
-            'city' => $this->faker->randomElement([null, $this->faker->city()]),
-            'zip' => $this->faker->randomElement([null, $this->faker->postcode()]),
+            'state' => $this->faker->randomElement(
+                array: [null, $state]
+            ),
+            'city' => $this->faker->randomElement(
+                array: [null, $this->faker->city()]
+            ),
+            'zip' => $this->faker->randomElement(
+                array: [null, $this->faker->postcode()]
+            ),
             'address' => $address,
-            'address_2' => $address ? $this->faker->randomElement([null, $this->faker->streetAddress()]) : null,
-            'phone' => $this->faker->randomElement([null, $this->faker->phoneNumber()]),
-            'theme' => $this->faker->randomElement([null, $this->faker->randomElement(['light', 'dark'])]),
-            'language' => $this->faker->randomElement([null, $this->faker->languageCode()]),
-            'email' => $this->faker->unique()->safeEmail(),
-            'password' => Hash::make($this->faker->word()),
-            'remember_token' => $this->faker->randomElement([null, $this->faker->md5()]),
+            'address_2' => $address ? $this->faker->randomElement(
+                array: [null, $this->faker->streetAddress()]
+            ) : null,
+            'phone' => $this->faker->randomElement(
+                array: [null, $this->faker->phoneNumber()]
+            ),
+            'theme' => $this->faker->randomElement(
+                array: [null, $this->faker->randomElement(
+                    array: ['light', 'dark']
+                )]
+            ),
+            'language' => $this->faker->randomElement(
+                array: [null, $this->faker->languageCode()]
+            ),
+            'email' => $this->faker->unique(
+                reset: false,
+                maxRetries: 10000
+            )->safeEmail(),
+            'password' => Hash::make(
+                value: $this->faker->word(),
+                options: [
+                    //
+                ]
+            ),
+            'remember_token' => $this->faker->randomElement(
+                array: [null, $this->faker->md5()]
+            ),
             'created_at' => $created_date,
             'updated_at' => $updated_date,
-            'email_verified_at' => $this->faker->randomElement([null, $this->faker->dateTimeBetween($created_date, $updated_date)]),
+            'email_verified_at' => $this->faker->randomElement(
+                array: [null, $this->faker->dateTimeBetween(
+                    startDate: $created_date,
+                    endDate: $updated_date,
+                    timezone: env(
+                        key: 'APP_TIMEZONE',
+                        default: 'UTC'
+                    )
+                )]
+            )
         ];
     }
 
     public function unverified(): Factory
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'email_verified_at' => null,
-            ];
-        });
+        return $this->state(
+            state: function (array $attributes) {
+                return [
+                    'email_verified_at' => null,
+                ];
+            }
+        );
     }
 }

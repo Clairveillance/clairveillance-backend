@@ -13,14 +13,42 @@ final class DefaultUserSeeder extends Seeder
 {
     public function run(): void
     {
-        $faker = Faker::create();
+        $faker = Faker::create(
+            locale: env(
+                key: 'APP_FAKER_LOCALE',
+                default: 'en_US'
+            )
+        );
 
-        User::factory()->create([
-            'username' => env('DEFAULT_USERNAME', $faker->userName()),
-            'firstname' => env('DEFAULT_FIRSTNAME', $faker->firstName()),
-            'lastname' => env('DEFAULT_LASTNAME', $faker->lastName()),
-            'email' => env('DEFAULT_EMAIL', $faker->unique()->safeEmail()),
-            'password' => Hash::make(env('DEFAULT_PASSWORD', $faker->word()), ),
-        ]);
+        User::factory()->create(
+            attributes: [
+                'username' => env(
+                    key: 'DEFAULT_USERNAME',
+                    default: $faker->userName()
+                ),
+                'firstname' => env(
+                    key: 'DEFAULT_FIRSTNAME',
+                    default: $faker->firstName()
+                ),
+                'lastname' => env(
+                    key: 'DEFAULT_LASTNAME',
+                    default: $faker->lastName()
+                ),
+                'email' => env(
+                    key: 'DEFAULT_EMAIL',
+                    default: $faker->unique()->safeEmail()
+                ),
+                'password' => Hash::make(
+                    value: env(
+                        key: 'DEFAULT_PASSWORD',
+                        default: $faker->word()
+                    ),
+                    options: [
+                        //
+                    ]
+                ),
+            ],
+            parent: null
+        );
     }
 }

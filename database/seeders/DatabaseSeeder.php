@@ -13,18 +13,29 @@ final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        match (config('app.env')) {
+        match (config(
+            key: 'app.env',
+            default: null
+        )) {
             'local' => $this->call(
                 class: [
                     DefaultUserSeeder::class,
                     UserSeeder::class,
                     PostSeeder::class,
                 ],
+                silent: false,
+                parameters: [
+                    //
+                ]
             ),
             'production' => $this->call(
                 class: [
                     //
                 ],
+                silent: false,
+                parameters: [
+                    //
+                ]
             )
         };
 
