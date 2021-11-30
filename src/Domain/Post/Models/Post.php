@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace {{namespace}};
+namespace Domain\Post\Models;
 
 use Domain\Shared\Models\Concerns\HasUuid;
 use Domain\Shared\Models\Concerns\HasSlug;
@@ -10,7 +10,7 @@ use Domain\Shared\Models\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class {{ class }} extends Model
+class Post extends Model
 {
     use HasUuid;
     use HasSlug;
@@ -21,7 +21,12 @@ class {{ class }} extends Model
      * @var array<string>
      */
     protected $fillable = [
-        'uuid'
+        'uuid',
+        'slug',
+        'title',
+        'image',
+        'description',
+        'body'
     ];
 
     /**
@@ -35,7 +40,7 @@ class {{ class }} extends Model
      * @var array<string,string>
      */
     protected $casts = [
-        //
+        'published_at' => 'datetime',
     ];
 
     public function getRouteKeyName(): string

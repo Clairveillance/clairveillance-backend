@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Database\Seeders\DefaultUserSeeder;
-use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
+use Database\Seeders\PostSeeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\DefaultUserSeeder;
 
 final class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ final class DatabaseSeeder extends Seeder
                 class: [
                     DefaultUserSeeder::class,
                     UserSeeder::class,
+                    PostSeeder::class,
                 ],
             ),
             'production' => $this->call(
