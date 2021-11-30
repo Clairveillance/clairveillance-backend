@@ -12,11 +12,15 @@ final class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory(499)->make()
-            ->sortBy(function ($sort) {
-                return $sort->created_at;
-            })
+            ->sortBy(
+                callback: function ($sort) {
+                    return $sort->created_at;
+                },
+                options: SORT_REGULAR,
+                descending: false
+            )
             ->each(
-                function ($user) {
+                callback: function ($user) {
                     $user->save();
                 }
             );
