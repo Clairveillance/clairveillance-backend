@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Database\GraphQL\Types;
+namespace Infrastructure\Api\GraphQL\V1\Types;
 
 use Domain\User\Models\User;
 use GraphQL\Type\Definition\FieldDefinition;
@@ -32,19 +32,27 @@ final class UserType extends GraphQLType
     {
         return [
             'uuid' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(
+                    wrappedType: Type::string()
+                ),
                 'description' => 'Uuid of the user',
             ],
             'username' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(
+                    wrappedType: Type::string()
+                ),
                 'description' => 'The screen name of the user',
             ],
             'firstname' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(
+                    wrappedType: Type::string()
+                ),
                 'description' => 'The first name of the user',
             ],
             'lastname' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(
+                    wrappedType: Type::string()
+                ),
                 'description' => 'The last name of the user',
             ],
             'avatar' => [
@@ -64,7 +72,9 @@ final class UserType extends GraphQLType
                 'description' => 'The website url of the user',
             ],
             'country' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(
+                    wrappedType: Type::string()
+                ),
                 'description' => 'The country of origin of the user',
             ],
             'state' => [
@@ -100,15 +110,21 @@ final class UserType extends GraphQLType
                 'description' => 'The language specified by the the user',
             ],
             'email' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(
+                    wrappedType: Type::string()
+                ),
                 'description' => 'The email address of the user',
             ],
             'created_at' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(
+                    wrappedType: Type::string()
+                ),
                 'description' => 'The date and time of the creation of the user',
             ],
             'updated_at' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(
+                    wrappedType: Type::string()
+                ),
                 'description' => 'The date and time of the last update of the user',
             ],
         ];
