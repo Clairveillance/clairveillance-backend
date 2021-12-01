@@ -37,7 +37,7 @@ final class UsersQuery extends Query
     /**
      * Method args.
      *
-     * @return array<string,object|string>
+     * @return array<int|string,array|string|FieldDefinition|Field>
      **/
     public function args(): array
     {
@@ -91,7 +91,7 @@ final class UsersQuery extends Query
      * Method resolve.
      *
      * @param mixed $root
-     * @param array<string,object|string> $args
+     * @param array<int|string,array|string|FieldDefinition|Field> $args
      * @return \Illuminate\Database\Eloquent\Collection
      **/
     public function resolve($root, $args): Collection
