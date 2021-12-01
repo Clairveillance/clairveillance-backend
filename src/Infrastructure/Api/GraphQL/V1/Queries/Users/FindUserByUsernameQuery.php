@@ -37,7 +37,7 @@ final class FindUserByUsernameQuery extends Query
     /**
      * Method args.
      *
-     * @return array<string,object|string>
+     * @return array<int|string,array|string|FieldDefinition|Field>
      **/
     public function args(): array
     {
@@ -55,18 +55,16 @@ final class FindUserByUsernameQuery extends Query
      * Method resolve.
      *
      * @param mixed $root
-     * @param array<string,object|string> $args
-     * @return \App\Models\User
+     * @param array<int|string,array|string|FieldDefinition|Field> $args
+     * @return \Domain\User\Models\User
      **/
     public function resolve(mixed $root, array $args): User
     {
-        return User::where(function ($query) use ($args) {
-            $query->where(
-                column: 'username',
-                operator: '=',
-                value: $args['username']
-            );
-        })
+        return User::where(
+            column: 'username',
+            operator: '=',
+            value: $args['username']
+        )
             // ->withTrashed()
             ->firstOrFail();
     }

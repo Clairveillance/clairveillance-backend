@@ -37,7 +37,7 @@ final class UserQuery extends Query
     /**
      * Method args.
      *
-     * @return array<string,object|string>
+     * @return array<int|string,array|string|FieldDefinition|Field>
      **/
     public function args(): array
     {
@@ -61,8 +61,8 @@ final class UserQuery extends Query
      * Method resolve.
      *
      * @param mixed $root
-     * @param array<string,object|string> $args
-     * @return \App\Models\User
+     * @param array<int|string,array|string|FieldDefinition|Field> $args
+     * @return \Domain\User\Models\User
      **/
     public function resolve(mixed $root, array $args): User
     {

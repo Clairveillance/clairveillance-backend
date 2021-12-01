@@ -15,7 +15,7 @@ final class UserType extends GraphQLType
     /**
      * Property $attributes.
      *
-     * @var array<string,object|string>
+     * @var array<string,array|string|User>
      **/
     protected $attributes = [
         'name' => 'User',
