@@ -39,7 +39,7 @@
       "Database\\Seeders\\": "database/seeders/",
       "Domain\\": "src/Domain/",
       "Infrastructure\\": "src/Infrastructure",
-      "Infrastructure\\Database\\GraphQL\\": "src/Infrastructure/Database/GraphQL/",
+      "Infrastructure\\Api\\GraphQL\\": "src/Infrastructure/Api/GraphQL/",
       "Infrastructure\\Database\\Redis\\": "src/Infrastructure/Database/Redis/"
     }
   },

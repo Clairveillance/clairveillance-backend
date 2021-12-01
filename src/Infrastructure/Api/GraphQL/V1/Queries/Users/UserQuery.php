@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Database\GraphQL\Queries;
+namespace Infrastructure\Api\GraphQL\V1\Queries\Users;
 
 use Domain\User\Models\User;
 use GraphQL\Type\Definition\Type;
@@ -28,7 +28,10 @@ final class UserQuery extends Query
      **/
     public function type(): Type
     {
-        return GraphQL::type('user');
+        return GraphQL::type(
+            name: 'user',
+            fresh: false
+        );
     }
 
     /**

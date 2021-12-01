@@ -2,16 +2,19 @@
 
 declare(strict_types=1);
 
-use Infrastructure\Database\GraphQL\Queries\UserQuery;
-use Infrastructure\Database\GraphQL\Queries\UsersQuery;
-use Infrastructure\Database\GraphQL\Types\UserType;
 use Rebing\GraphQL\GraphQLController;
 use Rebing\GraphQL\Support\PaginationType;
 use Rebing\GraphQL\Support\SimplePaginationType;
+use Infrastructure\Api\GraphQL\V1\Types\UserType;
+use Infrastructure\Api\GraphQL\V1\Queries\Users\UserQuery;
+use Infrastructure\Api\GraphQL\V1\Queries\Users\UsersQuery;
+use Infrastructure\Api\GraphQL\V1\Queries\Users\FindUserByUuidQuery;
+use Infrastructure\Api\GraphQL\V1\Queries\Users\FindUserByEmailQuery;
+use Infrastructure\Api\GraphQL\V1\Queries\Users\FindUserByUsernameQuery;
 
 return [
     // The prefix for routes
-    'prefix' => 'graphql',
+    'prefix' => 'api/v1/graphql',
 
     // The routes to make GraphQL request. Either a string that will apply
     // to both query and mutation or an array containing the key 'query' and/or
@@ -43,7 +46,7 @@ return [
     //     'mutation' => '\Rebing\GraphQL\GraphQLController@mutation'
     // ]
     //
-    'controllers' => GraphQLController::class.'@query',
+    'controllers' => GraphQLController::class . '@query',
 
     // Any middleware for the graphql route group
     'middleware' => [],
@@ -66,7 +69,7 @@ return [
     // The name of the default schema used when no argument is provided
     // to GraphQL::schema() or when the route is used without the graphql_schema
     // parameter.
-    // 'default_schema' => 'users',
+    'default_schema' => 'users',
 
     // The schemas for query and/or mutation. It expects an array of schemas to provide
     // both the 'query' fields and the 'mutation' fields.
@@ -77,13 +80,17 @@ return [
         'users' => [
             'query' => [
                 'users' => UsersQuery::class,
-                'user' => UserQuery::class,
+                // 'user' => UserQuery::class,
+                'findUserByUuid' => FindUserByUuidQuery::class,
+                'findUserByEmail' => FindUserByEmailQuery::class,
+                'findUserByUsername' => FindUserByUsernameQuery::class,
             ],
             'types' => [
                 'user' => UserType::class,
             ],
-            // 'middleware' => ['checkAccess'],
-            'middleware' => [],
+            'middleware' => [
+                // 'checkAccess',
+            ],
             'method' => ['get', 'post'],
         ],
     ],
@@ -157,11 +164,11 @@ return [
      * Config for GraphiQL (see (https://github.com/graphql/graphiql).
      */
     'graphiql' => [
-        'prefix' => '/graphiql',
-        'controller' => GraphQLController::class.'@graphiql',
+        'prefix' => '/api/v1/graphiql',
+        'controller' => GraphQLController::class . '@graphiql',
         'middleware' => [],
         'view' => 'graphql::graphiql',
-        'display' => env('ENABLE_GRAPHIQL', true),
+        'display' => env('ENABLE_GRAPHIQL', false),
     ],
 
     /*
@@ -204,7 +211,7 @@ return [
         'cache_driver' => env('GRAPHQL_APQ_CACHE_DRIVER', config('cache.default')),
 
         // The cache prefix
-        'cache_prefix' => config('cache.prefix').':graphql.apq',
+        'cache_prefix' => config('cache.prefix') . ':graphql.apq',
 
         // The cache ttl in minutes - See https://www.apollographql.com/docs/apollo-server/performance/apq/#adjusting-cache-time-to-live-ttl
         'cache_ttl' => 300,
