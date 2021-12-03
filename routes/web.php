@@ -5,13 +5,17 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use Infrastructure\Database\Redis\Redis;
 
-// FIXME: Add Redis connection and testing.
+// NOTE: PHP Info.
+Route::get('/info', function () {
+    return phpinfo();
+});
+
+// NOTE: Redis connection and testing.
 Route::get('/redis', function () {
-    // NOTE: We need to call Redis::connect() from Redis\Redis to be able to use the custom connection that is specified in Environment variables config file.
+    // We need to call Redis::connect() from Redis\Redis to be able to use the custom connection that is specified in Environment variables config file.
     $redis = Redis::connect();
     // After that we can use any allowed method defined in the default Redis class (Illuminate\Support\Facades\Redis).
     $visits = (int) $redis->incr('visits');
-
     return $visits;
 });
 
