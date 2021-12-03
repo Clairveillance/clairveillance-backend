@@ -1,12 +1,15 @@
 {
   "name": "clairveillance/clairveillance",
+  "type": "project",
   "version": "0.1.0",
+  "license": "MIT",
   "authors": [
     {
-      "name": "Clairveillance"
+      "name": "Clairveillance",
+      "email": "info@clairveillance.ch",
+      "homepage": "https://clairveillance.ch"
     }
   ],
-  "license": "MIT",
   "require": {
     "php": "^7.3|^8.0",
     "barryvdh/laravel-debugbar": "^3.6",
