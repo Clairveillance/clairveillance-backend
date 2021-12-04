@@ -5,12 +5,12 @@ declare(strict_types=1);
 use Rebing\GraphQL\GraphQLController;
 use Rebing\GraphQL\Support\PaginationType;
 use Rebing\GraphQL\Support\SimplePaginationType;
-use Infrastructure\Api\GraphQL\V1\Types\UserType;
-use Infrastructure\Api\GraphQL\V1\Queries\Users\UserQuery;
-use Infrastructure\Api\GraphQL\V1\Queries\Users\UsersQuery;
-use Infrastructure\Api\GraphQL\V1\Queries\Users\FindUserByUuidQuery;
-use Infrastructure\Api\GraphQL\V1\Queries\Users\FindUserByEmailQuery;
-use Infrastructure\Api\GraphQL\V1\Queries\Users\FindUserByUsernameQuery;
+use App\GraphQL\V1\Types\UserType;
+use App\GraphQL\V1\Queries\Users\UserQuery;
+use App\GraphQL\V1\Queries\Users\UsersQuery;
+use App\GraphQL\V1\Queries\Users\FindUserByUuidQuery;
+use App\GraphQL\V1\Queries\Users\FindUserByEmailQuery;
+use App\GraphQL\V1\Queries\Users\FindUserByUsernameQuery;
 
 return [
     // The prefix for routes
