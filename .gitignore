@@ -1,5 +1,4 @@
 /cache
-/database/sqlite
 /node_modules
 /public/hot
 /public/storage

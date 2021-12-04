@@ -37,13 +37,11 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/",
+      "App\\": "src/App/",
       "Domain\\": "src/Domain/",
-      "Infrastructure\\": "src/Infrastructure",
-      "Infrastructure\\Api\\GraphQL\\": "src/Infrastructure/Api/GraphQL/",
-      "Infrastructure\\Database\\Redis\\": "src/Infrastructure/Database/Redis/"
+      "Infrastructure\\": "src/Infrastructure"
     }
   },
   "autoload-dev": {
