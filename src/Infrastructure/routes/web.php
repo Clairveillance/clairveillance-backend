@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Infrastructure\Database\Redis\Redis;
+use App\Redis\Redis;
 
 // NOTE: PHP Info.
 Route::get('/info', function () {
