@@ -22,7 +22,7 @@ class Cors
         // header("Access-Control-Allow-Origin: *");
 
         $headers = [
-            'Accept' => 'application/json',
+            // 'Accept' => 'application/json',
             'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin',
             'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
             'Access-Control-Allow-Origin' => '*',
