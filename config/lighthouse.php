@@ -36,6 +36,9 @@ return [
 
             // Logs every incoming GraphQL query.
             // \Nuwave\Lighthouse\Support\Http\Middleware\LogGraphQLQueries::class,
+
+            // NOTE: Setup custom CORS for graphql.
+            \App\Core\Middleware\Cors::class,
         ],
 
         /*
