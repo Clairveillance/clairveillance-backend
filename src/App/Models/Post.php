@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Post\Models;
+namespace App\Models;
 
-use Domain\Shared\Models\Concerns\HasUuid;
-use Domain\Shared\Models\Concerns\HasSlug;
-use Domain\Shared\Models\Concerns\HasFactory;
+use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\HasSlug;
+use App\Models\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 

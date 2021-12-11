@@ -6,8 +6,8 @@ namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
 use App\Core\Requests\Api\V1\Users\StoreRequest;
-use Domain\User\Factories\UserFactory;
-use Domain\User\Jobs\CreateUserJob;
+use App\Factories\UserFactory;
+use App\Jobs\CreateUserJob;
 use Illuminate\Http\JsonResponse;
 
 final class StoreController extends Controller

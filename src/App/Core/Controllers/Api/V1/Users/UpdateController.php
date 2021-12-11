@@ -6,9 +6,9 @@ namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
 use App\Core\Requests\Api\V1\Users\UpdateRequest;
-use Domain\User\Factories\UserFactory;
-use Domain\User\Jobs\UpdateUserJob;
-use Domain\User\Models\User;
+use App\Factories\UserFactory;
+use App\Jobs\UpdateUserJob;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
 final class UpdateController extends Controller

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Factories;
+namespace App\Factories;
 
 use Illuminate\Support\Facades\Hash;
 use Domain\User\ValueObjects\UserValueObject;
