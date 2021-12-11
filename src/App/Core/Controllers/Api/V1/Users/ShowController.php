@@ -17,7 +17,9 @@ final class ShowController extends Controller
     public function __invoke(Request $request, string $uuid): JsonResponse
     {
         $user = new UserResource(
-            resource: User::where('uuid', $uuid)
+            resource: User::with(
+                relations: 'posts'
+            )->where('uuid', $uuid)
                 // ->withTrashed()
                 ->firstOrFail()
         );

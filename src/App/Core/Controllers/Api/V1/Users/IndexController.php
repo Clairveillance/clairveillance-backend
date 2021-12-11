@@ -19,7 +19,9 @@ final class IndexController extends Controller
         // $time_start = microtime(true);
 
         $users = new UserCollection(
-            resource: User::orderByUsername(
+            resource: User::with(
+                relations: 'posts'
+            )->orderByUsername(
                 column: 'username',
                 direction: 'asc'
             )

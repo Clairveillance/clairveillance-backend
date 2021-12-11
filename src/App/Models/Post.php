@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Concerns\HasFactory;
+use App\Models\User;
 use App\Models\Concerns\HasSlug;
 use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
@@ -17,9 +19,7 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     protected $fillable = [
         'title',
         'image',
@@ -27,16 +27,12 @@ class Post extends Model
         'body',
     ];
 
-    /**
-     * @var array<string>
-     */
+    /**  @var array<string> */
     protected $hidden = [
         'id',
     ];
 
-    /**
-     * @var array<string,string>
-     */
+    /** @var array<string,string> */
     protected $casts = [
         'published_at' => 'datetime',
     ];
@@ -44,5 +40,10 @@ class Post extends Model
     public function getRouteKeyName(): string
     {
         return 'uuid';
+    }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author_uuid', 'uuid');
     }
 }

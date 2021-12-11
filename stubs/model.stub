@@ -17,23 +17,17 @@ class {{ class }} extends Model
     use HasFactory;
     use SoftDeletes;
 
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     protected $fillable = [
         'uuid'
     ];
 
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     protected $hidden = [
         'id'
     ];
 
-    /**
-     * @var array<string,string>
-     */
+    /** @var array<string,string> */
     protected $casts = [
         //
     ];
