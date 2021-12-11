@@ -18,7 +18,7 @@ _PHP needs to be a minimum version of PHP 7.2.5 and maximum version of PHP 8.0.\
 
 > PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix
 
-_Running the above command will ignore required PHP version._
+_Running the above command will ignore environment requirements._
 
 #### [PHP Lint](https://github.com/overtrue/phplint)
 
