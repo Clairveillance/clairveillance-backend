@@ -17,7 +17,8 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    // NOTE: Setup legacy CORS (used by api and graphql).
+    'paths' => ['api/*', 'graphql/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['GET, POST, PUT, DELETE, OPTIONS'],
 

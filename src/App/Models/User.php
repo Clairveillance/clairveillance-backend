@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Domain\User\Models;
+namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
-use Domain\Shared\Models\Concerns\HasUuid;
-use Domain\Shared\Models\Concerns\HasFactory;
+use App\Models\Builders\UserBuilder;
+use App\Models\Concerns\HasFactory;
+use App\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Domain\User\Models\Builders\UserBuilder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 final class User extends Authenticatable
 {

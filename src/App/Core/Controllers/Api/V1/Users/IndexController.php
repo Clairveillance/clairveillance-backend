@@ -6,7 +6,7 @@ namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
 use App\Core\Resources\UserCollection;
-use Domain\User\Models\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 final class IndexController extends Controller

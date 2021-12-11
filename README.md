@@ -16,6 +16,10 @@ This project was generated with [Laravel Installer](https://github.com/laravel/i
 
 _PHP needs to be a minimum version of PHP 7.2.5 and maximum version of PHP 8.0.\*._
 
+> PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix
+
+_Running the above command will ignore required PHP version._
+
 #### [PHP Lint](https://github.com/overtrue/phplint)
 
 > ./vendor/bin/phplint

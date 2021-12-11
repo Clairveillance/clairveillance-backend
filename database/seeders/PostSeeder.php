@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Domain\Post\Models\Post;
-use Domain\User\Models\User;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 final class PostSeeder extends Seeder

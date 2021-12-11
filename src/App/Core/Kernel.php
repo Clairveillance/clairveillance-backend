@@ -48,6 +48,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkAccess' => \App\Core\Middleware\CheckAccess::class,
         'json.response' => \App\Core\Middleware\ForceJsonResponse::class,
-        'cors' => \App\Core\Middleware\Cors::class,
+        // NOTE: Setup custom CORS (used by api).
+        'custom.cors' => \App\Core\Middleware\Cors::class,
     ];
 }

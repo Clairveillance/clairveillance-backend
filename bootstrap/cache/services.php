@@ -1,6 +1,7 @@
-<?php return array (
-  'providers' => 
-  array (
+<?php
+
+return [
+  'providers' => [
     0 => 'Illuminate\\Auth\\AuthServiceProvider',
     1 => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
     2 => 'Illuminate\\Bus\\BusServiceProvider',
@@ -32,15 +33,21 @@
     28 => 'Laravel\\Tinker\\TinkerServiceProvider',
     29 => 'Carbon\\Laravel\\ServiceProvider',
     30 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    31 => 'Rebing\\GraphQL\\GraphQLServiceProvider',
-    32 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
-    33 => 'App\\Providers\\AppServiceProvider',
-    34 => 'App\\Providers\\AuthServiceProvider',
-    35 => 'App\\Providers\\EventServiceProvider',
-    36 => 'App\\Providers\\RouteServiceProvider',
-  ),
-  'eager' => 
-  array (
+    31 => 'Nuwave\\Lighthouse\\LighthouseServiceProvider',
+    32 => 'Nuwave\\Lighthouse\\Auth\\AuthServiceProvider',
+    33 => 'Nuwave\\Lighthouse\\GlobalId\\GlobalIdServiceProvider',
+    34 => 'Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider',
+    35 => 'Nuwave\\Lighthouse\\Pagination\\PaginationServiceProvider',
+    36 => 'Nuwave\\Lighthouse\\Scout\\ScoutServiceProvider',
+    37 => 'Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider',
+    38 => 'Nuwave\\Lighthouse\\Validation\\ValidationServiceProvider',
+    39 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
+    40 => 'App\\Providers\\AppServiceProvider',
+    41 => 'App\\Providers\\AuthServiceProvider',
+    42 => 'App\\Providers\\EventServiceProvider',
+    43 => 'App\\Providers\\RouteServiceProvider',
+  ],
+  'eager' => [
     0 => 'Illuminate\\Auth\\AuthServiceProvider',
     1 => 'Illuminate\\Cookie\\CookieServiceProvider',
     2 => 'Illuminate\\Database\\DatabaseServiceProvider',
@@ -58,15 +65,21 @@
     14 => 'Laravel\\Sanctum\\SanctumServiceProvider',
     15 => 'Carbon\\Laravel\\ServiceProvider',
     16 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    17 => 'Rebing\\GraphQL\\GraphQLServiceProvider',
-    18 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
-    19 => 'App\\Providers\\AppServiceProvider',
-    20 => 'App\\Providers\\AuthServiceProvider',
-    21 => 'App\\Providers\\EventServiceProvider',
-    22 => 'App\\Providers\\RouteServiceProvider',
-  ),
-  'deferred' => 
-  array (
+    17 => 'Nuwave\\Lighthouse\\LighthouseServiceProvider',
+    18 => 'Nuwave\\Lighthouse\\Auth\\AuthServiceProvider',
+    19 => 'Nuwave\\Lighthouse\\GlobalId\\GlobalIdServiceProvider',
+    20 => 'Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider',
+    21 => 'Nuwave\\Lighthouse\\Pagination\\PaginationServiceProvider',
+    22 => 'Nuwave\\Lighthouse\\Scout\\ScoutServiceProvider',
+    23 => 'Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider',
+    24 => 'Nuwave\\Lighthouse\\Validation\\ValidationServiceProvider',
+    25 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
+    26 => 'App\\Providers\\AppServiceProvider',
+    27 => 'App\\Providers\\AuthServiceProvider',
+    28 => 'App\\Providers\\EventServiceProvider',
+    29 => 'App\\Providers\\RouteServiceProvider',
+  ],
+  'deferred' => [
     'Illuminate\\Broadcasting\\BroadcastManager' => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
     'Illuminate\\Contracts\\Broadcasting\\Factory' => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
     'Illuminate\\Contracts\\Broadcasting\\Broadcaster' => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
@@ -189,50 +202,35 @@
     'Laravel\\Sail\\Console\\InstallCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'Laravel\\Sail\\Console\\PublishCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
-  ),
-  'when' => 
-  array (
-    'Illuminate\\Broadcasting\\BroadcastServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Bus\\BusServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Cache\\CacheServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Hashing\\HashServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Mail\\MailServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Pipeline\\PipelineServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Queue\\QueueServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Redis\\RedisServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Translation\\TranslationServiceProvider' => 
-    array (
-    ),
-    'Illuminate\\Validation\\ValidationServiceProvider' => 
-    array (
-    ),
-    'Laravel\\Sail\\SailServiceProvider' => 
-    array (
-    ),
-    'Laravel\\Tinker\\TinkerServiceProvider' => 
-    array (
-    ),
-  ),
-);
+  ],
+  'when' => [
+    'Illuminate\\Broadcasting\\BroadcastServiceProvider' => [
+    ],
+    'Illuminate\\Bus\\BusServiceProvider' => [
+    ],
+    'Illuminate\\Cache\\CacheServiceProvider' => [
+    ],
+    'Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider' => [
+    ],
+    'Illuminate\\Hashing\\HashServiceProvider' => [
+    ],
+    'Illuminate\\Mail\\MailServiceProvider' => [
+    ],
+    'Illuminate\\Pipeline\\PipelineServiceProvider' => [
+    ],
+    'Illuminate\\Queue\\QueueServiceProvider' => [
+    ],
+    'Illuminate\\Redis\\RedisServiceProvider' => [
+    ],
+    'Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider' => [
+    ],
+    'Illuminate\\Translation\\TranslationServiceProvider' => [
+    ],
+    'Illuminate\\Validation\\ValidationServiceProvider' => [
+    ],
+    'Laravel\\Sail\\SailServiceProvider' => [
+    ],
+    'Laravel\\Tinker\\TinkerServiceProvider' => [
+    ],
+  ],
+];

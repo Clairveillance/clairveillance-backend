@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Route;
 use App\Redis\Redis;
+use Illuminate\Support\Facades\Route;
 
 // NOTE: PHP Info.
 Route::get('/info', function () {
@@ -16,6 +16,7 @@ Route::get('/redis', function () {
     $redis = Redis::connect();
     // After that we can use any allowed method defined in the default Redis class (Illuminate\Support\Facades\Redis).
     $visits = (int) $redis->incr('visits');
+
     return $visits;
 });
 

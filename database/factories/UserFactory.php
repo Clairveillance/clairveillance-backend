@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use Domain\User\Models\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
@@ -79,7 +79,7 @@ final class UserFactory extends Factory
                     category: null,
                     randomize: false,
                     word: strtoupper(
-                        string: $initial_firstname . "\u{0020}" . $initial_lastname
+                        string: $initial_firstname."\u{0020}".$initial_lastname
                     ),
                     gray: false
                 )]
@@ -148,7 +148,7 @@ final class UserFactory extends Factory
                         default: 'UTC'
                     )
                 )]
-            )
+            ),
         ];
     }
 
