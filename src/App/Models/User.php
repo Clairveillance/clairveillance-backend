@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\Builders\UserBuilder;
 use App\Models\Concerns\HasFactory;
 use App\Models\Concerns\HasUuid;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -20,9 +21,7 @@ final class User extends Authenticatable
     use SoftDeletes;
     use HasApiTokens;
 
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     protected $fillable = [
         'username',
         'firstname',
@@ -44,18 +43,14 @@ final class User extends Authenticatable
         'password',
     ];
 
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     protected $hidden = [
         'id',
         'password',
         'remember_token',
     ];
 
-    /**
-     * @var array<string,string>
-     */
+    /** @var array<string,string> */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -70,5 +65,10 @@ final class User extends Authenticatable
         return new UserBuilder(
             query: $query
         );
+    }
+
+    public function post(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }
