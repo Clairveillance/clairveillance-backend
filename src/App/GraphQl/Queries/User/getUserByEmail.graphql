@@ -1,0 +1,3 @@
+extend type Query {
+  userByEmail(email: String! @eq): User @first
+}
