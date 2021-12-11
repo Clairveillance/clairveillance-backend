@@ -1,0 +1,35 @@
+scalar DateTime
+  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type User {
+  id: ID!
+  uuid: String!
+  username: String!
+  firstname: String!
+  lastname: String!
+  avatar: String
+  description: String
+  company: String
+  website: String
+  coutry: String!
+  state: String
+  city: String
+  zip: String
+  address: String
+  address_2: String
+  phone: String
+  theme: String
+  language: String
+  email: String!
+  password: String!
+  remember_token: String
+  created_at: DateTime!
+  updated_at: DateTime
+  email_verfied_at: DateTime
+  deleted_at: DateTime
+  posts(orderby: _ @orderBy(column: String), published: Boolean @eq): [Post]
+    @hasMany
+  published_posts_count: Int!
+    @count(relation: "posts")
+    @eq(key: "published", value: true)
+}

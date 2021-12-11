@@ -1,3 +1,4 @@
 extend type Query {
-  users: [User!]! @paginate(defaultCount: 10)
+  users(orderby: _ @orderBy(column: String)): [User!]!
+    @paginate(defaultCount: 10)
 }

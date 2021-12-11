@@ -1,0 +1,19 @@
+scalar DateTime
+  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Post {
+  id: ID!
+  uuid: String!
+  slug: String!
+  title: String!
+  image: String
+  description: String
+  body: String!
+  published: Boolean!
+  published_at: DateTime
+  created_at: DateTime!
+  updated_at: DateTime
+  deleted_at: DateTime
+  author_uuid: String!
+  author: User! @belongsTo
+}
