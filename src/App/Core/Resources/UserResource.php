@@ -42,7 +42,25 @@ final class UserResource extends JsonResource
                 'updated_at' => null === $this->updated_at ? $this->updated_at : date('Y-m-d H:i:s', strtotime((string) $this->updated_at)),
                 'email_verified_at' => null === $this->email_verified_at ? $this->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $this->email_verified_at)),
             ],
-            'relationships' => [],
+            'relationships' => $this->posts->map(
+                function ($post) {
+                    return collect([
+                        'id' => $post->uuid,
+                        'type' => 'posts',
+                        'attributes' => [
+                            'slug' => $post->slug,
+                            'title' => $post->title,
+                            'image' => $post->image,
+                            'description' => $post->description,
+                            'body' => $post->body,
+                            'published' => $post->published,
+                            'published_at' => null === $post->published_at ? $post->published_at : date('Y-m-d H:i:s', strtotime((string) $post->published_at)),
+                            'created_at' => null === $post->created_at ? $post->created_at : date('Y-m-d H:i:s', strtotime((string) $post->created_at)),
+                            'updated_at' => null === $post->updated_at ? $post->updated_at : date('Y-m-d H:i:s', strtotime((string) $post->updated_at)),
+                        ],
+                    ]);
+                }
+            ),
             'links' => [
                 'self' => route('api.v1.users.show', $this->uuid),
                 'parent' => route('api.v1.users.index'),
