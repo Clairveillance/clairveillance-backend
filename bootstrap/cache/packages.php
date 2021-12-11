@@ -1,78 +1,78 @@
 <?php
 
 return [
-  'barryvdh/laravel-debugbar' => [
-    'providers' => [
-      0 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    'barryvdh/laravel-debugbar' => [
+        'providers' => [
+            0 => 'Barryvdh\\Debugbar\\ServiceProvider',
+        ],
+        'aliases' => [
+            'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
+        ],
     ],
-    'aliases' => [
-      'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
+    'darkaonline/l5-swagger' => [
+        'providers' => [
+            0 => 'L5Swagger\\L5SwaggerServiceProvider',
+        ],
+        'aliases' => [
+            'L5Swagger' => 'L5Swagger\\L5SwaggerFacade',
+        ],
     ],
-  ],
-  'darkaonline/l5-swagger' => [
-    'providers' => [
-      0 => 'L5Swagger\\L5SwaggerServiceProvider',
+    'facade/ignition' => [
+        'providers' => [
+            0 => 'Facade\\Ignition\\IgnitionServiceProvider',
+        ],
+        'aliases' => [
+            'Flare' => 'Facade\\Ignition\\Facades\\Flare',
+        ],
     ],
-    'aliases' => [
-      'L5Swagger' => 'L5Swagger\\L5SwaggerFacade',
+    'fruitcake/laravel-cors' => [
+        'providers' => [
+            0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+        ],
     ],
-  ],
-  'facade/ignition' => [
-    'providers' => [
-      0 => 'Facade\\Ignition\\IgnitionServiceProvider',
+    'laravel/sail' => [
+        'providers' => [
+            0 => 'Laravel\\Sail\\SailServiceProvider',
+        ],
     ],
-    'aliases' => [
-      'Flare' => 'Facade\\Ignition\\Facades\\Flare',
+    'laravel/sanctum' => [
+        'providers' => [
+            0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+        ],
     ],
-  ],
-  'fruitcake/laravel-cors' => [
-    'providers' => [
-      0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+    'laravel/tinker' => [
+        'providers' => [
+            0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+        ],
     ],
-  ],
-  'laravel/sail' => [
-    'providers' => [
-      0 => 'Laravel\\Sail\\SailServiceProvider',
+    'nesbot/carbon' => [
+        'providers' => [
+            0 => 'Carbon\\Laravel\\ServiceProvider',
+        ],
     ],
-  ],
-  'laravel/sanctum' => [
-    'providers' => [
-      0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    'nunomaduro/collision' => [
+        'providers' => [
+            0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+        ],
     ],
-  ],
-  'laravel/tinker' => [
-    'providers' => [
-      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    'nuwave/lighthouse' => [
+        'aliases' => [
+            'graphql' => 'Nuwave\\Lighthouse\\GraphQL',
+        ],
+        'providers' => [
+            0 => 'Nuwave\\Lighthouse\\LighthouseServiceProvider',
+            1 => 'Nuwave\\Lighthouse\\Auth\\AuthServiceProvider',
+            2 => 'Nuwave\\Lighthouse\\GlobalId\\GlobalIdServiceProvider',
+            3 => 'Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider',
+            4 => 'Nuwave\\Lighthouse\\Pagination\\PaginationServiceProvider',
+            5 => 'Nuwave\\Lighthouse\\Scout\\ScoutServiceProvider',
+            6 => 'Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider',
+            7 => 'Nuwave\\Lighthouse\\Validation\\ValidationServiceProvider',
+        ],
     ],
-  ],
-  'nesbot/carbon' => [
-    'providers' => [
-      0 => 'Carbon\\Laravel\\ServiceProvider',
+    'spatie/laravel-query-builder' => [
+        'providers' => [
+            0 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
+        ],
     ],
-  ],
-  'nunomaduro/collision' => [
-    'providers' => [
-      0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    ],
-  ],
-  'nuwave/lighthouse' => [
-    'aliases' => [
-      'graphql' => 'Nuwave\\Lighthouse\\GraphQL',
-    ],
-    'providers' => [
-      0 => 'Nuwave\\Lighthouse\\LighthouseServiceProvider',
-      1 => 'Nuwave\\Lighthouse\\Auth\\AuthServiceProvider',
-      2 => 'Nuwave\\Lighthouse\\GlobalId\\GlobalIdServiceProvider',
-      3 => 'Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider',
-      4 => 'Nuwave\\Lighthouse\\Pagination\\PaginationServiceProvider',
-      5 => 'Nuwave\\Lighthouse\\Scout\\ScoutServiceProvider',
-      6 => 'Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider',
-      7 => 'Nuwave\\Lighthouse\\Validation\\ValidationServiceProvider',
-    ],
-  ],
-  'spatie/laravel-query-builder' => [
-    'providers' => [
-      0 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
-    ],
-  ],
 ];

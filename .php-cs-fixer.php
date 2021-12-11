@@ -15,7 +15,7 @@ $finder = Finder::create()
         $project_path . '/stubs',
         $project_path . '/tests',
     ])
-    ->exclude(['Swagger'])
+    ->exclude(['cache', 'Swagger'])
     ->name('*.php')
     ->notName(['*.blade.php'])
     ->ignoreDotFiles(true)
