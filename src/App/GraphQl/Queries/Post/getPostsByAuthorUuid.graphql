@@ -1,6 +1,7 @@
 extend type Query {
   postsByAuthorUuid(
     uuid: String! @eq(key: "author_uuid")
+    orderby: _ @orderBy(column: String)
     published: Boolean @eq
   ): [Post!]! @paginate(defaultCount: 10)
 }

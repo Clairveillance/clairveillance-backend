@@ -1,7 +1,3 @@
-"A date string with format `Y-m-d`, e.g. `2011-05-23`."
-scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
-
-"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime
   @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
@@ -27,9 +23,13 @@ type User {
   email: String!
   password: String!
   remember_token: String
-  created_at: DateTime
+  created_at: DateTime!
   updated_at: DateTime
   email_verfied_at: DateTime
   deleted_at: DateTime
-  posts: [Post] @hasMany @eq(key: "published", value: true)
+  posts(orderby: _ @orderBy(column: String), published: Boolean @eq): [Post]
+    @hasMany
+  published_posts_count: Int!
+    @count(relation: "posts")
+    @eq(key: "published", value: true)
 }
