@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\User;
+use App\Models\Concerns\HasFactory;
 use App\Models\Concerns\HasSlug;
 use App\Models\Concerns\HasUuid;
-use App\Models\Concerns\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
@@ -27,7 +27,7 @@ class Post extends Model
         'body',
     ];
 
-    /**  @var array<string> */
+    /** @var array<string> */
     protected $hidden = [
         'id',
     ];
