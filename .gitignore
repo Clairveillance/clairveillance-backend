@@ -17,6 +17,8 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 package-lock.json
+programmatic-types.graphql
+schema-directives.graphql
 yarn-error.log
 /.idea
 /.vscode

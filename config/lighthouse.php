@@ -136,7 +136,7 @@ return [
     */
 
     'namespaces' => [
-        'models' => ['App', 'App\\Models'],
+        'models' => ['App\\Models'],
         'queries' => 'App\\GraphQL\\Queries',
         'mutations' => 'App\\GraphQL\\Mutations',
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
