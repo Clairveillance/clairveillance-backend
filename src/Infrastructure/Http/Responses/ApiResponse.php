@@ -10,7 +10,7 @@ final class ApiResponse
 {
     private static array $headers = [
         'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
+        'Accept' => 'application/json',
     ];
 
     public static function handle($data, null|int $status = null, array $headers = []): JsonResponse

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-/**
+/*
  * @OA\OpenApi(
  *     @OA\Info(
  *         version="1.0.0",

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Redis;
 
+use App\Redis\Contracts\RedisInterface;
 use Illuminate\Redis\Connections\Connection;
 use Illuminate\Support\Facades\Redis as BaseRedis;
-use App\Redis\Contracts\RedisInterface;
 
 /**
  * * Redis.

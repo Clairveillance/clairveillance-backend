@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Concerns;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 trait HasUuid
 {
