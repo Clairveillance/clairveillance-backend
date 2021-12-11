@@ -92,17 +92,6 @@
       7 => 'Nuwave\\Lighthouse\\Validation\\ValidationServiceProvider',
     ),
   ),
-  'rebing/graphql-laravel' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Rebing\\GraphQL\\GraphQLServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'GraphQL' => 'Rebing\\GraphQL\\Support\\Facades\\GraphQL',
-    ),
-  ),
   'spatie/laravel-query-builder' => 
   array (
     'providers' => 
