@@ -1,0 +1,3 @@
+extend type Query {
+  userByUuid(uuid: String! @eq): User @first
+}

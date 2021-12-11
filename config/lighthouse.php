@@ -440,14 +440,16 @@ return [
          * Once reached, remaining fields will be resolved synchronously.
          * 0 means unlimited.
          */
-        'max_nested_fields' => 0,
+        // NOTE: It is better practice to avoid using unlimited nested fields.
+        // This is to prevent DDOS and other security intrusions.
+        'max_nested_fields' => 5,
 
         /*
          * Maximum execution time for deferred queries in milliseconds.
          * Once reached, remaining fields will be resolved synchronously.
          * 0 means unlimited.
          */
-        'max_execution_ms' => 0,
+        'max_execution_ms' => 200,
     ],
 
     /*
