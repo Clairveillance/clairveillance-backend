@@ -10,7 +10,6 @@
 .php-cs-fixer.cache
 .phplint.cache
 .phpunit.result.cache
-_config.yml
 _lighthouse_ide_helper.php
 composer.lock
 docker-compose.override.yml
