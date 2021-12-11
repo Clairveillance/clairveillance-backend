@@ -5,13 +5,19 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime
   @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-type User {
+type Post {
   id: ID!
   uuid: String!
-  username: String!
-  firstname: String!
-  lastname: String!
-  email: String!
-  created_at: DateTime!
-  updated_at: DateTime!
+  slug: String!
+  title: String!
+  image: String
+  description: String
+  body: String!
+  published: Boolean!
+  published_at: DateTime
+  created_at: DateTime
+  updated_at: DateTime
+  deleted_at: DateTime
+  author_uuid: String!
+  author: User! @belongsTo
 }

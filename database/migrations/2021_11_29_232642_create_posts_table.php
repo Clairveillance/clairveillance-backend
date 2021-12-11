@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class() extends Migration
+{
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
@@ -21,7 +22,8 @@ return new class () extends Migration {
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->uuid('author_uuid')->index();
+            $table->uuid('author_uuid');
+            $table->foreign('author_uuid')->references('uuid')->on('users')->onUpdate('cascade');
         });
     }
 

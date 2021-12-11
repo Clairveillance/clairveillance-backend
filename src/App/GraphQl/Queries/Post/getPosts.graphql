@@ -1,0 +1,3 @@
+extend type Query {
+  posts(published: Boolean @eq): [Post!]! @paginate(defaultCount: 10)
+}
