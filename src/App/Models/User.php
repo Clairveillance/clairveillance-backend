@@ -42,7 +42,7 @@ final class User extends AbstractUserModel
         return $this->morphToMany(Assembly::class, 'assemblable');
     }
 
-    public function establisments(): MorphToMany
+    public function establishments(): MorphToMany
     {
         return $this->morphToMany(Establishment::class, 'establishable');
     }

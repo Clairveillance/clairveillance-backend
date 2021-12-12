@@ -49,4 +49,9 @@ class Assembly extends Model
     {
         return $this->morphedByMany(User::class, 'assemblable');
     }
+
+    public function establishments(): MorphToMany
+    {
+        return $this->morphToMany(Establishment::class, 'establishable');
+    }
 }

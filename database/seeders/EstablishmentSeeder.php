@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Assembly;
+use App\Models\Assignment;
 use App\Models\User;
 use App\Models\Establishment;
 use Illuminate\Database\Seeder;
