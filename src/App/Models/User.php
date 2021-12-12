@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Models\User\AbstractUserModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class User extends AbstractUserModel
 {
@@ -32,22 +31,22 @@ final class User extends AbstractUserModel
         'password',
     ];
 
-    public function assignments(): MorphToMany
+    public function assignments(): hasMany
     {
-        return $this->morphToMany(Assignment::class, 'assignable');
+        return $this->hasMany(Assignment::class, 'user_uuid', 'uuid');
     }
 
-    public function assemblies(): MorphToMany
+    public function assemblies(): hasMany
     {
-        return $this->morphToMany(Assembly::class, 'assemblable');
+        return $this->hasMany(Assembly::class, 'user_uuid', 'uuid');
     }
 
-    public function establishments(): MorphToMany
+    public function establishments(): hasMany
     {
-        return $this->morphToMany(Establishment::class, 'establishable');
+        return $this->hasMany(Establishment::class, 'user_uuid', 'uuid');
     }
 
-    public function posts(): HasMany
+    public function posts(): hasMany
     {
         return $this->hasMany(Post::class, 'author_uuid', 'uuid');
     }

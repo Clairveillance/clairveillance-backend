@@ -41,23 +41,18 @@ class Establishment extends Model
         return 'uuid';
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_uuid', 'uuid');
+    }
+
     public function type(): BelongsTo
     {
         return $this->belongsTo(EstablishmentType::class, 'establishment_type_uuid', 'uuid');
     }
 
-    public function users(): MorphToMany
-    {
-        return $this->morphedByMany(User::class, 'establishable');
-    }
-
-    public function assignments(): MorphToMany
-    {
-        return $this->morphedByMany(Assignment::class, 'establishable');
-    }
-
     public function assemblies(): MorphToMany
     {
-        return $this->morphedByMany(Assembly::class, 'establishable');
+        return $this->MorphToMany(Assembly::class, 'assemblable', null, 'assembly_uuid', 'assemblable_uuid', 'uuid', 'uuid');
     }
 }

@@ -27,9 +27,9 @@ final class EstablishmentSeeder extends Seeder
                 callback: function ($establishment) {
                     $establishment_types = EstablishmentType::where('created_at', '<=', $establishment->created_at)->get();
                     $establishment->establishment_type_uuid = $establishment_types->random()->uuid;
-                    $establishment->save();
                     $users = User::where('created_at', '<=', $establishment->created_at)->get();
-                    $establishment->users()->save($users->random());
+                    $establishment->user()->associate($users->random());
+                    $establishment->save();
                 }
             );
     }
