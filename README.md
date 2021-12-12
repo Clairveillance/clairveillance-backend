@@ -24,4 +24,4 @@ _Running the above command will ignore environment requirements._
 
 > ./vendor/bin/phplint
 
-![Clairveillance Homepage](clairveillance_screenshot_homepage.jpeg "Clairveillance Homepage")
+![EER Diagram](EER_diagram_001.png "EER Diagram")
