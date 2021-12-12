@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->uuid('assignable_uuid');
-            $table->string('assignable_type', 100);
+            $table->uuid('user_uuid');
+            $table->foreign('user_uuid')->references('uuid')->on('users')->onUpdate('cascade');
             $table->uuid('assignment_type_uuid');
             $table->foreign('assignment_type_uuid')->references('uuid')->on('assignment_types')->onUpdate('cascade');
         });

@@ -9,7 +9,6 @@ use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -41,13 +40,18 @@ class Assignment extends Model
         return 'uuid';
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_uuid', 'uuid');
+    }
+
     public function type(): BelongsTo
     {
         return $this->belongsTo(AssignmentType::class, 'assignment_type_uuid', 'uuid');
     }
 
-    public function assignable(): MorphTo
+    public function assemblies(): MorphToMany
     {
-        return $this->morphTo('assignable', 'assignable_type', 'assignable_uuid', 'uuid');
+        return $this->MorphToMany(Assembly::class, 'assemblable', null, 'assemblable_uuid', 'assembly_uuid', 'uuid', 'uuid');
     }
 }
