@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Post;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Assignment;
+use App\Models\AssignmentType;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-final class PostFactory extends Factory
+final class AssignmentFactory extends Factory
 {
-    protected $model = Post::class;
+    protected $model = Assignment::class;
 
     public function definition(): array
     {
@@ -20,13 +20,13 @@ final class PostFactory extends Factory
             maxRetries: 10000
         )->words(
             nb: rand(
-                min: 1,
-                max: 10
+                min: 2,
+                max: 6
             ),
             asText: true
         );
         $created_date = $this->faker->dateTimeBetween(
-            startDate: User::oldest()->first()->created_at,
+            startDate: AssignmentType::oldest()->first()->created_at,
             endDate: now(
                 tz: env(
                     key: 'APP_TIMEZONE',
@@ -51,9 +51,6 @@ final class PostFactory extends Factory
                 default: 'UTC'
             )
         );
-        $published = $this->faker->boolean(
-            chanceOfGettingTrue: 50
-        );
 
         return [
             'slug' => Str::slug(
@@ -65,16 +62,6 @@ final class PostFactory extends Factory
                 ),
             ),
             'title' => $title,
-            'image' => $this->faker->randomElement(
-                array: [null, $this->faker->imageUrl(
-                    width: 80,
-                    height: 80,
-                    category: null,
-                    randomize: false,
-                    word: $this->faker->word(),
-                    gray: false
-                )]
-            ),
             'description' => $this->faker->randomElement(
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(
@@ -84,32 +71,8 @@ final class PostFactory extends Factory
                     variableNbWords: true
                 )]
             ),
-            'body' => $this->faker->randomHtml(
-                maxDepth: 4,
-                maxWidth: 4
-            ),
             'created_at' => $created_date,
             'updated_at' => $updated_date,
-            'published' => $published,
-            'published_at' => !$published ? null : $this->faker->dateTimeBetween(
-                startDate: $created_date,
-                endDate: $updated_date,
-                timezone: env(
-                    key: 'APP_TIMEZONE',
-                    default: 'UTC'
-                )
-            ),
         ];
-    }
-
-    public function unverified(): Factory
-    {
-        return $this->state(
-            state: function (array $attributes) {
-                return [
-                    //
-                ];
-            }
-        );
     }
 }

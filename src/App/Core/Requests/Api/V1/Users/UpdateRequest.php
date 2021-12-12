@@ -21,7 +21,11 @@ final class UpdateRequest extends FormRequest
                 'nullable',
                 'string',
                 'max:255',
-                // 'unique:users,username',
+                // FIXME: There is an issue when authenticated user try to update data.
+                // Laravel requires unique email but we dont want to necessarily change this field.
+                // We should accept when user resubmit his username without any change.
+                // But we still want to prevent the user to modify this field with an already taken username from another user.
+                'unique:users,username',
             ],
             'firstname' => [
                 'nullable',
@@ -102,7 +106,11 @@ final class UpdateRequest extends FormRequest
                 'nullable',
                 'email:rfc,dns',
                 'max:255',
-                // 'unique:users,email',
+                // FIXME: There is an issue when authenticated user try to update data.
+                // Laravel requires unique email but we dont want to necessarily change this field.
+                // We should accept when user resubmit his email without any change.
+                // But we still want to prevent the user to modify this field with an already taken email from another user.
+                'unique:users,email',
             ],
             'password' => [
                 'nullable',

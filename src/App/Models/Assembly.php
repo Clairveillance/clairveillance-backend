@@ -2,15 +2,17 @@
 
 declare(strict_types=1);
 
-namespace {{namespace}};
+namespace App\Models;
 
 use App\Models\Shared\Concerns\HasUuid;
 use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-class {{ class }} extends Model
+class Assembly extends Model
 {
     use HasUuid;
     use HasSlug;
@@ -18,7 +20,10 @@ class {{ class }} extends Model
     use SoftDeletes;
 
     /** @var array<string> */
-    protected $fillable = [];
+    protected $fillable = [
+        'title',
+        'description',
+    ];
 
     /** @var array<string> */
     protected $hidden = [
@@ -33,5 +38,15 @@ class {{ class }} extends Model
     public function getRouteKeyName(): string
     {
         return 'uuid';
+    }
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(AssemblyType::class, 'assembly_type_uuid', 'uuid');
+    }
+
+    public function users(): MorphToMany
+    {
+        return $this->morphedByMany(User::class, 'assemblable');
     }
 }
