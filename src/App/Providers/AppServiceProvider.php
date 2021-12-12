@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
                 dump([
                     'SQL' => $sql,
                     // 'Bindings' => $bindings,
-                    'Time' => $executionTime . 'ms',
+                    'Time' => $executionTime.'ms',
                     // 'Connection' => $connection,
                     // 'Connection name' => $connectionName
                 ]);

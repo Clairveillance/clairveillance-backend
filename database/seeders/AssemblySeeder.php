@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Models\Assembly;
 use App\Models\AssemblyType;
 use App\Models\Establishment;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 final class AssemblySeeder extends Seeder
