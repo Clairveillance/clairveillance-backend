@@ -52,11 +52,11 @@ class Assembly extends Model
 
     public function assignments(): MorphToMany
     {
-        return $this->MorphedByMany(Assignment::class, 'assemblable', null, 'assemblable_uuid', 'assembly_uuid', 'uuid', 'uuid');
+        return $this->MorphedByMany(Assignment::class, 'assemblable', null, 'assembly_uuid', 'assemblable_uuid', 'uuid', 'uuid');
     }
 
     public function establishments(): MorphToMany
     {
-        return $this->MorphedByMany(Establishment::class, 'assemblable', null, 'assemblable_uuid', 'assembly_uuid', 'uuid', 'uuid');
+        return $this->MorphedByMany(Establishment::class, 'assemblable', null, 'assembly_uuid', 'assemblable_uuid', 'uuid', 'uuid');
     }
 }

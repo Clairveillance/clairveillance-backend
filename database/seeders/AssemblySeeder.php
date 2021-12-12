@@ -33,10 +33,14 @@ final class AssemblySeeder extends Seeder
                     $assignments = Assignment::all();
                     $establishments = Establishment::all();
                     $random = rand(1, 5);
-                    if (($random >= 3) && ($random !== 4)) {
+                    if (($random === 1)) {
                         $assembly->assignments()->attach($assignments->random());
                     }
-                    if (($random < 5) && ($random !== 1) && ($random !== 3)) {
+                    if (($random === 2)) {
+                        $assembly->establishments()->attach($establishments->random());
+                    }
+                    if (($random === 3)) {
+                        $assembly->assignments()->attach($assignments->random());
                         $assembly->establishments()->attach($establishments->random());
                     }
                     $assembly->save();

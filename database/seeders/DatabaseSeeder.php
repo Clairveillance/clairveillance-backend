@@ -21,7 +21,7 @@ final class DatabaseSeeder extends Seeder
                 class: [
                     DefaultUserSeeder::class,
                     UserSeeder::class,
-                    // PostSeeder::class,
+                    PostSeeder::class,
                     EstablishmentTypeSeeder::class,
                     AssignmentTypeSeeder::class,
                     AssemblyTypeSeeder::class,

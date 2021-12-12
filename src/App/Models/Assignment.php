@@ -52,6 +52,6 @@ class Assignment extends Model
 
     public function assemblies(): MorphToMany
     {
-        return $this->MorphToMany(Assembly::class, 'assemblable', null, 'assemblable_uuid', 'assembly_uuid', 'uuid', 'uuid');
+        return $this->MorphToMany(Assembly::class, 'assemblable', null, 'assembly_uuid', 'assemblable_uuid', 'uuid', 'uuid');
     }
 }
