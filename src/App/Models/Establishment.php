@@ -50,4 +50,14 @@ class Establishment extends Model
     {
         return $this->morphedByMany(User::class, 'establishable');
     }
+
+    public function assignments(): MorphToMany
+    {
+        return $this->morphedByMany(Assignment::class, 'establishable');
+    }
+
+    public function assemblies(): MorphToMany
+    {
+        return $this->morphedByMany(Assembly::class, 'establishable');
+    }
 }

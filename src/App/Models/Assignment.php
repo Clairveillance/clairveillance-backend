@@ -49,4 +49,9 @@ class Assignment extends Model
     {
         return $this->morphedByMany(User::class, 'assignable');
     }
+
+    public function establishments(): MorphToMany
+    {
+        return $this->morphToMany(Establishment::class, 'establishable');
+    }
 }

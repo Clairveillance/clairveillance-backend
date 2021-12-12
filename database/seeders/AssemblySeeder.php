@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Assembly;
 use App\Models\AssemblyType;
+use App\Models\Establishment;
 use Illuminate\Database\Seeder;
 
 final class AssemblySeeder extends Seeder
@@ -28,6 +29,11 @@ final class AssemblySeeder extends Seeder
                     $assembly->save();
                     $users = User::where('created_at', '<=', $assembly->created_at)->get();
                     $assembly->users()->save($users->random());
+                    $establishments = Establishment::all();
+                    $random = rand(1, 5);
+                    if ($random === 1) {
+                        $assembly->establishments()->save($establishments->random());
+                    }
                 }
             );
     }
