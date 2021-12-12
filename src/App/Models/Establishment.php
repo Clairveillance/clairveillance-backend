@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasUuid;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Shared\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-class Post extends Model
+class Establishment extends Model
 {
     use HasUuid;
     use HasSlug;
@@ -22,19 +22,18 @@ class Post extends Model
     /** @var array<string> */
     protected $fillable = [
         'title',
-        'image',
         'description',
-        'body',
     ];
 
     /** @var array<string> */
     protected $hidden = [
         'id',
+        'establishment_type_uuid'
     ];
 
     /** @var array<string,string> */
     protected $casts = [
-        'published_at' => 'datetime',
+        //
     ];
 
     public function getRouteKeyName(): string
@@ -42,8 +41,13 @@ class Post extends Model
         return 'uuid';
     }
 
-    public function author(): BelongsTo
+    public function type(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'author_uuid', 'uuid');
+        return $this->belongsTo(EstablishmentType::class, 'establishment_type_uuid', 'uuid');
+    }
+
+    public function users(): MorphToMany
+    {
+        return $this->morphedByMany(User::class, 'establishable');
     }
 }
