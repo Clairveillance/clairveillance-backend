@@ -79,7 +79,7 @@ final class UserFactory extends Factory
                     category: null,
                     randomize: false,
                     word: strtoupper(
-                        string: $initial_firstname . "\u{0020}" . $initial_lastname
+                        string: $initial_firstname."\u{0020}".$initial_lastname
                     ),
                     gray: false
                 )]
