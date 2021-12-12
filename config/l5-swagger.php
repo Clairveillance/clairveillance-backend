@@ -25,12 +25,12 @@ return [
                 /*
                  * File name of the generated json documentation file
                 */
-                'docs_json' => config('app.name') . '-api-v1-docs.json',
+                'docs_json' => config('app.name').'-api-v1-docs.json',
 
                 /*
                  * File name of the generated YAML documentation file
                 */
-                'docs_yaml' =>  config('app.name') . '-api-v1-docs.yaml',
+                'docs_yaml' =>  config('app.name').'-api-v1-docs.yaml',
 
                 /*
                 * Set this to `json` or `yaml` to determine which documentation file to use in UI
@@ -252,9 +252,9 @@ return [
          * Uncomment to add constants which can be used in annotations
          */
         'constants' => [
-            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', env('APP_URL', 'localhost') . '/api'),
-            'L5_SWAGGER_CONST_API' => env('L5_SWAGGER_CONST_HOST', 'localhost') . env('L5_SWAGGER_API_PATH', '/api'),
-            'L5_SWAGGER_CONST_API_V1' => env('L5_SWAGGER_CONST_HOST', 'localhost') . env('L5_SWAGGER_API_PATH_V1', '/api/v1'),
+            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', env('APP_URL', 'localhost').'/api'),
+            'L5_SWAGGER_CONST_API' => env('L5_SWAGGER_CONST_HOST', 'localhost').env('L5_SWAGGER_API_PATH', '/api'),
+            'L5_SWAGGER_CONST_API_V1' => env('L5_SWAGGER_CONST_HOST', 'localhost').env('L5_SWAGGER_API_PATH_V1', '/api/v1'),
         ],
     ],
 ];

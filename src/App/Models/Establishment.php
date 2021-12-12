@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Concerns\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Establishment extends Model
 {
@@ -28,7 +28,7 @@ class Establishment extends Model
     /** @var array<string> */
     protected $hidden = [
         'id',
-        'establishment_type_uuid'
+        'establishment_type_uuid',
     ];
 
     /** @var array<string,string> */

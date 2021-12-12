@@ -6,8 +6,8 @@ namespace Database\Factories;
 
 use App\Models\Assembly;
 use App\Models\AssemblyType;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 final class AssemblyFactory extends Factory
 {

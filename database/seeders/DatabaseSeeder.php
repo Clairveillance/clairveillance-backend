@@ -27,7 +27,7 @@ final class DatabaseSeeder extends Seeder
                     AssemblyTypeSeeder::class,
                     EstablishmentSeeder::class,
                     AssignmentSeeder::class,
-                    AssemblySeeder::class
+                    AssemblySeeder::class,
                 ],
                 silent: false,
                 parameters: [

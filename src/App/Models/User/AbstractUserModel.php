@@ -4,25 +4,22 @@ declare(strict_types=1);
 
 namespace App\Models\User;
 
+use App\Models\Shared\Concerns\HasFactory;
+use App\Models\Shared\Concerns\HasUuid;
 use App\Models\User\UserBuilder;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
-use App\Models\Shared\Concerns\HasUuid;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use App\Models\Shared\Concerns\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-abstract class AbstractUserModel extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+abstract class AbstractUserModel extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
     use HasUuid;
     use HasFactory;

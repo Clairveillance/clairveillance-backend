@@ -6,10 +6,10 @@ namespace Database\Seeders;
 
 use App\Models\Assembly;
 use App\Models\Assignment;
-use App\Models\User;
 use App\Models\Establishment;
-use Illuminate\Database\Seeder;
 use App\Models\EstablishmentType;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 final class EstablishmentSeeder extends Seeder
 {
