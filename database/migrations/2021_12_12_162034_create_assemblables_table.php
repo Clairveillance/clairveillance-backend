@@ -6,12 +6,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('assemblables', function (Blueprint $table) {
-            $table->unsignedBigInteger('assembly_id');
-            $table->unsignedBigInteger('assemblable_id');
+            $table->uuid('assembly_uuid');
+            $table->uuid('assemblable_uuid');
             $table->string('assemblable_type', 100);
         });
     }

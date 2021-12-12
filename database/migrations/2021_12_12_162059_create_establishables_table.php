@@ -6,12 +6,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('establishables', function (Blueprint $table) {
-            $table->unsignedBigInteger('establishment_id');
-            $table->unsignedBigInteger('establishable_id');
+            $table->uuid('establishment_uuid');
+            $table->uuid('establishable_uuid');
             $table->string('establishable_type', 100);
         });
     }

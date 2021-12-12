@@ -48,16 +48,11 @@ class Establishment extends Model
 
     public function users(): MorphToMany
     {
-        return $this->morphedByMany(User::class, 'establishable');
-    }
-
-    public function assignments(): MorphToMany
-    {
-        return $this->morphedByMany(Assignment::class, 'establishable');
+        return $this->morphedByMany(User::class, 'establishable', null, 'establishment_uuid', 'establishable_uuid', 'uuid', 'uuid');
     }
 
     public function assemblies(): MorphToMany
     {
-        return $this->morphedByMany(Assembly::class, 'establishable');
+        return $this->morphedByMany(Assembly::class, 'establishable', null, 'establishment_uuid', 'establishable_uuid', 'uuid', 'uuid');
     }
 }

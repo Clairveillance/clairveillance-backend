@@ -23,11 +23,11 @@ final class DatabaseSeeder extends Seeder
                     UserSeeder::class,
                     PostSeeder::class,
                     EstablishmentTypeSeeder::class,
-                    AssignmentTypeSeeder::class,
                     AssemblyTypeSeeder::class,
+                    AssignmentTypeSeeder::class,
                     EstablishmentSeeder::class,
-                    AssignmentSeeder::class,
                     AssemblySeeder::class,
+                    AssignmentSeeder::class,
                 ],
                 silent: false,
                 parameters: [

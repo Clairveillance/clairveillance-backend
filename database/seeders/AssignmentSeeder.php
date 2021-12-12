@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Assembly;
 use App\Models\Assignment;
 use App\Models\AssignmentType;
 use App\Models\Establishment;
@@ -14,7 +15,7 @@ final class AssignmentSeeder extends Seeder
 {
     public function run(): void
     {
-        Assignment::factory(100)->make()
+        Assignment::factory(200)->make()
             ->sortBy(
                 callback: function ($sort) {
                     return $sort->created_at;
@@ -26,14 +27,12 @@ final class AssignmentSeeder extends Seeder
                 callback: function ($assignment) {
                     $assignment_types = AssignmentType::where('created_at', '<=', $assignment->created_at)->get();
                     $assignment->assignment_type_uuid = $assignment_types->random()->uuid;
-                    $assignment->save();
                     $users = User::where('created_at', '<=', $assignment->created_at)->get();
-                    $assignment->users()->save($users->random());
-                    $establishments = Establishment::all();
-                    $random = rand(1, 5);
-                    if ($random === 1) {
-                        $assignment->establishments()->save($establishments->random());
-                    }
+                    $assemblies = Assembly::where('created_at', '<=', $assignment->created_at)->get();
+                    (rand(1, 10) !== 1)
+                        ? $assignment->assignable()->associate($users->random())
+                        : $assignment->assignable()->associate($assemblies->random());
+                    $assignment->save();
                 }
             );
     }

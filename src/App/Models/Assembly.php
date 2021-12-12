@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use App\Models\Shared\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Assembly extends Model
 {
@@ -47,11 +48,16 @@ class Assembly extends Model
 
     public function users(): MorphToMany
     {
-        return $this->morphedByMany(User::class, 'assemblable');
+        return $this->morphedByMany(User::class, 'assemblable', null, 'assembly_uuid', 'assemblable_uuid', 'uuid', 'uuid');
+    }
+
+    public function assignments(): MorphMany
+    {
+        return $this->morphMany(Assignment::class, 'assignable', 'assignable_type', 'assignable_uuid', 'uuid');
     }
 
     public function establishments(): MorphToMany
     {
-        return $this->morphToMany(Establishment::class, 'establishable');
+        return $this->morphToMany(Establishment::class, 'establishable', null, 'establishment_uuid', 'establishable_uuid', 'uuid', 'uuid');
     }
 }

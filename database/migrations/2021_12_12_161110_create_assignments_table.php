@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('assignments', function (Blueprint $table) {
@@ -17,6 +18,8 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->uuid('assignable_uuid');
+            $table->string('assignable_type', 100);
             $table->uuid('assignment_type_uuid');
             $table->foreign('assignment_type_uuid')->references('uuid')->on('assignment_types')->onUpdate('cascade');
         });
