@@ -24,4 +24,6 @@ _Running the above command will ignore environment requirements._
 
 > ./vendor/bin/phplint
 
+#### [EER Diagram](https://github.com/Clairveillance/clairveillance-backend/blob/master/EER_diagram_002.png)
+
 ![EER Diagram](EER_diagram_002.png "EER Diagram")
