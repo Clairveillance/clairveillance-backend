@@ -24,4 +24,4 @@ _Running the above command will ignore environment requirements._
 
 > ./vendor/bin/phplint
 
-![EER Diagram](EER_diagram_001.png "EER Diagram")
+![EER Diagram](EER_diagram_002.png "EER Diagram")

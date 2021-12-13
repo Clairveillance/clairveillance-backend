@@ -10,15 +10,15 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('sequenceables', function (Blueprint $table) {
-            $table->uuid('sequence_uuid');
-            $table->uuid('sequenceable_uuid');
-            $table->string('sequenceable_type', 100);
+        Schema::create('taxonomicals', function (Blueprint $table) {
+            $table->uuid('taxonomy_uuid');
+            $table->uuid('taxonomical_uuid');
+            $table->string('taxonomical_type', 100);
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('sequenceables');
+        Schema::dropIfExists('taxonomicals');
     }
 };

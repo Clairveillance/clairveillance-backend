@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('taxonomies', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('slug')->unique();
@@ -20,13 +20,13 @@ return new class extends Migration
             $table->softDeletes();
             $table->uuid('user_uuid');
             $table->foreign('user_uuid')->references('uuid')->on('users')->onUpdate('cascade');
-            $table->uuid('address_type_uuid');
-            $table->foreign('address_type_uuid')->references('uuid')->on('address_types')->onUpdate('cascade');
+            $table->uuid('taxonomy_type_uuid');
+            $table->foreign('taxonomy_type_uuid')->references('uuid')->on('taxonomy_types')->onUpdate('cascade');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('taxonomies');
     }
 };
