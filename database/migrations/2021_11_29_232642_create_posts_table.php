@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration {
+return new class() extends Migration
+{
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
@@ -23,6 +24,8 @@ return new class() extends Migration {
             $table->softDeletes();
             $table->uuid('author_uuid');
             $table->foreign('author_uuid')->references('uuid')->on('users')->onUpdate('cascade');
+            $table->uuid('post_type_uuid');
+            $table->foreign('post_type_uuid')->references('uuid')->on('post_types')->onUpdate('cascade');
         });
     }
 
