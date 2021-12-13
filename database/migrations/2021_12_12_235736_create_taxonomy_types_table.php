@@ -12,10 +12,13 @@ return new class extends Migration
     {
         Schema::create('taxonomy_types', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->string('name')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('taxonomy_types');

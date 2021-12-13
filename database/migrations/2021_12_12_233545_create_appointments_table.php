@@ -12,10 +12,19 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->string('slug')->unique();
+            $table->string('title')->unique();
+            $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            $table->uuid('user_uuid');
+            $table->foreign('user_uuid')->references('uuid')->on('users')->onUpdate('cascade');
+            $table->uuid('appointment_type_uuid');
+            $table->foreign('appointment_type_uuid')->references('uuid')->on('appointment_types')->onUpdate('cascade');
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('appointments');
