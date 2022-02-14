@@ -1,6 +1,3 @@
-scalar DateTime
-  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-
 type User {
   id: ID!
   uuid: String!
@@ -25,11 +22,9 @@ type User {
   remember_token: String
   created_at: DateTime!
   updated_at: DateTime
-  email_verfied_at: DateTime
   deleted_at: DateTime
-  posts(orderby: _ @orderBy(column: String), published: Boolean @eq): [Post]
+  email_verfied_at: DateTime
+  posts(orderBy: _ @orderBy(column: String), published: Boolean @eq): [Post]
     @hasMany
-  published_posts_count: Int!
-    @count(relation: "posts")
-    @eq(key: "published", value: true)
+  posts_count(published: Boolean @eq): Int! @count(relation: "posts")
 }

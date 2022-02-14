@@ -1,4 +1,10 @@
 extend type Query {
-  users(orderby: _ @orderBy(column: String)): [User!]!
-    @paginate(defaultCount: 10)
+  users(
+    orderBy: _ @orderBy(column: String)
+    orderByRelation: _
+      @orderBy(
+        columns: ["published_at"]
+        relations: [{ relation: "posts", columns: ["published"] }]
+      )
+  ): [User!]! @paginate(defaultCount: 10, maxCount: 100)
 }

@@ -1,0 +1,4 @@
+enum StringifyBoolean {
+  false @enum(value: 0)
+  true @enum(value: 1)
+}
