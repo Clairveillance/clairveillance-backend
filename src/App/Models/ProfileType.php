@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Shared\Concerns\HasUuid;
 use App\Models\Shared\Concerns\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class ProfileType extends Model
 {

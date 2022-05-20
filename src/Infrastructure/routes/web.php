@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 // Ip address.
 Route::get(uri: '/ip', action: function () {
-    return "remote address = " . $_SERVER['REMOTE_ADDR'] . PHP_EOL . "browser = " . $_SERVER['HTTP_USER_AGENT'];
+    return 'remote address = '.$_SERVER['REMOTE_ADDR'].PHP_EOL.'browser = '.$_SERVER['HTTP_USER_AGENT'];
 });
 
 // PHP Info.
@@ -23,6 +23,7 @@ if (config(key: 'app.env') === 'local') {
     Route::get(uri: '/redis', action: function () {
         $name = 'localhost';
         $redis = Redis::connect(name: $name);
+
         return Redis::test(connection: $redis, name: $name);
     });
 }
@@ -31,6 +32,7 @@ if (config(key: 'app.env') === 'local') {
 Route::get(uri: '/redislabs', action: function () {
     $name = 'redislabs';
     $redis = Redis::connect(name: $name);
+
     return Redis::test(connection: $redis, name: $name);
 });
 
@@ -38,6 +40,7 @@ Route::get(uri: '/redislabs', action: function () {
 Route::get(uri: '/upstash', action: function () {
     $name = 'upstash';
     $redis = Redis::connect(name: $name);
+
     return Redis::test(connection: $redis, name: $name);
 });
 

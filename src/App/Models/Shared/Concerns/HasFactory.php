@@ -21,7 +21,7 @@ trait HasFactory
         // is that we need to remove the namespace from the Model::class path
         // before we call the Factory static function factoryForModel().
         $class_with_namespace = explode('\\', get_called_class());
-        $class_without_namespace  = end($class_with_namespace);
+        $class_without_namespace = end($class_with_namespace);
         $factory = static::newFactory() ?: Factory::factoryForModel($class_without_namespace);
 
         return $factory
