@@ -67,6 +67,11 @@ final class UserCollection extends ResourceCollection
                                         'created_at' => null === $post->created_at ? $post->created_at : date('Y-m-d H:i:s', strtotime((string) $post->created_at)),
                                         'updated_at' => null === $post->updated_at ? $post->updated_at : date('Y-m-d H:i:s', strtotime((string) $post->updated_at)),
                                     ],
+                                    // TODO : Add links for relationships.
+                                    // 'links' => [
+                                    //     'self' => route('api.v1.posts.show', $post->uuid),
+                                    //     'parent' => route('api.v1.posts.index'),
+                                    // ],
                                 ]);
                             }
                         ),

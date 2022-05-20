@@ -9,8 +9,15 @@ use Illuminate\Support\Str;
 
 trait HasSlug
 {
+    // NOTE: We generate a slug everytime we create a new Model using this Trait.
+    // The source of the slug is defined in the Model::class using the slugSource() function.
     public static function bootHasSlug(): void
     {
-        static::creating(fn (Model $model) => $model->slug = Str::slug($model->title));
+        static::creating(function (Model $model) {
+            $source = $model->slugSource();
+            $model->slug = Str::slug($source['source']);
+        });
     }
+
+    abstract public function slugSource(): array;
 }

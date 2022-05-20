@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Shared\Concerns;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,11 +16,13 @@ trait HasFactory
      */
     public static function factory(...$parameters)
     {
-        // NOTE: We need to implements this trait to all Models instead of the original one.
-        // We remove the namespace from the Model::class path before we call the Factory static function factoryForModel().
+        // NOTE: We need to implements this Trait to all Models instead of the original one.
+        // The main reason to use this custom Trait instead of the original one
+        // is that we need to remove the namespace from the Model::class path
+        // before we call the Factory static function factoryForModel().
         $class_with_namespace = explode('\\', get_called_class());
-        $class_name = end($class_with_namespace);
-        $factory = static::newFactory() ?: Factory::factoryForModel($class_name);
+        $class_without_namespace  = end($class_with_namespace);
+        $factory = static::newFactory() ?: Factory::factoryForModel($class_without_namespace);
 
         return $factory
             ->count(is_numeric($parameters[0] ?? null) ? $parameters[0] : null)

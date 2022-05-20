@@ -30,5 +30,7 @@ final class PostSeeder extends Seeder
                     $post->save();
                 }
             );
+
+        dump(__METHOD__ . ' [success]');
     }
 }

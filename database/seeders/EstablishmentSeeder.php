@@ -32,5 +32,7 @@ final class EstablishmentSeeder extends Seeder
                     $establishment->save();
                 }
             );
+
+        dump(__METHOD__ . ' [success]');
     }
 }

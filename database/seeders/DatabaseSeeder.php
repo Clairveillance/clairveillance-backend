@@ -8,11 +8,15 @@ use Database\Seeders\DefaultUserSeeder;
 use Database\Seeders\PostSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        dump('Environment => ' . config('app.env') . "\n" . 'Database Statement => SET FOREIGN_KEY_CHECKS=0');
+
         match (config(
             key: 'app.env',
             default: null
@@ -49,5 +53,7 @@ final class DatabaseSeeder extends Seeder
         $this->call(
             class: [],
         );
+
+        dump(__METHOD__ . ' [success]');
     }
 }

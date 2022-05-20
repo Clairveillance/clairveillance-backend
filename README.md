@@ -2,9 +2,14 @@
 
 This project was generated with [Laravel Installer](https://github.com/laravel/installer) version 4.2.8.
 
-#### Run Migrations
+#### Make New Migrations
 
-> php artisan migrate:fresh --seed
+> php artisan make:migration <name> --path=src/Infrastructure/database/migrations
+
+#### Run Migrations (with seeders)
+
+> php artisan migrate:fresh --path=src/Infrastructure/database/migrations --seed
+> php artisan migrate:refresh --path=src/Infrastructure/database/migrations --seed
 
 #### Generate [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger) documentation files
 
@@ -24,6 +29,6 @@ _Running the above command will ignore environment requirements._
 
 > ./vendor/bin/phplint
 
-#### [EER Diagram](https://github.com/Clairveillance/clairveillance-backend/blob/master/EER_diagram_002.png)
+#### [EER Diagram](https://github.com/Clairveillance/clairveillance-backend/blob/master/EER_diagram_003.png)
 
-![EER Diagram](EER_diagram_002.png "EER Diagram")
+![EER Diagram](EER_diagram_003.png "EER Diagram")

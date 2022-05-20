@@ -17,7 +17,6 @@ final class IndexController extends Controller
     {
         // NOTE: Used to debug the time of execution of a script.
         // $time_start = microtime(true);
-
         $users = new UserCollection(
             resource: User::with(
                 relations: 'posts'

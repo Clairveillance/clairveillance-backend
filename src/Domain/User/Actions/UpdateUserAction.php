@@ -11,6 +11,6 @@ final class UpdateUserAction
 {
     public static function handle(UserValueObject $object, User $user): bool
     {
-        return $user->update($object->toArray());
+        return $user->update(attributes: $object->toArray());
     }
 }

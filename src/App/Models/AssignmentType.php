@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AssignmentType extends Model
+final class AssignmentType extends Model
 {
     use HasUuid;
     use HasFactory;
@@ -38,6 +38,10 @@ class AssignmentType extends Model
 
     public function assignments(): HasMany
     {
-        return $this->hasMany(Assignment::class, 'assignment_type_uuid', 'uuid');
+        return $this->hasMany(
+            related: Assignment::class,
+            foreignKey: 'assignment_type_uuid',
+            localKey: 'uuid'
+        );
     }
 }

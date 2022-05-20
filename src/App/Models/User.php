@@ -31,23 +31,48 @@ final class User extends AbstractUserModel
         'password',
     ];
 
+    public function profiles(): hasMany
+    {
+        return $this->hasMany(
+            related: Profile::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
+        );
+    }
+
     public function assignments(): hasMany
     {
-        return $this->hasMany(Assignment::class, 'user_uuid', 'uuid');
+        return $this->hasMany(
+            related: Assignment::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
+        );
     }
 
     public function assemblies(): hasMany
     {
-        return $this->hasMany(Assembly::class, 'user_uuid', 'uuid');
+        return $this->hasMany(
+            related: Assembly::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
+        );
     }
 
     public function establishments(): hasMany
     {
-        return $this->hasMany(Establishment::class, 'user_uuid', 'uuid');
+        return $this->hasMany(
+            related: Establishment::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
+        );
     }
 
     public function posts(): hasMany
     {
-        return $this->hasMany(Post::class, 'author_uuid', 'uuid');
+        return $this->hasMany(
+            related: Post::class,
+            foreignKey: 'author_uuid',
+            localKey: 'uuid'
+        );
     }
 }

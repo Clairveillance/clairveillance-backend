@@ -10,12 +10,19 @@ use App\Models\Shared\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class {{ class }} extends Model
+final class {{ class }} extends Model
 {
     use HasUuid;
     use HasSlug;
     use HasFactory;
     use SoftDeletes;
+
+    public function slugSource(): array
+    {
+        return [
+            'source' => '',
+        ];
+    }
 
     /** @var array<string> */
     protected $fillable = [];
