@@ -32,5 +32,7 @@ final class AssignmentSeeder extends Seeder
                     $assignment->save();
                 }
             );
+
+        dump(__METHOD__ . ' [success]');
     }
 }

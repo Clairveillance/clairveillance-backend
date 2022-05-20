@@ -10,7 +10,7 @@ use App\Models\Shared\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PostType extends Model
+final class PostType extends Model
 {
     use HasUuid;
     use HasFactory;
@@ -38,6 +38,10 @@ class PostType extends Model
 
     public function posts(): HasMany
     {
-        return $this->hasMany(Post::class, 'post_type_uuid', 'uuid');
+        return $this->hasMany(
+            related: Post::class,
+            foreignKey: 'post_type_uuid',
+            localKey: 'uuid'
+        );
     }
 }

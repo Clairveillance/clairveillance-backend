@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use App\Models\Establishment;
 use App\Models\EstablishmentType;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 final class EstablishmentFactory extends Factory
 {

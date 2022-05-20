@@ -24,5 +24,7 @@ final class PostTypeSeeder extends Seeder
                     $post_type->save();
                 }
             );
+
+        dump(__METHOD__ . ' [success]');
     }
 }

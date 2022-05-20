@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class EstablishmentType extends Model
+final class EstablishmentType extends Model
 {
     use HasUuid;
     use HasFactory;
@@ -38,6 +38,10 @@ class EstablishmentType extends Model
 
     public function establishments(): HasMany
     {
-        return $this->hasMany(Establishment::class, 'establishment_type_uuid', 'uuid');
+        return $this->hasMany(
+            related: Establishment::class,
+            foreignKey: 'establishment_type_uuid',
+            localKey: 'uuid'
+        );
     }
 }

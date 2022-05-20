@@ -36,14 +36,14 @@ final class Redis extends BaseRedis implements RedisInterface
      * @param string $name
      * @return array
      */
-    public static function test(Connection $redis, string $name = 'redis'): array
+    public static function test(Connection $connection, string $name = 'redis'): array
     {
-        $redis->set('test', 'Hello ' . ucfirst($name) . ' !');
-        $redis->pexpire('test', (int) 5000);
-        $visits = (int) $redis->incr('visits');
-        $test = (string) $redis->get('test');
-        $pttl_visits = $redis->pttl('visits') !== -1 ? $redis->pttl('visits') . 'ms' : 'persistant';
-        $pttl_test = $redis->pttl('test') !== -1 ? $redis->pttl('test') . 'ms' : 'persistant';
+        $connection->set('test', 'Hello ' . ucfirst($name) . ' !');
+        $connection->pexpire('test', (int) 5000);
+        $visits = (int) $connection->incr('visits');
+        $test = (string) $connection->get('test');
+        $pttl_visits = $connection->pttl('visits') !== -1 ? $connection->pttl('visits') . 'ms' : 'persistant';
+        $pttl_test = $connection->pttl('test') !== -1 ? $connection->pttl('test') . 'ms' : 'persistant';
         return [$visits . ' (' . $pttl_visits . ')', $test . ' (' . $pttl_test . ')'];
     }
 }

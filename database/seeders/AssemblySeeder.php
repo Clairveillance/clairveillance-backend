@@ -46,5 +46,7 @@ final class AssemblySeeder extends Seeder
                     $assembly->save();
                 }
             );
+
+        dump(__METHOD__ . ' [success]');
     }
 }

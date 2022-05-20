@@ -5,37 +5,43 @@ declare(strict_types=1);
 use App\Redis\Redis;
 use Illuminate\Support\Facades\Route;
 
-// PHP Info.
-Route::get('/info', function () {
-    return phpinfo();
+// Ip address.
+Route::get(uri: '/ip', action: function () {
+    return "remote address = " . $_SERVER['REMOTE_ADDR'] . PHP_EOL . "browser = " . $_SERVER['HTTP_USER_AGENT'];
 });
 
+// PHP Info.
+Route::get(uri: '/info', action: function () {
+    return phpinfo(flags: INFO_ALL);
+});
+
+// We need to call Redis::connect() from Redis\Redis to be able to use the custom connection that is specified in Environment variables config file.
+// After that we can use any allowed method defined in the default Redis class (Illuminate\Support\Facades\Redis).
+
 // Redis.
-if (config('app.env') === 'local') {
-    Route::get('/redis', function () {
+if (config(key: 'app.env') === 'local') {
+    Route::get(uri: '/redis', action: function () {
         $name = 'localhost';
-        // We need to call Redis::connect() from Redis\Redis to be able to use the custom connection that is specified in Environment variables config file.
-        // After that we can use any allowed method defined in the default Redis class (Illuminate\Support\Facades\Redis).
-        $redis = Redis::connect($name);
-        return Redis::test($redis);
+        $redis = Redis::connect(name: $name);
+        return Redis::test(connection: $redis, name: $name);
     });
 }
 
 // Redislabs.
-Route::get('/redislabs', function () {
+Route::get(uri: '/redislabs', action: function () {
     $name = 'redislabs';
-    $redis = Redis::connect($name);
-    return Redis::test($redis, $name);
+    $redis = Redis::connect(name: $name);
+    return Redis::test(connection: $redis, name: $name);
 });
 
 // Upstash.
-Route::get('/upstash', function () {
+Route::get(uri: '/upstash', action: function () {
     $name = 'upstash';
-    $redis = Redis::connect($name);
-    return Redis::test($redis, $name);
+    $redis = Redis::connect(name: $name);
+    return Redis::test(connection: $redis, name: $name);
 });
 
 // Route::get('/{any?}') must be declared last or it will overwrite all other route methods.
-Route::get('/{any?}', function () {
-    return view('welcome');
-})->where('any', '.*');
+Route::get(uri: '/{any?}', action: function () {
+    return view(view: 'welcome');
+})->where(name: 'any', expression: '.*');

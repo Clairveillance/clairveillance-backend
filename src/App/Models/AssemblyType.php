@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AssemblyType extends Model
+final class AssemblyType extends Model
 {
     use HasUuid;
     use HasFactory;
@@ -38,6 +38,10 @@ class AssemblyType extends Model
 
     public function assemblies(): HasMany
     {
-        return $this->hasMany(Assembly::class, 'assembly_type_uuid', 'uuid');
+        return $this->hasMany(
+            related: Assembly::class,
+            foreignKey: 'assembly_type_uuid',
+            localKey: 'uuid'
+        );
     }
 }

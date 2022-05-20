@@ -24,5 +24,7 @@ final class EstablishmentTypeSeeder extends Seeder
                     $establishment_type->save();
                 }
             );
+
+        dump(__METHOD__ . ' [success]');
     }
 }

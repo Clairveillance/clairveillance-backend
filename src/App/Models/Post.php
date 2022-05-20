@@ -19,6 +19,13 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public function slugSource(): array
+    {
+        return [
+            'source' => 'title',
+        ];
+    }
+
     /** @var array<string> */
     protected $fillable = [
         'title',
@@ -44,6 +51,11 @@ class Post extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'author_uuid', 'uuid');
+        return $this->belongsTo(
+            related: User::class,
+            foreignKey: 'author_uuid',
+            ownerKey: 'uuid',
+            relation: null
+        );
     }
 }

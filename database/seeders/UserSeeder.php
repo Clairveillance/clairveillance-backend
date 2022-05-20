@@ -24,5 +24,7 @@ final class UserSeeder extends Seeder
                     $user->save();
                 }
             );
+
+        dump(__METHOD__ . ' [success]');
     }
 }
