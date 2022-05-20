@@ -4,19 +4,7 @@ type User {
   username: String!
   firstname: String!
   lastname: String!
-  avatar: String
   description: String
-  company: String
-  website: String
-  coutry: String!
-  state: String
-  city: String
-  zip: String
-  address: String
-  address_2: String
-  phone: String
-  theme: String
-  language: String
   email: String!
   password: String!
   remember_token: String

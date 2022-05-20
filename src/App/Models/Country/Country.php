@@ -21,7 +21,7 @@ final class Country extends Model
     protected $fillable = [
         'name',
         'code',
-        'phone_prefix'
+        'phone_prefix',
     ];
 
     /** @var array<string> */

@@ -29,7 +29,7 @@ final class Appointment extends Model
     /** @var array<string> */
     protected $hidden = [
         'id',
-        'uuid'
+        'uuid',
     ];
 
     /** @var array<string,string> */

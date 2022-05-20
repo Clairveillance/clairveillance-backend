@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\AssignmentWithProfile;
+namespace App\Models\Assignment;
 
 use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasProfile;
@@ -37,7 +37,7 @@ final class AssignmentWithProfile extends Model
     /** @var array<string> */
     protected $hidden = [
         'id',
-        'uuid'
+        'uuid',
     ];
 
     public function getRouteKeyName(): string

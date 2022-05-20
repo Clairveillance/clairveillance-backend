@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Swagger;
+
 /**
  * @OA\OpenApi(
  *     @OA\Info(
@@ -63,3 +65,6 @@ declare(strict_types=1);
  *   @OA\Response(response=500, description="Internal Server Error")
  * )
  */
+final class Swagger
+{
+}

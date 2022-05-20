@@ -6,7 +6,7 @@ namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
 use App\Core\Resources\UserCollection;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 
 final class IndexController extends Controller
@@ -20,9 +20,6 @@ final class IndexController extends Controller
         $users = new UserCollection(
             resource: User::with(
                 relations: 'posts'
-            )->orderByUsername(
-                column: 'username',
-                direction: 'asc'
             )
                 // ->withTrashed()
                 // ->onlyTrashed()

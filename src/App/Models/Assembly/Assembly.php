@@ -26,7 +26,7 @@ final class Assembly extends Model
     /** @var array<string> */
     protected $hidden = [
         'id',
-        'uuid'
+        'uuid',
     ];
 
     public function getRouteKeyName(): string

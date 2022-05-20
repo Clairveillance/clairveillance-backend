@@ -8,7 +8,7 @@ use App\Core\Controllers\Controller;
 use App\Core\Requests\Api\V1\Users\UpdateRequest;
 use App\Factories\UserFactory;
 use App\Jobs\UpdateUserJob;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Http\JsonResponse;
 
 final class UpdateController extends Controller

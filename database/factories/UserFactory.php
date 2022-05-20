@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
@@ -54,16 +54,6 @@ final class UserFactory extends Factory
                 default: 'UTC'
             )
         );
-        $address = $this->faker->randomElement(
-            array: [null, $this->faker->streetAddress()]
-        );
-        $state = match (env(
-            key: 'APP_FAKER_LOCALE',
-            default: 'en_US'
-        )) {
-            'fr_FR' => $this->faker->region(),
-            'en_US' => $this->faker->state(),
-        };
 
         return [
             'username' => $this->faker->unique(
@@ -72,18 +62,6 @@ final class UserFactory extends Factory
             )->userName(),
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'avatar' => $this->faker->randomElement(
-                array: [null, $this->faker->imageUrl(
-                    width: 80,
-                    height: 80,
-                    category: null,
-                    randomize: false,
-                    word: strtoupper(
-                        string: $initial_firstname."\u{0020}".$initial_lastname
-                    ),
-                    gray: false
-                )]
-            ),
             'description' => $this->faker->randomElement(
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(
@@ -92,37 +70,6 @@ final class UserFactory extends Factory
                     ),
                     variableNbWords: true
                 )]
-            ),
-            'company' => $this->faker->randomElement(
-                array: [null, $this->faker->company()]
-            ),
-            'website' => $this->faker->randomElement(
-                array: [null, $this->faker->url()]
-            ),
-            'country' => $this->faker->country(),
-            'state' => $this->faker->randomElement(
-                array: [null, $state]
-            ),
-            'city' => $this->faker->randomElement(
-                array: [null, $this->faker->city()]
-            ),
-            'zip' => $this->faker->randomElement(
-                array: [null, $this->faker->postcode()]
-            ),
-            'address' => $address,
-            'address_2' => $address ? $this->faker->randomElement(
-                array: [null, $this->faker->streetAddress()]
-            ) : null,
-            'phone' => $this->faker->randomElement(
-                array: [null, $this->faker->phoneNumber()]
-            ),
-            'theme' => $this->faker->randomElement(
-                array: [null, $this->faker->randomElement(
-                    array: ['light', 'dark']
-                )]
-            ),
-            'language' => $this->faker->randomElement(
-                array: [null, $this->faker->languageCode()]
             ),
             'email' => $this->faker->unique(
                 reset: false,

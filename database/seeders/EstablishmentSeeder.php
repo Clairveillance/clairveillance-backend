@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Assembly;
-use App\Models\Assignment;
-use App\Models\Establishment;
-use App\Models\EstablishmentType;
-use App\Models\User;
+use App\Models\Assembly\Assembly;
+use App\Models\Assignment\Assignment;
+use App\Models\Establishment\Establishment;
+use App\Models\Establishment\EstablishmentType;
+use App\Models\User\User;
 use Illuminate\Database\Seeder;
 
 final class EstablishmentSeeder extends Seeder
@@ -33,6 +33,6 @@ final class EstablishmentSeeder extends Seeder
                 }
             );
 
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 }

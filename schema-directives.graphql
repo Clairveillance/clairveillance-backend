@@ -60,7 +60,7 @@ directive @can(
   """
   Statically defined arguments that are passed to `Gate::check`.
 
-  You may pass pass arbitrary GraphQL literals,
+  You may pass arbitrary GraphQL literals,
   e.g.: [1, 2, 3] or { foo: "bar" }
   """
   args: CanArgs
@@ -92,7 +92,7 @@ Used upon an object, it applies to all fields within.
 """
 directive @guard(
   """
-  Specify which guards to use, e.g. ["api"].
+  Specify which guards to use, e.g. ["web"].
   When not defined, the default from `lighthouse.php` is used.
   """
   with: [String!]
@@ -690,7 +690,45 @@ directive @cache(
 """
 Specify the field to use as a key when creating a cache.
 """
-directive @cacheKey on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+directive @cacheKey on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | FIELD_DEFINITION
+
+# Directive class: Nuwave\Lighthouse\Schema\Directives\ClearCacheDirective
+"""
+Clear a resolver cache by tags.
+"""
+directive @clearCache(
+  """
+  Name of the parent type of the field to clear.
+  """
+  type: String!
+
+  """
+  Source of the parent ID to clear.
+  """
+  idSource: ClearCacheIdSource
+
+  """
+  Name of the field to clear.
+  """
+  field: String
+) on FIELD_DEFINITION
+
+"""
+Options for the `id` argument on `@clearCache`.
+
+Exactly one of the fields must be given.
+"""
+input ClearCacheIdSource {
+  """
+  Path of an argument the client passes to the field `@clearCache` is applied to.
+  """
+  argument: String
+
+  """
+  Path of a field in the result returned from the field `@clearCache` is applied to.
+  """
+  field: String
+}
 
 # Directive class: Nuwave\Lighthouse\Schema\Directives\ComplexityDirective
 """
@@ -704,6 +742,12 @@ directive @complexity(
   """
   resolver: String
 ) on FIELD_DEFINITION
+
+# Directive class: Nuwave\Lighthouse\Schema\Directives\ConvertEmptyStringsToNullDirective
+"""
+Replaces `""` with `null`.
+"""
+directive @convertEmptyStringsToNull on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | FIELD_DEFINITION
 
 # Directive class: Nuwave\Lighthouse\Schema\Directives\CountDirective
 """
@@ -726,6 +770,17 @@ directive @count(
   Apply scopes to the underlying query.
   """
   scopes: [String!]
+
+  """
+  Count only rows where the given columns are non-null.
+  `*` counts every row.
+  """
+  columns: [String!]! = ["*"]
+
+  """
+  Should exclude duplicated rows?
+  """
+  distinct: Boolean! = false
 ) on FIELD_DEFINITION
 
 # Directive class: Nuwave\Lighthouse\Schema\Directives\CreateDirective
@@ -783,10 +838,22 @@ directive @deprecated(
   """
   Explains why this element was deprecated, usually also including a
   suggestion for how to access supported similar data. Formatted
-  in [Markdown](https://daringfireball.net/projects/markdown/).
+  in [Markdown](https://daringfireball.net/projects/markdown).
   """
   reason: String = "No longer supported"
 ) on FIELD_DEFINITION | ENUM_VALUE
+
+# Directive class: Nuwave\Lighthouse\Schema\Directives\DropArgsDirective
+"""
+Apply the @drop directives on the incoming arguments.
+"""
+directive @dropArgs on FIELD_DEFINITION
+
+# Directive class: Nuwave\Lighthouse\Schema\Directives\DropDirective
+"""
+Ignore the user given value, don't pass it to the resolver.
+"""
+directive @drop on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
 
 # Directive class: Nuwave\Lighthouse\Schema\Directives\EnumDirective
 """

@@ -19,7 +19,7 @@ final class Like extends Model
 
     /** @var array<string> */
     protected $fillable = [
-        'is_dislike'
+        'is_dislike',
     ];
 
     /** @var array<string> */

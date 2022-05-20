@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Assembly;
-use App\Models\AssemblyType;
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

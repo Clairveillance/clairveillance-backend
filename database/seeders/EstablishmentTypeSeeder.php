@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\EstablishmentType;
+use App\Models\Establishment\EstablishmentType;
 use Illuminate\Database\Seeder;
 
 final class EstablishmentTypeSeeder extends Seeder
@@ -25,6 +25,6 @@ final class EstablishmentTypeSeeder extends Seeder
                 }
             );
 
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 }

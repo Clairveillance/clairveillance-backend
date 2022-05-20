@@ -18,19 +18,40 @@ When expected as an input type, any string (such as `"4"`) or integer
 """
 scalar ID
 
+"""Allows ordering a list of records."""
+input OrderByClause {
+  """The column that is used for ordering."""
+  column: String!
+
+  """The direction that is used for ordering."""
+  order: SortOrder!
+}
+
+"""Directions for ordering a list of records."""
+enum SortOrder {
+  """Sort records in ascending order."""
+  ASC
+
+  """Sort records in descending order."""
+  DESC
+}
+
+"""The `Boolean` scalar type represents `true` or `false`."""
+scalar Boolean
+
 """
 The `Int` scalar type represents non-fractional signed whole numeric
 values. Int can represent values between -(2^31) and 2^31 - 1. 
 """
 scalar Int
 
-"""A paginated list of User items."""
-type UserPaginator {
+"""A paginated list of Post items."""
+type PostPaginator {
   """Pagination information about the list of items."""
   paginatorInfo: PaginatorInfo!
 
-  """A list of User items."""
-  data: [User!]!
+  """A list of Post items."""
+  data: [Post!]!
 }
 
 """Information about pagination using a fully featured paginator."""
@@ -60,8 +81,65 @@ type PaginatorInfo {
   total: Int!
 }
 
-"""The `Boolean` scalar type represents `true` or `false`."""
-scalar Boolean
+"""Order by clause for Query.users.orderByRelation."""
+input QueryUsersOrderByRelationRelationOrderByClause {
+  """The column that is used for ordering."""
+  column: QueryUsersOrderByRelationColumn
+
+  """The direction that is used for ordering."""
+  order: SortOrder!
+
+  """Aggregate specification."""
+  posts: QueryUsersOrderByRelationPosts
+}
+
+"""Allowed column names for Query.users.orderByRelation."""
+enum QueryUsersOrderByRelationColumn {
+  PUBLISHED_AT
+}
+
+"""Aggregate specification for Query.users.orderByRelation.posts."""
+input QueryUsersOrderByRelationPosts {
+  """The aggregate function to apply to the column."""
+  aggregate: OrderByRelationWithColumnAggregateFunction!
+
+  """Name of the column to use."""
+  column: QueryUsersOrderByRelationPostsColumn
+}
+
+"""
+Aggregate functions when ordering by a relation that may specify a column.
+"""
+enum OrderByRelationWithColumnAggregateFunction {
+  """Average."""
+  AVG
+
+  """Minimum."""
+  MIN
+
+  """Maximum."""
+  MAX
+
+  """Sum."""
+  SUM
+
+  """Amount of items."""
+  COUNT
+}
+
+"""Allowed column names for Query.users.orderByRelation."""
+enum QueryUsersOrderByRelationPostsColumn {
+  PUBLISHED
+}
+
+"""A paginated list of User items."""
+type UserPaginator {
+  """Pagination information about the list of items."""
+  paginatorInfo: PaginatorInfo!
+
+  """A list of User items."""
+  data: [User!]!
+}
 
 """
 The `Float` scalar type represents signed double-precision fractional
@@ -271,50 +349,12 @@ enum __DirectiveLocation {
   INPUT_FIELD_DEFINITION
 }
 
-"""Directions for ordering a list of records."""
-enum SortOrder {
-  """Sort records in ascending order."""
-  ASC
-
-  """Sort records in descending order."""
-  DESC
-}
-
 """
 Aggregate functions when ordering by a relation without specifying a column.
 """
 enum OrderByRelationAggregateFunction {
   """Amount of items."""
   COUNT
-}
-
-"""
-Aggregate functions when ordering by a relation that may specify a column.
-"""
-enum OrderByRelationWithColumnAggregateFunction {
-  """Average."""
-  AVG
-
-  """Minimum."""
-  MIN
-
-  """Maximum."""
-  MAX
-
-  """Sum."""
-  SUM
-
-  """Amount of items."""
-  COUNT
-}
-
-"""Allows ordering a list of records."""
-input OrderByClause {
-  """The column that is used for ordering."""
-  column: String!
-
-  """The direction that is used for ordering."""
-  order: SortOrder!
 }
 
 """Information about pagination using a simple paginator."""
@@ -333,6 +373,9 @@ type SimplePaginatorInfo {
 
   """Number of items per page."""
   perPage: Int!
+
+  """Are there more pages after this one?"""
+  hasMorePages: Boolean!
 }
 
 """Information about pagination using a Relay style cursor connection."""

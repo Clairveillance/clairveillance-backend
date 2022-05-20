@@ -30,7 +30,7 @@ final class Address extends Model
         'city',
         'post_code',
         'region',
-        'note'
+        'note',
     ];
 
     /** @var array<string> */

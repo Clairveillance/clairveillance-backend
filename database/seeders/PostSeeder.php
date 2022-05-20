@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Post;
-use App\Models\PostType;
-use App\Models\User;
+use App\Models\Post\Post;
+use App\Models\Post\PostType;
+use App\Models\User\User;
 use Illuminate\Database\Seeder;
 
 final class PostSeeder extends Seeder
@@ -31,6 +31,6 @@ final class PostSeeder extends Seeder
                 }
             );
 
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Comment\Comment;
 use App\Models\Image\Image;
 use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasUuid;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -23,7 +24,7 @@ final class Profile extends Model
     /** @var array<string> */
     protected $hidden = [
         'id',
-        'uuid'
+        'uuid',
     ];
 
     public function getRouteKeyName(): string

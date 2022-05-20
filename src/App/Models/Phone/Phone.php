@@ -24,7 +24,7 @@ final class Phone extends Model
         'description',
         'firstname',
         'lastname',
-        'note'
+        'note',
     ];
 
     /** @var array<string> */
