@@ -13,28 +13,16 @@ use Illuminate\Database\Eloquent\Model;
 final class {{ class }} extends Model
 {
     use HasUuid;
-    use HasSlug;
     use HasFactory;
     use SoftDeletes;
-
-    public function slugSource(): array
-    {
-        return [
-            'source' => '',
-        ];
-    }
 
     /** @var array<string> */
     protected $fillable = [];
 
     /** @var array<string> */
     protected $hidden = [
-        'id'
-    ];
-
-    /** @var array<string,string> */
-    protected $casts = [
-        //
+        'id',
+        'uuid'
     ];
 
     public function getRouteKeyName(): string

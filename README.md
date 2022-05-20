@@ -4,13 +4,13 @@ This project was generated with [Laravel Installer](https://github.com/laravel/i
 
 #### Make New Migrations
 
-> php artisan make:migration <name> --path=src/Infrastructure/database/migrations
+> php artisan make:migration <name> --path=src/Infrastructure/database/migrations/v1
 
 #### Run Migrations (with seeders)
 
-> php artisan migrate:fresh --path=src/Infrastructure/database/migrations --seed
+> php artisan migrate:fresh --path=src/Infrastructure/database/migrations/v1 --seed
 
-> php artisan migrate:refresh --path=src/Infrastructure/database/migrations --seed
+> php artisan migrate:refresh --path=src/Infrastructure/database/migrations/v1 --seed
 
 #### Generate [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger) documentation files
 
