@@ -51,6 +51,6 @@ final class DefaultUserSeeder extends Seeder
             parent: null
         );
 
-        dump(__METHOD__ . ' [success]');
+        dump(__METHOD__.' [success]');
     }
 }

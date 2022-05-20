@@ -33,6 +33,6 @@ final class EstablishmentSeeder extends Seeder
                 }
             );
 
-        dump(__METHOD__ . ' [success]');
+        dump(__METHOD__.' [success]');
     }
 }

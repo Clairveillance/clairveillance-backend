@@ -6,8 +6,8 @@ namespace Database\Factories;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 final class PostFactory extends Factory
 {
@@ -91,7 +91,7 @@ final class PostFactory extends Factory
             'created_at' => $created_date,
             'updated_at' => $updated_date,
             'published' => $published,
-            'published_at' => !$published ? null : $this->faker->dateTimeBetween(
+            'published_at' => ! $published ? null : $this->faker->dateTimeBetween(
                 startDate: $created_date,
                 endDate: $updated_date,
                 timezone: env(

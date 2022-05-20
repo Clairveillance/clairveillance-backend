@@ -25,6 +25,6 @@ final class AssemblyTypeSeeder extends Seeder
                 }
             );
 
-        dump(__METHOD__ . ' [success]');
+        dump(__METHOD__.' [success]');
     }
 }

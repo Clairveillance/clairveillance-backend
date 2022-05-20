@@ -25,6 +25,6 @@ final class AssignmentTypeSeeder extends Seeder
                 }
             );
 
-        dump(__METHOD__ . ' [success]');
+        dump(__METHOD__.' [success]');
     }
 }
