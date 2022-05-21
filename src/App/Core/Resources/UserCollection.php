@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Resources;
 
+use App\Models\Post\Post;
+use App\Models\User\User;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 final class UserCollection extends ResourceCollection
@@ -25,10 +27,10 @@ final class UserCollection extends ResourceCollection
             'status' => 200,
             'message' => 'OK',
             $this::$wrap => $this->collection->map(
-                function ($user) {
+                function (UserResource $user) {
                     return collect([
                         'id' => $user->uuid,
-                        'type' => 'user',
+                        'type' => 'users',
                         'attributes' => [
                             'username' => $user->username,
                             'firstname' => $user->firstname,
@@ -41,9 +43,8 @@ final class UserCollection extends ResourceCollection
                         ],
                         'relationships' => [
                             'posts_count' => $user->posts->count(),
-                            'posts' =>
-                            $user->posts->map(
-                                function ($post) {
+                            'posts' => $user->posts->map(
+                                function (Post $post) {
                                     return collect([
                                         'id' => $post->uuid,
                                         'type' => $post->type->name,
@@ -66,7 +67,6 @@ final class UserCollection extends ResourceCollection
                                     ]);
                                 }
                             ),
-
                         ],
                         'links' => [
                             'self' => route('api.v1.users.show', $user->uuid),
