@@ -28,12 +28,24 @@ final class AssemblySeeder extends Seeder
                     $users = User::where('created_at', '<=', $assembly->created_at)->get();
                     $assembly->user()->associate($users->random());
                     $assembly->save();
-                    $model = Assembly::class;
-                    $assemblies = $model::all();
+                    $assemblies = Assembly::all();
                     for ($i = 0; $i < rand(1, 10); $i++) {
                         $assemblable = $assemblies->random();
-                        if ($assemblable !== ($assembly && $assembly->assemblable($model))) {
-                            $assembly->assemblable($model)->attach($assemblable);
+                        if (
+                            $assemblable !== $assembly &&
+                            $assemblable !== $assembly->assemblyAssemblables
+                        ) {
+                            $assembly->assemblyAssemblables()->attach($assemblable);
+                        }
+                    }
+                    $assembly->save();
+                    $users = User::all();
+                    for ($i = 0; $i < rand(1, 10); $i++) {
+                        $assemblable = $users->random();
+                        if (
+                            $assemblable !== $assembly->userAssemblables
+                        ) {
+                            $assembly->userAssemblables()->attach($assemblable);
                         }
                     }
                     $assembly->save();

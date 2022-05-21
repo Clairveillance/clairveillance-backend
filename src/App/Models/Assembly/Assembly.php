@@ -103,11 +103,11 @@ final class Assembly extends Model
         );
     }
 
-    public function assemblable($model): MorphToMany
+    public function assemblyAssemblables(): MorphToMany
     {
         return $this->morphToMany(
-            related: $model,
-            name: __FUNCTION__,
+            related: Assembly::class,
+            name: 'assemblable',
             table: null,
             foreignPivotKey: 'assemblable_uuid',
             relatedPivotKey: 'assembly_uuid',
@@ -117,16 +117,30 @@ final class Assembly extends Model
         );
     }
 
-    // public function assemblies(): MorphToMany
-    // {
-    //     return $this->morphedByMany(
-    //         related: Assembly::class,
-    //         name: 'assemblable',
-    //         table: null,
-    //         foreignPivotKey: null,
-    //         relatedPivotKey: null,
-    //         parentKey: null,
-    //         relatedKey: null
-    //     );
-    // }
+    public function userAssemblables(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: User::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assemblable_uuid',
+            relatedPivotKey: 'assembly_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        );
+    }
+
+    public function assemblyAssemblies(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: Assembly::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assembly_uuid',
+            relatedPivotKey: 'assemblable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
 }

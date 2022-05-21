@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Resources;
 
+use App\Models\Assembly\Assembly;
 use App\Models\Post\Post;
 use App\Models\Profile\Profile;
 use App\Models\User\User;
@@ -32,6 +33,7 @@ final class UserCollection extends ResourceCollection
                     return collect([
                         'id' => $user->uuid,
                         'type' => 'users',
+                        'profile' => $user->profile->uuid,
                         'attributes' => [
                             'username' => $user->username,
                             'firstname' => $user->firstname,
@@ -42,44 +44,29 @@ final class UserCollection extends ResourceCollection
                             'updated_at' => null === $user->updated_at ? $user->updated_at : date('Y-m-d H:i:s', strtotime((string) $user->updated_at)),
                             'email_verified_at' => null === $user->email_verified_at ? $user->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $user->email_verified_at)),
                         ],
-                        'profile' => [
-                            'id' => $user->profile->uuid,
-                            'type' => $user->profile->type->name,
-                            'type_id' => $user->profile->type->uuid,
-                            'attributes' => [
-                                'image' => $user->profile->image, // TODO
-                                'created_at' => null === $user->profile->created_at ? $user->profile->created_at : date('Y-m-d H:i:s', strtotime((string) $user->profile->created_at)),
-                                'updated_at' => null === $user->profile->updated_at ? $user->profile->updated_at : date('Y-m-d H:i:s', strtotime((string) $user->profile->updated_at)),
-                            ],
-                            // TODO : Add links for profile.
-                            // 'links' => [
-                            //     'self' => route('api.v1.profile.show', $user->profile->uuid),
-                            //     'parent' => route('api.v1.profile.index'),
-                            // ],
-                        ],
                         'relationships' => [
+                            'assemblies_count' => $user->userAssemblies->count(),
+                            'assemblies' => $user->userAssemblies->map(
+                                function ($userAssembly) {
+                                    return collect([
+                                        'id' => $userAssembly->uuid,
+                                        'name' => $userAssembly->name,
+                                        'type_id' => $userAssembly->type->uuid,
+                                        'type' => $userAssembly->type->name,
+                                        'profile' => $userAssembly->profile->uuid,
+                                    ]);
+                                }
+                            ),
                             'posts_count' => $user->posts->count(),
                             'posts' => $user->posts->map(
                                 function (Post $post) {
                                     return collect([
                                         'id' => $post->uuid,
-                                        'type' => $post->type->name,
+                                        'title' => $post->title,
+                                        'slug' => $post->slug,
+                                        'description' => $post->description,
                                         'type_id' => $post->type->uuid,
-                                        'attributes' => [
-                                            'slug' => $post->slug,
-                                            'title' => $post->title,
-                                            'description' => $post->description,
-                                            'body' => $post->body,
-                                            'published' => $post->published,
-                                            'published_at' => null === $post->published_at ? $post->published_at : date('Y-m-d H:i:s', strtotime((string) $post->published_at)),
-                                            'created_at' => null === $post->created_at ? $post->created_at : date('Y-m-d H:i:s', strtotime((string) $post->created_at)),
-                                            'updated_at' => null === $post->updated_at ? $post->updated_at : date('Y-m-d H:i:s', strtotime((string) $post->updated_at)),
-                                        ],
-                                        // TODO : Add links for relationships.
-                                        // 'links' => [
-                                        //     'self' => route('api.v1.posts.show', $post->uuid),
-                                        //     'parent' => route('api.v1.posts.index'),
-                                        // ],
+                                        'type' => $post->type->name,
                                     ]);
                                 }
                             ),
