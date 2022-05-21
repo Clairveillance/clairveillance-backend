@@ -31,6 +31,21 @@ final class UserResource extends JsonResource
                 'updated_at' => null === $this->updated_at ? $this->updated_at : date('Y-m-d H:i:s', strtotime((string) $this->updated_at)),
                 'email_verified_at' => null === $this->email_verified_at ? $this->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $this->email_verified_at)),
             ],
+            'profile' => [
+                'id' => $this->profile->uuid,
+                'type' => $this->profile->type->name,
+                'type_id' => $this->profile->type->uuid,
+                'attributes' => [
+                    'image' => $this->profile->image, // TODO
+                    'created_at' => null === $this->profile->created_at ? $this->profile->created_at : date('Y-m-d H:i:s', strtotime((string) $this->profile->created_at)),
+                    'updated_at' => null === $this->profile->updated_at ? $this->profile->updated_at : date('Y-m-d H:i:s', strtotime((string) $this->profile->updated_at)),
+                ],
+                // TODO : Add links for profile.
+                // 'links' => [
+                //     'self' => route('api.v1.profile.show', $this->profile->uuid),
+                //     'parent' => route('api.v1.profile.index'),
+                // ],
+            ],
             'relationships' => [
                 'posts_count' => $this->posts->count(),
                 'posts' => $this->posts->map(

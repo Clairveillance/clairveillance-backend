@@ -18,16 +18,6 @@ final class UserFactory extends Factory
             gender: null
         );
         $lastname = $this->faker->lastName();
-        $initial_firstname = mb_substr(
-            string: $firstname,
-            start: 0,
-            length: 1
-        );
-        $initial_lastname = mb_substr(
-            string: $lastname,
-            start: 0,
-            length: 1
-        );
         $created_date = $this->faker->dateTimeBetween(
             startDate: '-5 years',
             endDate: now(

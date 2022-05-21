@@ -15,8 +15,8 @@ final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        dump('Environment => ' . config('app.env') . "\n" . 'Database Statement => SET FOREIGN_KEY_CHECKS=0');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // dump('Environment => ' . config('app.env') . "\n" . 'Database Statement => SET FOREIGN_KEY_CHECKS=0');
 
         match (config(
             key: 'app.env',
@@ -27,10 +27,10 @@ final class DatabaseSeeder extends Seeder
                     DefaultUserSeeder::class,
                     UserSeeder::class,
                     PostTypeSeeder::class,
+                    PostSeeder::class,
                     // EstablishmentTypeSeeder::class,
                     // AssignmentTypeSeeder::class,
                     // AssemblyTypeSeeder::class,
-                    PostSeeder::class,
                     // EstablishmentSeeder::class,
                     // AssignmentSeeder::class,
                     // AssemblySeeder::class,

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Resources;
 
 use App\Models\Post\Post;
+use App\Models\Profile\Profile;
 use App\Models\User\User;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -40,6 +41,21 @@ final class UserCollection extends ResourceCollection
                             'created_at' => null === $user->created_at ? $user->created_at : date('Y-m-d H:i:s', strtotime((string) $user->created_at)),
                             'updated_at' => null === $user->updated_at ? $user->updated_at : date('Y-m-d H:i:s', strtotime((string) $user->updated_at)),
                             'email_verified_at' => null === $user->email_verified_at ? $user->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $user->email_verified_at)),
+                        ],
+                        'profile' => [
+                            'id' => $user->profile->uuid,
+                            'type' => $user->profile->type->name,
+                            'type_id' => $user->profile->type->uuid,
+                            'attributes' => [
+                                'image' => $user->profile->image, // TODO
+                                'created_at' => null === $user->profile->created_at ? $user->profile->created_at : date('Y-m-d H:i:s', strtotime((string) $user->profile->created_at)),
+                                'updated_at' => null === $user->profile->updated_at ? $user->profile->updated_at : date('Y-m-d H:i:s', strtotime((string) $user->profile->updated_at)),
+                            ],
+                            // TODO : Add links for profile.
+                            // 'links' => [
+                            //     'self' => route('api.v1.profile.show', $user->profile->uuid),
+                            //     'parent' => route('api.v1.profile.index'),
+                            // ],
                         ],
                         'relationships' => [
                             'posts_count' => $user->posts->count(),
