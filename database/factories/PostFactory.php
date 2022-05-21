@@ -6,7 +6,6 @@ namespace Database\Factories;
 
 use App\Models\Post\Post;
 use App\Models\Post\PostType;
-use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 final class PostFactory extends Factory
@@ -26,7 +25,7 @@ final class PostFactory extends Factory
             asText: true
         );
         $created_date = $this->faker->dateTimeBetween(
-            startDate: User::oldest()->first()->created_at,
+            startDate: PostType::oldest()->first()->created_at,
             endDate: now(
                 tz: env(
                     key: 'APP_TIMEZONE',
@@ -54,10 +53,6 @@ final class PostFactory extends Factory
         $published = $this->faker->boolean(
             chanceOfGettingTrue: 50
         );
-        $users = User::where('created_at', '<', $created_date)->get();
-        $post_types = PostType::all();
-        $user_uuid = $users->random()->uuid;
-        $post_type_uuid = $post_types->random()->uuid;
 
         return [
             'title' => $title,
@@ -85,8 +80,6 @@ final class PostFactory extends Factory
                     default: 'UTC'
                 )
             ),
-            'user_uuid' => $user_uuid,
-            'post_type_uuid' => $post_type_uuid
         ];
     }
 }

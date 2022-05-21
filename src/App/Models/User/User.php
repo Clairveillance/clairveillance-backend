@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Models\Establishment\EstablishmentWithProfile;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class User extends Model
 {
@@ -265,7 +266,7 @@ final class User extends Model
             related: Post::class,
             foreignKey: 'user_uuid',
             localKey: 'uuid'
-        );
+        )->orderByDesc('created_at');
     }
 
     public function profiles(): HasMany
@@ -292,6 +293,19 @@ final class User extends Model
             related: Taxonomy::class,
             foreignKey: 'user_uuid',
             localKey: 'uuid'
+        );
+    }
+
+    public function userAssemblies()
+    {
+        return $this->morphedByMany(
+            related: Assembly::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assembly_uuid',
+            relatedPivotKey: 'assemblable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
         );
     }
 

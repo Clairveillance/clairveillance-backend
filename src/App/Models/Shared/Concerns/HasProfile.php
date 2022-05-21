@@ -23,7 +23,7 @@ trait HasProfile
             $modelClass = $model::class;
             $profileType = ProfileType::where('name', $modelClass)->first();
 
-            if (! $profileType) {
+            if (!$profileType) {
                 $profileType = new ProfileType();
                 $profileType->name = $modelClass;
                 $profileType->save();
@@ -31,12 +31,13 @@ trait HasProfile
 
             $profile = new Profile();
             $profile->profilable()->associate($model);
-            $profile->user()->associate(
-                match ($modelClass) {
-                    User::class => $model->uuid,
-                    default => $model->user_uuid
-                }
-            );
+            // FIXME
+            // $profile->user()->associate(
+            //     match ($modelClass) {
+            //         User::class => $model->uuid,
+            //         default => $model->user_uuid
+            //     }
+            // );
             $profile->type()->associate($profileType);
             $profile->save();
         });

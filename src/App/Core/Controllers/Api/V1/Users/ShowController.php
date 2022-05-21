@@ -18,7 +18,7 @@ final class ShowController extends Controller
     {
         $user = new UserResource(
             resource: User::with(
-                relations: 'posts'
+                relations: ['profile', 'posts']
             )->where('uuid', $uuid)
                 // ->withTrashed()
                 ->firstOrFail()
