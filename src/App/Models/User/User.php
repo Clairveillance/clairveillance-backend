@@ -4,26 +4,42 @@ declare(strict_types=1);
 
 namespace App\Models\User;
 
+use App\Models\Like\Like;
+use App\Models\Link\Link;
+use App\Models\Post\Post;
 use App\Models\Email\Email;
+use App\Models\Phone\Phone;
+use App\Models\Theme\Theme;
+use App\Models\Address\Address;
+use App\Models\Comment\Comment;
 use App\Models\Profile\Profile;
+use App\Models\Assembly\Assembly;
 use App\Models\Language\Language;
 use App\Models\Sequence\Sequence;
+use App\Models\Taxonomy\Taxonomy;
 use App\Models\Timezone\Timezone;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
+use App\Models\Assignment\Assignment;
+use App\Models\Connection\Connection;
+use App\Models\Appointment\Appointment;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Shared\CustomQueryBuilder;
 use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasProfile;
-use Egulias\EmailValidator\Warning\Comment;
+use App\Models\Establishment\Establishment;
+use App\Models\Assembly\AssemblyWithProfile;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Models\Assignment\AssignmentWithProfile;
+use App\Models\Appointment\AppointmentWithProfile;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use App\Models\Establishment\EstablishmentWithProfile;
 
 final class User extends Model
 {

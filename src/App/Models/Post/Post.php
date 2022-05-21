@@ -20,13 +20,6 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function slugSource(): array
-    {
-        return [
-            'source' => 'title',
-        ];
-    }
-
     /** @var array<string> */
     protected $fillable = [
         'title',

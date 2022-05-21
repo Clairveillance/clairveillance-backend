@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Post\PostType;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 final class PostTypeFactory extends Factory
 {
+    protected $model = PostType::class;
+
     public function definition(): array
     {
         $name = $this->faker->unique(

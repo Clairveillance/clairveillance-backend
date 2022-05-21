@@ -14,13 +14,10 @@ trait HasSlug
     public static function bootHasSlug(): void
     {
         static::creating(function (Model $model) {
-            $user = $model->user();
+            $user = $model->user;
             $username = $user->username;
-            $language = $user->language()->code ?? 'en';
-            $source = $model->slugSource()['source'].'-'.$username;
-            $model->slug = Str::slug($source, '-', $language);
+            $source = $model->title . '-by-' . $username;
+            $model->slug = Str::slug($source);
         });
     }
-
-    abstract public function slugSource(): array;
 }
