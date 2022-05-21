@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Post\Post;
+use App\Models\Post\PostType;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 final class PostFactory extends Factory
 {
@@ -54,27 +54,13 @@ final class PostFactory extends Factory
         $published = $this->faker->boolean(
             chanceOfGettingTrue: 50
         );
+        $users = User::where('created_at', '<', $created_date)->get();
+        $post_types = PostType::all();
+        $user_uuid = $users->random()->uuid;
+        $post_type_uuid = $post_types->random()->uuid;
 
         return [
-            'slug' => Str::slug(
-                title: $title,
-                separator: '-',
-                language: env(
-                    key: 'APP_LOCALE',
-                    default: 'en'
-                ),
-            ),
             'title' => $title,
-            'image' => $this->faker->randomElement(
-                array: [null, $this->faker->imageUrl(
-                    width: 80,
-                    height: 80,
-                    category: null,
-                    randomize: false,
-                    word: $this->faker->word(),
-                    gray: false
-                )]
-            ),
             'description' => $this->faker->randomElement(
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(
@@ -99,6 +85,8 @@ final class PostFactory extends Factory
                     default: 'UTC'
                 )
             ),
+            'user_uuid' => $user_uuid,
+            'post_type_uuid' => $post_type_uuid
         ];
     }
 }

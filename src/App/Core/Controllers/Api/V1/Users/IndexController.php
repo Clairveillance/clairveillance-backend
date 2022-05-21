@@ -6,15 +6,19 @@ namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
 use App\Core\Resources\UserCollection;
+use App\Models\Post\Post;
 use App\Models\User\User;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 
 final class IndexController extends Controller
 {
     //TODO: Auth.
 
-    public function __invoke(Request $request): UserCollection
+    public function __invoke(Request $request)
     {
+        // $users = new  UserCollection(User::orderBy('username')->paginate(20));
+
         // NOTE: Used to debug the time of execution of a script.
         // $time_start = microtime(true);
         $users = new UserCollection(

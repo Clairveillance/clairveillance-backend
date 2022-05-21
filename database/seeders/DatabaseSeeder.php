@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Database\Seeders\DefaultUserSeeder;
+use Illuminate\Database\Seeder;
 use Database\Seeders\PostSeeder;
 use Database\Seeders\UserSeeder;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\PostTypeSeeder;
+use Database\Seeders\DefaultUserSeeder;
 
 final class DatabaseSeeder extends Seeder
 {
@@ -24,12 +25,12 @@ final class DatabaseSeeder extends Seeder
             'local' => $this->call(
                 class: [
                     DefaultUserSeeder::class,
-                    // UserSeeder::class,
-                    // PostTypeSeeder::class,
+                    UserSeeder::class,
+                    PostTypeSeeder::class,
                     // EstablishmentTypeSeeder::class,
                     // AssignmentTypeSeeder::class,
                     // AssemblyTypeSeeder::class,
-                    // PostSeeder::class,
+                    PostSeeder::class,
                     // EstablishmentSeeder::class,
                     // AssignmentSeeder::class,
                     // AssemblySeeder::class,
