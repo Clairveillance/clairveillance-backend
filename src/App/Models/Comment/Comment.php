@@ -20,7 +20,7 @@ final class Comment extends Model
 
     /** @var array<string> */
     protected $fillable = [
-        'message'
+        'message',
     ];
 
     /** @var array<string> */
@@ -62,7 +62,7 @@ final class Comment extends Model
     public function comments(): MorphMany
     {
         return $this->morphMany(
-            related: Comment::class,
+            related: self::class,
             name: 'commentable',
             type: 'commentable_type',
             id: 'commentable_uuid',

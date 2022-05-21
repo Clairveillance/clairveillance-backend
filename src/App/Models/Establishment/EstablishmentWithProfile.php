@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\EstablishmentWithProfile;
+namespace App\Models\Establishment;
 
 use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasProfile;

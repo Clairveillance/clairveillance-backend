@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\AssignmentType;
+use App\Models\Assignment\AssignmentType;
 use Illuminate\Database\Seeder;
 
 final class AssignmentTypeSeeder extends Seeder
@@ -25,6 +25,6 @@ final class AssignmentTypeSeeder extends Seeder
                 }
             );
 
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 }

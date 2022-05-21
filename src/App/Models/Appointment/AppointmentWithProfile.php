@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\AppointmentWithProfile;
+namespace App\Models\Appointment;
 
 use App\Models\Appointment\AppointmentType;
 use App\Models\Shared\Concerns\HasFactory;
@@ -41,7 +41,7 @@ final class AppointmentWithProfile extends Model
     /** @var array<string> */
     protected $hidden = [
         'id',
-        'uuid'
+        'uuid',
     ];
 
     public function getRouteKeyName(): string

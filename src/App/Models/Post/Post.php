@@ -7,7 +7,7 @@ namespace App\Models\Post;
 use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasUuid;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;

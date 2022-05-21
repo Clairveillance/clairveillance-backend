@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Establishment;
-use App\Models\EstablishmentType;
+use App\Models\Establishment\Establishment;
+use App\Models\Establishment\EstablishmentType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

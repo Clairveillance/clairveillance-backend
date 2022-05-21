@@ -24,7 +24,7 @@ final class Image extends Model
         'name',
         'type',
         'size',
-        'description'
+        'description',
     ];
 
     /** @var array<string> */

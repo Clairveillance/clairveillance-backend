@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Links;
+namespace App\Models\Link;
 
 use App\Models\Image\Image;
 use App\Models\Link\LinkType;
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-final class Links extends Model
+final class Link extends Model
 {
     use HasUuid;
     use HasFactory;
@@ -23,7 +23,7 @@ final class Links extends Model
         'value',
         'name',
         'description',
-        'note'
+        'note',
     ];
 
     /** @var array<string> */

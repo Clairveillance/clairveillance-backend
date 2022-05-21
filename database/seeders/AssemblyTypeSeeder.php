@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\AssemblyType;
+use App\Models\Assembly\AssemblyType;
 use Illuminate\Database\Seeder;
 
 final class AssemblyTypeSeeder extends Seeder
@@ -25,6 +25,6 @@ final class AssemblyTypeSeeder extends Seeder
                 }
             );
 
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 }

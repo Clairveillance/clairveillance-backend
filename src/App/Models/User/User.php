@@ -5,24 +5,24 @@ declare(strict_types=1);
 namespace App\Models\User;
 
 use App\Models\Email\Email;
-use App\Models\Language\Language;
 use App\Models\Profile\Profile;
+use App\Models\Language\Language;
 use App\Models\Sequence\Sequence;
+use App\Models\Timezone\Timezone;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Shared\CustomQueryBuilder;
 use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasProfile;
-use App\Models\Shared\CustomQueryBuilder;
-use App\Models\Timezone\Timezone;
 use Egulias\EmailValidator\Warning\Comment;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\CanResetPassword;
-use Illuminate\Contracts\Auth\Access\Authorizable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 final class User extends Model

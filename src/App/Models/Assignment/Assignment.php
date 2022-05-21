@@ -26,7 +26,7 @@ final class Assignment extends Model
     /** @var array<string> */
     protected $hidden = [
         'id',
-        'uuid'
+        'uuid',
     ];
 
     public function getRouteKeyName(): string

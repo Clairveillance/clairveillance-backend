@@ -19,7 +19,7 @@ final class Taxonomy extends Model
     /** @var array<string> */
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
 
     /** @var array<string> */

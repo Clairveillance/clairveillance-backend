@@ -77,5 +77,3 @@ paths:
           description: 'Too Many Requests'
         500:
           description: 'Internal Server Error'
-security:
-  - []

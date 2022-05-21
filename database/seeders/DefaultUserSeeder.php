@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\User\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +51,6 @@ final class DefaultUserSeeder extends Seeder
             parent: null
         );
 
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 }

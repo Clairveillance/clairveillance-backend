@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 final class PostTypeFactory extends Factory

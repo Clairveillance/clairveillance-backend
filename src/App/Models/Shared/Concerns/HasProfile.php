@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models\Shared\Concerns;
 
-use App\Models\Profile;
-use App\Models\ProfileType;
-use App\Models\User;
+use App\Models\Profile\Profile;
+use App\Models\Profile\ProfileType;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 

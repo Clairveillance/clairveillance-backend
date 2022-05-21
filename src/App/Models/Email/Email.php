@@ -23,7 +23,7 @@ final class Email extends Model
         'description',
         'host',
         'domain',
-        'note'
+        'note',
     ];
 
     /** @var array<string> */
