@@ -7,7 +7,6 @@ namespace Database\Factories;
 use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyType;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 final class AssemblyFactory extends Factory
 {
@@ -15,7 +14,7 @@ final class AssemblyFactory extends Factory
 
     public function definition(): array
     {
-        $title = $this->faker->unique(
+        $name = $this->faker->unique(
             reset: false,
             maxRetries: 10000
         )->words(
@@ -53,15 +52,7 @@ final class AssemblyFactory extends Factory
         );
 
         return [
-            'slug' => Str::slug(
-                title: $title,
-                separator: '-',
-                language: env(
-                    key: 'APP_LOCALE',
-                    default: 'en'
-                ),
-            ),
-            'title' => $title,
+            'name' => $name,
             'description' => $this->faker->randomElement(
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(

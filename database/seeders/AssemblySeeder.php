@@ -6,8 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyType;
-use App\Models\Assignment\Assignment;
-use App\Models\Establishment\Establishment;
 use App\Models\User\User;
 use Illuminate\Database\Seeder;
 
@@ -30,18 +28,13 @@ final class AssemblySeeder extends Seeder
                     $users = User::where('created_at', '<=', $assembly->created_at)->get();
                     $assembly->user()->associate($users->random());
                     $assembly->save();
-                    $assignments = Assignment::all();
-                    $establishments = Establishment::all();
-                    $random = rand(1, 5);
-                    if (($random === 1)) {
-                        $assembly->assignments()->attach($assignments->random());
-                    }
-                    if (($random === 2)) {
-                        $assembly->establishments()->attach($establishments->random());
-                    }
-                    if (($random === 3)) {
-                        $assembly->assignments()->attach($assignments->random());
-                        $assembly->establishments()->attach($establishments->random());
+                    $model = Assembly::class;
+                    $assemblies = $model::all();
+                    for ($i = 0; $i < rand(1, 10); $i++) {
+                        $assemblable = $assemblies->random();
+                        if ($assemblable !== ($assembly && $assembly->assemblable($model))) {
+                            $assembly->assemblable($model)->attach($assemblable);
+                        }
                     }
                     $assembly->save();
                 }

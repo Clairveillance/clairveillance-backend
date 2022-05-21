@@ -16,8 +16,11 @@ trait HasSlug
         static::creating(function (Model $model) {
             $user = $model->user;
             $username = $user->username;
-            $source = $model->title . '-by-' . $username;
+            $slugSource = $model->slugSource()['source'];
+            $source = $model->$slugSource . '-by-' . $username;
             $model->slug = Str::slug($source);
         });
     }
+
+    abstract public function slugSource(): array;
 }

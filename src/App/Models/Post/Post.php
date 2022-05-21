@@ -38,6 +38,11 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
+    public function  slugSource(): array
+    {
+        return ['source' => 'title'];
+    }
+
     public function getRouteKeyName(): string
     {
         return 'uuid';

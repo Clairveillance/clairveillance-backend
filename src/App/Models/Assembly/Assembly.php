@@ -4,16 +4,27 @@ declare(strict_types=1);
 
 namespace App\Models\Assembly;
 
-use App\Models\Shared\Concerns\HasFactory;
+use App\Models\Like\Like;
+use App\Models\User\User;
+use App\Models\Comment\Comment;
+use App\Models\Profile\Profile;
+use App\Models\Assembly\AssemblyType;
+use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Shared\Concerns\HasFactory;
+use App\Models\Shared\Concerns\HasProfile;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class Assembly extends Model
 {
     use HasUuid;
+    use HasSlug;
+    use HasProfile;
     use HasFactory;
     use SoftDeletes;
 
@@ -28,6 +39,11 @@ final class Assembly extends Model
         'id',
         'uuid',
     ];
+
+    public function  slugSource(): array
+    {
+        return ['source' => 'name'];
+    }
 
     public function getRouteKeyName(): string
     {
@@ -54,6 +70,17 @@ final class Assembly extends Model
         );
     }
 
+    public function profile(): MorphOne
+    {
+        return $this->morphOne(
+            related: Profile::class,
+            name: 'profilable',
+            type: 'profilable_type',
+            id: 'profilable_uuid',
+            localKey: 'uuid'
+        );
+    }
+
     public function comments(): MorphMany
     {
         return $this->morphMany(
@@ -75,4 +102,31 @@ final class Assembly extends Model
             localKey: 'uuid'
         );
     }
+
+    public function assemblable($model): MorphToMany
+    {
+        return $this->morphToMany(
+            related: $model,
+            name: __FUNCTION__,
+            table: null,
+            foreignPivotKey: 'assemblable_uuid',
+            relatedPivotKey: 'assembly_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        );
+    }
+
+    // public function assemblies(): MorphToMany
+    // {
+    //     return $this->morphedByMany(
+    //         related: Assembly::class,
+    //         name: 'assemblable',
+    //         table: null,
+    //         foreignPivotKey: null,
+    //         relatedPivotKey: null,
+    //         parentKey: null,
+    //         relatedKey: null
+    //     );
+    // }
 }
