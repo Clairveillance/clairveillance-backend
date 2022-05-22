@@ -22,10 +22,10 @@ final class AppointmentWithProfile extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function slugSource(): array
+    public function slugSources(): array
     {
         return [
-            'source' => 'name',
+            'source' => 'name'
         ];
     }
 

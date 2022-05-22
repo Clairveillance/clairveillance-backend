@@ -42,9 +42,12 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
-    public function  slugSource(): array
+    protected function  slugSources(): array
     {
-        return ['source' => 'title'];
+        return [
+            'source' => 'title',
+            'params' => '-by-' . $this->user->username
+        ];
     }
 
     public function getRouteKeyName(): string
