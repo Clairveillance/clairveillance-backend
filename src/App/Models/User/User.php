@@ -266,7 +266,7 @@ final class User extends Model
             related: Post::class,
             foreignKey: 'user_uuid',
             localKey: 'uuid'
-        )->orderByDesc('created_at');
+        )->orderByDesc('published_at');
     }
 
     public function profiles(): HasMany

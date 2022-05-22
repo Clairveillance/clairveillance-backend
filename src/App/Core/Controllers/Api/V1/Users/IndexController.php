@@ -6,7 +6,6 @@ namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
 use App\Core\Resources\UserCollection;
-use App\Models\Post\Post;
 use App\Models\User\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
@@ -21,11 +20,20 @@ final class IndexController extends Controller
         // $time_start = microtime(true);
         $users = new UserCollection(
             resource: User::with(
-                relations: ['profile', 'posts']
-            )->orderBy('username')
+                relations: [
+                    'profile',
+                    'posts',
+                    'userAssemblies',
+                    'userAssembliesWithProfile'
+                ]
+            )
+                // ->withCount(
+                //     'posts'
+                // )
                 // ->withTrashed()
                 // ->onlyTrashed()
-                ->paginate(5)
+                ->orderBy('username')
+                ->paginate(25)
         );
         $users::$wrap = 'data';
         /*
