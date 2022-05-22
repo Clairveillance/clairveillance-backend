@@ -2,24 +2,31 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Like;
+namespace App\Models\Assembly;
 
 use App\Models\User\User;
-use App\Models\Like\LikeType;
+use App\Models\Assembly\AssemblyType;
+use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Concerns\HasFactory;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-final class Like extends Model
+abstract class AbstractAssembly extends Model
 {
     use HasUuid;
+    use HasSlug;
     use HasFactory;
+    use SoftDeletes;
+
+    /** @var string */
+    protected $table = 'assemblies';
 
     /** @var array<string> */
     protected $fillable = [
-        'is_dislike',
+        'name',
+        'description',
     ];
 
     /** @var array<string> */
@@ -28,10 +35,10 @@ final class Like extends Model
         'uuid',
     ];
 
-    /** @var array<string,string> */
-    protected $casts = [
-        'published_at' => 'datetime',
-    ];
+    public function  slugSource(): array
+    {
+        return ['source' => 'name'];
+    }
 
     public function getRouteKeyName(): string
     {
@@ -51,20 +58,10 @@ final class Like extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(
-            related: LikeType::class,
-            foreignKey: 'like_type_uuid',
+            related: AssemblyType::class,
+            foreignKey: 'assembly_type_uuid',
             ownerKey: 'uuid',
             relation: null
-        );
-    }
-
-    public function likeable(): MorphTo
-    {
-        return $this->morphTo(
-            name: __FUNCTION__,
-            type: 'likeable_type',
-            id: 'likeable_uuid',
-            ownerKey: 'uuid'
         );
     }
 }

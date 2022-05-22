@@ -25,7 +25,7 @@ final class IndexController extends Controller
             )->orderBy('username')
                 // ->withTrashed()
                 // ->onlyTrashed()
-                ->paginate(20)
+                ->paginate(5)
         );
         $users::$wrap = 'data';
         /*

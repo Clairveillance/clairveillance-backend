@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Core\Resources;
 
 use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyWithProfile;
 use App\Models\Post\Post;
-use App\Models\Profile\Profile;
-use App\Models\User\User;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 final class UserCollection extends ResourceCollection
@@ -45,15 +44,30 @@ final class UserCollection extends ResourceCollection
                             'email_verified_at' => null === $user->email_verified_at ? $user->email_verified_at : date('Y-m-d H:i:s', strtotime((string) $user->email_verified_at)),
                         ],
                         'relationships' => [
+                            'assemblies_with_profile_count' => $user->userAssembliesWithProfile->count(),
+                            'assemblies_with_profile' => $user->userAssembliesWithProfile->map(
+                                function (AssemblyWithProfile $userAssemblyWithProfile) {
+                                    return collect([
+                                        'id' => $userAssemblyWithProfile->uuid,
+                                        'name' => $userAssemblyWithProfile->name,
+                                        'type_id' => $userAssemblyWithProfile->type->uuid,
+                                        'type' => $userAssemblyWithProfile->type->name,
+                                        'profile' => $userAssemblyWithProfile->profile->uuid,
+                                        'likes_count' => $userAssemblyWithProfile->profile->likes->where('is_dislike', 0)->count(),
+                                        'dislikes_count' => $userAssemblyWithProfile->profile->likes->where('is_dislike', 1)->count()
+                                    ]);
+                                }
+                            ),
                             'assemblies_count' => $user->userAssemblies->count(),
                             'assemblies' => $user->userAssemblies->map(
-                                function ($userAssembly) {
+                                function (Assembly $userAssembly) {
                                     return collect([
                                         'id' => $userAssembly->uuid,
                                         'name' => $userAssembly->name,
                                         'type_id' => $userAssembly->type->uuid,
                                         'type' => $userAssembly->type->name,
-                                        'profile' => $userAssembly->profile->uuid,
+                                        'likes_count' => $userAssembly->likes->where('is_dislike', 0)->count(),
+                                        'dislikes_count' => $userAssembly->likes->where('is_dislike', 1)->count()
                                     ]);
                                 }
                             ),
@@ -67,6 +81,8 @@ final class UserCollection extends ResourceCollection
                                         'description' => $post->description,
                                         'type_id' => $post->type->uuid,
                                         'type' => $post->type->name,
+                                        'likes_count' => $post->likes->where('is_dislike', 0)->count(),
+                                        'dislikes_count' => $post->likes->where('is_dislike', 1)->count(),
                                     ]);
                                 }
                             ),

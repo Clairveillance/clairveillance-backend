@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models\Like;
 
+use App\Models\Image\Image;
 use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -38,6 +40,16 @@ final class LikeType extends Model
             related: Like::class,
             foreignKey: 'like_type_uuid',
             localKey: 'uuid'
+        );
+    }
+
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(
+            related: Image::class,
+            foreignKey: 'image_uuid',
+            ownerKey: 'uuid',
+            relation: null
         );
     }
 }

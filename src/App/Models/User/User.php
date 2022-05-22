@@ -309,6 +309,19 @@ final class User extends Model
         );
     }
 
+    public function userAssembliesWithProfile()
+    {
+        return $this->morphedByMany(
+            related: AssemblyWithProfile::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assembly_uuid',
+            relatedPivotKey: 'assemblable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
     //TODO
     // public function newEloquentBuilder($query): CustomQueryBuilder
     // {
