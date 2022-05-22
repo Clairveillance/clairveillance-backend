@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyType;
+use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Image\Image;
+use App\Models\Image\ImageType;
+use App\Models\Like\Like;
+use App\Models\Like\LikeType;
 use App\Models\User\User;
 use Illuminate\Database\Seeder;
 
@@ -13,7 +17,7 @@ final class AssemblySeeder extends Seeder
 {
     public function run(): void
     {
-        Assembly::factory(100)->make()
+        AssemblyWithProfile::factory(100)->make()
             ->sortBy(
                 callback: function ($sort) {
                     return $sort->created_at;
@@ -28,14 +32,44 @@ final class AssemblySeeder extends Seeder
                     $users = User::where('created_at', '<=', $assembly->created_at)->get();
                     $assembly->user()->associate($users->random());
                     $assembly->save();
-                    $assemblies = Assembly::all();
+                    $likeTypeImageType = ImageType::where('name', 'likeable images')->first();
+                    if (!$likeTypeImageType) {
+                        $likeTypeImageType = new ImageType(['name' => 'likeable images']);
+                        $likeTypeImageType->save();
+                    }
+                    $likeTypeImage = Image::where('name', 'heart')->first();
+                    if (!$likeTypeImage) {
+                        $likeTypeImage = new Image([
+                            'name' => 'heart',
+                            'type' => 'jpg',
+                            'size' => '127198271',
+                            'description' => 'Just a simple heart',
+                        ]);
+                        $likeTypeImage->user()->associate($users->random());
+                        $likeTypeImage->type()->associate($likeTypeImageType);
+                        $likeTypeImage->save();
+                    }
+                    $likeType = LikeType::where('name', 'heart')->first();
+                    if (!$likeType) {
+                        $likeType = new LikeType(['name' => 'heart']);
+                        $likeType->image()->associate($likeTypeImage);
+                        $likeType->save();
+                    }
+                    $like  = new Like();
+                    $like->is_dislike = rand(0, 1);
+                    $like->user()->associate($users->random());
+                    $like->type()->associate($likeType);
+                    // dd($assembly->profile);
+                    $like->likeable()->associate($assembly->profile);
+                    $like->save();
+                    $assemblies = AssemblyWithProfile::all();
                     for ($i = 0; $i < rand(1, 10); $i++) {
                         $assemblable = $assemblies->random();
                         if (
                             $assemblable !== $assembly &&
-                            $assemblable !== $assembly->assemblyAssemblables
+                            $assemblable !== $assembly->assemblyAssemblablesWithProfile
                         ) {
-                            $assembly->assemblyAssemblables()->attach($assemblable);
+                            $assembly->assemblyAssemblablesWithProfile()->attach($assemblable);
                         }
                     }
                     $assembly->save();
@@ -43,15 +77,14 @@ final class AssemblySeeder extends Seeder
                     for ($i = 0; $i < rand(1, 10); $i++) {
                         $assemblable = $users->random();
                         if (
-                            $assemblable !== $assembly->userAssemblables
+                            $assemblable !== $assembly->userAssemblablesWithProfile
                         ) {
-                            $assembly->userAssemblables()->attach($assemblable);
+                            $assembly->userAssemblablesWithProfile()->attach($assemblable);
                         }
                     }
                     $assembly->save();
                 }
             );
-
         dump(__METHOD__ . ' [success]');
     }
 }

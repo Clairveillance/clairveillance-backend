@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyType;
+use App\Models\Assembly\AssemblyWithProfile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-final class AssemblyFactory extends Factory
+final class AssemblyWithProfileFactory extends Factory
 {
-    protected $model = Assembly::class;
+    protected $model = AssemblyWithProfile::class;
 
     public function definition(): array
     {
