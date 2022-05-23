@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignUuid('image_uuid')->nullable()->constrained('images', 'uuid')->cascadeOnUpdate()->nullOnDelete();
             $table->uuid('profilable_uuid')->unique();
             $table->string('profilable_type');
+            $table->unique(['profilable_type', 'profilable_uuid'], 'polymorphic_unique');
         });
     }
 

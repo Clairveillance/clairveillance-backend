@@ -17,8 +17,9 @@ return new class extends Migration
             $table->timestampsTz();
             $table->foreignUuid('user_uuid')->constrained('users', 'uuid')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignUuid('like_type_uuid')->constrained('like_types', 'uuid')->cascadeOnUpdate();
-            $table->uuid('likeable_uuid')->unique();
+            $table->uuid('likeable_uuid');
             $table->string('likeable_type');
+            $table->unique(['likeable_type', 'likeable_uuid', 'user_uuid'], 'polymorphic_unique');
         });
     }
 

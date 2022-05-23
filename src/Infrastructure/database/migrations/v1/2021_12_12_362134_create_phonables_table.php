@@ -6,13 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('phonables', function (Blueprint $table) {
             $table->uuid('phone_uuid');
             $table->uuid('phonable_uuid');
             $table->string('phonable_type', 100);
+            $table->unique(['phonable_type', 'phonable_uuid', 'phone_uuid'], 'polymorphic_unique');
         });
     }
 

@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
@@ -18,8 +19,9 @@ return new class extends Migration {
             $table->timestampsTz();
             $table->softDeletes();
             $table->foreignUuid('user_uuid')->constrained('users', 'uuid')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->uuid('commentable_uuid')->unique();
+            $table->uuid('commentable_uuid');
             $table->string('commentable_type');
+            $table->unique(['commentable_type', 'commentable_uuid', 'user_uuid'], 'polymorphic_unique');
         });
     }
 
