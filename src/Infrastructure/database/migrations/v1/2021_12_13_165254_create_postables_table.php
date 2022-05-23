@@ -6,13 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('postables', function (Blueprint $table) {
             $table->uuid('post_uuid');
             $table->uuid('postable_uuid');
             $table->string('postable_type', 100);
+            $table->unique(['postable_type', 'postable_uuid', 'post_uuid'], 'polymorphic_unique');
         });
     }
 

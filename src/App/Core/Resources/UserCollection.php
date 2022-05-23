@@ -57,6 +57,7 @@ final class UserCollection extends ResourceCollection
                                     return collect([
                                         'id' => $userAssemblyWithProfile->uuid,
                                         'name' => $userAssemblyWithProfile->name,
+                                        'slug' => $userAssemblyWithProfile->slug,
                                         'type_id' => $userAssemblyWithProfile->type->uuid,
                                         'type' => $userAssemblyWithProfile->type->name,
                                         'profile' => $userAssemblyWithProfile->profile->uuid,

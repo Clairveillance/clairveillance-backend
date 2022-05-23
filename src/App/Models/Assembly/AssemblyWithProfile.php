@@ -6,13 +6,22 @@ namespace App\Models\Assembly;
 
 use App\Models\User\User;
 use App\Models\Profile\Profile;
+use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasProfile;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class AssemblyWithProfile extends AbstractAssembly
 {
+    use HasSlug;
     use HasProfile;
+
+    protected function  slugSources(): array
+    {
+        return [
+            'source' => 'name'
+        ];
+    }
 
     public function profile(): MorphOne
     {
