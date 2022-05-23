@@ -30,8 +30,8 @@ final class AssemblySeeder extends Seeder
                     $assembly_types = AssemblyType::where('created_at', '<=', $assembly->created_at)->get();
                     $assembly->assembly_type_uuid = $assembly_types->random()->uuid;
                     $users = User::where('created_at', '<=', $assembly->created_at)->get();
-                    $assembly->user()->associate($users->random());
-                    $assembly->save();
+                    $assembly->user()->associate($users->random())
+                        ->save();
                     $likeTypeImageType = ImageType::where('name', 'likeable images')->first();
                     if (!$likeTypeImageType) {
                         $likeTypeImageType = new ImageType(['name' => 'likeable images']);
@@ -45,42 +45,41 @@ final class AssemblySeeder extends Seeder
                             'size' => '127198271',
                             'description' => 'Just a simple heart',
                         ]);
-                        $likeTypeImage->user()->associate($users->random());
-                        $likeTypeImage->type()->associate($likeTypeImageType);
-                        $likeTypeImage->save();
+                        $likeTypeImage->user()->associate($users->random())
+                            ->type()->associate($likeTypeImageType)
+                            ->save();
                     }
                     $likeType = LikeType::where('name', 'heart')->first();
                     if (!$likeType) {
                         $likeType = new LikeType(['name' => 'heart']);
-                        $likeType->image()->associate($likeTypeImage);
-                        $likeType->save();
+                        $likeType->image()->associate($likeTypeImage)
+                            ->save();
                     }
                     $like  = new Like();
                     $like->is_dislike = rand(0, 1);
-                    $like->user()->associate($users->random());
-                    $like->type()->associate($likeType);
-                    // dd($assembly->profile);
-                    $like->likeable()->associate($assembly->profile);
-                    $like->save();
-                    $assemblies = AssemblyWithProfile::all();
-                    for ($i = 0; $i < rand(1, 10); $i++) {
+                    $like->user()->associate($users->random())
+                        ->type()->associate($likeType)
+                        ->likeable()->associate($assembly->profile)
+                        ->save();
+                    $assemblies = AssemblyWithProfile::where('uuid', '!=', $assembly->uuid)->get();
+                    if ($assemblies->isNotEmpty()) {
                         $assemblable = $assemblies->random();
                         if (
-                            $assemblable !== $assembly &&
-                            $assemblable !== $assembly->assemblyAssemblablesWithProfile
+                            $assemblable->assemblyAssemblablesWithProfile->isEmpty()
+                            ||
+                            !$assemblable->assemblyAssemblablesWithProfile->contains($assembly)
                         ) {
                             $assembly->assemblyAssemblablesWithProfile()->attach($assemblable);
                         }
                     }
-                    $assembly->save();
                     $users = User::all();
-                    for ($i = 0; $i < rand(1, 10); $i++) {
-                        $assemblable = $users->random();
-                        if (
-                            $assemblable !== $assembly->userAssemblablesWithProfile
-                        ) {
-                            $assembly->userAssemblablesWithProfile()->attach($assemblable);
-                        }
+                    $assemblable = $users->random();
+                    if (
+                        $assemblable->userAssembliesWithProfile->isEmpty()
+                        ||
+                        !$assemblable->userAssembliesWithProfile->contains($assembly)
+                    ) {
+                        $assembly->userAssemblablesWithProfile()->attach($assemblable);
                     }
                     $assembly->save();
                 }
