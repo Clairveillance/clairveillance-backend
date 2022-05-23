@@ -22,7 +22,10 @@ use Illuminate\Support\Collection;
  */
 final class LikeSeederService
 {
+    /** @var \Illuminate\Database\Eloquent\Model */
     private Model $model;
+
+    /** @var \Illuminate\Support\Collection */
     private Collection $users;
 
     /**
@@ -85,7 +88,7 @@ final class LikeSeederService
                 $like->is_dislike = rand(1, 10) > 1 ? 0 : 1;
                 $like->user()->associate($users->random())
                     ->type()->associate($likeType)
-                    ->likeable()->associate($model->profile)
+                    ->likeable()->associate($model)
                     ->save();
             } catch (\Throwable  $e) {
             }

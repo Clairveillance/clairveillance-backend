@@ -33,7 +33,7 @@ final class AssemblySeeder extends Seeder
                     $users = User::where('created_at', '<=', $assembly->created_at)->get();
                     $assembly->user()->associate($users->random())->save();
                     $this->LikeSeederService->setUsers($users);
-                    $this->LikeSeederService->setModel($assembly);
+                    $this->LikeSeederService->setModel($assembly->profile);
                     $this->LikeSeederService->save();
                     for ($i = 0; $i < rand(1, 10); $i++) {
                         try {
