@@ -12,8 +12,6 @@ use App\Models\Like\Like;
 use App\Models\Like\LikeType;
 use App\Models\User\User;
 use Illuminate\Database\Seeder;
-use PhpParser\Node\Expr\Throw_;
-use Throwable;
 
 final class AssemblySeeder extends Seeder
 {
@@ -55,10 +53,10 @@ final class AssemblySeeder extends Seeder
                         $likeType = new LikeType(['name' => 'heart']);
                         $likeType->image()->associate($likeTypeImage)->save();
                     }
-                    for ($i = 0; $i < rand(1, 10); $i++) {
+                    for ($i = 0; $i < rand(1, 200); $i++) {
                         try {
                             $like  = new Like();
-                            $like->is_dislike = rand(0, 1);
+                            $like->is_dislike = rand(1, 10) > 1 ? 0 : 1;
                             $like->user()->associate($users->random())
                                 ->type()->associate($likeType)
                                 ->likeable()->associate($assembly->profile)
