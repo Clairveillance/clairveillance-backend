@@ -14,7 +14,6 @@ use App\Models\Assignment\AssignmentWithProfile;
 
 final class AssignmentSeeder extends Seeder
 {
-
     public function __construct(
         public LikeSeeder $likeSeeder,
         public PostSeeder $postSeeder,
@@ -26,7 +25,7 @@ final class AssignmentSeeder extends Seeder
     public function run(): void
     {
         try {
-            AssignmentWithProfile::factory(rand(20, 100))->make()
+            AssignmentWithProfile::factory(rand(20, 40))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -46,7 +45,7 @@ final class AssignmentSeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($assignment->profile)
                             ->run();
-                        for ($i = 0; $i < rand(1, 10); $i++) {
+                        for ($i = 0; $i < rand(1, 5); $i++) {
                             try {
                                 $assignments = AssignmentWithProfile::where('uuid', '!=', $assignment->uuid)->get();
                                 if ($assignments->isNotEmpty()) {

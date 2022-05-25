@@ -14,7 +14,6 @@ use Database\Seeders\Shared\PostSeeder;
 
 final class AssemblySeeder extends Seeder
 {
-
     public function __construct(
         public LikeSeeder $likeSeeder,
         public PostSeeder $postSeeder,
@@ -26,7 +25,7 @@ final class AssemblySeeder extends Seeder
     public function run(): void
     {
         try {
-            AssemblyWithProfile::factory(rand(20, 100))->make()
+            AssemblyWithProfile::factory(rand(20, 40))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -46,7 +45,7 @@ final class AssemblySeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($assembly->profile)
                             ->run();
-                        for ($i = 0; $i < rand(1, 10); $i++) {
+                        for ($i = 0; $i < rand(1, 5); $i++) {
                             try {
                                 $assemblies = AssemblyWithProfile::where('uuid', '!=', $assembly->uuid)->get();
                                 if ($assemblies->isNotEmpty()) {

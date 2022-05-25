@@ -348,6 +348,32 @@ final class User extends Model
         );
     }
 
+    public function userEstablishments(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: Establishment::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishment_uuid',
+            relatedPivotKey: 'establishable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
+    public function userEstablishmentsWithProfile(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: EstablishmentWithProfile::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishment_uuid',
+            relatedPivotKey: 'establishable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
     //TODO
     // public function newEloquentBuilder($query): CustomQueryBuilder
     // {

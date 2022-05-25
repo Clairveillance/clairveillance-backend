@@ -8,8 +8,10 @@ use App\Models\Post\Post;
 use App\Models\Assembly\Assembly;
 use App\Core\Resources\UserResource;
 use App\Models\Assignment\Assignment;
+use App\Models\Establishment\Establishment;
 use App\Models\Assembly\AssemblyWithProfile;
 use App\Models\Assignment\AssignmentWithProfile;
+use App\Models\Establishment\EstablishmentWithProfile;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 final class UserCollection extends ResourceCollection
@@ -111,6 +113,34 @@ final class UserCollection extends ResourceCollection
                                         'type' => $userAssembly->type->name,
                                         'likes_count' => $userAssembly->likes->where((string)'is_dislike', (int)0)->count(),
                                         'dislikes_count' => $userAssembly->likes->where((string)'is_dislike', (int)1)->count()
+                                    ]);
+                                }
+                            ),
+                            'establishments_with_profile_count' => $user->userEstablishmentsWithProfile->count(),
+                            'establishments_with_profile' => $user->userEstablishmentsWithProfile->sortBy((array)['type.name'])->map(
+                                function (EstablishmentWithProfile $userEstablishmentWithProfile) {
+                                    return collect([
+                                        'id' => $userEstablishmentWithProfile->uuid,
+                                        'name' => $userEstablishmentWithProfile->name,
+                                        'slug' => $userEstablishmentWithProfile->slug,
+                                        'type_id' => $userEstablishmentWithProfile->type->uuid,
+                                        'type' => $userEstablishmentWithProfile->type->name,
+                                        'profile' => $userEstablishmentWithProfile->profile->uuid,
+                                        'likes_count' => $userEstablishmentWithProfile->profile->likes->where((string)'is_dislike', (int)0)->count(),
+                                        'dislikes_count' => $userEstablishmentWithProfile->profile->likes->where((string)'is_dislike', (int)1)->count()
+                                    ]);
+                                }
+                            ),
+                            'establishments_count' => $user->userEstablishments->count(),
+                            'establishments' => $user->userEstablishments->sortBy((array)['type.name'])->map(
+                                function (Establishment $userEstablishment) {
+                                    return collect([
+                                        'id' => $userEstablishment->uuid,
+                                        'name' => $userEstablishment->name,
+                                        'type_id' => $userEstablishment->type->uuid,
+                                        'type' => $userEstablishment->type->name,
+                                        'likes_count' => $userEstablishment->likes->where((string)'is_dislike', (int)0)->count(),
+                                        'dislikes_count' => $userEstablishment->likes->where((string)'is_dislike', (int)1)->count()
                                     ]);
                                 }
                             ),
