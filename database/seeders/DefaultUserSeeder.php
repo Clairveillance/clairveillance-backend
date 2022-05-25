@@ -19,7 +19,6 @@ final class DefaultUserSeeder extends Seeder
                 default: 'en_US'
             )
         );
-
         User::factory()->create(
             attributes: [
                 'username' => env(
@@ -50,7 +49,6 @@ final class DefaultUserSeeder extends Seeder
             ],
             parent: null
         );
-
         dump(__METHOD__ . ' [success]');
     }
 }

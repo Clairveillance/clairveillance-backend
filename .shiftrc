@@ -34,7 +34,7 @@ excluded_paths = ""
 ; The path to your Models. By default Shift
 ; will attempt to scan both the app/ and
 ; app/Models path.
-models_path = "app/Models"
+models_path = "src/App/Models"
 
 ; Report any Controllers containing actions
 ; outside the seven default resource methods:

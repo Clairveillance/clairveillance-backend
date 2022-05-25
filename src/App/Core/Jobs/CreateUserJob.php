@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Jobs;
+namespace App\Core\Jobs;
 
 use Domain\User\Actions\CreateUserAction;
 use Domain\User\ValueObjects\UserValueObject;

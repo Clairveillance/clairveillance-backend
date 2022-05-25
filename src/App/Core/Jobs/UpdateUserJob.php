@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Jobs;
+namespace App\Core\Jobs;
 
 use App\Models\User\User;
+use Domain\User\ValueObjects\UserValueObject;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-final class DeleteUserJob implements ShouldQueue
+final class UpdateUserJob implements ShouldQueue
 {
     use Queueable;
     use Dispatchable;
@@ -19,13 +20,14 @@ final class DeleteUserJob implements ShouldQueue
     use InteractsWithQueue;
 
     public function __construct(
-        public int $userId
+        public int $userId,
+        public UserValueObject $object,
     ) {
     }
 
     public function handle(): void
     {
         $user = User::findOrFail($this->userId);
-        $user->delete();
+        $user->update($this->object->toArray());
     }
 }
