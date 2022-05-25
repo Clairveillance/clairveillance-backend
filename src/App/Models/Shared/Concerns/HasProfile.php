@@ -15,20 +15,20 @@ trait HasProfile
     // NOTE: We generate a profile everytime we create a new Model using this Trait.
     // Once we generated the profile, we attach it to the Model::class using his profile() function.
     // We also need to associate the user_uuid of the Model and a ProfileType before saving the Profile.
-    // To prevent an error while using php artisan db:seed command,
-    // we had to set DB::statement('SET FOREIGN_KEY_CHECKS=0;') inside run() function of DatabaseSeeder.
+
+    // FIXME: To prevent an error  when associating the user_uuid and while using php artisan db:seed command,
+    // we had to set DB::statement('SET FOREIGN_KEY_CHECKS=0;') inside run() function of DatabaseSeeder.¨
+
     public static function bootHasProfile(): void
     {
         static::creating(function (Model $model) {
             $modelClass = $model::class;
             $profileType = ProfileType::where('name', $modelClass)->first();
-
             if (!$profileType) {
                 $profileType = new ProfileType();
                 $profileType->name = $modelClass;
                 $profileType->save();
             }
-
             $profile = new Profile();
             $profile->profilable()->associate($model);
             // FIXME

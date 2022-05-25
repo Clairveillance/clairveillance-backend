@@ -11,7 +11,7 @@ final class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory(499)->make()
+        User::factory(rand(100, 200))->make()
             ->sortBy(
                 callback: function ($sort) {
                     return $sort->created_at;
@@ -22,20 +22,8 @@ final class UserSeeder extends Seeder
             ->each(
                 callback: function ($user) {
                     $user->save();
-                    // $users = User::all();
-                    // for ($i = 0; $i < rand(1, 10); $i++) {
-                    //     $assemblable = $users->random();
-                    //     if (
-                    //         $assemblable !== $user &&
-                    //         $assemblable !== $user->assemblableUsers
-                    //     ) {
-                    //         $user->assemblableUsers()->attach($assemblable);
-                    //     }
-                    // }
-                    // $user->save();
                 }
             );
-
         dump(__METHOD__ . ' [success]');
     }
 }

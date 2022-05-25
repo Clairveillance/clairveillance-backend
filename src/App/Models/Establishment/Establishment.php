@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
-use App\Models\Shared\Concerns\HasFactory;
+use App\Models\Post\Post;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Shared\Concerns\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class Establishment extends Model
 {
@@ -72,6 +73,17 @@ final class Establishment extends Model
             name: 'likeable',
             type: 'likeable_type',
             id: 'likeable_uuid',
+            localKey: 'uuid'
+        );
+    }
+
+    public function posts(): MorphMany
+    {
+        return $this->morphMany(
+            related: Post::class,
+            name: 'postable',
+            type: 'postable_type',
+            id: 'postable_uuid',
             localKey: 'uuid'
         );
     }

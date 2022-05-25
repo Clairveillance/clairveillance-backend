@@ -7,7 +7,9 @@ namespace App\Core\Resources;
 use App\Models\Post\Post;
 use App\Models\Assembly\Assembly;
 use App\Core\Resources\UserResource;
+use App\Models\Assignment\Assignment;
 use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assignment\AssignmentWithProfile;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 final class UserCollection extends ResourceCollection
@@ -50,7 +52,40 @@ final class UserCollection extends ResourceCollection
                                 $user->email_verified_at :
                                 date((string)'Y-m-d H:i:s', strtotime((string)$user->email_verified_at)),
                         ],
+                        // TODO: Add links to relationships.
+                        // 'links' => [
+                        //     'self' => route((string)'api.'.env('API_VERSION', 'v1').'.relationship.show', (string)$relationship->uuid),
+                        //     'parent' => route((string)'api.'.env('API_VERSION', 'v1').'.relationships.index'),
+                        // ]
                         'relationships' => [
+                            'assignments_with_profile_count' => $user->userAssignmentsWithProfile->count(),
+                            'assignments_with_profile' => $user->userAssignmentsWithProfile->sortBy((array)['type.name'])->map(
+                                function (AssignmentWithProfile $userAssignmentWithProfile) {
+                                    return collect([
+                                        'id' => $userAssignmentWithProfile->uuid,
+                                        'name' => $userAssignmentWithProfile->name,
+                                        'slug' => $userAssignmentWithProfile->slug,
+                                        'type_id' => $userAssignmentWithProfile->type->uuid,
+                                        'type' => $userAssignmentWithProfile->type->name,
+                                        'profile' => $userAssignmentWithProfile->profile->uuid,
+                                        'likes_count' => $userAssignmentWithProfile->profile->likes->where((string)'is_dislike', (int)0)->count(),
+                                        'dislikes_count' => $userAssignmentWithProfile->profile->likes->where((string)'is_dislike', (int)1)->count()
+                                    ]);
+                                }
+                            ),
+                            'assignments_count' => $user->userAssignments->count(),
+                            'assignments' => $user->userAssignments->sortBy((array)['type.name'])->map(
+                                function (Assignment $userAssignment) {
+                                    return collect([
+                                        'id' => $userAssignment->uuid,
+                                        'name' => $userAssignment->name,
+                                        'type_id' => $userAssignment->type->uuid,
+                                        'type' => $userAssignment->type->name,
+                                        'likes_count' => $userAssignment->likes->where((string)'is_dislike', (int)0)->count(),
+                                        'dislikes_count' => $userAssignment->likes->where((string)'is_dislike', (int)1)->count()
+                                    ]);
+                                }
+                            ),
                             'assemblies_with_profile_count' => $user->userAssembliesWithProfile->count(),
                             'assemblies_with_profile' => $user->userAssembliesWithProfile->sortBy((array)['type.name'])->map(
                                 function (AssemblyWithProfile $userAssemblyWithProfile) {
@@ -99,8 +134,8 @@ final class UserCollection extends ResourceCollection
                             ),
                         ],
                         'links' => [
-                            'self' => route((string)'api.v1.users.show', (string)$user->uuid),
-                            'parent' => route((string)'api.v1.users.index'),
+                            'self' => route((string)'api.' . env('API_VERSION', 'v1') . '.users.show', (string)$user->uuid),
+                            'parent' => route((string)'api.' . env('API_VERSION', 'v1') . '.users.index'),
                         ],
                     ]);
                 }

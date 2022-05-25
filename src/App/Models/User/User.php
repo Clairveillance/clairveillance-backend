@@ -296,7 +296,7 @@ final class User extends Model
         );
     }
 
-    public function userAssemblies()
+    public function userAssemblies(): MorphToMany
     {
         return $this->morphedByMany(
             related: Assembly::class,
@@ -309,7 +309,7 @@ final class User extends Model
         );
     }
 
-    public function userAssembliesWithProfile()
+    public function userAssembliesWithProfile(): MorphToMany
     {
         return $this->morphedByMany(
             related: AssemblyWithProfile::class,
@@ -317,6 +317,32 @@ final class User extends Model
             table: null,
             foreignPivotKey: 'assembly_uuid',
             relatedPivotKey: 'assemblable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
+    public function userAssignments(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: Assignment::class,
+            name: 'assignable',
+            table: null,
+            foreignPivotKey: 'assignment_uuid',
+            relatedPivotKey: 'assignable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
+    public function userAssignmentsWithProfile(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: AssignmentWithProfile::class,
+            name: 'assignable',
+            table: null,
+            foreignPivotKey: 'assignment_uuid',
+            relatedPivotKey: 'assignable_uuid',
             parentKey: 'uuid',
             relatedKey: 'uuid'
         );

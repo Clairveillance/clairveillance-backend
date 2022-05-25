@@ -16,12 +16,12 @@ return [
         /*
          * The URI the endpoint responds to, e.g. mydomain.com/graphql.
          */
-        'uri' => '/graphql/v1',
+        'uri' => '/graphql/' . env('API_VERSION', 'v1'),
 
         /*
          * Lighthouse creates a named route for convenient URL generation and redirects.
          */
-        'name' => 'graphql.v1',
+        'name' => 'graphql.' . env('API_VERSION', 'v1'),
 
         /*
          * Beware that middleware defined here runs before the GraphQL execution phase,

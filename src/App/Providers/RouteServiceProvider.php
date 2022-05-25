@@ -28,8 +28,8 @@ class RouteServiceProvider extends ServiceProvider
                 /*
                  * Version 1
                  */
-                Route::prefix('v1')->as('v1.')->group(
-                    base_path('src/Infrastructure/routes/api/v1.php')
+                Route::prefix(env('API_VERSION', env('API_VERSION', 'v1')))->as(env('API_VERSION', env('API_VERSION', 'v1')) . '.')->group(
+                    base_path('src/Infrastructure/routes/api/' . env('API_VERSION', 'v1') . '.php')
                 );
             });
 

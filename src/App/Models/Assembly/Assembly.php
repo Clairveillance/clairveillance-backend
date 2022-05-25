@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Models\Assembly;
 
 use App\Models\Like\Like;
+use App\Models\Post\Post;
 use App\Models\User\User;
 use App\Models\Comment\Comment;
+use App\Models\Assembly\AbstractAssembly;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -34,10 +36,21 @@ final class Assembly extends AbstractAssembly
         );
     }
 
+    public function posts(): MorphMany
+    {
+        return $this->morphMany(
+            related: Post::class,
+            name: 'postable',
+            type: 'postable_type',
+            id: 'postable_uuid',
+            localKey: 'uuid'
+        );
+    }
+
     public function assemblyAssemblables(): MorphToMany
     {
         return $this->morphToMany(
-            related: Assembly::class,
+            related: $this::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assemblable_uuid',
@@ -65,7 +78,7 @@ final class Assembly extends AbstractAssembly
     public function assemblyAssemblies(): MorphToMany
     {
         return $this->morphedByMany(
-            related: Assembly::class,
+            related: $this::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assembly_uuid',

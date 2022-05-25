@@ -4,28 +4,28 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Post\Post;
-use App\Models\Post\PostType;
+use App\Models\Assignment\AssignmentType;
+use App\Models\Assignment\AssignmentWithProfile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-final class PostFactory extends Factory
+final class AssignmentWithProfileFactory extends Factory
 {
-    protected $model = Post::class;
+    protected $model = AssignmentWithProfile::class;
 
     public function definition(): array
     {
-        $title = $this->faker->unique(
+        $name = $this->faker->unique(
             reset: false,
             maxRetries: 10000
         )->words(
             nb: rand(
-                min: 1,
-                max: 10
+                min: 2,
+                max: 6
             ),
             asText: true
         );
         $created_date = $this->faker->dateTimeBetween(
-            startDate: PostType::oldest()->first()->created_at,
+            startDate: AssignmentType::oldest()->first()->created_at,
             endDate: now(
                 tz: env(
                     key: 'APP_TIMEZONE',
@@ -50,12 +50,9 @@ final class PostFactory extends Factory
                 default: 'UTC'
             )
         );
-        $published = $this->faker->boolean(
-            chanceOfGettingTrue: 80
-        );
 
         return [
-            'title' => $title,
+            'name' => $name,
             'description' => $this->faker->randomElement(
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(
@@ -65,21 +62,8 @@ final class PostFactory extends Factory
                     variableNbWords: true
                 )]
             ),
-            'body' => $this->faker->randomHtml(
-                maxDepth: 4,
-                maxWidth: 4
-            ),
             'created_at' => $created_date,
             'updated_at' => $updated_date,
-            'published' => $published,
-            'published_at' => !$published ? null : $this->faker->dateTimeBetween(
-                startDate: $created_date,
-                endDate: $updated_date,
-                timezone: env(
-                    key: 'APP_TIMEZONE',
-                    default: 'UTC'
-                )
-            ),
         ];
     }
 }

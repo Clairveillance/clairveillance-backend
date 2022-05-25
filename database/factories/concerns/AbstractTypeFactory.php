@@ -2,31 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Database\Factories;
+namespace Database\Factories\Concerns;
 
-use App\Models\Assignment\Assignment;
-use App\Models\Assignment\AssignmentType;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-final class AssignmentFactory extends Factory
+abstract class AbstractTypeFactory extends Factory
 {
-    protected $model = Assignment::class;
-
     public function definition(): array
     {
-        $title = $this->faker->unique(
+        $name = $this->faker->unique(
             reset: false,
             maxRetries: 10000
         )->words(
             nb: rand(
-                min: 2,
-                max: 6
+                min: 1,
+                max: 4
             ),
             asText: true
         );
         $created_date = $this->faker->dateTimeBetween(
-            startDate: AssignmentType::oldest()->first()->created_at,
+            startDate: User::oldest()->first()->created_at,
             endDate: now(
                 tz: env(
                     key: 'APP_TIMEZONE',
@@ -53,24 +49,7 @@ final class AssignmentFactory extends Factory
         );
 
         return [
-            'slug' => Str::slug(
-                title: $title,
-                separator: '-',
-                language: env(
-                    key: 'APP_LOCALE',
-                    default: 'en'
-                ),
-            ),
-            'title' => $title,
-            'description' => $this->faker->randomElement(
-                array: [null, $this->faker->sentence(
-                    nbWords: random_int(
-                        min: 1,
-                        max: 25
-                    ),
-                    variableNbWords: true
-                )]
-            ),
+            'name' => $name,
             'created_at' => $created_date,
             'updated_at' => $updated_date,
         ];
