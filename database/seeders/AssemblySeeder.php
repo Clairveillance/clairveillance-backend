@@ -45,36 +45,55 @@ final class AssemblySeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($assembly->profile)
                             ->run();
-                        for ($i = 0; $i < rand(1, 5); $i++) {
-                            try {
-                                $assemblies = AssemblyWithProfile::where('uuid', '!=', $assembly->uuid)->get();
-                                if ($assemblies->isNotEmpty()) {
-                                    $assemblable = $assemblies->random();
-                                    if (
-                                        $assemblable->assemblyAssembliesWithProfile->isEmpty()
-                                        ||
-                                        !$assemblable->assemblyAssembliesWithProfile->contains($assembly)
-                                    ) {
-                                        $assemblable->assemblyAssembliesWithProfile()->attach($assembly);
-                                    }
-                                }
-                                $users = User::all();
-                                $assemblable = $users->random();
-                                if (
-                                    $assemblable->userAssembliesWithProfile->isEmpty()
-                                    ||
-                                    !$assemblable->userAssembliesWithProfile->contains($assembly)
-                                ) {
-                                    $assemblable->userAssembliesWithProfile()->attach($assembly);
-                                }
-                                $assemblable->save();
-                            } catch (\Throwable  $e) {
-                            }
-                        }
+                        $randomAssemblies = rand(1, 2);
+                        match ($randomAssemblies) {
+                            1 => $this->assembleAssemblies($assembly),
+                            2 => $this->assembleUsers($assembly)
+                        };
                     }
                 );
         } catch (\Throwable $e) {
         }
         dump(__METHOD__ . ' [success]');
+    }
+
+    private function assembleAssemblies(AssemblyWithProfile $assembly): void
+    {
+        for ($i = 0; $i < rand(1, 15); $i++) {
+            try {
+                $assemblies = AssemblyWithProfile::where('uuid', '!=', $assembly->uuid)->get();
+                if ($assemblies->isNotEmpty()) {
+                    $assemblable = $assemblies->random();
+                    if (
+                        $assemblable->assemblyAssembliesWithProfile->isEmpty()
+                        ||
+                        !$assemblable->assemblyAssembliesWithProfile->contains($assembly)
+                    ) {
+                        $assemblable->assemblyAssembliesWithProfile()->attach($assembly);
+                    }
+                }
+                $assemblable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
+    }
+
+    private function assembleUsers(AssemblyWithProfile $assembly): void
+    {
+        for ($i = 0; $i < rand(1, 15); $i++) {
+            try {
+                $users = User::all();
+                $assemblable = $users->random();
+                if (
+                    $assemblable->userAssembliesWithProfile->isEmpty()
+                    ||
+                    !$assemblable->userAssembliesWithProfile->contains($assembly)
+                ) {
+                    $assemblable->userAssembliesWithProfile()->attach($assembly);
+                }
+                $assemblable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
     }
 }
