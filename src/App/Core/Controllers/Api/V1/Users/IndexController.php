@@ -33,7 +33,7 @@ final class IndexController extends Controller
                 // ->withTrashed()
                 // ->onlyTrashed()
                 ->orderBy('username')
-                ->paginate(25)
+                ->paginate(5)
         );
         $users::$wrap = 'data';
         /*
