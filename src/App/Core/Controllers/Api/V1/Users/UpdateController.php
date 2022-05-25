@@ -6,8 +6,8 @@ namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
 use App\Core\Requests\Api\V1\Users\UpdateRequest;
-use App\Factories\UserFactory;
-use App\Jobs\UpdateUserJob;
+use App\Core\Factories\UserFactory;
+use App\Core\Jobs\UpdateUserJob;
 use App\Models\User\User;
 use Illuminate\Http\JsonResponse;
 

@@ -37,70 +37,10 @@ final class UpdateRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'avatar' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
             'description' => [
                 'nullable',
                 'string',
                 'max:65535',
-            ],
-            'company' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'website' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'country' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'state' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'city' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'zip' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'address' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'address_2' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'phone' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'theme' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'language' => [
-                'nullable',
-                'string',
-                'max:255',
             ],
             'email' => [
                 'nullable',
