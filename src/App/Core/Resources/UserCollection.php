@@ -52,6 +52,11 @@ final class UserCollection extends ResourceCollection
                                 $user->email_verified_at :
                                 date((string)'Y-m-d H:i:s', strtotime((string)$user->email_verified_at)),
                         ],
+                        // TODO: Add links to relationships.
+                        // 'links' => [
+                        //     'self' => route((string)'api.'.env('API_VERSION', 'v1').'.relationship.show', (string)$relationship->uuid),
+                        //     'parent' => route((string)'api.'.env('API_VERSION', 'v1').'.relationships.index'),
+                        // ]
                         'relationships' => [
                             'assignments_with_profile_count' => $user->userAssignmentsWithProfile->count(),
                             'assignments_with_profile' => $user->userAssignmentsWithProfile->sortBy((array)['type.name'])->map(
@@ -129,8 +134,8 @@ final class UserCollection extends ResourceCollection
                             ),
                         ],
                         'links' => [
-                            'self' => route((string)'api.v1.users.show', (string)$user->uuid),
-                            'parent' => route((string)'api.v1.users.index'),
+                            'self' => route((string)'api.' . env('API_VERSION', 'v1') . '.users.show', (string)$user->uuid),
+                            'parent' => route((string)'api.' . env('API_VERSION', 'v1') . '.users.index'),
                         ],
                     ]);
                 }

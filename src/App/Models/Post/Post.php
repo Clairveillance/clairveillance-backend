@@ -14,6 +14,7 @@ use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Concerns\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -72,6 +73,16 @@ class Post extends Model
             foreignKey: 'post_type_uuid',
             ownerKey: 'uuid',
             relation: null
+        );
+    }
+
+    public function postable(): MorphTo
+    {
+        return $this->morphTo(
+            name: __FUNCTION__,
+            type: 'postable_type',
+            id: 'postable_uuid',
+            ownerKey: 'uuid'
         );
     }
 

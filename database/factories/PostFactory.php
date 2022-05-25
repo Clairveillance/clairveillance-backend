@@ -51,7 +51,7 @@ final class PostFactory extends Factory
             )
         );
         $published = $this->faker->boolean(
-            chanceOfGettingTrue: 50
+            chanceOfGettingTrue: 80
         );
 
         return [

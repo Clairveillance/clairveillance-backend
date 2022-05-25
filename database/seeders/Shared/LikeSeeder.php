@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Database\Seeders\Concerns;
+namespace Database\Seeders\Shared;
 
 use App\Models\Like\Like;
 use App\Models\Image\Image;
 use App\Models\Like\LikeType;
 use App\Models\Image\ImageType;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * LikeSeederService
+ * LikeSeeder
  * 
  * @property Model $model
  * @property Collection $users
  * @method setModel
  * @method setUsers
- * @method save
+ * @method run
  */
-final class LikeSeederService
+final class LikeSeeder
 {
     /** @var \Illuminate\Database\Eloquent\Model */
     private Model $model;
@@ -32,34 +32,35 @@ final class LikeSeederService
      * setModel
      *
      * @param  \Illuminate\Database\Eloquent\Model $model
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \Database\Seeders\Shared\LikeSeeder
      */
-    public function setModel(Model $model): Model
+    public function setModel(Model $model): LikeSeeder
     {
-        return $this->model = $model;
+        $this->model = $model;
+        return $this;
     }
 
     /**
      * setUsers
      *
      * @param  \Illuminate\Support\Collection $users
-     * @return \Illuminate\Support\Collection
+     * @return \Database\Seeders\Shared\LikeSeeder
      */
-    public function setUsers(Collection $users): Collection
+    public function setUsers(Collection $users): LikeSeeder
     {
-        return $this->users = $users;
+        $this->users = $users;
+        return $this;
     }
 
     /**
-     * save
+     * run
      *
      * @return void
      */
-    public function save(): void
+    public function run(): void
     {
         $model = $this->model;
         $users = $this->users;
-
         $likeTypeImageType = ImageType::where('name', 'likeable images')->first();
         if (!$likeTypeImageType) {
             $likeTypeImageType = new ImageType(['name' => 'likeable images']);
@@ -82,7 +83,7 @@ final class LikeSeederService
             $likeType = new LikeType(['name' => 'heart']);
             $likeType->image()->associate($likeTypeImage)->save();
         }
-        for ($i = 0; $i < rand(1, 200); $i++) {
+        for ($i = 0; $i < rand(0, 20); $i++) {
             try {
                 $like  = new Like();
                 $like->is_dislike = rand(1, 10) > 1 ? 0 : 1;

@@ -8,6 +8,7 @@ use App\Models\Like\Like;
 use App\Models\User\User;
 use App\Models\Image\Image;
 use App\Models\Comment\Comment;
+use App\Models\Post\Post;
 use App\Models\Profile\ProfileType;
 use App\Models\Shared\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
@@ -92,6 +93,17 @@ final class Profile extends Model
             name: 'likeable',
             type: 'likeable_type',
             id: 'likeable_uuid',
+            localKey: 'uuid'
+        );
+    }
+
+    public function posts(): MorphMany
+    {
+        return $this->morphMany(
+            related: Post::class,
+            name: 'postable',
+            type: 'postable_type',
+            id: 'postable_uuid',
             localKey: 'uuid'
         );
     }

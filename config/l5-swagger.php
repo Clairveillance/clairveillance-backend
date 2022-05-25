@@ -25,12 +25,12 @@ return [
                 /*
                  * File name of the generated json documentation file
                 */
-                'docs_json' => config('app.name').'-api-v1-docs.json',
+                'docs_json' => config('app.name') . '-api-' . env('API_VERSION', 'v1') . '-docs.json',
 
                 /*
                  * File name of the generated YAML documentation file
                 */
-                'docs_yaml' =>  config('app.name').'-api-v1-docs.yaml',
+                'docs_yaml' =>  config('app.name') . '-api-v1-docs.yaml',
 
                 /*
                 * Set this to `json` or `yaml` to determine which documentation file to use in UI
@@ -79,7 +79,7 @@ return [
             /*
              * Absolute path to location where parsed annotations will be stored
             */
-            'docs' => storage_path('api-v1-docs'),
+            'docs' => storage_path('api-' . env('API_VERSION', 'v1') . '-docs'),
 
             /*
              * Absolute path to directory where to export views
@@ -172,7 +172,7 @@ return [
                 ],
                 */
 
-            /* Open API 3.0 support
+                /* Open API 3.0 support
                 'passport' => [ // Unique name of security
                     'type' => 'oauth2', // The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".
                     'description' => 'Laravel passport oauth2 security.',
@@ -193,7 +193,7 @@ return [
                  * Examples of Securities
                 */
                 [
-                /*
+                    /*
                     'oauth2_security_example' => [
                         'read',
                         'write'
@@ -252,9 +252,9 @@ return [
          * Uncomment to add constants which can be used in annotations
          */
         'constants' => [
-            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', env('APP_URL', 'localhost').'/api'),
-            'L5_SWAGGER_CONST_API' => env('L5_SWAGGER_CONST_HOST', 'localhost').env('L5_SWAGGER_API_PATH', '/api'),
-            'L5_SWAGGER_CONST_API_V1' => env('L5_SWAGGER_CONST_HOST', 'localhost').env('L5_SWAGGER_API_PATH_V1', '/api/v1'),
+            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', env('APP_URL', 'localhost') . '/api'),
+            'L5_SWAGGER_CONST_API' => env('L5_SWAGGER_CONST_HOST', 'localhost') . env('L5_SWAGGER_API_PATH', '/api'),
+            'L5_SWAGGER_CONST_API_V1' => env('L5_SWAGGER_CONST_HOST', 'localhost') . env('L5_SWAGGER_API_PATH_V1', '/api/' . env('API_VERSION', 'v1')),
         ],
     ],
 ];

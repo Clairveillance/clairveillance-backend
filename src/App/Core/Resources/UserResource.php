@@ -42,8 +42,8 @@ final class UserResource extends JsonResource
                 ],
                 // TODO : Add links for profile.
                 // 'links' => [
-                //     'self' => route('api.v1.profile.show', $this->profile->uuid),
-                //     'parent' => route('api.v1.profile.index'),
+                //     'self' => route('api.'.env('API_VERSION', 'v1').'.profile.show', $this->profile->uuid),
+                //     'parent' => route('api.'.env('API_VERSION', 'v1').'.profile.index'),
                 // ],
             ],
             'relationships' => [
@@ -66,16 +66,16 @@ final class UserResource extends JsonResource
                             ],
                             // TODO : Add links for relationships.
                             // 'links' => [
-                            //     'self' => route('api.v1.posts.show', $post->uuid),
-                            //     'parent' => route('api.v1.posts.index'),
+                            //     'self' => route('api.'.env('API_VERSION', 'v1').'.posts.show', $post->uuid),
+                            //     'parent' => route('api.'.env('API_VERSION', 'v1').'.posts.index'),
                             // ],
                         ]);
                     }
                 ),
             ],
             'links' => [
-                'self' => route('api.v1.users.show', $this->uuid),
-                'parent' => route('api.v1.users.index'),
+                'self' => route('api.' . env('API_VERSION', 'v1') . '.users.show', $this->uuid),
+                'parent' => route('api.' . env('API_VERSION', 'v1') . '.users.index'),
             ],
         ];
     }

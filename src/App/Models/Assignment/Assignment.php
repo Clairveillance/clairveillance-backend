@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Assignment;
 
 use App\Models\Like\Like;
+use App\Models\Post\Post;
 use App\Models\User\User;
 use App\Models\Comment\Comment;
 use App\Models\Assignment\AbstractAssignment;
@@ -31,6 +32,17 @@ final class Assignment extends AbstractAssignment
             name: 'likeable',
             type: 'likeable_type',
             id: 'likeable_uuid',
+            localKey: 'uuid'
+        );
+    }
+
+    public function posts(): MorphMany
+    {
+        return $this->morphMany(
+            related: Post::class,
+            name: 'postable',
+            type: 'postable_type',
+            id: 'postable_uuid',
             localKey: 'uuid'
         );
     }
