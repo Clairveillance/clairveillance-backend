@@ -27,7 +27,7 @@ final class AssemblySeeder extends Seeder
                 descending: false
             )
             ->each(
-                callback: function ($assembly) {
+                callback: function (AssemblyWithProfile $assembly) {
                     $assembly_types = AssemblyType::where('created_at', '<=', $assembly->created_at)->get();
                     $assembly->assembly_type_uuid = $assembly_types->random()->uuid;
                     $users = User::where('created_at', '<=', $assembly->created_at)->get();

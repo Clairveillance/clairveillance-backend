@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Assignment\Assignment;
 use App\Models\Assignment\AssignmentType;
+use App\Models\Assignment\AssignmentWithProfile;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-final class AssignmentFactory extends Factory
+final class AssignmentWithProfileFactory extends Factory
 {
-    protected $model = Assignment::class;
+    protected $model = AssignmentWithProfile::class;
 
     public function definition(): array
     {
-        $title = $this->faker->unique(
+        $name = $this->faker->unique(
             reset: false,
             maxRetries: 10000
         )->words(
@@ -53,15 +52,7 @@ final class AssignmentFactory extends Factory
         );
 
         return [
-            'slug' => Str::slug(
-                title: $title,
-                separator: '-',
-                language: env(
-                    key: 'APP_LOCALE',
-                    default: 'en'
-                ),
-            ),
-            'title' => $title,
+            'name' => $name,
             'description' => $this->faker->randomElement(
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(

@@ -27,7 +27,7 @@ final class PostSeeder extends Seeder
                 descending: false
             )
             ->each(
-                callback: function ($post) {
+                callback: function (Post $post) {
                     $post_types = PostType::where('created_at', '<=', $post->created_at)->get();
                     $post->post_type_uuid = $post_types->random()->uuid;
                     $users = User::where('created_at', '<=', $post->created_at)->get();

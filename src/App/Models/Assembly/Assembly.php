@@ -7,6 +7,7 @@ namespace App\Models\Assembly;
 use App\Models\Like\Like;
 use App\Models\User\User;
 use App\Models\Comment\Comment;
+use App\Models\Assembly\AbstractAssembly;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -37,7 +38,7 @@ final class Assembly extends AbstractAssembly
     public function assemblyAssemblables(): MorphToMany
     {
         return $this->morphToMany(
-            related: Assembly::class,
+            related: $this::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assemblable_uuid',
@@ -65,7 +66,7 @@ final class Assembly extends AbstractAssembly
     public function assemblyAssemblies(): MorphToMany
     {
         return $this->morphedByMany(
-            related: Assembly::class,
+            related: $this::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assembly_uuid',

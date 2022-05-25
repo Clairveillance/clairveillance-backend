@@ -7,7 +7,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\PostSeeder;
 use Database\Seeders\UserSeeder;
-use Illuminate\Support\Facades\DB;
 use Database\Seeders\PostTypeSeeder;
 use Database\Seeders\DefaultUserSeeder;
 
@@ -30,10 +29,10 @@ final class DatabaseSeeder extends Seeder
                     PostSeeder::class,
                     AssemblyTypeSeeder::class,
                     AssemblySeeder::class,
+                    AssignmentTypeSeeder::class,
+                    AssignmentSeeder::class,
                     // EstablishmentTypeSeeder::class,
-                    // AssignmentTypeSeeder::class,
                     // EstablishmentSeeder::class,
-                    // AssignmentSeeder::class,
                 ],
                 silent: false,
                 parameters: [

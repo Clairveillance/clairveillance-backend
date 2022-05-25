@@ -37,7 +37,7 @@ final class AssemblyWithProfile extends AbstractAssembly
     public function assemblyAssemblablesWithProfile(): MorphToMany
     {
         return $this->morphToMany(
-            related: AssemblyWithProfile::class,
+            related: $this::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assemblable_uuid',
@@ -65,7 +65,7 @@ final class AssemblyWithProfile extends AbstractAssembly
     public function assemblyAssembliesWithProfile(): MorphToMany
     {
         return $this->morphedByMany(
-            related: AssemblyWithProfile::class,
+            related: $this::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assembly_uuid',
