@@ -4,57 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
+use App\Models\Like\Like;
 use App\Models\Post\Post;
-use App\Models\Shared\Concerns\HasUuid;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Concerns\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\User\User;
+use App\Models\Comment\Comment;
+use App\Models\Establishment\AbstractEstablishment;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-final class Establishment extends Model
+final class Establishment extends AbstractEstablishment
 {
-    use HasUuid;
-    use HasFactory;
-    use SoftDeletes;
-
-    /** @var array<string> */
-    protected $fillable = [
-        'name',
-        'description',
-    ];
-
-    /** @var array<string> */
-    protected $hidden = [
-        'id',
-        'uuid',
-    ];
-
-    public function getRouteKeyName(): string
-    {
-        return 'uuid';
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(
-            related: User::class,
-            foreignKey: 'user_uuid',
-            ownerKey: 'uuid',
-            relation: null
-        );
-    }
-
-    public function type(): BelongsTo
-    {
-        return $this->belongsTo(
-            related: EstablishmentType::class,
-            foreignKey: 'establishment_type_uuid',
-            ownerKey: 'uuid',
-            relation: null
-        );
-    }
-
     public function comments(): MorphMany
     {
         return $this->morphMany(
@@ -85,6 +44,47 @@ final class Establishment extends Model
             type: 'postable_type',
             id: 'postable_uuid',
             localKey: 'uuid'
+        );
+    }
+
+    public function establishmentEstablishables(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: $this::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishable_uuid',
+            relatedPivotKey: 'establishment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        );
+    }
+
+    public function userEstablishables(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: User::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishable_uuid',
+            relatedPivotKey: 'establishment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        );
+    }
+
+    public function establishmentEstablishments(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: $this::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishment_uuid',
+            relatedPivotKey: 'establishable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
         );
     }
 }

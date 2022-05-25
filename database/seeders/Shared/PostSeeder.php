@@ -70,7 +70,7 @@ final class PostSeeder extends Seeder
         $model = $this->model;
         $users = $this->users;
         try {
-            Post::factory(rand(0, 50))->make()
+            Post::factory(rand(1, 10))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;

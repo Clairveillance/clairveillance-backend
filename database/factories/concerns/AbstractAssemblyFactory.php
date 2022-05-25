@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Database\Factories;
+namespace Database\Factories\Concerns;
 
-use App\Models\Establishment\Establishment;
-use App\Models\Establishment\EstablishmentType;
+use App\Models\Assembly\AssemblyType;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-final class EstablishmentFactory extends Factory
+abstract class AbstractAssemblyFactory extends Factory
 {
-    protected $model = Establishment::class;
-
     public function definition(): array
     {
-        $title = $this->faker->unique(
+        $name = $this->faker->unique(
             reset: false,
             maxRetries: 10000
         )->words(
@@ -26,7 +22,7 @@ final class EstablishmentFactory extends Factory
             asText: true
         );
         $created_date = $this->faker->dateTimeBetween(
-            startDate: EstablishmentType::oldest()->first()->created_at,
+            startDate: AssemblyType::oldest()->first()->created_at,
             endDate: now(
                 tz: env(
                     key: 'APP_TIMEZONE',
@@ -53,15 +49,7 @@ final class EstablishmentFactory extends Factory
         );
 
         return [
-            'slug' => Str::slug(
-                title: $title,
-                separator: '-',
-                language: env(
-                    key: 'APP_LOCALE',
-                    default: 'en'
-                ),
-            ),
-            'title' => $title,
+            'name' => $name,
             'description' => $this->faker->randomElement(
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(

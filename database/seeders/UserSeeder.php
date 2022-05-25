@@ -11,7 +11,7 @@ final class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory(rand(100, 200))->make()
+        User::factory(rand(150, 200))->make()
             ->sortBy(
                 callback: function ($sort) {
                     return $sort->created_at;
