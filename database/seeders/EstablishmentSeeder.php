@@ -45,36 +45,55 @@ final class EstablishmentSeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($establishment->profile)
                             ->run();
-                        for ($i = 0; $i < rand(1, 5); $i++) {
-                            try {
-                                $establishments = EstablishmentWithProfile::where('uuid', '!=', $establishment->uuid)->get();
-                                if ($establishments->isNotEmpty()) {
-                                    $establishable = $establishments->random();
-                                    if (
-                                        $establishable->establishmentEstablishmentsWithProfile->isEmpty()
-                                        ||
-                                        !$establishable->establishmentEstablishmentsWithProfile->contains($establishment)
-                                    ) {
-                                        $establishable->establishmentEstablishmentsWithProfile()->attach($establishment);
-                                    }
-                                }
-                                $users = User::all();
-                                $establishable = $users->random();
-                                if (
-                                    $establishable->userEstablishmentsWithProfile->isEmpty()
-                                    ||
-                                    !$establishable->userEstablishmentsWithProfile->contains($establishment)
-                                ) {
-                                    $establishable->userEstablishmentsWithProfile()->attach($establishment);
-                                }
-                                $establishable->save();
-                            } catch (\Throwable  $e) {
-                            }
-                        }
+                        $randomEstablishments = rand(1, 2);
+                        match ($randomEstablishments) {
+                            1 => $this->establishEstablishments($establishment),
+                            2 => $this->establishUsers($establishment)
+                        };
                     }
                 );
         } catch (\Throwable $e) {
         }
         dump(__METHOD__ . ' [success]');
+    }
+
+    private function establishEstablishments(EstablishmentWithProfile $establishment): void
+    {
+        for ($i = 0; $i < rand(1, 15); $i++) {
+            try {
+                $establishments = EstablishmentWithProfile::where('uuid', '!=', $establishment->uuid)->get();
+                if ($establishments->isNotEmpty()) {
+                    $establishable = $establishments->random();
+                    if (
+                        $establishable->establishmentEstablishmentsWithProfile->isEmpty()
+                        ||
+                        !$establishable->establishmentEstablishmentsWithProfile->contains($establishment)
+                    ) {
+                        $establishable->establishmentEstablishmentsWithProfile()->attach($establishment);
+                    }
+                }
+                $establishable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
+    }
+
+    private function establishUsers(EstablishmentWithProfile $establishment): void
+    {
+        for ($i = 0; $i < rand(1, 15); $i++) {
+            try {
+                $users = User::all();
+                $establishable = $users->random();
+                if (
+                    $establishable->userEstablishmentsWithProfile->isEmpty()
+                    ||
+                    !$establishable->userEstablishmentsWithProfile->contains($establishment)
+                ) {
+                    $establishable->userEstablishmentsWithProfile()->attach($establishment);
+                }
+                $establishable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
     }
 }

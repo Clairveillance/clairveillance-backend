@@ -137,7 +137,11 @@ return [
 
     'namespaces' => [
         // TODO: Add all Models used by graphql here !!!
-        'models' => ['App\\Models', 'App\\Models\\User', 'App\\Models\\Post'],
+        'models' => [
+            'App\\Models',
+            'App\\Models\\User',
+            'App\\Models\\Post'
+        ],
         'queries' => 'App\\GraphQL\\Queries',
         'mutations' => 'App\\GraphQL\\Mutations',
         'subscriptions' => 'App\\GraphQL\\Subscriptions',

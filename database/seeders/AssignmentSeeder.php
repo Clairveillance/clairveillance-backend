@@ -45,36 +45,55 @@ final class AssignmentSeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($assignment->profile)
                             ->run();
-                        for ($i = 0; $i < rand(1, 5); $i++) {
-                            try {
-                                $assignments = AssignmentWithProfile::where('uuid', '!=', $assignment->uuid)->get();
-                                if ($assignments->isNotEmpty()) {
-                                    $assignable = $assignments->random();
-                                    if (
-                                        $assignable->assignmentAssignmentsWithProfile->isEmpty()
-                                        ||
-                                        !$assignable->assignmentAssignmentsWithProfile->contains($assignment)
-                                    ) {
-                                        $assignable->assignmentAssignmentsWithProfile()->attach($assignment);
-                                    }
-                                }
-                                $users = User::all();
-                                $assignable = $users->random();
-                                if (
-                                    $assignable->userAssignmentsWithProfile->isEmpty()
-                                    ||
-                                    !$assignable->userAssignmentsWithProfile->contains($assignment)
-                                ) {
-                                    $assignable->userAssignmentsWithProfile()->attach($assignment);
-                                }
-                                $assignable->save();
-                            } catch (\Throwable  $e) {
-                            }
-                        }
+                        $randomAssignments = rand(1, 2);
+                        match ($randomAssignments) {
+                            1 => $this->assignAssignments($assignment),
+                            2 => $this->assignUsers($assignment)
+                        };
                     }
                 );
         } catch (\Throwable $e) {
         }
         dump(__METHOD__ . ' [success]');
+    }
+
+    private function assignAssignments(AssignmentWithProfile $assignment): void
+    {
+        for ($i = 0; $i < rand(1, 15); $i++) {
+            try {
+                $assignments = AssignmentWithProfile::where('uuid', '!=', $assignment->uuid)->get();
+                if ($assignments->isNotEmpty()) {
+                    $assignable = $assignments->random();
+                    if (
+                        $assignable->assignmentAssignmentsWithProfile->isEmpty()
+                        ||
+                        !$assignable->assignmentAssignmentsWithProfile->contains($assignment)
+                    ) {
+                        $assignable->assignmentAssignmentsWithProfile()->attach($assignment);
+                    }
+                }
+                $assignable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
+    }
+
+    private function assignUsers(AssignmentWithProfile $assignment): void
+    {
+        for ($i = 0; $i < rand(1, 15); $i++) {
+            try {
+                $users = User::all();
+                $assignable = $users->random();
+                if (
+                    $assignable->userAssignmentsWithProfile->isEmpty()
+                    ||
+                    !$assignable->userAssignmentsWithProfile->contains($assignment)
+                ) {
+                    $assignable->userAssignmentsWithProfile()->attach($assignment);
+                }
+                $assignable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
     }
 }
