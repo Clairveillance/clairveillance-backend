@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Database\Seeders\AssemblyWithProfileSeeder;
-use Database\Seeders\AssignmentSeeder;
-use Database\Seeders\AssignmentWithProfileSeeder;
-use Database\Seeders\DefaultUserSeeder;
-use Database\Seeders\EstablishmentWithProfileSeeder;
-use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\AssignmentSeeder;
+use Database\Seeders\DefaultUserSeeder;
+use Database\Seeders\EstablishmentSeeder;
+use Database\Seeders\AssemblyWithProfileSeeder;
+use Database\Seeders\AssignmentWithProfileSeeder;
+use Database\Seeders\EstablishmentWithProfileSeeder;
 
 final class DatabaseSeeder extends Seeder
 {
@@ -31,6 +32,7 @@ final class DatabaseSeeder extends Seeder
                     AssignmentSeeder::class,
                     AssignmentWithProfileSeeder::class,
                     EstablishmentWithProfileSeeder::class,
+                    EstablishmentSeeder::class,
                 ],
                 silent: false,
                 parameters: [
@@ -50,6 +52,6 @@ final class DatabaseSeeder extends Seeder
         $this->call(
             class: [],
         );
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 }

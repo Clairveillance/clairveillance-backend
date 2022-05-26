@@ -11,12 +11,12 @@ use App\Models\Assignment\Assignment;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
+use App\Models\Establishment\Establishment;
 use App\Models\Assembly\AssemblyWithProfile;
 use App\Models\Establishment\EstablishmentType;
 use App\Models\Assignment\AssignmentWithProfile;
-use App\Models\Establishment\EstablishmentWithProfile;
 
-final class EstablishmentWithProfileSeeder extends Seeder
+final class EstablishmentSeeder extends Seeder
 {
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -29,7 +29,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
     public function run(): void
     {
         try {
-            EstablishmentWithProfile::factory(rand(20, 40))->make()
+            Establishment::factory(rand(20, 40))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -38,24 +38,24 @@ final class EstablishmentWithProfileSeeder extends Seeder
                     descending: false
                 )
                 ->each(
-                    callback: function (EstablishmentWithProfile $establishment) {
+                    callback: function (Establishment $establishment) {
                         $establishment_types = EstablishmentType::where('created_at', '<=', $establishment->created_at)->get();
                         $establishment->establishment_type_uuid = $establishment_types->random()->uuid;
                         $users = User::where('created_at', '<=', $establishment->created_at)->get();
                         $establishment->user()->associate($users->random())->save();
                         $this->likeSeeder->setUsers($users)
-                            ->setModel($establishment->profile)
+                            ->setModel($establishment)
                             ->run();
                         $this->postSeeder->setUsers($users)
-                            ->setModel($establishment->profile)
+                            ->setModel($establishment)
                             ->run();
                         $randomAssemblies = rand(1, 5);
                         match ((int) $randomAssemblies) {
-                            1 => $this->assemblyEstablishmentsWithProfile($establishment),
-                            2 => $this->assemblyWithProfileEstablishmentsWithProfile($establishment),
-                            3 => $this->assignmentEstablishmentsWithProfile($establishment),
-                            4 => $this->assignmentWithProfileEstablishmentsWithProfile($establishment),
-                            5 => $this->userEstablishmentsWithProfile($establishment),
+                            1 => $this->assemblyEstablishments($establishment),
+                            2 => $this->assemblyWithProfileEstablishments($establishment),
+                            3 => $this->assignmentEstablishments($establishment),
+                            4 => $this->assignmentWithProfileEstablishments($establishment),
+                            5 => $this->userEstablishments($establishment),
                         };
                     }
                 );
@@ -64,18 +64,18 @@ final class EstablishmentWithProfileSeeder extends Seeder
         dump(__METHOD__ . ' [success]');
     }
 
-    private function assemblyEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
+    private function assemblyEstablishments(Establishment $establishment): void
     {
         for ($i = 0; $i < rand(1, 100); $i++) {
             try {
                 $assemblies = Assembly::all();
                 $establishable = $assemblies->random();
                 if (
-                    $establishable->assemblyEstablishmentsWithProfile->isEmpty()
+                    $establishable->assemblyEstablishments->isEmpty()
                     ||
-                    !$establishable->assemblyEstablishmentsWithProfile->contains($establishment)
+                    !$establishable->assemblyEstablishments->contains($establishment)
                 ) {
-                    $establishable->assemblyEstablishmentsWithProfile()->attach($establishment);
+                    $establishable->assemblyEstablishments()->attach($establishment);
                 }
                 $establishable->save();
             } catch (\Throwable  $e) {
@@ -83,18 +83,18 @@ final class EstablishmentWithProfileSeeder extends Seeder
         }
     }
 
-    private function assemblyWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
+    private function assemblyWithProfileEstablishments(Establishment $establishment): void
     {
         for ($i = 0; $i < rand(1, 100); $i++) {
             try {
                 $assemblies = AssemblyWithProfile::all();
                 $establishable = $assemblies->random();
                 if (
-                    $establishable->assemblyWithProfileEstablishmentsWithProfile->isEmpty()
+                    $establishable->assemblyWithProfileEstablishments->isEmpty()
                     ||
-                    !$establishable->assemblyWithProfileEstablishmentsWithProfile->contains($establishment)
+                    !$establishable->assemblyWithProfileEstablishments->contains($establishment)
                 ) {
-                    $establishable->assemblyWithProfileEstablishmentsWithProfile()->attach($establishment);
+                    $establishable->assemblyWithProfileEstablishments()->attach($establishment);
                 }
                 $establishable->save();
             } catch (\Throwable  $e) {
@@ -102,18 +102,18 @@ final class EstablishmentWithProfileSeeder extends Seeder
         }
     }
 
-    private function assignmentEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
+    private function assignmentEstablishments(Establishment $establishment): void
     {
         for ($i = 0; $i < rand(1, 100); $i++) {
             try {
                 $assigments = Assignment::all();
                 $establishable = $assigments->random();
                 if (
-                    $establishable->assignmentEstablishmentsWithProfile->isEmpty()
+                    $establishable->assignmentEstablishments->isEmpty()
                     ||
-                    !$establishable->assignmentEstablishmentsWithProfile->contains($establishment)
+                    !$establishable->assignmentEstablishments->contains($establishment)
                 ) {
-                    $establishable->assignmentEstablishmentsWithProfile()->attach($establishment);
+                    $establishable->assignmentEstablishments()->attach($establishment);
                 }
                 $establishable->save();
             } catch (\Throwable  $e) {
@@ -121,18 +121,18 @@ final class EstablishmentWithProfileSeeder extends Seeder
         }
     }
 
-    private function assignmentWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
+    private function assignmentWithProfileEstablishments(Establishment $establishment): void
     {
         for ($i = 0; $i < rand(1, 100); $i++) {
             try {
                 $assigments = AssignmentWithProfile::all();
                 $establishable = $assigments->random();
                 if (
-                    $establishable->assignmentWithProfileEstablishmentsWithProfile->isEmpty()
+                    $establishable->assignmentWithProfileEstablishments->isEmpty()
                     ||
-                    !$establishable->assignmentWithProfileEstablishmentsWithProfile->contains($establishment)
+                    !$establishable->assignmentWithProfileEstablishments->contains($establishment)
                 ) {
-                    $establishable->assignmentWithProfileEstablishmentsWithProfile()->attach($establishment);
+                    $establishable->assignmentWithProfileEstablishments()->attach($establishment);
                 }
                 $establishable->save();
             } catch (\Throwable  $e) {
@@ -140,18 +140,18 @@ final class EstablishmentWithProfileSeeder extends Seeder
         }
     }
 
-    private function userEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
+    private function userEstablishments(Establishment $establishment): void
     {
         for ($i = 0; $i < rand(1, 100); $i++) {
             try {
                 $users = User::all();
                 $establishable = $users->random();
                 if (
-                    $establishable->userEstablishmentsWithProfile->isEmpty()
+                    $establishable->userEstablishments->isEmpty()
                     ||
-                    !$establishable->userEstablishmentsWithProfile->contains($establishment)
+                    !$establishable->userEstablishments->contains($establishment)
                 ) {
-                    $establishable->userEstablishmentsWithProfile()->attach($establishment);
+                    $establishable->userEstablishments()->attach($establishment);
                 }
                 $establishable->save();
             } catch (\Throwable  $e) {
