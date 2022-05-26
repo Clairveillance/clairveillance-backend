@@ -3,16 +3,17 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use App\Core\Controllers\Api\V1\Users\ShowController as UserShow;
-use App\Core\Controllers\Api\V1\Users\IndexController as UserIndex;
-use App\Core\Controllers\Api\V1\Users\StoreController as UserStore;
-use App\Core\Controllers\Api\V1\Users\DeleteController as UserDelete;
-use App\Core\Controllers\Api\V1\Users\UpdateController as UserUpdate;
 use App\Core\Controllers\Api\V1\Posts\ShowController as PostShow;
+use App\Core\Controllers\Api\V1\Users\ShowController as UserShow;
 use App\Core\Controllers\Api\V1\Posts\IndexController as PostIndex;
 use App\Core\Controllers\Api\V1\Posts\StoreController as PostStore;
+use App\Core\Controllers\Api\V1\Users\IndexController as UserIndex;
+use App\Core\Controllers\Api\V1\Users\StoreController as UserStore;
 use App\Core\Controllers\Api\V1\Posts\DeleteController as PostDelete;
 use App\Core\Controllers\Api\V1\Posts\UpdateController as PostUpdate;
+use App\Core\Controllers\Api\V1\Users\DeleteController as UserDelete;
+use App\Core\Controllers\Api\V1\Users\UpdateController as UserUpdate;
+use App\Core\Controllers\Api\V1\Posts\IndexByUserController as UserPostsIndex;
 
 /*
  * Users Endpoints.
@@ -24,6 +25,7 @@ Route::prefix('users')->as('users.')->group(function () {
     Route::get(uri: '{uuid}', action: UserShow::class)->name(name: 'show');
     Route::patch(uri: '{user:uuid}', action: UserUpdate::class)->name(name: 'update');
     Route::delete(uri: '{user:uuid}', action: UserDelete::class)->name(name: 'delete');
+    Route::get(uri: '{uuid}/posts', action: UserPostsIndex::class)->name(name: 'index.posts');
 });
 
 /*
