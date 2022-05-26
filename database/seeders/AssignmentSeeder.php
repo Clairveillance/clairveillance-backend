@@ -50,19 +50,19 @@ final class AssignmentSeeder extends Seeder
                 );
         } catch (\Throwable $e) {
         }
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 
     private function userAssignments(Assignment $assignment): void
     {
-        for ($i = 0; $i < rand(1, 25); $i++) {
+        for ($i = 0; $i < rand(1, 20); $i++) {
             try {
                 $users = User::all();
                 $assignable = $users->random();
                 if (
                     $assignable->userAssignments->isEmpty()
                     ||
-                    ! $assignable->userAssignments->contains($assignment)
+                    !$assignable->userAssignments->contains($assignment)
                 ) {
                     $assignable->userAssignments()->attach($assignment);
                 }

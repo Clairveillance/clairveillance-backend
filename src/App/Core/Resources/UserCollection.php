@@ -146,7 +146,7 @@ final class UserCollection extends ResourceCollection
                             ),
                             'published_posts_count' => $user->posts->where((string) 'published', (int) 1)->count(),
                             'published_posts' => $user->posts->where((string) 'published', (int) 1)->map(
-                                function (Post $post) {
+                                function (Post $post) use ($user) {
                                     return collect([
                                         'id' => $post->uuid,
                                         'title' => $post->title,
@@ -159,13 +159,17 @@ final class UserCollection extends ResourceCollection
                                         'type' => $post->type->name,
                                         'likes_count' => $post->likes->where((string) 'is_dislike', (int) 0)->count(),
                                         'dislikes_count' => $post->likes->where((string) 'is_dislike', (int) 1)->count(),
+                                        'links' => [
+                                            'self' => route((string) 'api.' . env('API_VERSION', 'v1') . '.posts.show', (string) $post->slug),
+                                            'parent' => route((string) 'api.' . env('API_VERSION', 'v1') . '.users.index.posts', (string) $user->uuid),
+                                        ],
                                     ]);
                                 }
                             ),
                         ],
                         'links' => [
-                            'self' => route((string) 'api.'.env('API_VERSION', 'v1').'.users.show', (string) $user->uuid),
-                            'parent' => route((string) 'api.'.env('API_VERSION', 'v1').'.users.index'),
+                            'self' => route((string) 'api.' . env('API_VERSION', 'v1') . '.users.show', (string) $user->uuid),
+                            'parent' => route((string) 'api.' . env('API_VERSION', 'v1') . '.users.index'),
                         ],
                     ]);
                 }
