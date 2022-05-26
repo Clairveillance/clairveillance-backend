@@ -60,34 +60,6 @@ final class UserCollection extends ResourceCollection
                         //     'parent' => route((string)'api.'.env('API_VERSION', 'v1').'.relationships.index'),
                         // ]
                         'relationships' => [
-                            'assignments_with_profile_count' => $user->userAssignmentsWithProfile->count(),
-                            'assignments_with_profile' => $user->userAssignmentsWithProfile->sortBy((array) ['type.name'])->map(
-                                function (AssignmentWithProfile $userAssignmentWithProfile) {
-                                    return collect([
-                                        'id' => $userAssignmentWithProfile->uuid,
-                                        'name' => $userAssignmentWithProfile->name,
-                                        'slug' => $userAssignmentWithProfile->slug,
-                                        'type_id' => $userAssignmentWithProfile->type->uuid,
-                                        'type' => $userAssignmentWithProfile->type->name,
-                                        'profile' => $userAssignmentWithProfile->profile->uuid,
-                                        'likes_count' => $userAssignmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $userAssignmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
-                                    ]);
-                                }
-                            ),
-                            'assignments_count' => $user->userAssignments->count(),
-                            'assignments' => $user->userAssignments->sortBy((array) ['type.name'])->map(
-                                function (Assignment $userAssignment) {
-                                    return collect([
-                                        'id' => $userAssignment->uuid,
-                                        'name' => $userAssignment->name,
-                                        'type_id' => $userAssignment->type->uuid,
-                                        'type' => $userAssignment->type->name,
-                                        'likes_count' => $userAssignment->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $userAssignment->likes->where((string) 'is_dislike', (int) 1)->count(),
-                                    ]);
-                                }
-                            ),
                             'assemblies_with_profile_count' => $user->userAssembliesWithProfile->count(),
                             'assemblies_with_profile' => $user->userAssembliesWithProfile->sortBy((array) ['type.name'])->map(
                                 function (AssemblyWithProfile $userAssemblyWithProfile) {
@@ -113,6 +85,34 @@ final class UserCollection extends ResourceCollection
                                         'type' => $userAssembly->type->name,
                                         'likes_count' => $userAssembly->likes->where((string) 'is_dislike', (int) 0)->count(),
                                         'dislikes_count' => $userAssembly->likes->where((string) 'is_dislike', (int) 1)->count(),
+                                    ]);
+                                }
+                            ),
+                            'assignments_with_profile_count' => $user->userAssignmentsWithProfile->count(),
+                            'assignments_with_profile' => $user->userAssignmentsWithProfile->sortBy((array) ['type.name'])->map(
+                                function (AssignmentWithProfile $userAssignmentWithProfile) {
+                                    return collect([
+                                        'id' => $userAssignmentWithProfile->uuid,
+                                        'name' => $userAssignmentWithProfile->name,
+                                        'slug' => $userAssignmentWithProfile->slug,
+                                        'type_id' => $userAssignmentWithProfile->type->uuid,
+                                        'type' => $userAssignmentWithProfile->type->name,
+                                        'profile' => $userAssignmentWithProfile->profile->uuid,
+                                        'likes_count' => $userAssignmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $userAssignmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
+                                    ]);
+                                }
+                            ),
+                            'assignments_count' => $user->userAssignments->count(),
+                            'assignments' => $user->userAssignments->sortBy((array) ['type.name'])->map(
+                                function (Assignment $userAssignment) {
+                                    return collect([
+                                        'id' => $userAssignment->uuid,
+                                        'name' => $userAssignment->name,
+                                        'type_id' => $userAssignment->type->uuid,
+                                        'type' => $userAssignment->type->name,
+                                        'likes_count' => $userAssignment->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $userAssignment->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),

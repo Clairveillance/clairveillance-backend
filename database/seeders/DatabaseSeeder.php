@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\AssemblySeeder;
 use Database\Seeders\AssignmentSeeder;
 use Database\Seeders\DefaultUserSeeder;
 use Database\Seeders\EstablishmentSeeder;
@@ -28,11 +29,12 @@ final class DatabaseSeeder extends Seeder
                 class: [
                     DefaultUserSeeder::class,
                     UserSeeder::class,
-                    AssemblyWithProfileSeeder::class,
                     AssignmentSeeder::class,
                     AssignmentWithProfileSeeder::class,
-                    EstablishmentWithProfileSeeder::class,
                     EstablishmentSeeder::class,
+                    AssemblySeeder::class,
+                    EstablishmentWithProfileSeeder::class,
+                    AssemblyWithProfileSeeder::class,
                 ],
                 silent: false,
                 parameters: [
