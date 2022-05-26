@@ -8,6 +8,8 @@ use App\Models\Like\Like;
 use App\Models\Post\Post;
 use App\Models\User\User;
 use App\Models\Comment\Comment;
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyWithProfile;
 use App\Models\Assignment\AbstractAssignment;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -47,20 +49,6 @@ final class Assignment extends AbstractAssignment
         );
     }
 
-    public function assignmentAssignables(): MorphToMany
-    {
-        return $this->morphToMany(
-            related: $this::class,
-            name: 'assignable',
-            table: null,
-            foreignPivotKey: 'assignable_uuid',
-            relatedPivotKey: 'assignment_uuid',
-            parentKey: 'uuid',
-            relatedKey: 'uuid',
-            inverse: false
-        );
-    }
-
     public function userAssignables(): MorphToMany
     {
         return $this->morphToMany(
@@ -75,14 +63,53 @@ final class Assignment extends AbstractAssignment
         );
     }
 
-    public function assignmentAssignments(): MorphToMany
+    public function assignmentEstablishments(): MorphToMany
     {
         return $this->morphedByMany(
-            related: $this::class,
-            name: 'assignable',
+            related: Establishment::class,
+            name: 'establishable',
             table: null,
-            foreignPivotKey: 'assignment_uuid',
-            relatedPivotKey: 'assignable_uuid',
+            foreignPivotKey: 'establishment_uuid',
+            relatedPivotKey: 'establishable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
+    public function assignmentEstablishmentsWithProfile(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: EstablishmentWithProfile::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishment_uuid',
+            relatedPivotKey: 'establishable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
+    public function assignmentAssemblies(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: Assembly::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assembly_uuid',
+            relatedPivotKey: 'assemblable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
+    public function assignmentAssembliesWithProfile(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: AssemblyWithProfile::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assembly_uuid',
+            relatedPivotKey: 'assemblable_uuid',
             parentKey: 'uuid',
             relatedKey: 'uuid'
         );

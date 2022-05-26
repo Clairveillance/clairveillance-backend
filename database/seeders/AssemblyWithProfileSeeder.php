@@ -9,10 +9,12 @@ use Illuminate\Database\Seeder;
 use App\Models\Assembly\AssemblyType;
 use Database\Seeders\Shared\LikeSeeder;
 use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assignment\AssignmentWithProfile;
+use App\Models\Establishment\EstablishmentWithProfile;
 use Database\Seeders\Shared\TypeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 
-final class AssemblySeeder extends Seeder
+final class AssemblyWithProfileSeeder extends Seeder
 {
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -45,10 +47,12 @@ final class AssemblySeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($assembly->profile)
                             ->run();
-                        $randomAssemblies = rand(1, 2);
-                        match ($randomAssemblies) {
-                            1 => $this->assembleAssemblies($assembly),
-                            2 => $this->assembleUsers($assembly)
+                        $randomAssemblies = rand(1, 4);
+                        match ((int)$randomAssemblies) {
+                            1 => $this->assemblyWithProfileAssembliesWithProfile($assembly),
+                            2 => $this->assignmentWithProfileAssembliesWithProfile($assembly),
+                            3 => $this->establishmentWithProfileAssembliesWithProfile($assembly),
+                            4 => $this->userAssembliesWithProfile($assembly),
                         };
                     }
                 );
@@ -57,19 +61,19 @@ final class AssemblySeeder extends Seeder
         dump(__METHOD__ . ' [success]');
     }
 
-    private function assembleAssemblies(AssemblyWithProfile $assembly): void
+    private function assemblyWithProfileAssembliesWithProfile(AssemblyWithProfile $assembly): void
     {
-        for ($i = 0; $i < rand(1, 15); $i++) {
+        for ($i = 0; $i < rand(10, 100); $i++) {
             try {
                 $assemblies = AssemblyWithProfile::where('uuid', '!=', $assembly->uuid)->get();
                 if ($assemblies->isNotEmpty()) {
                     $assemblable = $assemblies->random();
                     if (
-                        $assemblable->assemblyAssembliesWithProfile->isEmpty()
+                        $assemblable->assemblyWithProfileAssembliesWithProfile->isEmpty()
                         ||
-                        !$assemblable->assemblyAssembliesWithProfile->contains($assembly)
+                        !$assemblable->assemblyWithProfileAssembliesWithProfile->contains($assembly)
                     ) {
-                        $assemblable->assemblyAssembliesWithProfile()->attach($assembly);
+                        $assemblable->assemblyWithProfileAssembliesWithProfile()->attach($assembly);
                     }
                 }
                 $assemblable->save();
@@ -78,9 +82,47 @@ final class AssemblySeeder extends Seeder
         }
     }
 
-    private function assembleUsers(AssemblyWithProfile $assembly): void
+    private function assignmentWithProfileAssembliesWithProfile(AssemblyWithProfile $assembly): void
     {
-        for ($i = 0; $i < rand(1, 15); $i++) {
+        for ($i = 0; $i < rand(10, 100); $i++) {
+            try {
+                $assignments = AssignmentWithProfile::all();
+                $assemblable = $assignments->random();
+                if (
+                    $assemblable->assignmentWithProfileAssembliesWithProfile->isEmpty()
+                    ||
+                    !$assemblable->assignmentWithProfileAssembliesWithProfile->contains($assembly)
+                ) {
+                    $assemblable->assignmentWithProfileAssembliesWithProfile()->attach($assembly);
+                }
+                $assemblable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
+    }
+
+    private function establishmentWithProfileAssembliesWithProfile(AssemblyWithProfile $assembly): void
+    {
+        for ($i = 0; $i < rand(10, 100); $i++) {
+            try {
+                $establishments = EstablishmentWithProfile::all();
+                $assemblable = $establishments->random();
+                if (
+                    $assemblable->establishmentWithProfileAssembliesWithProfile->isEmpty()
+                    ||
+                    !$assemblable->establishmentWithProfileAssembliesWithProfile->contains($assembly)
+                ) {
+                    $assemblable->establishmentWithProfileAssembliesWithProfile()->attach($assembly);
+                }
+                $assemblable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
+    }
+
+    private function userAssembliesWithProfile(AssemblyWithProfile $assembly): void
+    {
+        for ($i = 0; $i < rand(10, 100); $i++) {
             try {
                 $users = User::all();
                 $assemblable = $users->random();

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\User\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Shared\LikeSeeder;
@@ -12,7 +14,7 @@ use Database\Seeders\Shared\TypeSeeder;
 use App\Models\Establishment\EstablishmentType;
 use App\Models\Establishment\EstablishmentWithProfile;
 
-final class EstablishmentSeeder extends Seeder
+final class EstablishmentWithProfileSeeder extends Seeder
 {
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -45,10 +47,11 @@ final class EstablishmentSeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($establishment->profile)
                             ->run();
-                        $randomEstablishments = rand(1, 2);
-                        match ($randomEstablishments) {
-                            1 => $this->establishEstablishments($establishment),
-                            2 => $this->establishUsers($establishment)
+                        $randomAssemblies = rand(1, 3);
+                        match ((int)$randomAssemblies) {
+                            1 => $this->assignmentWithProfileEstablishmentsWithProfile($establishment),
+                            2 => $this->assemblyWithProfileEstablishmentsWithProfile($establishment),
+                            3 => $this->userEstablishmentsWithProfile($establishment),
                         };
                     }
                 );
@@ -57,20 +60,18 @@ final class EstablishmentSeeder extends Seeder
         dump(__METHOD__ . ' [success]');
     }
 
-    private function establishEstablishments(EstablishmentWithProfile $establishment): void
+    private function assignmentWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
     {
-        for ($i = 0; $i < rand(1, 15); $i++) {
+        for ($i = 0; $i < rand(1, 50); $i++) {
             try {
-                $establishments = EstablishmentWithProfile::where('uuid', '!=', $establishment->uuid)->get();
-                if ($establishments->isNotEmpty()) {
-                    $establishable = $establishments->random();
-                    if (
-                        $establishable->establishmentEstablishmentsWithProfile->isEmpty()
-                        ||
-                        !$establishable->establishmentEstablishmentsWithProfile->contains($establishment)
-                    ) {
-                        $establishable->establishmentEstablishmentsWithProfile()->attach($establishment);
-                    }
+                $assigments = AssignmentWithProfile::all();
+                $establishable = $assigments->random();
+                if (
+                    $establishable->assignmentWithProfileEstablishmentsWithProfile->isEmpty()
+                    ||
+                    !$establishable->assignmentWithProfileEstablishmentsWithProfile->contains($establishment)
+                ) {
+                    $establishable->assignmentWithProfileEstablishmentsWithProfile()->attach($establishment);
                 }
                 $establishable->save();
             } catch (\Throwable  $e) {
@@ -78,9 +79,28 @@ final class EstablishmentSeeder extends Seeder
         }
     }
 
-    private function establishUsers(EstablishmentWithProfile $establishment): void
+    private function assemblyWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
     {
-        for ($i = 0; $i < rand(1, 15); $i++) {
+        for ($i = 0; $i < rand(1, 50); $i++) {
+            try {
+                $assemblies = AssemblyWithProfile::all();
+                $establishable = $assemblies->random();
+                if (
+                    $establishable->assemblyWithProfileEstablishmentsWithProfile->isEmpty()
+                    ||
+                    !$establishable->assemblyWithProfileEstablishmentsWithProfile->contains($establishment)
+                ) {
+                    $establishable->assemblyWithProfileEstablishmentsWithProfile()->attach($establishment);
+                }
+                $establishable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
+    }
+
+    private function userEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
+    {
+        for ($i = 0; $i < rand(5, 25); $i++) {
             try {
                 $users = User::all();
                 $establishable = $users->random();
