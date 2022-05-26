@@ -50,15 +50,11 @@ final class AssemblySeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($assembly)
                             ->run();
-                        $randomAssemblies = rand(1, 7);
+                        $randomAssemblies = rand(1, 3);
                         match ((int) $randomAssemblies) {
                             1 => $this->assemblyAssemblies($assembly),
                             2 => $this->assemblyWithProfileAssemblies($assembly),
-                            3 => $this->assignmentAssemblies($assembly),
-                            4 => $this->assignmentWithProfileAssemblies($assembly),
-                            5 => $this->assignmentWithProfileAssemblies($assembly),
-                            6 => $this->establishmentWithProfileAssemblies($assembly),
-                            7 => $this->userAssemblies($assembly),
+                            3 => $this->userAssemblies($assembly),
                         };
                     }
                 );
@@ -69,7 +65,7 @@ final class AssemblySeeder extends Seeder
 
     private function assemblyAssemblies(Assembly $assembly): void
     {
-        for ($i = 0; $i < rand(1, 140); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assemblies = Assembly::where('uuid', '!=', $assembly->uuid)->get();
                 if ($assemblies->isNotEmpty()) {
@@ -90,7 +86,7 @@ final class AssemblySeeder extends Seeder
 
     private function assemblyWithProfileAssemblies(Assembly $assembly): void
     {
-        for ($i = 0; $i < rand(1, 140); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assemblies = AssemblyWithProfile::where('uuid', '!=', $assembly->uuid)->get();
                 if ($assemblies->isNotEmpty()) {
@@ -109,85 +105,9 @@ final class AssemblySeeder extends Seeder
         }
     }
 
-    private function assignmentAssemblies(Assembly $assembly): void
-    {
-        for ($i = 0; $i < rand(1, 140); $i++) {
-            try {
-                $assignments = Assignment::all();
-                $assemblable = $assignments->random();
-                if (
-                    $assemblable->assignmentAssemblies->isEmpty()
-                    ||
-                    !$assemblable->assignmentAssemblies->contains($assembly)
-                ) {
-                    $assemblable->assignmentAssemblies()->attach($assembly);
-                }
-                $assemblable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
-    }
-
-    private function assignmentWithProfileAssemblies(Assembly $assembly): void
-    {
-        for ($i = 0; $i < rand(1, 140); $i++) {
-            try {
-                $assignments = AssignmentWithProfile::all();
-                $assemblable = $assignments->random();
-                if (
-                    $assemblable->assignmentWithProfileAssemblies->isEmpty()
-                    ||
-                    !$assemblable->assignmentWithProfileAssemblies->contains($assembly)
-                ) {
-                    $assemblable->assignmentWithProfileAssemblies()->attach($assembly);
-                }
-                $assemblable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
-    }
-
-    private function establishmentAssemblies(Assembly $assembly): void
-    {
-        for ($i = 0; $i < rand(1, 140); $i++) {
-            try {
-                $establishments = Establishment::all();
-                $assemblable = $establishments->random();
-                if (
-                    $assemblable->establishmentAssemblies->isEmpty()
-                    ||
-                    !$assemblable->establishmentAssemblies->contains($assembly)
-                ) {
-                    $assemblable->establishmentAssemblies()->attach($assembly);
-                }
-                $assemblable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
-    }
-
-    private function establishmentWithProfileAssemblies(Assembly $assembly): void
-    {
-        for ($i = 0; $i < rand(1, 140); $i++) {
-            try {
-                $establishments = EstablishmentWithProfile::all();
-                $assemblable = $establishments->random();
-                if (
-                    $assemblable->establishmentWithProfileAssemblies->isEmpty()
-                    ||
-                    !$assemblable->establishmentWithProfileAssemblies->contains($assembly)
-                ) {
-                    $assemblable->establishmentWithProfileAssemblies()->attach($assembly);
-                }
-                $assemblable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
-    }
-
     private function userAssemblies(Assembly $assembly): void
     {
-        for ($i = 0; $i < rand(1, 140); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $users = User::all();
                 $assemblable = $users->random();
