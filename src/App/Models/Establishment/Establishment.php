@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assignment\Assignment;
+use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\Like\Like;
 use App\Models\Post\Post;
 use App\Models\User\User;
@@ -47,10 +51,52 @@ final class Establishment extends AbstractEstablishment
         );
     }
 
-    public function establishmentEstablishables(): MorphToMany
+    public function assemblyEstablishables(): MorphToMany
     {
         return $this->morphToMany(
-            related: $this::class,
+            related: Assembly::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishable_uuid',
+            relatedPivotKey: 'establishment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        );
+    }
+
+    public function assemblyWithProfileEstablishables(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: AssemblyWithProfile::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishable_uuid',
+            relatedPivotKey: 'establishment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        );
+    }
+
+    public function assignmentEstablishables(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: Assignment::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishable_uuid',
+            relatedPivotKey: 'establishment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        );
+    }
+
+    public function assignmentWithProfileEstablishables(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: AssignmentWithProfile::class,
             name: 'establishable',
             table: null,
             foreignPivotKey: 'establishable_uuid',
@@ -75,14 +121,27 @@ final class Establishment extends AbstractEstablishment
         );
     }
 
-    public function establishmentEstablishments(): MorphToMany
+    public function establishmentAssemblies(): MorphToMany
     {
         return $this->morphedByMany(
-            related: $this::class,
-            name: 'establishable',
+            related: Assembly::class,
+            name: 'assemblable',
             table: null,
-            foreignPivotKey: 'establishment_uuid',
-            relatedPivotKey: 'establishable_uuid',
+            foreignPivotKey: 'assembly_uuid',
+            relatedPivotKey: 'assemblable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
+    public function establishmentAssembliesWithProfile(): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: AssemblyWithProfile::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assembly_uuid',
+            relatedPivotKey: 'assemblable_uuid',
             parentKey: 'uuid',
             relatedKey: 'uuid'
         );

@@ -12,7 +12,7 @@ use Database\Seeders\Shared\TypeSeeder;
 use App\Models\Assignment\AssignmentType;
 use App\Models\Assignment\AssignmentWithProfile;
 
-final class AssignmentSeeder extends Seeder
+final class AssignmentWithProfileSeeder extends Seeder
 {
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -45,11 +45,7 @@ final class AssignmentSeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($assignment->profile)
                             ->run();
-                        $randomAssignments = rand(1, 2);
-                        match ($randomAssignments) {
-                            1 => $this->assignAssignments($assignment),
-                            2 => $this->assignUsers($assignment)
-                        };
+                        $this->userAssignmentsWithProfile($assignment);
                     }
                 );
         } catch (\Throwable $e) {
@@ -57,30 +53,9 @@ final class AssignmentSeeder extends Seeder
         dump(__METHOD__ . ' [success]');
     }
 
-    private function assignAssignments(AssignmentWithProfile $assignment): void
+    private function userAssignmentsWithProfile(AssignmentWithProfile $assignment): void
     {
-        for ($i = 0; $i < rand(1, 15); $i++) {
-            try {
-                $assignments = AssignmentWithProfile::where('uuid', '!=', $assignment->uuid)->get();
-                if ($assignments->isNotEmpty()) {
-                    $assignable = $assignments->random();
-                    if (
-                        $assignable->assignmentAssignmentsWithProfile->isEmpty()
-                        ||
-                        !$assignable->assignmentAssignmentsWithProfile->contains($assignment)
-                    ) {
-                        $assignable->assignmentAssignmentsWithProfile()->attach($assignment);
-                    }
-                }
-                $assignable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
-    }
-
-    private function assignUsers(AssignmentWithProfile $assignment): void
-    {
-        for ($i = 0; $i < rand(1, 15); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $users = User::all();
                 $assignable = $users->random();

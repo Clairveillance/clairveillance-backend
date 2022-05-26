@@ -7,13 +7,15 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\DefaultUserSeeder;
-use Database\Seeders\EstablishmentSeeder;
+use Database\Seeders\AssemblyWithProfileSeeder;
+use Database\Seeders\AssignmentWithProfileSeeder;
+use Database\Seeders\EstablishmentWithProfileSeeder;
 
 final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // NOTE: Used to disable foreign key constraints while using php artisan db:seed command.
+        // NOTE: Use the following statement to disable foreign key constraints while running seeders.
         // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         // dump('Environment => ' . config('app.env') . "\n" . 'Database Statement => SET FOREIGN_KEY_CHECKS=0');
 
@@ -25,9 +27,9 @@ final class DatabaseSeeder extends Seeder
                 class: [
                     DefaultUserSeeder::class,
                     UserSeeder::class,
-                    AssemblySeeder::class,
-                    AssignmentSeeder::class,
-                    EstablishmentSeeder::class,
+                    AssemblyWithProfileSeeder::class,
+                    AssignmentWithProfileSeeder::class,
+                    EstablishmentWithProfileSeeder::class,
                 ],
                 silent: false,
                 parameters: [
@@ -44,7 +46,6 @@ final class DatabaseSeeder extends Seeder
                 ]
             )
         };
-
         $this->call(
             class: [],
         );
