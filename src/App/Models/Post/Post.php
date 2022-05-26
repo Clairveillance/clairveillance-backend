@@ -25,6 +25,9 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
+    /** @var string */
+    protected $morphClass = 'post';
+
     /** @var array<string> */
     protected $fillable = [
         'title',
@@ -47,8 +50,13 @@ class Post extends Model
     {
         return [
             'source' => 'title',
-            'params' => '-by-'.$this->user->username,
+            'params' => '-by-' . $this->user->username,
         ];
+    }
+
+    public function getMorphClass(): string
+    {
+        return $this->morphClass;
     }
 
     public function getRouteKeyName(): string

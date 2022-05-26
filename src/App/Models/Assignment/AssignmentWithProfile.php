@@ -17,6 +17,9 @@ final class AssignmentWithProfile extends AbstractAssignment
     use HasSlug;
     use HasProfile;
 
+    /** @var string */
+    protected $morphClass = 'assignment_with_profile';
+
     public function slugSources(): array
     {
         return [

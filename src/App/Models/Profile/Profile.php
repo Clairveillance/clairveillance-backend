@@ -24,11 +24,19 @@ final class Profile extends Model
     use HasFactory;
     use SoftDeletes;
 
+    /** @var string */
+    protected $morphClass = 'profile';
+
     /** @var array<string> */
     protected $hidden = [
         'id',
         'uuid',
     ];
+
+    public function getMorphClass(): string
+    {
+        return $this->morphClass;
+    }
 
     public function getRouteKeyName(): string
     {

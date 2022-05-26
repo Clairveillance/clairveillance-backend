@@ -20,6 +20,9 @@ final class EstablishmentWithProfile extends AbstractEstablishment
     use HasSlug;
     use HasProfile;
 
+    /** @var string */
+    protected $morphClass = 'establishment_with_profile';
+
     public function slugSources(): array
     {
         return [

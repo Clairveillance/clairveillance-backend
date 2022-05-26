@@ -33,6 +33,11 @@ abstract class AbstractAssembly extends Model
         'uuid',
     ];
 
+    public function getMorphClass(): string
+    {
+        return $this->morphClass;
+    }
+
     public function getRouteKeyName(): string
     {
         return 'uuid';
