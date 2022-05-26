@@ -24,7 +24,7 @@ final class IndexController extends Controller
                     'profile',
                     'posts',
                     'userAssemblies',
-                    'userAssembliesWithProfile'
+                    'userAssembliesWithProfile',
                 ]
             )
                 // ->withCount(

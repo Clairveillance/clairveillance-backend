@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Shared;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 /**
  * TypeSeeder
- * 
+ *
  * @property Model $model
  * @method setModel
  * @method run
@@ -25,9 +25,10 @@ final class TypeSeeder extends Seeder
      * @param  \Illuminate\Database\Eloquent\Model $model
      * @return \Database\Seeders\Shared\TypeSeeder
      */
-    public function setModel(Model $model): TypeSeeder
+    public function setModel(Model $model): self
     {
         $this->model = $model;
+
         return $this;
     }
 

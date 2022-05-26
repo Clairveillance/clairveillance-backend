@@ -24,7 +24,7 @@ trait HasProfile
         static::creating(function (Model $model) {
             $modelClass = $model::class;
             $profileType = ProfileType::where('name', $modelClass)->first();
-            if (!$profileType) {
+            if (! $profileType) {
                 $profileType = new ProfileType();
                 $profileType->name = $modelClass;
                 $profileType->save();

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\Assignment;
 
-use App\Models\Like\Like;
-use App\Models\Post\Post;
-use App\Models\User\User;
-use App\Models\Comment\Comment;
 use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyWithProfile;
 use App\Models\Assignment\AbstractAssignment;
+use App\Models\Comment\Comment;
+use App\Models\Like\Like;
+use App\Models\Post\Post;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 

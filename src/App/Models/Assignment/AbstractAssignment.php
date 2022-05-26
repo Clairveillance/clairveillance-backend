@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\Assignment;
 
-use App\Models\User\User;
-use App\Models\Shared\Concerns\HasUuid;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Assignment\AssignmentType;
 use App\Models\Shared\Concerns\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shared\Concerns\HasUuid;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 abstract class AbstractAssignment extends Model
 {

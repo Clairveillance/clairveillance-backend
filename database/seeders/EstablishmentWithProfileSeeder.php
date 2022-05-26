@@ -6,13 +6,13 @@ namespace Database\Seeders;
 
 use App\Models\Assembly\AssemblyWithProfile;
 use App\Models\Assignment\AssignmentWithProfile;
+use App\Models\Establishment\EstablishmentType;
+use App\Models\Establishment\EstablishmentWithProfile;
 use App\Models\User\User;
-use Illuminate\Database\Seeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use App\Models\Establishment\EstablishmentType;
-use App\Models\Establishment\EstablishmentWithProfile;
+use Illuminate\Database\Seeder;
 
 final class EstablishmentWithProfileSeeder extends Seeder
 {
@@ -48,7 +48,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
                             ->setModel($establishment->profile)
                             ->run();
                         $randomAssemblies = rand(1, 3);
-                        match ((int)$randomAssemblies) {
+                        match ((int) $randomAssemblies) {
                             1 => $this->assemblyWithProfileEstablishmentsWithProfile($establishment),
                             2 => $this->assignmentWithProfileEstablishmentsWithProfile($establishment),
                             3 => $this->userEstablishmentsWithProfile($establishment),
@@ -57,7 +57,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
                 );
         } catch (\Throwable $e) {
         }
-        dump(__METHOD__ . ' [success]');
+        dump(__METHOD__.' [success]');
     }
 
     private function assemblyWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
@@ -69,7 +69,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
                 if (
                     $establishable->assemblyWithProfileEstablishmentsWithProfile->isEmpty()
                     ||
-                    !$establishable->assemblyWithProfileEstablishmentsWithProfile->contains($establishment)
+                    ! $establishable->assemblyWithProfileEstablishmentsWithProfile->contains($establishment)
                 ) {
                     $establishable->assemblyWithProfileEstablishmentsWithProfile()->attach($establishment);
                 }
@@ -88,7 +88,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
                 if (
                     $establishable->assignmentWithProfileEstablishmentsWithProfile->isEmpty()
                     ||
-                    !$establishable->assignmentWithProfileEstablishmentsWithProfile->contains($establishment)
+                    ! $establishable->assignmentWithProfileEstablishmentsWithProfile->contains($establishment)
                 ) {
                     $establishable->assignmentWithProfileEstablishmentsWithProfile()->attach($establishment);
                 }
@@ -107,7 +107,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
                 if (
                     $establishable->userEstablishmentsWithProfile->isEmpty()
                     ||
-                    !$establishable->userEstablishmentsWithProfile->contains($establishment)
+                    ! $establishable->userEstablishmentsWithProfile->contains($establishment)
                 ) {
                     $establishable->userEstablishmentsWithProfile()->attach($establishment);
                 }

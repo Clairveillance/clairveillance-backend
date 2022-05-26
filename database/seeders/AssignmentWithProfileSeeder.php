@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Assignment\AssignmentType;
+use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\User\User;
-use Illuminate\Database\Seeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use App\Models\Assignment\AssignmentType;
-use App\Models\Assignment\AssignmentWithProfile;
+use Illuminate\Database\Seeder;
 
 final class AssignmentWithProfileSeeder extends Seeder
 {
@@ -50,7 +50,7 @@ final class AssignmentWithProfileSeeder extends Seeder
                 );
         } catch (\Throwable $e) {
         }
-        dump(__METHOD__ . ' [success]');
+        dump(__METHOD__.' [success]');
     }
 
     private function userAssignmentsWithProfile(AssignmentWithProfile $assignment): void
@@ -62,7 +62,7 @@ final class AssignmentWithProfileSeeder extends Seeder
                 if (
                     $assignable->userAssignmentsWithProfile->isEmpty()
                     ||
-                    !$assignable->userAssignmentsWithProfile->contains($assignment)
+                    ! $assignable->userAssignmentsWithProfile->contains($assignment)
                 ) {
                     $assignable->userAssignmentsWithProfile()->attach($assignment);
                 }

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models\Assembly;
 
-use App\Models\User\User;
-use App\Models\Profile\Profile;
 use App\Models\Assembly\Assembly;
-use App\Models\Shared\Concerns\HasSlug;
-use App\Models\Shared\Concerns\HasProfile;
 use App\Models\Establishment\Establishment;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Models\Establishment\EstablishmentWithProfile;
+use App\Models\Profile\Profile;
+use App\Models\Shared\Concerns\HasProfile;
+use App\Models\Shared\Concerns\HasSlug;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class AssemblyWithProfile extends AbstractAssembly
@@ -19,10 +19,10 @@ final class AssemblyWithProfile extends AbstractAssembly
     use HasSlug;
     use HasProfile;
 
-    protected function  slugSources(): array
+    protected function slugSources(): array
     {
         return [
-            'source' => 'name'
+            'source' => 'name',
         ];
     }
 

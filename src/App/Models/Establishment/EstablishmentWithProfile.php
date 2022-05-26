@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
-use App\Models\User\User;
-use App\Models\Profile\Profile;
 use App\Models\Assembly\Assembly;
-use App\Models\Assignment\Assignment;
-use App\Models\Shared\Concerns\HasSlug;
-use App\Models\Shared\Concerns\HasProfile;
 use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assignment\Assignment;
 use App\Models\Assignment\AssignmentWithProfile;
+use App\Models\Profile\Profile;
+use App\Models\Shared\Concerns\HasProfile;
+use App\Models\Shared\Concerns\HasSlug;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -23,7 +23,7 @@ final class EstablishmentWithProfile extends AbstractEstablishment
     public function slugSources(): array
     {
         return [
-            'source' => 'name'
+            'source' => 'name',
         ];
     }
 

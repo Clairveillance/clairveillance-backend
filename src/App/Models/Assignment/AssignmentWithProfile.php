@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models\Assignment;
 
-use App\Models\User\User;
-use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\HasSlug;
-use App\Models\Shared\Concerns\HasProfile;
 use App\Models\Assignment\AbstractAssignment;
+use App\Models\Profile\Profile;
+use App\Models\Shared\Concerns\HasProfile;
+use App\Models\Shared\Concerns\HasSlug;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -20,7 +20,7 @@ final class AssignmentWithProfile extends AbstractAssignment
     public function slugSources(): array
     {
         return [
-            'source' => 'name'
+            'source' => 'name',
         ];
     }
 

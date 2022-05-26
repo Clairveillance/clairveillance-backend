@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\Like;
 
-use App\Models\User\User;
 use App\Models\Like\LikeType;
-use App\Models\Shared\Concerns\HasUuid;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Concerns\HasFactory;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use App\Models\Shared\Concerns\HasUuid;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 final class Like extends Model
 {
