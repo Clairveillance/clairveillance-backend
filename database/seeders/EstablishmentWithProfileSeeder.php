@@ -49,8 +49,8 @@ final class EstablishmentWithProfileSeeder extends Seeder
                             ->run();
                         $randomAssemblies = rand(1, 3);
                         match ((int)$randomAssemblies) {
-                            1 => $this->assignmentWithProfileEstablishmentsWithProfile($establishment),
-                            2 => $this->assemblyWithProfileEstablishmentsWithProfile($establishment),
+                            1 => $this->assemblyWithProfileEstablishmentsWithProfile($establishment),
+                            2 => $this->assignmentWithProfileEstablishmentsWithProfile($establishment),
                             3 => $this->userEstablishmentsWithProfile($establishment),
                         };
                     }
@@ -58,25 +58,6 @@ final class EstablishmentWithProfileSeeder extends Seeder
         } catch (\Throwable $e) {
         }
         dump(__METHOD__ . ' [success]');
-    }
-
-    private function assignmentWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
-    {
-        for ($i = 0; $i < rand(1, 50); $i++) {
-            try {
-                $assigments = AssignmentWithProfile::all();
-                $establishable = $assigments->random();
-                if (
-                    $establishable->assignmentWithProfileEstablishmentsWithProfile->isEmpty()
-                    ||
-                    !$establishable->assignmentWithProfileEstablishmentsWithProfile->contains($establishment)
-                ) {
-                    $establishable->assignmentWithProfileEstablishmentsWithProfile()->attach($establishment);
-                }
-                $establishable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
     }
 
     private function assemblyWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
@@ -91,6 +72,25 @@ final class EstablishmentWithProfileSeeder extends Seeder
                     !$establishable->assemblyWithProfileEstablishmentsWithProfile->contains($establishment)
                 ) {
                     $establishable->assemblyWithProfileEstablishmentsWithProfile()->attach($establishment);
+                }
+                $establishable->save();
+            } catch (\Throwable  $e) {
+            }
+        }
+    }
+
+    private function assignmentWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
+    {
+        for ($i = 0; $i < rand(1, 50); $i++) {
+            try {
+                $assigments = AssignmentWithProfile::all();
+                $establishable = $assigments->random();
+                if (
+                    $establishable->assignmentWithProfileEstablishmentsWithProfile->isEmpty()
+                    ||
+                    !$establishable->assignmentWithProfileEstablishmentsWithProfile->contains($establishment)
+                ) {
+                    $establishable->assignmentWithProfileEstablishmentsWithProfile()->attach($establishment);
                 }
                 $establishable->save();
             } catch (\Throwable  $e) {

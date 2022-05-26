@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\AssignmentSeeder;
 use Database\Seeders\DefaultUserSeeder;
 use Database\Seeders\AssemblyWithProfileSeeder;
 use Database\Seeders\AssignmentWithProfileSeeder;
@@ -18,7 +19,6 @@ final class DatabaseSeeder extends Seeder
         // NOTE: Use the following statement to disable foreign key constraints while running seeders.
         // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         // dump('Environment => ' . config('app.env') . "\n" . 'Database Statement => SET FOREIGN_KEY_CHECKS=0');
-
         match (config(
             key: 'app.env',
             default: null
@@ -28,6 +28,7 @@ final class DatabaseSeeder extends Seeder
                     DefaultUserSeeder::class,
                     UserSeeder::class,
                     AssemblyWithProfileSeeder::class,
+                    AssignmentSeeder::class,
                     AssignmentWithProfileSeeder::class,
                     EstablishmentWithProfileSeeder::class,
                 ],
