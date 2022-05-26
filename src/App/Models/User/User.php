@@ -55,6 +55,9 @@ final class User extends Model
     use MustVerifyEmail;
     use HasApiTokens;
 
+    /** @var string */
+    protected $morphClass = 'user';
+
     /** @var array<string> */
     protected $fillable = [
         'username',
@@ -78,6 +81,11 @@ final class User extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getMorphClass(): string
+    {
+        return $this->morphClass;
+    }
 
     public function getRouteKeyName(): string
     {

@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class Assembly extends AbstractAssembly
 {
+    /** @var string */
+    protected $morphClass = 'assembly';
+
     public function comments(): MorphMany
     {
         return $this->morphMany(

@@ -19,6 +19,9 @@ final class AssemblyWithProfile extends AbstractAssembly
     use HasSlug;
     use HasProfile;
 
+    /** @var string */
+    protected $morphClass = 'assembly_with_profile';
+
     protected function slugSources(): array
     {
         return [

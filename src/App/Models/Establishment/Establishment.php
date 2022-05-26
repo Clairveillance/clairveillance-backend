@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class Establishment extends AbstractEstablishment
 {
+    /** @var string */
+    protected $morphClass = 'establishment';
+
     public function comments(): MorphMany
     {
         return $this->morphMany(

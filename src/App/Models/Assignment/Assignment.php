@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class Assignment extends AbstractAssignment
 {
+    /** @var string */
+    protected $morphClass = 'assignment';
+
     public function comments(): MorphMany
     {
         return $this->morphMany(
