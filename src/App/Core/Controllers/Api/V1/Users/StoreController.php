@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
-use App\Core\Requests\Api\V1\Users\StoreRequest;
 use App\Core\Factories\UserFactory;
 use App\Core\Jobs\CreateUserJob;
+use App\Core\Requests\Api\V1\Users\StoreRequest;
 use Illuminate\Http\JsonResponse;
 
 final class StoreController extends Controller

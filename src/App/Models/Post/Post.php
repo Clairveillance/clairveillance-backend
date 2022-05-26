@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Models\Post;
 
-use App\Models\Like\Like;
-use App\Models\User\User;
-use App\Models\Image\Image;
-use App\Models\Post\PostType;
 use App\Models\Comment\Comment;
+use App\Models\Image\Image;
+use App\Models\Like\Like;
+use App\Models\Post\PostType;
+use App\Models\Shared\Concerns\HasFactory;
 use App\Models\Shared\Concerns\HasSlug;
 use App\Models\Shared\Concerns\HasUuid;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Concerns\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
@@ -43,11 +43,11 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
-    protected function  slugSources(): array
+    protected function slugSources(): array
     {
         return [
             'source' => 'title',
-            'params' => '-by-' . $this->user->username
+            'params' => '-by-'.$this->user->username,
         ];
     }
 

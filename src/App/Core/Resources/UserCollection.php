@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Core\Resources;
 
-use App\Models\Post\Post;
-use App\Models\Assembly\Assembly;
 use App\Core\Resources\UserResource;
-use App\Models\Assignment\Assignment;
-use App\Models\Establishment\Establishment;
+use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assignment\Assignment;
 use App\Models\Assignment\AssignmentWithProfile;
+use App\Models\Establishment\Establishment;
 use App\Models\Establishment\EstablishmentWithProfile;
+use App\Models\Post\Post;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 final class UserCollection extends ResourceCollection
@@ -46,13 +46,13 @@ final class UserCollection extends ResourceCollection
                             'email' => $user->email,
                             'created_at' => null === $user->created_at ?
                                 $user->created_at :
-                                date((string)'Y-m-d H:i:s', strtotime((string)$user->created_at)),
+                                date((string) 'Y-m-d H:i:s', strtotime((string) $user->created_at)),
                             'updated_at' => null === $user->updated_at ?
                                 $user->updated_at :
-                                date((string)'Y-m-d H:i:s', strtotime((string)$user->updated_at)),
+                                date((string) 'Y-m-d H:i:s', strtotime((string) $user->updated_at)),
                             'email_verified_at' => null === $user->email_verified_at ?
                                 $user->email_verified_at :
-                                date((string)'Y-m-d H:i:s', strtotime((string)$user->email_verified_at)),
+                                date((string) 'Y-m-d H:i:s', strtotime((string) $user->email_verified_at)),
                         ],
                         // TODO: Add links to relationships.
                         // 'links' => [
@@ -61,7 +61,7 @@ final class UserCollection extends ResourceCollection
                         // ]
                         'relationships' => [
                             'assignments_with_profile_count' => $user->userAssignmentsWithProfile->count(),
-                            'assignments_with_profile' => $user->userAssignmentsWithProfile->sortBy((array)['type.name'])->map(
+                            'assignments_with_profile' => $user->userAssignmentsWithProfile->sortBy((array) ['type.name'])->map(
                                 function (AssignmentWithProfile $userAssignmentWithProfile) {
                                     return collect([
                                         'id' => $userAssignmentWithProfile->uuid,
@@ -70,26 +70,26 @@ final class UserCollection extends ResourceCollection
                                         'type_id' => $userAssignmentWithProfile->type->uuid,
                                         'type' => $userAssignmentWithProfile->type->name,
                                         'profile' => $userAssignmentWithProfile->profile->uuid,
-                                        'likes_count' => $userAssignmentWithProfile->profile->likes->where((string)'is_dislike', (int)0)->count(),
-                                        'dislikes_count' => $userAssignmentWithProfile->profile->likes->where((string)'is_dislike', (int)1)->count()
+                                        'likes_count' => $userAssignmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $userAssignmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
                             'assignments_count' => $user->userAssignments->count(),
-                            'assignments' => $user->userAssignments->sortBy((array)['type.name'])->map(
+                            'assignments' => $user->userAssignments->sortBy((array) ['type.name'])->map(
                                 function (Assignment $userAssignment) {
                                     return collect([
                                         'id' => $userAssignment->uuid,
                                         'name' => $userAssignment->name,
                                         'type_id' => $userAssignment->type->uuid,
                                         'type' => $userAssignment->type->name,
-                                        'likes_count' => $userAssignment->likes->where((string)'is_dislike', (int)0)->count(),
-                                        'dislikes_count' => $userAssignment->likes->where((string)'is_dislike', (int)1)->count()
+                                        'likes_count' => $userAssignment->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $userAssignment->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
                             'assemblies_with_profile_count' => $user->userAssembliesWithProfile->count(),
-                            'assemblies_with_profile' => $user->userAssembliesWithProfile->sortBy((array)['type.name'])->map(
+                            'assemblies_with_profile' => $user->userAssembliesWithProfile->sortBy((array) ['type.name'])->map(
                                 function (AssemblyWithProfile $userAssemblyWithProfile) {
                                     return collect([
                                         'id' => $userAssemblyWithProfile->uuid,
@@ -98,26 +98,26 @@ final class UserCollection extends ResourceCollection
                                         'type_id' => $userAssemblyWithProfile->type->uuid,
                                         'type' => $userAssemblyWithProfile->type->name,
                                         'profile' => $userAssemblyWithProfile->profile->uuid,
-                                        'likes_count' => $userAssemblyWithProfile->profile->likes->where((string)'is_dislike', (int)0)->count(),
-                                        'dislikes_count' => $userAssemblyWithProfile->profile->likes->where((string)'is_dislike', (int)1)->count()
+                                        'likes_count' => $userAssemblyWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $userAssemblyWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
                             'assemblies_count' => $user->userAssemblies->count(),
-                            'assemblies' => $user->userAssemblies->sortBy((array)['type.name'])->map(
+                            'assemblies' => $user->userAssemblies->sortBy((array) ['type.name'])->map(
                                 function (Assembly $userAssembly) {
                                     return collect([
                                         'id' => $userAssembly->uuid,
                                         'name' => $userAssembly->name,
                                         'type_id' => $userAssembly->type->uuid,
                                         'type' => $userAssembly->type->name,
-                                        'likes_count' => $userAssembly->likes->where((string)'is_dislike', (int)0)->count(),
-                                        'dislikes_count' => $userAssembly->likes->where((string)'is_dislike', (int)1)->count()
+                                        'likes_count' => $userAssembly->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $userAssembly->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
                             'establishments_with_profile_count' => $user->userEstablishmentsWithProfile->count(),
-                            'establishments_with_profile' => $user->userEstablishmentsWithProfile->sortBy((array)['type.name'])->map(
+                            'establishments_with_profile' => $user->userEstablishmentsWithProfile->sortBy((array) ['type.name'])->map(
                                 function (EstablishmentWithProfile $userEstablishmentWithProfile) {
                                     return collect([
                                         'id' => $userEstablishmentWithProfile->uuid,
@@ -126,26 +126,26 @@ final class UserCollection extends ResourceCollection
                                         'type_id' => $userEstablishmentWithProfile->type->uuid,
                                         'type' => $userEstablishmentWithProfile->type->name,
                                         'profile' => $userEstablishmentWithProfile->profile->uuid,
-                                        'likes_count' => $userEstablishmentWithProfile->profile->likes->where((string)'is_dislike', (int)0)->count(),
-                                        'dislikes_count' => $userEstablishmentWithProfile->profile->likes->where((string)'is_dislike', (int)1)->count()
+                                        'likes_count' => $userEstablishmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $userEstablishmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
                             'establishments_count' => $user->userEstablishments->count(),
-                            'establishments' => $user->userEstablishments->sortBy((array)['type.name'])->map(
+                            'establishments' => $user->userEstablishments->sortBy((array) ['type.name'])->map(
                                 function (Establishment $userEstablishment) {
                                     return collect([
                                         'id' => $userEstablishment->uuid,
                                         'name' => $userEstablishment->name,
                                         'type_id' => $userEstablishment->type->uuid,
                                         'type' => $userEstablishment->type->name,
-                                        'likes_count' => $userEstablishment->likes->where((string)'is_dislike', (int)0)->count(),
-                                        'dislikes_count' => $userEstablishment->likes->where((string)'is_dislike', (int)1)->count()
+                                        'likes_count' => $userEstablishment->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $userEstablishment->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
-                            'published_posts_count' => $user->posts->where((string)'published', (int)1)->count(),
-                            'published_posts' => $user->posts->where((string)'published', (int)1)->map(
+                            'published_posts_count' => $user->posts->where((string) 'published', (int) 1)->count(),
+                            'published_posts' => $user->posts->where((string) 'published', (int) 1)->map(
                                 function (Post $post) {
                                     return collect([
                                         'id' => $post->uuid,
@@ -154,18 +154,18 @@ final class UserCollection extends ResourceCollection
                                         'description' => $post->description,
                                         'published_at' => null === $post->published_at ?
                                             $post->published_at :
-                                            date((string)'Y-m-d H:i:s', strtotime((string)$post->published_at)),
+                                            date((string) 'Y-m-d H:i:s', strtotime((string) $post->published_at)),
                                         'type_id' => $post->type->uuid,
                                         'type' => $post->type->name,
-                                        'likes_count' => $post->likes->where((string)'is_dislike', (int)0)->count(),
-                                        'dislikes_count' => $post->likes->where((string)'is_dislike', (int)1)->count(),
+                                        'likes_count' => $post->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $post->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
                         ],
                         'links' => [
-                            'self' => route((string)'api.' . env('API_VERSION', 'v1') . '.users.show', (string)$user->uuid),
-                            'parent' => route((string)'api.' . env('API_VERSION', 'v1') . '.users.index'),
+                            'self' => route((string) 'api.'.env('API_VERSION', 'v1').'.users.show', (string) $user->uuid),
+                            'parent' => route((string) 'api.'.env('API_VERSION', 'v1').'.users.index'),
                         ],
                     ]);
                 }

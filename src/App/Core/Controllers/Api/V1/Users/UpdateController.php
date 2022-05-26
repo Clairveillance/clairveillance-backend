@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
-use App\Core\Requests\Api\V1\Users\UpdateRequest;
 use App\Core\Factories\UserFactory;
 use App\Core\Jobs\UpdateUserJob;
+use App\Core\Requests\Api\V1\Users\UpdateRequest;
 use App\Models\User\User;
 use Illuminate\Http\JsonResponse;
 

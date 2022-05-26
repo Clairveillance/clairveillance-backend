@@ -47,6 +47,7 @@ abstract class AbstractEstablishmentFactory extends Factory
                 default: 'UTC'
             )
         );
+
         return [
             'name' => $name,
             'description' => $this->faker->randomElement(

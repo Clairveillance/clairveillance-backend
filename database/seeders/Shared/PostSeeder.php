@@ -6,15 +6,15 @@ namespace Database\Seeders\Shared;
 
 use App\Models\Post\Post;
 use App\Models\Post\PostType;
+use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\TypeSeeder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
-use Database\Seeders\Shared\LikeSeeder;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * PostSeeder
- * 
+ *
  * @property Model $model
  * @property Collection $users
  * @method setModel
@@ -35,9 +35,10 @@ final class PostSeeder extends Seeder
      * @param  \Illuminate\Database\Eloquent\Model $model
      * @return \Database\Seeders\Shared\PostSeeder
      */
-    public function setModel(Model $model): PostSeeder
+    public function setModel(Model $model): self
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -47,9 +48,10 @@ final class PostSeeder extends Seeder
      * @param  \Illuminate\Support\Collection $users
      * @return \Database\Seeders\Shared\PostSeeder
      */
-    public function setUsers(Collection $users): PostSeeder
+    public function setUsers(Collection $users): self
     {
         $this->users = $users;
+
         return $this;
     }
 

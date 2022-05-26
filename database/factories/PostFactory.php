@@ -72,7 +72,7 @@ final class PostFactory extends Factory
             'created_at' => $created_date,
             'updated_at' => $updated_date,
             'published' => $published,
-            'published_at' => !$published ? null : $this->faker->dateTimeBetween(
+            'published_at' => ! $published ? null : $this->faker->dateTimeBetween(
                 startDate: $created_date,
                 endDate: $updated_date,
                 timezone: env(

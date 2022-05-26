@@ -25,7 +25,7 @@ final class AppointmentWithProfile extends Model
     public function slugSources(): array
     {
         return [
-            'source' => 'name'
+            'source' => 'name',
         ];
     }
 

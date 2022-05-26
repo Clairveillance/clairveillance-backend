@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Assignment\Assignment;
+use App\Models\Assignment\AssignmentType;
 use App\Models\User\User;
-use Illuminate\Database\Seeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use App\Models\Assignment\AssignmentType;
-use App\Models\Assignment\Assignment;
+use Illuminate\Database\Seeder;
 
 final class AssignmentSeeder extends Seeder
 {
@@ -50,7 +50,7 @@ final class AssignmentSeeder extends Seeder
                 );
         } catch (\Throwable $e) {
         }
-        dump(__METHOD__ . ' [success]');
+        dump(__METHOD__.' [success]');
     }
 
     private function userAssignments(Assignment $assignment): void
@@ -62,7 +62,7 @@ final class AssignmentSeeder extends Seeder
                 if (
                     $assignable->userAssignments->isEmpty()
                     ||
-                    !$assignable->userAssignments->contains($assignment)
+                    ! $assignable->userAssignments->contains($assignment)
                 ) {
                     $assignable->userAssignments()->attach($assignment);
                 }

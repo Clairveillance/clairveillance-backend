@@ -16,12 +16,12 @@ return [
         /*
          * The URI the endpoint responds to, e.g. mydomain.com/graphql.
          */
-        'uri' => '/graphql/' . env('API_VERSION', 'v1'),
+        'uri' => '/graphql/'.env('API_VERSION', 'v1'),
 
         /*
          * Lighthouse creates a named route for convenient URL generation and redirects.
          */
-        'name' => 'graphql.' . env('API_VERSION', 'v1'),
+        'name' => 'graphql.'.env('API_VERSION', 'v1'),
 
         /*
          * Beware that middleware defined here runs before the GraphQL execution phase,
@@ -140,7 +140,7 @@ return [
         'models' => [
             'App\\Models',
             'App\\Models\\User',
-            'App\\Models\\Post'
+            'App\\Models\\Post',
         ],
         'queries' => 'App\\GraphQL\\Queries',
         'mutations' => 'App\\GraphQL\\Mutations',
@@ -406,13 +406,13 @@ return [
             ],
             'pusher' => [
                 'driver' => 'pusher',
-                'routes' => \Nuwave\Lighthouse\Subscriptions\SubscriptionRouter::class . '@pusher',
+                'routes' => \Nuwave\Lighthouse\Subscriptions\SubscriptionRouter::class.'@pusher',
                 'connection' => 'pusher',
             ],
             'echo' => [
                 'driver' => 'echo',
                 'connection' => env('LIGHTHOUSE_SUBSCRIPTION_REDIS_CONNECTION', 'default'),
-                'routes' => \Nuwave\Lighthouse\Subscriptions\SubscriptionRouter::class . '@echoRoutes',
+                'routes' => \Nuwave\Lighthouse\Subscriptions\SubscriptionRouter::class.'@echoRoutes',
             ],
         ],
 

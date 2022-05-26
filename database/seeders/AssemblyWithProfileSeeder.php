@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\User\User;
-use Illuminate\Database\Seeder;
 use App\Models\Assembly\AssemblyType;
-use Database\Seeders\Shared\LikeSeeder;
 use App\Models\Assembly\AssemblyWithProfile;
 use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\Establishment\EstablishmentWithProfile;
-use Database\Seeders\Shared\TypeSeeder;
+use App\Models\User\User;
+use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
+use Database\Seeders\Shared\TypeSeeder;
+use Illuminate\Database\Seeder;
 
 final class AssemblyWithProfileSeeder extends Seeder
 {
@@ -48,7 +48,7 @@ final class AssemblyWithProfileSeeder extends Seeder
                             ->setModel($assembly->profile)
                             ->run();
                         $randomAssemblies = rand(1, 4);
-                        match ((int)$randomAssemblies) {
+                        match ((int) $randomAssemblies) {
                             1 => $this->assemblyWithProfileAssembliesWithProfile($assembly),
                             2 => $this->assignmentWithProfileAssembliesWithProfile($assembly),
                             3 => $this->establishmentWithProfileAssembliesWithProfile($assembly),
@@ -58,7 +58,7 @@ final class AssemblyWithProfileSeeder extends Seeder
                 );
         } catch (\Throwable $e) {
         }
-        dump(__METHOD__ . ' [success]');
+        dump(__METHOD__.' [success]');
     }
 
     private function assemblyWithProfileAssembliesWithProfile(AssemblyWithProfile $assembly): void
@@ -71,7 +71,7 @@ final class AssemblyWithProfileSeeder extends Seeder
                     if (
                         $assemblable->assemblyWithProfileAssembliesWithProfile->isEmpty()
                         ||
-                        !$assemblable->assemblyWithProfileAssembliesWithProfile->contains($assembly)
+                        ! $assemblable->assemblyWithProfileAssembliesWithProfile->contains($assembly)
                     ) {
                         $assemblable->assemblyWithProfileAssembliesWithProfile()->attach($assembly);
                     }
@@ -91,7 +91,7 @@ final class AssemblyWithProfileSeeder extends Seeder
                 if (
                     $assemblable->assignmentWithProfileAssembliesWithProfile->isEmpty()
                     ||
-                    !$assemblable->assignmentWithProfileAssembliesWithProfile->contains($assembly)
+                    ! $assemblable->assignmentWithProfileAssembliesWithProfile->contains($assembly)
                 ) {
                     $assemblable->assignmentWithProfileAssembliesWithProfile()->attach($assembly);
                 }
@@ -110,7 +110,7 @@ final class AssemblyWithProfileSeeder extends Seeder
                 if (
                     $assemblable->establishmentWithProfileAssembliesWithProfile->isEmpty()
                     ||
-                    !$assemblable->establishmentWithProfileAssembliesWithProfile->contains($assembly)
+                    ! $assemblable->establishmentWithProfileAssembliesWithProfile->contains($assembly)
                 ) {
                     $assemblable->establishmentWithProfileAssembliesWithProfile()->attach($assembly);
                 }
@@ -129,7 +129,7 @@ final class AssemblyWithProfileSeeder extends Seeder
                 if (
                     $assemblable->userAssembliesWithProfile->isEmpty()
                     ||
-                    !$assemblable->userAssembliesWithProfile->contains($assembly)
+                    ! $assemblable->userAssembliesWithProfile->contains($assembly)
                 ) {
                     $assemblable->userAssembliesWithProfile()->attach($assembly);
                 }
