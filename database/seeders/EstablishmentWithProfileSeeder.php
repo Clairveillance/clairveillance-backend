@@ -29,7 +29,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
     public function run(): void
     {
         try {
-            EstablishmentWithProfile::factory(rand(20, 40))->make()
+            EstablishmentWithProfile::factory(rand(25, 50))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -66,7 +66,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
 
     private function assemblyEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assemblies = Assembly::all();
                 $establishable = $assemblies->random();
@@ -85,7 +85,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
 
     private function assemblyWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assemblies = AssemblyWithProfile::all();
                 $establishable = $assemblies->random();
@@ -104,7 +104,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
 
     private function assignmentEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assigments = Assignment::all();
                 $establishable = $assigments->random();
@@ -123,7 +123,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
 
     private function assignmentWithProfileEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assigments = AssignmentWithProfile::all();
                 $establishable = $assigments->random();
@@ -142,7 +142,7 @@ final class EstablishmentWithProfileSeeder extends Seeder
 
     private function userEstablishmentsWithProfile(EstablishmentWithProfile $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $users = User::all();
                 $establishable = $users->random();

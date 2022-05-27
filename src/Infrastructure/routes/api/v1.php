@@ -14,6 +14,8 @@ use App\Core\Controllers\Api\V1\Posts\UpdateController as PostUpdate;
 use App\Core\Controllers\Api\V1\Users\DeleteController as UserDelete;
 use App\Core\Controllers\Api\V1\Users\UpdateController as UserUpdate;
 use App\Core\Controllers\Api\V1\Posts\IndexByUserController as UserPostsIndex;
+use App\Models\Assembly\Assembly;
+use App\Models\User\User;
 
 /*
  * Users Endpoints.
@@ -38,4 +40,14 @@ Route::prefix('posts')->as('posts.')->group(function () {
     Route::get(uri: '{post:slug}', action: PostShow::class)->name(name: 'show');
     // Route::patch(uri: '{user:uuid}', action: PostUpdate::class)->name(name: 'update');
     // Route::delete(uri: '{user:uuid}', action: PostDelete::class)->name(name: 'delete');
+});
+
+/*
+ * Posts Endpoints.
+ */
+
+Route::prefix('tests')->as('tests.')->group(function () {
+    Route::get(uri: '/', action: function () {
+        dd(Assembly::has('likes')->with('likes')->first());
+    })->name(name: 'index');
 });

@@ -40,9 +40,9 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Models\Establishment\EstablishmentWithProfile;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use App\Models\Shared\Concerns\Abstractions\AbstractAssemblableModel;
+use App\Models\Shared\Concerns\Abstractions\Assemblable;
 
-final class User extends AbstractAssemblableModel
+final class User extends Assemblable
 {
     use HasUuid;
     use HasFactory;

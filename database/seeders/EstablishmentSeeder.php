@@ -29,7 +29,7 @@ final class EstablishmentSeeder extends Seeder
     public function run(): void
     {
         try {
-            Establishment::factory(rand(20, 40))->make()
+            Establishment::factory(rand(25, 50))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -66,7 +66,7 @@ final class EstablishmentSeeder extends Seeder
 
     private function assemblyEstablishments(Establishment $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assemblies = Assembly::all();
                 $establishable = $assemblies->random();
@@ -85,7 +85,7 @@ final class EstablishmentSeeder extends Seeder
 
     private function assemblyWithProfileEstablishments(Establishment $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assemblies = AssemblyWithProfile::all();
                 $establishable = $assemblies->random();
@@ -104,7 +104,7 @@ final class EstablishmentSeeder extends Seeder
 
     private function assignmentEstablishments(Establishment $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assigments = Assignment::all();
                 $establishable = $assigments->random();
@@ -123,7 +123,7 @@ final class EstablishmentSeeder extends Seeder
 
     private function assignmentWithProfileEstablishments(Establishment $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $assigments = AssignmentWithProfile::all();
                 $establishable = $assigments->random();
@@ -142,7 +142,7 @@ final class EstablishmentSeeder extends Seeder
 
     private function userEstablishments(Establishment $establishment): void
     {
-        for ($i = 0; $i < rand(1, 100); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $users = User::all();
                 $establishable = $users->random();

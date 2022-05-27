@@ -12,7 +12,6 @@ use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
 use Database\Seeders\Shared\ImageSeeder;
-use App\Models\Assembly\AssemblyWithProfile;
 
 final class AssemblySeeder extends Seeder
 {
@@ -28,7 +27,7 @@ final class AssemblySeeder extends Seeder
     public function run(): void
     {
         try {
-            Assembly::factory(rand(20, 40))->make()
+            Assembly::factory(rand(25, 50))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -39,9 +38,10 @@ final class AssemblySeeder extends Seeder
                 ->each(
                     callback: function (Assembly $assembly) {
                         $assembly_types = AssemblyType::where('created_at', '<=', $assembly->created_at)->get();
-                        $assembly->assembly_type_uuid = $assembly_types->random()->uuid;
                         $users = User::where('created_at', '<=', $assembly->created_at)->get();
-                        $assembly->user()->associate($users->random())->save();
+                        $assembly->user()->associate($users->random())
+                            ->type()->associate($assembly_types->random())
+                            ->save();
                         $this->imageSeeder->setUsers($users)
                             ->setModel($assembly)
                             ->run();
@@ -51,77 +51,10 @@ final class AssemblySeeder extends Seeder
                         $this->postSeeder->setUsers($users)
                             ->setModel($assembly)
                             ->run();
-                        $randomAssemblies = rand(1, 3);
-                        match ((int) $randomAssemblies) {
-                            1 => $this->assemblyAssemblies($assembly),
-                            2 => $this->assemblyWithProfileAssemblies($assembly),
-                            3 => $this->userAssemblies($assembly),
-                        };
                     }
                 );
         } catch (\Throwable $e) {
         }
         dump(__METHOD__ . ' [success]');
-    }
-
-    private function assemblyAssemblies(Assembly $assembly): void
-    {
-        for ($i = 0; $i < rand(1, 25); $i++) {
-            try {
-                $assemblies = Assembly::where('uuid', '!=', $assembly->uuid)->get();
-                if ($assemblies->isNotEmpty()) {
-                    $assemblable = $assemblies->random();
-                    if (
-                        $assemblable->assemblyAssemblies->isEmpty()
-                        ||
-                        !$assemblable->assemblyAssemblies->contains($assembly)
-                    ) {
-                        $assemblable->assemblyAssemblies()->attach($assembly);
-                    }
-                }
-                $assemblable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
-    }
-
-    private function assemblyWithProfileAssemblies(Assembly $assembly): void
-    {
-        for ($i = 0; $i < rand(1, 25); $i++) {
-            try {
-                $assemblies = AssemblyWithProfile::where('uuid', '!=', $assembly->uuid)->get();
-                if ($assemblies->isNotEmpty()) {
-                    $assemblable = $assemblies->random();
-                    if (
-                        $assemblable->assemblyWithProfileAssemblies->isEmpty()
-                        ||
-                        !$assemblable->assemblyWithProfileAssemblies->contains($assembly)
-                    ) {
-                        $assemblable->assemblyWithProfileAssemblies()->attach($assembly);
-                    }
-                }
-                $assemblable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
-    }
-
-    private function userAssemblies(Assembly $assembly): void
-    {
-        for ($i = 0; $i < rand(1, 25); $i++) {
-            try {
-                $users = User::all();
-                $assemblable = $users->random();
-                if (
-                    $assemblable->userAssemblies->isEmpty()
-                    ||
-                    !$assemblable->userAssemblies->contains($assembly)
-                ) {
-                    $assemblable->userAssemblies()->attach($assembly);
-                }
-                $assemblable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
     }
 }
