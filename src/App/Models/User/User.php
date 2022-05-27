@@ -4,45 +4,45 @@ declare(strict_types=1);
 
 namespace App\Models\User;
 
-use App\Models\Address\Address;
-use App\Models\Appointment\Appointment;
-use App\Models\Appointment\AppointmentWithProfile;
-use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyWithProfile;
-use App\Models\Assignment\Assignment;
-use App\Models\Assignment\AssignmentWithProfile;
-use App\Models\Comment\Comment;
-use App\Models\Connection\Connection;
-use App\Models\Email\Email;
-use App\Models\Establishment\Establishment;
-use App\Models\Establishment\EstablishmentWithProfile;
-use App\Models\Language\Language;
 use App\Models\Like\Like;
 use App\Models\Link\Link;
-use App\Models\Phone\Phone;
 use App\Models\Post\Post;
-use App\Models\Profile\Profile;
-use App\Models\Sequence\Sequence;
-use App\Models\Shared\Concerns\HasFactory;
-use App\Models\Shared\Concerns\HasProfile;
-use App\Models\Shared\Concerns\HasUuid;
-use App\Models\Shared\CustomQueryBuilder;
-use App\Models\Taxonomy\Taxonomy;
+use App\Models\Email\Email;
+use App\Models\Phone\Phone;
 use App\Models\Theme\Theme;
+use App\Models\Address\Address;
+use App\Models\Comment\Comment;
+use App\Models\Profile\Profile;
+use App\Models\Assembly\Assembly;
+use App\Models\Language\Language;
+use App\Models\Sequence\Sequence;
+use App\Models\Taxonomy\Taxonomy;
 use App\Models\Timezone\Timezone;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\Access\Authorizable;
+use App\Models\Assignment\Assignment;
+use App\Models\Connection\Connection;
+use App\Models\Appointment\Appointment;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use App\Models\Shared\CustomQueryBuilder;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Shared\Concerns\Traits\HasProfile;
+use App\Models\Establishment\Establishment;
+use App\Models\Assembly\AssemblyWithProfile;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Models\Assignment\AssignmentWithProfile;
+use App\Models\Appointment\AppointmentWithProfile;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use App\Models\Establishment\EstablishmentWithProfile;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use App\Models\Shared\Concerns\Abstractions\AbstractAssemblableModel;
 
-final class User extends Model
+final class User extends AbstractAssemblableModel
 {
     use HasUuid;
     use HasFactory;
@@ -81,11 +81,6 @@ final class User extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function getMorphClass(): string
-    {
-        return $this->morphClass;
-    }
 
     public function getRouteKeyName(): string
     {
@@ -301,32 +296,6 @@ final class User extends Model
             related: Taxonomy::class,
             foreignKey: 'user_uuid',
             localKey: 'uuid'
-        );
-    }
-
-    public function userAssemblies(): MorphToMany
-    {
-        return $this->morphedByMany(
-            related: Assembly::class,
-            name: 'assemblable',
-            table: null,
-            foreignPivotKey: 'assembly_uuid',
-            relatedPivotKey: 'assemblable_uuid',
-            parentKey: 'uuid',
-            relatedKey: 'uuid'
-        );
-    }
-
-    public function userAssembliesWithProfile(): MorphToMany
-    {
-        return $this->morphedByMany(
-            related: AssemblyWithProfile::class,
-            name: 'assemblable',
-            table: null,
-            foreignPivotKey: 'assembly_uuid',
-            relatedPivotKey: 'assemblable_uuid',
-            parentKey: 'uuid',
-            relatedKey: 'uuid'
         );
     }
 

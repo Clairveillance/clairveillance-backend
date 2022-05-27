@@ -32,7 +32,7 @@ final class DatabaseSeeder extends Seeder
                     // IMPORTANT: Don't change the order of Seeders or the system will break.
                     DefaultUserSeeder::class,
                     UserSeeder::class,
-                    AssemblySeeder::class,
+                    // AssemblySeeder::class,
                     AssemblyWithProfileSeeder::class,
                     AssignmentSeeder::class,
                     AssignmentWithProfileSeeder::class,
@@ -46,7 +46,7 @@ final class DatabaseSeeder extends Seeder
             )->call(
                 class: [
                     // NOTE: Some relationships must be attached last because they depend on other Models that need to be created first.
-                    AssemblyRelationshipsSeeder::class,
+                    // AssemblyRelationshipsSeeder::class,
                     AssemblyWithProfileRelationshipsSeeder::class,
                 ],
                 silent: false,

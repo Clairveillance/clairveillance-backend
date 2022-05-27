@@ -25,7 +25,7 @@ final class AssignmentWithProfileSeeder extends Seeder
     public function run(): void
     {
         try {
-            AssignmentWithProfile::factory(rand(20, 40))->make()
+            AssignmentWithProfile::factory(rand(25, 100))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;

@@ -21,15 +21,24 @@ final class IndexController extends Controller
         $users = new UserCollection(
             resource: User::with(
                 relations: [
+                    'posts' => function ($posts) {
+                        $posts->where((string) 'published', (int) 1);
+                    },
                     'profile',
-                    'posts',
-                    'userAssemblies',
-                    'userAssembliesWithProfile',
+                    'assemblables',
+                    'assemblables_with_profile',
                 ]
             )
-                // ->withCount(
-                //     'posts'
-                // )
+                ->withCount(
+                    relations: [
+                        'posts' => function ($posts) {
+                            $posts->where((string) 'published', (int) 1);
+                        },
+                        'profile',
+                        'assemblables',
+                        'assemblables_with_profile',
+                    ]
+                )
                 // ->withTrashed()
                 // ->onlyTrashed()
                 ->orderBy('username')

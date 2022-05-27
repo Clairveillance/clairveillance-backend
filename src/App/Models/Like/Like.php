@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models\Like;
 
 use App\Models\Like\LikeType;
-use App\Models\Shared\Concerns\HasFactory;
-use App\Models\Shared\Concerns\HasUuid;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

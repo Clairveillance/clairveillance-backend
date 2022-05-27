@@ -8,19 +8,17 @@ use App\Models\User\User;
 use Illuminate\Database\Seeder;
 use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyType;
-use App\Models\Assignment\Assignment;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use App\Models\Establishment\Establishment;
+use Database\Seeders\Shared\ImageSeeder;
 use App\Models\Assembly\AssemblyWithProfile;
-use App\Models\Assignment\AssignmentWithProfile;
-use App\Models\Establishment\EstablishmentWithProfile;
 
 final class AssemblySeeder extends Seeder
 {
     public function __construct(
         public LikeSeeder $likeSeeder,
+        public ImageSeeder $imageSeeder,
         public PostSeeder $postSeeder,
         public TypeSeeder $typeSeeder
     ) {
@@ -44,6 +42,9 @@ final class AssemblySeeder extends Seeder
                         $assembly->assembly_type_uuid = $assembly_types->random()->uuid;
                         $users = User::where('created_at', '<=', $assembly->created_at)->get();
                         $assembly->user()->associate($users->random())->save();
+                        $this->imageSeeder->setUsers($users)
+                            ->setModel($assembly)
+                            ->run();
                         $this->likeSeeder->setUsers($users)
                             ->setModel($assembly)
                             ->run();

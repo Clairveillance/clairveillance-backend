@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models\Address;
 
 use App\Models\Country\Country;
-use App\Models\Shared\Concerns\HasFactory;
-use App\Models\Shared\Concerns\HasUuid;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;

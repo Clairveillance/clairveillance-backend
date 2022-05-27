@@ -11,6 +11,7 @@ use Illuminate\Database\Seeder;
  * TypeSeeder
  *
  * @property Model $model
+ * @property array<string,string> $attributes
  * @method setModel
  * @method run
  */
@@ -18,6 +19,9 @@ final class TypeSeeder extends Seeder
 {
     /** @var \Illuminate\Database\Eloquent\Model */
     private Model $model;
+
+    /** @var array<string,string> */
+    private array $attributes;
 
     /**
      * setModel
@@ -28,7 +32,18 @@ final class TypeSeeder extends Seeder
     public function setModel(Model $model): self
     {
         $this->model = $model;
+        return $this;
+    }
 
+    /**
+     * setAttributes
+     *
+     * @param  array<string,string> $attributes
+     * @return \Database\Seeders\Shared\TypeSeeder
+     */
+    public function setAttributes(array $attributes): self
+    {
+        $this->attributes = $attributes;
         return $this;
     }
 
@@ -51,6 +66,11 @@ final class TypeSeeder extends Seeder
                 )
                 ->each(
                     callback: function (Model $model) {
+                        if (isset($this->attributes)) {
+                            if (in_array('image_uuid', $this->attributes)) {
+                                $model->image_uuid = $this->attributes['image_uuid'];
+                            }
+                        }
                         $model->save();
                     }
                 );

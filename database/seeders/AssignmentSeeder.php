@@ -25,7 +25,7 @@ final class AssignmentSeeder extends Seeder
     public function run(): void
     {
         try {
-            Assignment::factory(rand(20, 40))->make()
+            Assignment::factory(rand(25, 100))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;

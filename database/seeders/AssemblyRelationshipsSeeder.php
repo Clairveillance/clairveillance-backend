@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\User\User;
 use Illuminate\Database\Seeder;
 use App\Models\Assembly\Assembly;
 use App\Models\Assignment\Assignment;
 use App\Models\Establishment\Establishment;
-use App\Models\Assembly\AssemblyWithProfile;
 use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\Establishment\EstablishmentWithProfile;
 

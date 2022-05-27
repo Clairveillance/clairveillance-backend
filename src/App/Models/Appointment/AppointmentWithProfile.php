@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Models\Appointment;
 
 use App\Models\Appointment\AppointmentType;
-use App\Models\Shared\Concerns\HasFactory;
-use App\Models\Shared\Concerns\HasProfile;
-use App\Models\Shared\Concerns\HasSlug;
-use App\Models\Shared\Concerns\HasUuid;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Shared\Concerns\Traits\HasProfile;
+use App\Models\Shared\Concerns\Traits\HasSlug;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
