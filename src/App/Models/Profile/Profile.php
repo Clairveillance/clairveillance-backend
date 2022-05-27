@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace App\Models\Profile;
 
-use App\Models\Comment\Comment;
-use App\Models\Image\Image;
 use App\Models\Like\Like;
 use App\Models\Post\Post;
-use App\Models\Profile\ProfileType;
-use App\Models\Shared\Concerns\HasFactory;
-use App\Models\Shared\Concerns\HasUuid;
 use App\Models\User\User;
+use App\Models\Image\Image;
+use App\Models\Comment\Comment;
+use App\Models\Profile\ProfileType;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class Profile extends Model
 {
@@ -113,6 +114,20 @@ final class Profile extends Model
             type: 'postable_type',
             id: 'postable_uuid',
             localKey: 'uuid'
+        );
+    }
+
+    public function images(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: Image::class,
+            name: 'imageable',
+            table: null,
+            foreignPivotKey: 'imageable_uuid',
+            relatedPivotKey: 'image_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
         );
     }
 }

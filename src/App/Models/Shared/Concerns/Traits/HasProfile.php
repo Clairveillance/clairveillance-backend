@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Shared\Concerns;
+namespace App\Models\Shared\Concerns\Traits;
 
 use App\Models\Profile\Profile;
 use App\Models\Profile\ProfileType;
@@ -24,7 +24,7 @@ trait HasProfile
         static::creating(function (Model $model) {
             $modelClass = $model::class;
             $profileType = ProfileType::where('name', $modelClass)->first();
-            if (! $profileType) {
+            if (!$profileType) {
                 $profileType = new ProfileType();
                 $profileType->name = $modelClass;
                 $profileType->save();

@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace App\Models\Image;
 
-use App\Models\Comment\Comment;
-use App\Models\Country\Country;
-use App\Models\Image\ImageType;
 use App\Models\Like\Like;
 use App\Models\Link\Link;
 use App\Models\Post\Post;
-use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\HasFactory;
-use App\Models\Shared\Concerns\HasUuid;
 use App\Models\User\User;
+use App\Models\Comment\Comment;
+use App\Models\Country\Country;
+use App\Models\Image\ImageType;
+use App\Models\Profile\Profile;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use App\Models\Shared\Concerns\Traits\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class Image extends Model
 {
@@ -125,6 +126,19 @@ final class Image extends Model
             type: 'likeable_type',
             id: 'likeable_uuid',
             localKey: 'uuid'
+        );
+    }
+
+    public function imageables(Model $model): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: $model,
+            name: 'imageable',
+            table: null,
+            foreignPivotKey: 'image_uuid',
+            relatedPivotKey: 'imageable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
         );
     }
 }

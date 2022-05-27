@@ -60,31 +60,31 @@ final class UserCollection extends ResourceCollection
                         //     'parent' => route((string)'api.'.env('API_VERSION', 'v1').'.relationships.index'),
                         // ]
                         'relationships' => [
-                            'assemblies_with_profile_count' => $user->userAssembliesWithProfile->count(),
-                            'assemblies_with_profile' => $user->userAssembliesWithProfile->sortBy((array) ['type.name'])->map(
-                                function (AssemblyWithProfile $userAssemblyWithProfile) {
+                            'assemblies_with_profile_count' => $user->assemblables_with_profile_count,
+                            'assemblies_with_profile' => $user->assemblables_with_profile->sortBy((array) ['type.name'])->map(
+                                function (AssemblyWithProfile $assemblableWithProfile) {
                                     return collect([
-                                        'id' => $userAssemblyWithProfile->uuid,
-                                        'name' => $userAssemblyWithProfile->name,
-                                        'slug' => $userAssemblyWithProfile->slug,
-                                        'type_id' => $userAssemblyWithProfile->type->uuid,
-                                        'type' => $userAssemblyWithProfile->type->name,
-                                        'profile' => $userAssemblyWithProfile->profile->uuid,
-                                        'likes_count' => $userAssemblyWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $userAssemblyWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
+                                        'id' => $assemblableWithProfile->uuid,
+                                        'name' => $assemblableWithProfile->name,
+                                        'slug' => $assemblableWithProfile->slug,
+                                        'type_id' => $assemblableWithProfile->type->uuid,
+                                        'type' => $assemblableWithProfile->type->name,
+                                        'profile' => $assemblableWithProfile->profile->uuid,
+                                        'likes_count' => $assemblableWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $assemblableWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
-                            'assemblies_count' => $user->userAssemblies->count(),
-                            'assemblies' => $user->userAssemblies->sortBy((array) ['type.name'])->map(
-                                function (Assembly $userAssembly) {
+                            'assemblies_count' => $user->assemblables_count,
+                            'assemblies' => $user->assemblables->sortBy((array) ['type.name'])->map(
+                                function (Assembly $assemblable) {
                                     return collect([
-                                        'id' => $userAssembly->uuid,
-                                        'name' => $userAssembly->name,
-                                        'type_id' => $userAssembly->type->uuid,
-                                        'type' => $userAssembly->type->name,
-                                        'likes_count' => $userAssembly->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $userAssembly->likes->where((string) 'is_dislike', (int) 1)->count(),
+                                        'id' => $assemblable->uuid,
+                                        'name' => $assemblable->name,
+                                        'type_id' => $assemblable->type->uuid,
+                                        'type' => $assemblable->type->name,
+                                        'likes_count' => $assemblable->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $assemblable->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),
@@ -144,8 +144,8 @@ final class UserCollection extends ResourceCollection
                                     ]);
                                 }
                             ),
-                            'published_posts_count' => $user->posts->where((string) 'published', (int) 1)->count(),
-                            'published_posts' => $user->posts->where((string) 'published', (int) 1)->map(
+                            'published_posts_count' => $user->posts_count,
+                            'published_posts' => $user->posts->map(
                                 function (Post $post) use ($user) {
                                     return collect([
                                         'id' => $post->uuid,

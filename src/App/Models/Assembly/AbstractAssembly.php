@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models\Assembly;
 
-use App\Models\Assembly\AssemblyType;
-use App\Models\Shared\Concerns\HasFactory;
-use App\Models\Shared\Concerns\HasUuid;
 use App\Models\User\User;
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyType;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Assembly\AssemblyWithProfile;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 abstract class AbstractAssembly extends Model
 {
@@ -60,6 +63,47 @@ abstract class AbstractAssembly extends Model
             foreignKey: 'assembly_type_uuid',
             ownerKey: 'uuid',
             relation: null
+        );
+    }
+
+    public function assemblables(Model $model): MorphToMany
+    {
+        return $this->morphedByMany(
+            related: $model,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assembly_uuid',
+            relatedPivotKey: 'assemblable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        );
+    }
+
+    public function assemblies(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: Assembly::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assemblable_uuid',
+            relatedPivotKey: 'assembly_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        );
+    }
+
+    public function assembliesWithProfile(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: AssemblyWithProfile::class,
+            name: 'assemblable',
+            table: null,
+            foreignPivotKey: 'assemblable_uuid',
+            relatedPivotKey: 'assembly_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
         );
     }
 }

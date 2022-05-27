@@ -38,7 +38,6 @@ final class PostSeeder extends Seeder
     public function setModel(Model $model): self
     {
         $this->model = $model;
-
         return $this;
     }
 
@@ -51,7 +50,6 @@ final class PostSeeder extends Seeder
     public function setUsers(Collection $users): self
     {
         $this->users = $users;
-
         return $this;
     }
 

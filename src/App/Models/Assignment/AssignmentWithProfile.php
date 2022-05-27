@@ -6,8 +6,8 @@ namespace App\Models\Assignment;
 
 use App\Models\Assignment\AbstractAssignment;
 use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\HasProfile;
-use App\Models\Shared\Concerns\HasSlug;
+use App\Models\Shared\Concerns\Traits\HasProfile;
+use App\Models\Shared\Concerns\Traits\HasSlug;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
