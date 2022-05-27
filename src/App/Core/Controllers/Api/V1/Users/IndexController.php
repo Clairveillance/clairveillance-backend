@@ -25,8 +25,11 @@ final class IndexController extends Controller
                         $posts->where((string) 'published', (int) 1);
                     },
                     'profile',
-                    'assemblables',
-                    'assemblables_with_profile',
+                    'assemblables' => function ($assemblables) {
+                        $assemblables->withCount(['likes']);
+                    },
+                    'assemblables_with_profile' => function ($assemblables) {
+                    },
                 ]
             )
                 ->withCount(
@@ -35,8 +38,10 @@ final class IndexController extends Controller
                             $posts->where((string) 'published', (int) 1);
                         },
                         'profile',
-                        'assemblables',
-                        'assemblables_with_profile',
+                        'assemblables' => function ($assemblables) {
+                        },
+                        'assemblables_with_profile' => function ($assemblables) {
+                        },
                     ]
                 )
                 // ->withTrashed()

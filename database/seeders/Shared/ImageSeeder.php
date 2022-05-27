@@ -68,7 +68,7 @@ final class ImageSeeder extends Seeder
         $model = $this->model;
         $users = $this->users;
         try {
-            Image::factory(rand(1, 25))->make()
+            Image::factory(rand(1, 5))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -82,7 +82,7 @@ final class ImageSeeder extends Seeder
                         $image->user()->associate($users->random())
                             ->type()->associate($image_types->random())
                             ->save();
-                        for ($i = 0; $i < rand(1, 25); $i++) {
+                        for ($i = 0; $i < rand(1, 5); $i++) {
                             try {
                                 $models = $model::where('uuid', '!=', $model->uuid)->get();
                                 if ($models->isNotEmpty()) {

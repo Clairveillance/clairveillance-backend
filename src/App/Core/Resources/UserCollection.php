@@ -62,16 +62,16 @@ final class UserCollection extends ResourceCollection
                         'relationships' => [
                             'assemblies_with_profile_count' => $user->assemblables_with_profile_count,
                             'assemblies_with_profile' => $user->assemblables_with_profile->sortBy((array) ['type.name'])->map(
-                                function (AssemblyWithProfile $assemblableWithProfile) {
+                                function (AssemblyWithProfile $assemblable) {
                                     return collect([
-                                        'id' => $assemblableWithProfile->uuid,
-                                        'name' => $assemblableWithProfile->name,
-                                        'slug' => $assemblableWithProfile->slug,
-                                        'type_id' => $assemblableWithProfile->type->uuid,
-                                        'type' => $assemblableWithProfile->type->name,
-                                        'profile' => $assemblableWithProfile->profile->uuid,
-                                        'likes_count' => $assemblableWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $assemblableWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
+                                        'id' => $assemblable->uuid,
+                                        'name' => $assemblable->name,
+                                        'slug' => $assemblable->slug,
+                                        'type_id' => $assemblable->type->uuid,
+                                        'type' => $assemblable->type->name,
+                                        'profile' => $assemblable->profile->uuid,
+                                        'likes_count' => $assemblable->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
+                                        'dislikes_count' => $assemblable->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
                                     ]);
                                 }
                             ),

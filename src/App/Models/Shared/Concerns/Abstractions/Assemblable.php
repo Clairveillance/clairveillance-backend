@@ -10,7 +10,7 @@ use App\Models\Assembly\AssemblyWithProfile;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use App\Models\Shared\Concerns\Interfaces\AssemblableInterface;
 
-abstract class AbstractAssemblableModel extends Model implements AssemblableInterface
+abstract class Assemblable extends Model implements AssemblableInterface
 {
     public function getMorphClass(): string
     {
@@ -28,7 +28,7 @@ abstract class AbstractAssemblableModel extends Model implements AssemblableInte
             parentKey: 'uuid',
             relatedKey: 'uuid',
             inverse: false
-        );
+        )->withPivotValue('has_profile', 0);
     }
 
     public function assemblables_with_profile(): MorphToMany
@@ -42,6 +42,6 @@ abstract class AbstractAssemblableModel extends Model implements AssemblableInte
             parentKey: 'uuid',
             relatedKey: 'uuid',
             inverse: false
-        );
+        )->withPivotValue('has_profile', 1);
     }
 }
