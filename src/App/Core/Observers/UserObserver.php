@@ -11,15 +11,10 @@ final class UserObserver
 {
     public function created(User $user): void
     {
-        $profileType = ProfileType::where('name', $user->getMorphClass())->first();
-        if (!$profileType) {
-            $profileType = new ProfileType();
-            $profileType->name = $user->getMorphClass();
-            $profileType->save();
-        }
+        $type = ProfileType::firstOrCreate(['name' => $user->getMorphClass()]);
         $user->profile()->make([])
-            ->user()->associate($user->uuid)
-            ->type()->associate($profileType)
+            ->user()->associate($user)
+            ->type()->associate($type)
             ->save();
     }
 }
