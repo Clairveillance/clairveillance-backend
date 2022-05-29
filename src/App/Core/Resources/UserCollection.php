@@ -61,7 +61,13 @@ final class UserCollection extends ResourceCollection
                         'relationships' => [
                             'assemblies_has_profile_count' => $user->assemblables_has_profile_count,
                             'assemblies_has_profile' => $user->assemblables_has_profile
-                                ->sortBy((array) ['type.name'])
+                                // FIXME: Surprisingly, the sortBy() method works fine on child relationships
+                                // but it fails when we try to use sortByDesc() instead.
+                                ->sortBy(
+                                    callback: (array) ['type.name'],
+                                    options: (int) SORT_REGULAR,
+                                    descending: (bool) true
+                                )
                                 ->map(
                                     function (AssemblyHasProfile $assemblable) {
                                         return collect([
@@ -71,18 +77,21 @@ final class UserCollection extends ResourceCollection
                                             'type_id' => $assemblable->type->uuid,
                                             'type' => $assemblable->type->name,
                                             'profile' => $assemblable->profile->uuid,
-                                            'likes_count' => $assemblable->profile->likes
-                                                ->where((string) 'is_dislike', (int) 0)
-                                                ->count(),
-                                            'dislikes_count' => $assemblable->profile->likes
-                                                ->where((string) 'is_dislike', (int) 1)
-                                                ->count(),
+                                            // 'likes_total' => $assemblable->profile->likes_total,
+                                            'likes_count' => $assemblable->profile->likes_count,
+                                            'dislikes_count' => $assemblable->profile->dislikes_count,
                                         ]);
                                     }
                                 ),
                             'assemblies_count' => $user->assemblables_count,
                             'assemblies' => $user->assemblables
-                                ->sortBy((array) ['type.name'])
+                                // FIXME: Surprisingly, the sortBy() method works fine on child relationships
+                                // but it fails when we try to use sortByDesc() instead.
+                                ->sortBy(
+                                    callback: (array) ['type.name'],
+                                    options: (int) SORT_REGULAR,
+                                    descending: (bool) true
+                                )
                                 ->map(
                                     function (Assembly $assemblable) {
                                         return collect([
@@ -90,30 +99,29 @@ final class UserCollection extends ResourceCollection
                                             'name' => $assemblable->name,
                                             'type_id' => $assemblable->type->uuid,
                                             'type' => $assemblable->type->name,
-                                            'likes_count' => $assemblable->likes
-                                                ->where((string) 'is_dislike', (int) 0)
-                                                ->count(),
-                                            'dislikes_count' => $assemblable->likes
-                                                ->where((string) 'is_dislike', (int) 1)
-                                                ->count(),
+                                            // 'likes_total' => $assemblable->likes_total,
+                                            'likes_count' => $assemblable->likes_count,
+                                            'dislikes_count' => $assemblable->dislikes_count,
                                         ]);
                                     }
                                 ),
                             'assignments_with_profile_count' => $user->userAssignmentsWithProfile->count(),
-                            'assignments_with_profile' => $user->userAssignmentsWithProfile->sortBy((array) ['type.name'])->map(
-                                function (AssignmentWithProfile $userAssignmentWithProfile) {
-                                    return collect([
-                                        'id' => $userAssignmentWithProfile->uuid,
-                                        'name' => $userAssignmentWithProfile->name,
-                                        'slug' => $userAssignmentWithProfile->slug,
-                                        'type_id' => $userAssignmentWithProfile->type->uuid,
-                                        'type' => $userAssignmentWithProfile->type->name,
-                                        'profile' => $userAssignmentWithProfile->profile->uuid,
-                                        'likes_count' => $userAssignmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $userAssignmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
-                                    ]);
-                                }
-                            ),
+                            'assignments_with_profile' => $user->userAssignmentsWithProfile
+                                ->sortBy((array) ['type.name'])
+                                ->map(
+                                    function (AssignmentWithProfile $userAssignmentWithProfile) {
+                                        return collect([
+                                            'id' => $userAssignmentWithProfile->uuid,
+                                            'name' => $userAssignmentWithProfile->name,
+                                            'slug' => $userAssignmentWithProfile->slug,
+                                            'type_id' => $userAssignmentWithProfile->type->uuid,
+                                            'type' => $userAssignmentWithProfile->type->name,
+                                            'profile' => $userAssignmentWithProfile->profile->uuid,
+                                            'likes_count' => $userAssignmentWithProfile->profile->likes_count,
+                                            'dislikes_count' => $userAssignmentWithProfile->profile->dislikes_count,
+                                        ]);
+                                    }
+                                ),
                             'assignments_count' => $user->userAssignments->count(),
                             'assignments' => $user->userAssignments->sortBy((array) ['type.name'])->map(
                                 function (Assignment $userAssignment) {
@@ -171,16 +179,16 @@ final class UserCollection extends ResourceCollection
                                         'likes_count' => $post->likes->where((string) 'is_dislike', (int) 0)->count(),
                                         'dislikes_count' => $post->likes->where((string) 'is_dislike', (int) 1)->count(),
                                         'links' => [
-                                            'self' => route((string) 'api.' . env('API_VERSION', 'v1') . '.posts.show', (string) $post->slug),
-                                            'parent' => route((string) 'api.' . env('API_VERSION', 'v1') . '.users.index.posts', (string) $user->uuid),
+                                            'self' => route((string) 'api.' . config('app.api_version') . '.posts.show', (string) $post->slug),
+                                            'parent' => route((string) 'api.' . config('app.api_version') . '.users.index.posts', (string) $user->uuid),
                                         ],
                                     ]);
                                 }
                             ),
                         ],
                         'links' => [
-                            'self' => route((string) 'api.' . env('API_VERSION', 'v1') . '.users.show', (string) $user->uuid),
-                            'parent' => route((string) 'api.' . env('API_VERSION', 'v1') . '.users.index'),
+                            'self' => route((string) 'api.' . config('app.api_version') . '.users.show', (string) $user->uuid),
+                            'parent' => route((string) 'api.' . config('app.api_version') . '.users.index'),
                         ],
                     ]);
                 }

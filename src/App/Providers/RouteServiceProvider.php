@@ -12,14 +12,15 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const API_PATH = 'src/Infrastructure/routes/api/';
-    public const WEB_PATH = 'src/Infrastructure/routes/web/';
+    private const API_PATH = 'src/Infrastructure/routes/api/';
+    private const WEB_PATH = 'src/Infrastructure/routes/web/';
 
     public function boot(): void
     {
         $this->configureRateLimiting();
-
         $this->routes(function () {
+
+            //  NOTE: Route::middleware('web') must be declared last or it will overwrite all other routes.
 
             /*
              * Api routes.
@@ -29,18 +30,17 @@ class RouteServiceProvider extends ServiceProvider
                 /*
                  * Version 1
                  */
-                Route::prefix(env('API_VERSION', env('API_VERSION', 'v1')))->as(env('API_VERSION', env('API_VERSION', 'v1')) . '.')->group(
-                    base_path(self::API_PATH . env('API_VERSION', 'v1') . '.php')
+                Route::prefix(config('app.api_version'))->as(config('app.api_version') . '.')->group(
+                    base_path(self::API_PATH . config('app.api_version') . '.php')
                 );
             });
 
             /*
              * Web routes.
-             * Route::middleware('web') must be declared last or it will overwrite all other routes.
              */
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path(self::WEB_PATH . env('WEB_VERSION', 'v1') . '.php'));
+                ->group(base_path(self::WEB_PATH . config('app.api_version') . '.php'));
         });
     }
 
