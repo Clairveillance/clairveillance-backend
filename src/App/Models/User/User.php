@@ -26,11 +26,9 @@ use App\Models\Connection\Connection;
 use App\Models\Appointment\Appointment;
 use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Shared\CustomQueryBuilder;
 use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasProfile;
 use App\Models\Establishment\Establishment;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use App\Models\Assignment\AssignmentWithProfile;
@@ -47,7 +45,6 @@ final class User extends Assemblable
     use HasUuid;
     use HasFactory;
     use Notifiable;
-    use HasProfile;
     use SoftDeletes;
     use Authenticatable;
     use Authorizable;
@@ -164,10 +161,10 @@ final class User extends Assemblable
         );
     }
 
-    public function assembliesWithProfile(): HasMany
+    public function assembliesHasProfile(): HasMany
     {
         return $this->hasMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             foreignKey: 'user_uuid',
             localKey: 'uuid'
         );
@@ -350,12 +347,4 @@ final class User extends Assemblable
             relatedKey: 'uuid'
         );
     }
-
-    //TODO
-    // public function newEloquentBuilder($query): CustomQueryBuilder
-    // {
-    //     return new CustomQueryBuilder(
-    //         query: $query
-    //     );
-    // }
 }

@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace App\Models\Establishment;
 
 use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Assignment\Assignment;
 use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\Traits\HasProfile;
 use App\Models\Shared\Concerns\Traits\HasSlug;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -18,7 +17,6 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 final class EstablishmentWithProfile extends AbstractEstablishment
 {
     use HasSlug;
-    use HasProfile;
 
     /** @var string */
     protected $morphClass = 'establishment_with_profile';
@@ -58,7 +56,7 @@ final class EstablishmentWithProfile extends AbstractEstablishment
     public function assemblyWithProfileEstablishablesWithProfile(): MorphToMany
     {
         return $this->morphToMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             name: 'establishable',
             table: null,
             foreignPivotKey: 'establishable_uuid',
@@ -124,10 +122,10 @@ final class EstablishmentWithProfile extends AbstractEstablishment
         );
     }
 
-    public function establishmentWithProfileAssembliesWithProfile(): MorphToMany
+    public function establishmentWithProfileAssembliesHasProfile(): MorphToMany
     {
         return $this->morphedByMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assembly_uuid',

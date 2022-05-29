@@ -6,7 +6,7 @@ namespace App\Models\Shared\Concerns\Abstractions;
 
 use App\Models\Assembly\Assembly;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use App\Models\Shared\Concerns\Interfaces\AssemblableInterface;
 
@@ -31,10 +31,10 @@ abstract class Assemblable extends Model implements AssemblableInterface
         )->withPivotValue('has_profile', 0);
     }
 
-    public function assemblables_with_profile(): MorphToMany
+    public function assemblables_has_profile(): MorphToMany
     {
         return $this->morphToMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assemblable_uuid',

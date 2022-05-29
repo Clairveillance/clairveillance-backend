@@ -12,7 +12,7 @@ use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
 use App\Models\Establishment\Establishment;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Establishment\EstablishmentType;
 use App\Models\Assignment\AssignmentWithProfile;
 
@@ -87,7 +87,7 @@ final class EstablishmentSeeder extends Seeder
     {
         for ($i = 0; $i < rand(1, 25); $i++) {
             try {
-                $assemblies = AssemblyWithProfile::all();
+                $assemblies = AssemblyHasProfile::all();
                 $establishable = $assemblies->random();
                 if (
                     $establishable->assemblyWithProfileEstablishments->isEmpty()

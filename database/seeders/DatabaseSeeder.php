@@ -10,11 +10,11 @@ use Database\Seeders\AssemblySeeder;
 use Database\Seeders\AssignmentSeeder;
 use Database\Seeders\DefaultUserSeeder;
 use Database\Seeders\EstablishmentSeeder;
-use Database\Seeders\AssemblyWithProfileSeeder;
+use Database\Seeders\AssemblyHasProfileSeeder;
 use Database\Seeders\AssemblyRelationshipsSeeder;
 use Database\Seeders\AssignmentWithProfileSeeder;
 use Database\Seeders\EstablishmentWithProfileSeeder;
-use Database\Seeders\AssemblyWithProfileRelationshipsSeeder;
+use Database\Seeders\AssemblyHasProfileRelationshipsSeeder;
 
 final class DatabaseSeeder extends Seeder
 {
@@ -33,7 +33,7 @@ final class DatabaseSeeder extends Seeder
                     DefaultUserSeeder::class,
                     UserSeeder::class,
                     AssemblySeeder::class,
-                    AssemblyWithProfileSeeder::class,
+                    AssemblyHasProfileSeeder::class,
                     AssignmentSeeder::class,
                     AssignmentWithProfileSeeder::class,
                     EstablishmentSeeder::class,
@@ -47,7 +47,7 @@ final class DatabaseSeeder extends Seeder
                 class: [
                     // NOTE: Some relationships must be attached last because they depend on other Models that need to be created first.
                     AssemblyRelationshipsSeeder::class,
-                    AssemblyWithProfileRelationshipsSeeder::class,
+                    AssemblyHasProfileRelationshipsSeeder::class,
                 ],
                 silent: false,
                 parameters: [

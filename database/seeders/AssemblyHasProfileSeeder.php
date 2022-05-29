@@ -11,9 +11,9 @@ use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
 use Database\Seeders\Shared\ImageSeeder;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 
-final class AssemblyWithProfileSeeder extends Seeder
+final class AssemblyHasProfileSeeder extends Seeder
 {
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -27,7 +27,7 @@ final class AssemblyWithProfileSeeder extends Seeder
     public function run(): void
     {
         try {
-            AssemblyWithProfile::factory(rand(25, 50))->make()
+            AssemblyHasProfile::factory(rand(25, 50))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -36,7 +36,7 @@ final class AssemblyWithProfileSeeder extends Seeder
                     descending: false
                 )
                 ->each(
-                    callback: function (AssemblyWithProfile $assembly) {
+                    callback: function (AssemblyHasProfile $assembly) {
                         $assembly_types = AssemblyType::where('created_at', '<=', $assembly->created_at)->get();
                         $users = User::where('created_at', '<=', $assembly->created_at)->get();
                         $assembly->user()->associate($users->random())

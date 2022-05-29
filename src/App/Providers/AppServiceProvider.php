@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         //     'post' => 'App\Models\Post\Post',
         //     'profile' => 'App\Models\Profile\Profile',
         //     'assembly' => 'App\Models\Assembly\Assembly',
-        //     'assembly_with_profile' => 'App\Models\Assembly\AssemblyWithProfile',
+        //     'assembly_has_profile' => 'App\Models\Assembly\AssemblyHasProfile',
         //     'assignment' => 'App\Models\Assignment\Assignment',
         //     'assignment_with_profile' => 'App\Models\Assignment\AssignmentWithProfile',
         //     'establishment' => 'App\Models\Establishment\Establishment',

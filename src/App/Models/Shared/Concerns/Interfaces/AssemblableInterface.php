@@ -10,5 +10,5 @@ interface AssemblableInterface
 {
     public function getMorphClass(): string;
     public function assemblables(): MorphToMany;
-    public function assemblables_with_profile(): MorphToMany;
+    public function assemblables_has_profile(): MorphToMany;
 }
