@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
@@ -14,8 +15,7 @@ return new class extends Migration {
             $table->uuid('uuid')->unique();
             $table->timestampsTz();
             $table->softDeletes();
-            // FIXME
-            // $table->foreignUuid('user_uuid')->constrained('users', 'uuid')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignUuid('user_uuid')->constrained('users', 'uuid')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignUuid('profile_type_uuid')->constrained('profile_types', 'uuid')->cascadeOnUpdate();
             $table->foreignUuid('image_uuid')->nullable()->constrained('images', 'uuid')->cascadeOnUpdate()->nullOnDelete();
             $table->uuid('profilable_uuid')->unique();

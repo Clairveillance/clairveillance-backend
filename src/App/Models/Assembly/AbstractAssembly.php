@@ -10,7 +10,7 @@ use App\Models\Assembly\AssemblyType;
 use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -93,10 +93,10 @@ abstract class AbstractAssembly extends Model
         );
     }
 
-    public function assembliesWithProfile(): MorphToMany
+    public function assembliesHasProfile(): MorphToMany
     {
         return $this->morphToMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assemblable_uuid',

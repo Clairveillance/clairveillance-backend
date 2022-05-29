@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Assembly;
 
-use App\Models\AssemblyWithProfile\AssemblyWithProfile;
+use App\Models\AssemblyHasProfile\AssemblyHasProfile;
 use App\Models\Shared\Concerns\Traits\HasFactory;
 use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
@@ -42,10 +42,10 @@ final class AssemblyType extends Model
         );
     }
 
-    public function assembliesWithProfile(): HasMany
+    public function assembliesHasProfile(): HasMany
     {
         return $this->hasMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             foreignKey: 'assembly_type_uuid',
             localKey: 'uuid'
         );

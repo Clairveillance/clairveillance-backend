@@ -6,16 +6,15 @@ namespace App\Models\Assembly;
 
 use App\Models\Profile\Profile;
 use App\Models\Shared\Concerns\Traits\HasSlug;
-use App\Models\Shared\Concerns\Traits\HasProfile;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
-final class AssemblyWithProfile extends AbstractAssembly
+final class AssemblyHasProfile extends AbstractAssembly
 {
     use HasSlug;
-    use HasProfile;
+    // use HasProfile;
 
     /** @var string */
-    protected $morphClass = 'assembly_with_profile';
+    protected $morphClass = 'assembly_has_profile';
 
     protected function slugSources(): array
     {

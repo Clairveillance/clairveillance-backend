@@ -10,7 +10,7 @@ use App\Models\Assembly\Assembly;
 use App\Models\Assignment\Assignment;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Establishment\Establishment;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\Establishment\EstablishmentWithProfile;
 
@@ -24,7 +24,7 @@ final class AssemblyRelationshipsSeeder extends Seeder
                 $randomAssemblies = rand(1, 7);
                 match ((int) $randomAssemblies) {
                     1 => $this->assemblables($assembly, new Assembly),
-                    2 => $this->assemblables($assembly, new AssemblyWithProfile),
+                    2 => $this->assemblables($assembly, new AssemblyHasProfile),
                     3 => $this->assemblables($assembly, new Assignment),
                     4 => $this->assemblables($assembly, new AssignmentWithProfile),
                     5 => $this->assemblables($assembly, new Establishment),

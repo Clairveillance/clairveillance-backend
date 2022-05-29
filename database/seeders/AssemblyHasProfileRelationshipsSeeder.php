@@ -10,21 +10,21 @@ use App\Models\Assembly\Assembly;
 use App\Models\Assignment\Assignment;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Establishment\Establishment;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\Establishment\EstablishmentWithProfile;
 
-final class AssemblyWithProfileRelationshipsSeeder extends Seeder
+final class AssemblyHasProfileRelationshipsSeeder extends Seeder
 {
     public function run(): void
     {
         try {
-            $assemblies = AssemblyWithProfile::has('profile')->get(); // FIXME
+            $assemblies = AssemblyHasProfile::has('profile')->get(); // FIXME
             foreach ($assemblies as $assembly) {
                 $randomAssemblies = rand(1, 7);
                 match ((int) $randomAssemblies) {
                     1 => $this->assemblables($assembly, new Assembly),
-                    2 => $this->assemblables($assembly, new AssemblyWithProfile),
+                    2 => $this->assemblables($assembly, new AssemblyHasProfile),
                     3 => $this->assemblables($assembly, new Assignment),
                     4 => $this->assemblables($assembly, new AssignmentWithProfile),
                     5 => $this->assemblables($assembly, new Establishment),
@@ -37,7 +37,7 @@ final class AssemblyWithProfileRelationshipsSeeder extends Seeder
         dump(__METHOD__ . ' [success]');
     }
 
-    private function assemblables(AssemblyWithProfile $assembly, Model $model): void
+    private function assemblables(AssemblyHasProfile $assembly, Model $model): void
     {
         $pivots = ['has_profile' => 1];
         for ($i = 0; $i < rand(1, 25); $i++) {

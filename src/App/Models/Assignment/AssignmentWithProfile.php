@@ -6,7 +6,6 @@ namespace App\Models\Assignment;
 
 use App\Models\Assignment\AbstractAssignment;
 use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\Traits\HasProfile;
 use App\Models\Shared\Concerns\Traits\HasSlug;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 final class AssignmentWithProfile extends AbstractAssignment
 {
     use HasSlug;
-    use HasProfile;
 
     /** @var string */
     protected $morphClass = 'assignment_with_profile';
@@ -91,10 +89,10 @@ final class AssignmentWithProfile extends AbstractAssignment
         );
     }
 
-    public function assignmentWithProfileAssembliesWithProfile(): MorphToMany
+    public function assignmentWithProfileAssembliesHasProfile(): MorphToMany
     {
         return $this->morphedByMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assembly_uuid',

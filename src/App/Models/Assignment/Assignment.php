@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Assignment;
 
 use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Assignment\AbstractAssignment;
 use App\Models\Comment\Comment;
 use App\Models\Like\Like;
@@ -105,10 +105,10 @@ final class Assignment extends AbstractAssignment
         );
     }
 
-    public function assignmentAssembliesWithProfile(): MorphToMany
+    public function assignmentAssembliesHasProfile(): MorphToMany
     {
         return $this->morphedByMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assembly_uuid',

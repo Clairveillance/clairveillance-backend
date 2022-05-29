@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Establishment;
 
 use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyWithProfile;
+use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Assignment\Assignment;
 use App\Models\Assignment\AssignmentWithProfile;
 use App\Models\Comment\Comment;
@@ -71,7 +71,7 @@ final class Establishment extends AbstractEstablishment
     public function assemblyWithProfileEstablishables(): MorphToMany
     {
         return $this->morphToMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             name: 'establishable',
             table: null,
             foreignPivotKey: 'establishable_uuid',
@@ -137,10 +137,10 @@ final class Establishment extends AbstractEstablishment
         );
     }
 
-    public function establishmentAssembliesWithProfile(): MorphToMany
+    public function establishmentAssembliesHasProfile(): MorphToMany
     {
         return $this->morphedByMany(
-            related: AssemblyWithProfile::class,
+            related: AssemblyHasProfile::class,
             name: 'assemblable',
             table: null,
             foreignPivotKey: 'assembly_uuid',

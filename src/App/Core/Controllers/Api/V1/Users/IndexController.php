@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace App\Core\Controllers\Api\V1\Users;
 
+use App\Models\User\User;
+use Illuminate\Http\Request;
 use App\Core\Controllers\Controller;
 use App\Core\Resources\UserCollection;
-use App\Models\User\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as AuthUser;
-use Illuminate\Http\Request;
+use App\Models\Post\QueryBuilder\PostQueryBuilder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class IndexController extends Controller
 {
@@ -21,27 +26,23 @@ final class IndexController extends Controller
         $users = new UserCollection(
             resource: User::with(
                 relations: [
-                    'posts' => function ($posts) {
-                        $posts->where((string) 'published', (int) 1);
+                    'posts' => function (HasMany $posts) {
+                        $posts->published_posts();
                     },
                     'profile',
-                    'assemblables' => function ($assemblables) {
+                    'assemblables' => function (MorphToMany $assemblables) {
                         $assemblables->withCount(['likes']);
                     },
-                    'assemblables_with_profile' => function ($assemblables) {
-                    },
+                    'assemblables_has_profile',
                 ]
             )
                 ->withCount(
                     relations: [
-                        'posts' => function ($posts) {
-                            $posts->where((string) 'published', (int) 1);
+                        'posts' => function (PostQueryBuilder $posts) {
+                            $posts->published_posts();
                         },
-                        'profile',
-                        'assemblables' => function ($assemblables) {
-                        },
-                        'assemblables_with_profile' => function ($assemblables) {
-                        },
+                        'assemblables',
+                        'assemblables_has_profile',
                     ]
                 )
                 // ->withTrashed()
