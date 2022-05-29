@@ -12,15 +12,10 @@ final class ModelHasProfileObserver
 {
     public function created(Model $model): void
     {
-        $profileType = ProfileType::where('name', $model->getMorphClass())->first();
-        if (!$profileType) {
-            $profileType = new ProfileType();
-            $profileType->name = $model->getMorphClass();
-            $profileType->save();
-        }
+        $type = ProfileType::firstOrCreate(['name' => $model->getMorphClass()]);
         $model->profile()->make([])
             ->user()->associate(User::where('uuid', $model->user_uuid)->first())
-            ->type()->associate($profileType)
+            ->type()->associate($type)
             ->save();
     }
 }

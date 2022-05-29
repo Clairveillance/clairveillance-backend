@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 // Ip address.
 Route::get(uri: '/ip', action: function () {
-    return 'remote address = '.$_SERVER['REMOTE_ADDR'].PHP_EOL.'browser = '.$_SERVER['HTTP_USER_AGENT'];
+    return 'remote address = ' . $_SERVER['REMOTE_ADDR'] . PHP_EOL . 'browser = ' . $_SERVER['HTTP_USER_AGENT'];
 });
 
 // PHP Info.
@@ -22,26 +22,30 @@ Route::get(uri: '/info', action: function () {
 if (config(key: 'app.env') === 'local') {
     Route::get(uri: '/redis', action: function () {
         $name = 'localhost';
-        $redis = Redis::connect(name: $name);
-
-        return Redis::test(connection: $redis, name: $name);
+        return Redis::test(
+            connection: Redis::connect(name: $name),
+            name: $name
+        );
     });
 }
 
+// FIXME
 // Redislabs.
 Route::get(uri: '/redislabs', action: function () {
     $name = 'redislabs';
-    $redis = Redis::connect(name: $name);
-
-    return Redis::test(connection: $redis, name: $name);
+    return Redis::test(
+        connection: Redis::connect(name: $name),
+        name: $name
+    );
 });
 
 // Upstash.
 Route::get(uri: '/upstash', action: function () {
     $name = 'upstash';
-    $redis = Redis::connect(name: $name);
-
-    return Redis::test(connection: $redis, name: $name);
+    return Redis::test(
+        connection: Redis::connect(name: $name),
+        name: $name
+    );
 });
 
 // Route::get('/{any?}') must be declared last or it will overwrite all other route methods.

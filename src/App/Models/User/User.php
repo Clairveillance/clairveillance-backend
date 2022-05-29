@@ -262,6 +262,8 @@ final class User extends Assemblable
 
     public function posts(): HasMany
     {
+        // NOTE:  We add orderByDesc() here cause we sort posts by 'published_at' field by default.
+        // Maybe it will be better to move this logic to another place if we need to implement a conditional ordering. 
         return $this->hasMany(
             related: Post::class,
             foreignKey: 'user_uuid',

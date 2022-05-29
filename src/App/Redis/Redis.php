@@ -20,7 +20,7 @@ final class Redis extends BaseRedis implements RedisInterface
      * * New Redis connection.
      *
      * @param string $name
-     * @return Connection
+     * @return Illuminate\Redis\Connections\
      */
     public static function connect(string $name = ''): Connection
     {
@@ -33,19 +33,19 @@ final class Redis extends BaseRedis implements RedisInterface
     /**
      * * Test Redis connection.
      *
-     * @param Illuminate\Redis\Connections\Connection $redis
+     * @param Illuminate\Redis\Connections\Connection $connection
      * @param string $name
      * @return array
      */
     public static function test(Connection $connection, string $name = 'redis'): array
     {
-        $connection->set('test', 'Hello '.ucfirst($name).' !');
+        $connection->set('test', 'Hello ' . ucfirst($name) . ' !');
         $connection->pexpire('test', (int) 5000);
         $visits = (int) $connection->incr('visits');
         $test = (string) $connection->get('test');
-        $pttl_visits = $connection->pttl('visits') !== -1 ? $connection->pttl('visits').'ms' : 'persistant';
-        $pttl_test = $connection->pttl('test') !== -1 ? $connection->pttl('test').'ms' : 'persistant';
+        $pttl_visits = $connection->pttl('visits') !== -1 ? $connection->pttl('visits') . 'ms' : 'persistant';
+        $pttl_test = $connection->pttl('test') !== -1 ? $connection->pttl('test') . 'ms' : 'persistant';
 
-        return [$visits.' ('.$pttl_visits.')', $test.' ('.$pttl_test.')'];
+        return [$visits . ' (' . $pttl_visits . ')', $test . ' (' . $pttl_test . ')'];
     }
 }
