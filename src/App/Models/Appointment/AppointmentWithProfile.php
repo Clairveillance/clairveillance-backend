@@ -6,7 +6,6 @@ namespace App\Models\Appointment;
 
 use App\Models\Appointment\AppointmentType;
 use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasProfile;
 use App\Models\Shared\Concerns\Traits\HasSlug;
 use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +17,6 @@ final class AppointmentWithProfile extends Model
 {
     use HasUuid;
     use HasSlug;
-    use HasProfile;
     use HasFactory;
     use SoftDeletes;
 

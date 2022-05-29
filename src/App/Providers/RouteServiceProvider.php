@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const HOME = '/home';
+    public const API_PATH = 'src/Infrastructure/routes/api/';
+    public const WEB_PATH = 'src/Infrastructure/routes/web/';
 
-    public function boot()
+    public function boot(): void
     {
         $this->configureRateLimiting();
 
@@ -28,8 +29,8 @@ class RouteServiceProvider extends ServiceProvider
                 /*
                  * Version 1
                  */
-                Route::prefix(env('API_VERSION', env('API_VERSION', 'v1')))->as(env('API_VERSION', env('API_VERSION', 'v1')).'.')->group(
-                    base_path('src/Infrastructure/routes/api/'.env('API_VERSION', 'v1').'.php')
+                Route::prefix(env('API_VERSION', env('API_VERSION', 'v1')))->as(env('API_VERSION', env('API_VERSION', 'v1')) . '.')->group(
+                    base_path(self::API_PATH . env('API_VERSION', 'v1') . '.php')
                 );
             });
 
@@ -39,11 +40,11 @@ class RouteServiceProvider extends ServiceProvider
              */
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('src/Infrastructure/routes/web.php'));
+                ->group(base_path(self::WEB_PATH . env('WEB_VERSION', 'v1') . '.php'));
         });
     }
 
-    protected function configureRateLimiting()
+    protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
