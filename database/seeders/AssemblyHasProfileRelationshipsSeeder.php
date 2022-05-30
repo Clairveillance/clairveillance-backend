@@ -40,7 +40,7 @@ final class AssemblyHasProfileRelationshipsSeeder extends Seeder
     private function assemblables(AssemblyHasProfile $assembly, Model $model): void
     {
         $pivots = ['has_profile' => 1];
-        for ($i = 0; $i < rand(1, 125); $i++) {
+        for ($i = 0; $i < rand(1, 25); $i++) {
             try {
                 $models = $model::where('uuid', '!=', $assembly->uuid)->get();
                 if ($models->isNotEmpty()) {

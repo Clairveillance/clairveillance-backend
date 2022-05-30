@@ -16,6 +16,7 @@ use App\Core\Controllers\Api\V1\Users\UpdateController as UserUpdate;
 use App\Core\Controllers\Api\V1\Posts\IndexByUserController as UserPostsIndex;
 use App\Models\Assembly\Assembly;
 use App\Models\User\User;
+use Illuminate\Http\JsonResponse;
 
 /*
  * Users Endpoints.
@@ -43,11 +44,20 @@ Route::prefix('posts')->as('posts.')->group(function () {
 });
 
 /*
- * Posts Endpoints.
+ * Tests Endpoints.
  */
 
 Route::prefix('tests')->as('tests.')->group(function () {
     Route::get(uri: '/', action: function () {
-        dd(Assembly::has('likes')->with('likes')->first());
+        return
+            response()->json(
+                data: [
+                    'succes' => true,
+                    'status' => 200,
+                    'message' => 'OK',
+                    'data' => Assembly::has('likes')->with(['assemblies', 'assembliesHasProfile', 'likes'])->first(),
+                ],
+                status: 200
+            );
     })->name(name: 'index');
 });

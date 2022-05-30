@@ -12,4 +12,9 @@ final class PostQueryBuilder extends Builder
     {
         return $this->where('published', $value);
     }
+
+    public function unpublished_posts(bool $value = false): self
+    {
+        return $this->where('published', $value);
+    }
 }
