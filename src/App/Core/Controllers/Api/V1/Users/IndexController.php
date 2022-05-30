@@ -12,15 +12,14 @@ use App\Core\Repositories\Api\V1\Users\UserRepository;
 
 final class IndexController extends Controller
 {
-    // TODO: Add Authentication.
-    // TODO: Add FormRequest for validations.
-
     public function __construct(public UserRepository $userRepository)
     {
     }
 
     public function __invoke(Request $request): UserCollection
     {
+        // TODO: Add Authentication.
+        // TODO: Add FormRequest for validations.
         return $this->userRepository->getAllUsers(
             orderBy: 'username',
             orderDirection: 'asc',

@@ -14,7 +14,8 @@ final class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request): JsonResponse
     {
-        // TODO: Auth.
+        // TODO: Add Authentication.
+        // TODO: Add FormRequest for validations.
 
         // NOTE: We use job to be able processing the action in the background.
         // We return nothing but status 202 with its corresponding message.
@@ -23,7 +24,6 @@ final class StoreController extends Controller
                 attributes: $request->validated(),
             )
         );
-
         return response()->json(
             data: [
                 'success' => true,
@@ -40,7 +40,6 @@ final class StoreController extends Controller
                 attributes: $request->validated(),
             )
         );
-
         return response()->json(
             data: [
                 'success' => true,

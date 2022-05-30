@@ -11,19 +11,12 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 final class IndexByUserController extends Controller
 {
-    //TODO: Auth.
-
     public function __invoke(Request $request, string $uuid): LengthAwarePaginator
     {
-        // NOTE: Used to debug the time of execution of a script.
-        // $time_start = microtime(true);
+        // TODO: Add Authentication.
+        // TODO: Add FormRequest for validations.
         $posts = Post::where('user_uuid', $uuid)->orderByDesc('published_at')->paginate(25);
         // $posts::$wrap = 'data';
-        /*
-        $time_end = microtime(true);
-        $time = $time_end - $time_start;
-        dump(round((($time) * 1000), 2) . "ms");
-        */
         return $posts;
     }
 }

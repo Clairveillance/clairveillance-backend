@@ -13,11 +13,10 @@ use Illuminate\Http\JsonResponse;
 
 final class UpdateController extends Controller
 {
-    //TODO: Auth.
-
     public function __invoke(UpdateRequest $request, User $user): JsonResponse
     {
-        //TODO: Auth.
+        // TODO: Add Authentication.
+        // TODO: Add FormRequest for validations.
 
         // NOTE: We use job to be able processing the action in the background.
         // We return nothing but status 202 with its corresponding message.
@@ -27,7 +26,6 @@ final class UpdateController extends Controller
                 attributes: $request->validated(),
             ),
         );
-
         return response()->json(
             data: [
                 'success' => true,
@@ -45,7 +43,6 @@ final class UpdateController extends Controller
             ),
             user: $user
         );
-
         return response()->json(
             data: [
                 'success' => true,

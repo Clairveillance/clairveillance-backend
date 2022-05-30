@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 
 final class ShowController extends Controller
 {
-    //TODO: Auth.
-
     public function __invoke(Request $request, string $uuid): JsonResponse
     {
+        // TODO: Add Authentication.
+        // TODO: Add FormRequest for validations.
         $user = new UserResource(
             resource: User::with(
                 relations: ['profile', 'posts']
@@ -23,7 +23,6 @@ final class ShowController extends Controller
                 // ->withTrashed()
                 ->firstOrFail()
         );
-
         return response()->json(
             data: [
                 'succes' => true,
