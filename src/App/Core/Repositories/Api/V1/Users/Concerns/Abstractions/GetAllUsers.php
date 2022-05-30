@@ -68,7 +68,7 @@ abstract class GetAllUsers
                         },
                         'assemblables_has_profile.type',
                         'posts' => function (HasMany $posts) {
-                            $posts->published_posts();
+                            $posts->published();
                         },
                         'profile',
                     ]
@@ -78,7 +78,7 @@ abstract class GetAllUsers
                         'assemblables',
                         'assemblables_has_profile',
                         'posts' => function (PostQueryBuilder $posts) {
-                            $posts->published_posts();
+                            $posts->published();
                         },
                     ]
                 )

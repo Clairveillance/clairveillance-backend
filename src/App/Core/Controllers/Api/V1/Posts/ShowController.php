@@ -11,12 +11,11 @@ use App\Core\Controllers\Controller;
 
 final class ShowController extends Controller
 {
-    //TODO: Auth.
-
     public function __invoke(Request $request, string $slug): JsonResponse
     {
+        // TODO: Add Authentication.
+        // TODO: Add FormRequest for validations.
         $post = Post::where('slug', $slug)->firstOrFail();
-
         return response()->json(
             data: [
                 'succes' => true,
