@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Resources;
+namespace App\Core\Resources\Api\V1\Users;
 
 use App\Models\Post\Post;
 use Illuminate\Http\Resources\Json\JsonResource;

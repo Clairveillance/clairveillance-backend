@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Resources;
+namespace App\Core\Resources\Api\V1\Users;
 
-use App\Core\Resources\UserResource;
-use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Assignment\Assignment;
-use App\Models\Assignment\AssignmentWithProfile;
-use App\Models\Establishment\Establishment;
-use App\Models\Establishment\EstablishmentWithProfile;
+use JsonSerializable;
 use App\Models\Post\Post;
+use App\Models\Assembly\Assembly;
+use App\Models\Assignment\Assignment;
+use App\Models\Assembly\AssemblyHasProfile;
+use App\Models\Establishment\Establishment;
+use Illuminate\Contracts\Support\Arrayable;
+use App\Models\Assignment\AssignmentWithProfile;
+use App\Core\Resources\Api\V1\Users\UserResource;
+use App\Models\Establishment\EstablishmentWithProfile;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 final class UserCollection extends ResourceCollection
@@ -26,7 +28,7 @@ final class UserCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable;
      */
-    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+    public function toArray($request): array|Arrayable|JsonSerializable
     {
         return [
             'succes' => true,
@@ -64,9 +66,9 @@ final class UserCollection extends ResourceCollection
                                 // FIXME: Surprisingly, the sortBy() method works fine on child relationships
                                 // but it fails when we try to use sortByDesc() instead.
                                 ->sortBy(
-                                    callback: (array) ['type.name'],
+                                    callback: (array) ['type.name', 'name'],
                                     options: (int) SORT_REGULAR,
-                                    descending: (bool) true
+                                    descending: (bool) false
                                 )
                                 ->map(
                                     function (AssemblyHasProfile $assemblable) {
@@ -88,9 +90,9 @@ final class UserCollection extends ResourceCollection
                                 // FIXME: Surprisingly, the sortBy() method works fine on child relationships
                                 // but it fails when we try to use sortByDesc() instead.
                                 ->sortBy(
-                                    callback: (array) ['type.name'],
+                                    callback: (array) ['type.name', 'name'],
                                     options: (int) SORT_REGULAR,
-                                    descending: (bool) true
+                                    descending: (bool) false
                                 )
                                 ->map(
                                     function (Assembly $assemblable) {

@@ -8,7 +8,7 @@ use App\Models\Assembly\Assembly;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use App\Models\Shared\Concerns\Interfaces\AssemblableInterface;
+use App\Models\Shared\Concerns\Contracts\AssemblableInterface;
 
 abstract class Assemblable extends Model implements AssemblableInterface
 {
