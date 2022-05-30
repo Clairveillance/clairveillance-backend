@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Repositories\Api\V1\Users\Concerns;
+namespace App\Core\Repositories\Api\V1\Users\Concerns\Abstractions;
 
 use App\Models\User\User;
-use App\Core\Resources\UserCollection;
+use App\Core\Resources\Api\V1\Users\UserCollection;
 use App\Models\Post\QueryBuilder\PostQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -17,10 +17,15 @@ abstract class GetAllUsers
     /**
      * withRelationsPaginated
      *
-     * @return \App\Core\Resources\UserCollection
+     * @param string $orderBy
+     * @param int $perPage
+     * @return \App\Core\Resources\Api\V1\Users\UserCollection
      */
-    protected static function withRelationsPaginated(): UserCollection
-    {
+    protected static function withRelationsPaginated(
+        string $orderBy = 'username',
+        string $orderDirection = 'asc',
+        int $perPage = 25
+    ): UserCollection {
         $users = new UserCollection(
             resource: User::select(
                 'uuid',
@@ -79,9 +84,12 @@ abstract class GetAllUsers
                 )
                 // ->withTrashed()
                 // ->onlyTrashed()
-                ->orderBy('username')
+                ->orderBy(
+                    column: $orderBy,
+                    direction: $orderDirection
+                )
                 ->paginate(
-                    perPage: 15,
+                    perPage: $perPage,
                     columns: ['id'],
                     pageName: 'page',
                     page: null
