@@ -37,18 +37,30 @@ final class AssemblyHasProfileSeeder extends Seeder
                 )
                 ->each(
                     callback: function (AssemblyHasProfile $assembly) {
-                        $assembly_types = AssemblyType::where('created_at', '<=', $assembly->created_at)->get();
-                        $users = User::where('created_at', '<=', $assembly->created_at)->get();
-                        $assembly->user()->associate($users->random())
+                        $assembly_types = AssemblyType::where(
+                            column: 'created_at',
+                            operator: '<=',
+                            value: $assembly->created_at
+                        )->get();
+                        $users = User::where(
+                            column: 'created_at',
+                            operator: '<=',
+                            value: $assembly->created_at
+                        )->get();
+                        $assembly
+                            ->user()->associate($users->random())
                             ->type()->associate($assembly_types->random())
                             ->save();
-                        $this->imageSeeder->setUsers($users)
+                        $this->imageSeeder
+                            ->setUsers($users)
                             ->setModel($assembly->profile)
                             ->run();
-                        $this->likeSeeder->setUsers($users)
+                        $this->likeSeeder
+                            ->setUsers($users)
                             ->setModel($assembly->profile)
                             ->run();
-                        $this->postSeeder->setUsers($users)
+                        $this->postSeeder
+                            ->setUsers($users)
                             ->setModel($assembly->profile)
                             ->run();
                     }
