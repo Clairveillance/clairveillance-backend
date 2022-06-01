@@ -18,6 +18,7 @@ abstract class GetAllUsers
      * withRelationsPaginated
      *
      * @param string $orderBy
+     * @param string $orderDirection
      * @param int $perPage
      * @return \App\Core\Resources\Api\V1\Users\UserCollection
      */

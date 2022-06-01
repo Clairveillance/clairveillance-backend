@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\Appointment;
 
-use App\Models\AppointmentWithProfile\AppointmentWithProfile;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\Appointment\Appointment;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\Appointment\AppointmentHasProfile;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class AppointmentType extends Model
 {
@@ -42,10 +43,10 @@ final class AppointmentType extends Model
         );
     }
 
-    public function appointmentsWithProfile(): HasMany
+    public function appointmentsHasProfile(): HasMany
     {
         return $this->hasMany(
-            related: AppointmentWithProfile::class,
+            related: AppointmentHasProfile::class,
             foreignKey: 'appointment_type_uuid',
             localKey: 'uuid'
         );

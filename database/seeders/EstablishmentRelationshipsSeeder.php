@@ -8,10 +8,12 @@ use App\Models\User\User;
 use Illuminate\Database\Seeder;
 use App\Models\Assembly\Assembly;
 use App\Models\Assignment\Assignment;
+use App\Models\Appointment\Appointment;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Establishment\Establishment;
 use App\Models\Assembly\AssemblyHasProfile;
+use App\Models\Establishment\Establishment;
 use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Appointment\AppointmentHasProfile;
 use App\Models\Establishment\EstablishmentHasProfile;
 
 final class EstablishmentRelationshipsSeeder extends Seeder
@@ -21,8 +23,10 @@ final class EstablishmentRelationshipsSeeder extends Seeder
         try {
             $establishments = Establishment::has('likes')->get(); // FIXME
             foreach ($establishments as $establishment) {
-                $randomeEtablishments = rand(1, 7);
+                $randomeEtablishments = rand(1, 9);
                 match ((int) $randomeEtablishments) {
+                    1 => $this->establishables($establishment, new Appointment),
+                    2 => $this->establishables($establishment, new AppointmentHasProfile),
                     1 => $this->establishables($establishment, new Assembly),
                     2 => $this->establishables($establishment, new AssemblyHasProfile),
                     3 => $this->establishables($establishment, new Assignment),
