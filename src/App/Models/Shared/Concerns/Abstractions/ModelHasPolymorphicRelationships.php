@@ -6,10 +6,12 @@ namespace App\Models\Shared\Concerns\Abstractions;
 
 use App\Models\Assembly\Assembly;
 use App\Models\Assignment\Assignment;
+use App\Models\Appointment\Appointment;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Establishment\Establishment;
 use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Appointment\AppointmentHasProfile;
 use App\Models\Establishment\EstablishmentHasProfile;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use App\Models\Shared\Concerns\Contracts\AssignableInterface;
@@ -21,6 +23,34 @@ abstract class ModelHasPolymorphicRelationships extends Model implements Assembl
     public function getMorphClass(): string
     {
         return $this->morphClass;
+    }
+
+    public function appointables(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: Appointment::class,
+            name: 'appointable',
+            table: null,
+            foreignPivotKey: 'appointable_uuid',
+            relatedPivotKey: 'appointment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        )->withPivotValue('has_profile', 0);
+    }
+
+    public function appointables_has_profile(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: AppointmentHasProfile::class,
+            name: 'appointable',
+            table: null,
+            foreignPivotKey: 'appointable_uuid',
+            relatedPivotKey: 'appointment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
+        )->withPivotValue('has_profile', 1);
     }
 
     public function assemblables(): MorphToMany

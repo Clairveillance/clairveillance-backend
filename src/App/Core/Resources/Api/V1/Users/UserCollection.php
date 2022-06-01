@@ -13,6 +13,8 @@ use App\Models\Establishment\Establishment;
 use Illuminate\Contracts\Support\Arrayable;
 use App\Models\Assignment\AssignmentHasProfile;
 use App\Core\Resources\Api\V1\Users\UserResource;
+use App\Models\Appointment\Appointment;
+use App\Models\Appointment\AppointmentHasProfile;
 use App\Models\Establishment\EstablishmentHasProfile;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -76,6 +78,7 @@ final class UserCollection extends ResourceCollection
                                             'uuid' => $assemblable->uuid,
                                             'name' => $assemblable->name,
                                             'slug' => $assemblable->slug,
+                                            'description' => $assemblable->description,
                                             'type_uuid' => $assemblable->type->uuid,
                                             'type_name' => $assemblable->type->name,
                                             'profile_uuid' => $assemblable->profile->uuid,
@@ -99,6 +102,7 @@ final class UserCollection extends ResourceCollection
                                         return collect([
                                             'uuid' => $assemblable->uuid,
                                             'name' => $assemblable->name,
+                                            'description' => $assemblable->description,
                                             'type_uuid' => $assemblable->type->uuid,
                                             'type_name' => $assemblable->type->name,
                                             // 'likes_total' => $assemblable->likes_total,
@@ -122,6 +126,7 @@ final class UserCollection extends ResourceCollection
                                             'uuid' => $assignable->uuid,
                                             'name' => $assignable->name,
                                             'slug' => $assignable->slug,
+                                            'description' => $assignable->description,
                                             'type_uuid' => $assignable->type->uuid,
                                             'type_name' => $assignable->type->name,
                                             'profile_uuid' => $assignable->profile->uuid,
@@ -145,6 +150,7 @@ final class UserCollection extends ResourceCollection
                                         return collect([
                                             'uuid' => $assignable->uuid,
                                             'name' => $assignable->name,
+                                            'description' => $assignable->description,
                                             'type_uuid' => $assignable->type->uuid,
                                             'type_name' => $assignable->type->name,
                                             // 'likes_total' => $assignable->likes_total,
@@ -168,6 +174,7 @@ final class UserCollection extends ResourceCollection
                                             'uuid' => $establishable->uuid,
                                             'name' => $establishable->name,
                                             'slug' => $establishable->slug,
+                                            'description' => $establishable->description,
                                             'type_uuid' => $establishable->type->uuid,
                                             'type_name' => $establishable->type->name,
                                             'profile_uuid' => $establishable->profile->uuid,
@@ -191,11 +198,80 @@ final class UserCollection extends ResourceCollection
                                         return collect([
                                             'uuid' => $establishable->uuid,
                                             'name' => $establishable->name,
+                                            'description' => $establishable->description,
                                             'type_uuid' => $establishable->type->uuid,
                                             'type_name' => $establishable->type->name,
                                             // 'likes_total' => $establishable->likes_total,
                                             'likes_count' => $establishable->likes_count,
                                             'dislikes_count' => $establishable->dislikes_count,
+                                        ]);
+                                    }
+                                ),
+                            'published_appointments_has_profile_count' => $user->appointables_has_profile_count,
+                            'published_appointments_has_profile' => $user->appointables_has_profile
+                                // FIXME: Surprisingly, the sortBy() method works fine on child relationships
+                                // but it fails when we try to use sortByDesc() instead.
+                                ->sortBy(
+                                    callback: (array) ['type.name', 'name'],
+                                    options: (int) SORT_REGULAR,
+                                    descending: (bool) false
+                                )
+                                ->map(
+                                    function (AppointmentHasProfile $appointable) {
+                                        return collect([
+                                            'uuid' => $appointable->uuid,
+                                            'name' => $appointable->name,
+                                            'slug' => $appointable->slug,
+                                            'description' => $appointable->description,
+                                            'note' => $appointable->note,
+                                            'start_at' => null === $appointable->start_at ?
+                                                $appointable->start_at :
+                                                date((string) 'Y-m-d H:i:s', strtotime((string) $appointable->start_at)),
+                                            'end_at' => null === $appointable->end_at ?
+                                                $appointable->end_at :
+                                                date((string) 'Y-m-d H:i:s', strtotime((string) $appointable->end_at)),
+                                            'published_at' => null === $appointable->published_at ?
+                                                $appointable->published_at :
+                                                date((string) 'Y-m-d H:i:s', strtotime((string) $appointable->published_at)),
+                                            'type_uuid' => $appointable->type->uuid,
+                                            'type_name' => $appointable->type->name,
+                                            'profile_uuid' => $appointable->profile->uuid,
+                                            // 'likes_total' => $appointable->profile->likes_total,
+                                            'likes_count' => $appointable->profile->likes_count,
+                                            'dislikes_count' => $appointable->profile->dislikes_count,
+                                        ]);
+                                    }
+                                ),
+                            'published_appointments_count' => $user->appointables_count,
+                            'published_appointments' => $user->appointables
+                                // FIXME: Surprisingly, the sortBy() method works fine on child relationships
+                                // but it fails when we try to use sortByDesc() instead.
+                                ->sortBy(
+                                    callback: (array) ['type.name', 'name'],
+                                    options: (int) SORT_REGULAR,
+                                    descending: (bool) false
+                                )
+                                ->map(
+                                    function (Appointment $appointable) {
+                                        return collect([
+                                            'uuid' => $appointable->uuid,
+                                            'name' => $appointable->name,
+                                            'description' => $appointable->description,
+                                            'note' => $appointable->note,
+                                            'start_at' => null === $appointable->start_at ?
+                                                $appointable->start_at :
+                                                date((string) 'Y-m-d H:i:s', strtotime((string) $appointable->start_at)),
+                                            'end_at' => null === $appointable->end_at ?
+                                                $appointable->end_at :
+                                                date((string) 'Y-m-d H:i:s', strtotime((string) $appointable->end_at)),
+                                            'published_at' => null === $appointable->published_at ?
+                                                $appointable->published_at :
+                                                date((string) 'Y-m-d H:i:s', strtotime((string) $appointable->published_at)),
+                                            'type_uuid' => $appointable->type->uuid,
+                                            'type_name' => $appointable->type->name,
+                                            // 'likes_total' => $appointable->likes_total,
+                                            'likes_count' => $appointable->likes_count,
+                                            'dislikes_count' => $appointable->dislikes_count,
                                         ]);
                                     }
                                 ),

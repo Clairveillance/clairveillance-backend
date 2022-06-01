@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shared\Concerns\Traits\HasUuid;
 use App\Models\Shared\Concerns\Traits\HasFactory;
 use App\Models\Appointment\AppointmentHasProfile;
+use App\Models\Appointment\QueryBuilder\AppointmentQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
@@ -112,6 +113,13 @@ abstract class AbstractAppointment extends Model
             parentKey: 'uuid',
             relatedKey: 'uuid',
             inverse: false
+        );
+    }
+
+    public function newEloquentBuilder($query): AppointmentQueryBuilder
+    {
+        return new AppointmentQueryBuilder(
+            query: $query
         );
     }
 }
