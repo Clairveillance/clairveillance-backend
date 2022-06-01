@@ -83,7 +83,7 @@ abstract class AbstractAppointmentFactory extends Factory
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(
                         min: 1,
-                        max: 25
+                        max: 5
                     ),
                     variableNbWords: true
                 )]

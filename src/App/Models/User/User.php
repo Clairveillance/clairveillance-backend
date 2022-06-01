@@ -23,6 +23,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use App\Models\Assignment\Assignment;
 use App\Models\Connection\Connection;
+use App\Models\Appointment\Appointment;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Establishment\Establishment;
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shared\Concerns\Traits\HasUuid;
 use App\Models\Assignment\AssignmentHasProfile;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Models\Appointment\AppointmentHasProfile;
 use App\Models\Shared\Concerns\Traits\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
@@ -218,6 +220,24 @@ final class User extends ModelHasPolymorphicRelationships
     {
         return $this->hasMany(
             related: Taxonomy::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
+        );
+    }
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(
+            related: Appointment::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
+        );
+    }
+
+    public function appointmentsHasProfile(): HasMany
+    {
+        return $this->hasMany(
+            related: AppointmentHasProfile::class,
             foreignKey: 'user_uuid',
             localKey: 'uuid'
         );
