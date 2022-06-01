@@ -92,7 +92,7 @@ final class LikeSeeder
             $likeType = new LikeType(['name' => 'heart']);
             $likeType->image()->associate($likeTypeImage)->save();
         }
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < rand(0, 15); $i++) {
             try {
                 $like = new Like();
                 $like->is_dislike = rand(0, 10) > 1 ? 0 : 1;
