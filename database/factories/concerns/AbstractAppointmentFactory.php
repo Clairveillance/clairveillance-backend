@@ -2,30 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Database\Factories;
+namespace Database\Factories\Concerns;
 
-use App\Models\Post\Post;
-use App\Models\Post\PostType;
+use App\Models\Assembly\AssemblyType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-final class PostFactory extends Factory
+abstract class AbstractAppointmentFactory extends Factory
 {
-    protected $model = Post::class;
-
     public function definition(): array
     {
-        $title = $this->faker->unique(
+        $name = $this->faker->unique(
             reset: false,
             maxRetries: 10000
         )->words(
             nb: rand(
-                min: 1,
-                max: 10
+                min: 2,
+                max: 6
             ),
             asText: true
         );
         $created_date = $this->faker->dateTimeBetween(
-            startDate: PostType::oldest()->first()->created_at,
+            startDate: AssemblyType::oldest()->first()->created_at,
             endDate: now(
                 tz: env(
                     key: 'APP_TIMEZONE',
@@ -50,12 +47,38 @@ final class PostFactory extends Factory
                 default: 'UTC'
             )
         );
+        $start_date = $this->faker->dateTimeBetween(
+            startDate: $updated_date,
+            endDate: now(
+                tz: env(
+                    key: 'APP_TIMEZONE',
+                    default: 'UTC'
+                )
+            ),
+            timezone: env(
+                key: 'APP_TIMEZONE',
+                default: 'UTC'
+            )
+        );
+        $end_date = $this->faker->dateTimeBetween(
+            startDate: $start_date,
+            endDate: now(
+                tz: env(
+                    key: 'APP_TIMEZONE',
+                    default: 'UTC'
+                )
+            ),
+            timezone: env(
+                key: 'APP_TIMEZONE',
+                default: 'UTC'
+            )
+        );
         $published = $this->faker->boolean(
             chanceOfGettingTrue: 80
         );
 
         return [
-            'title' => $title,
+            'name' => $name,
             'description' => $this->faker->randomElement(
                 array: [null, $this->faker->sentence(
                     nbWords: random_int(
@@ -65,9 +88,16 @@ final class PostFactory extends Factory
                     variableNbWords: true
                 )]
             ),
-            'body' => $this->faker->randomHtml(
-                maxDepth: 4,
-                maxWidth: 4
+            'start_at' => $start_date,
+            'end_at' => $end_date,
+            'note' => $this->faker->randomElement(
+                array: [null, $this->faker->paragraph(
+                    nbSentences: random_int(
+                        min: 1,
+                        max: 5
+                    ),
+                    variableNbSentences: true
+                )]
             ),
             'published' => $published,
             'published_at' => !$published ? null : $this->faker->dateTimeBetween(

@@ -8,16 +8,20 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\AssemblySeeder;
 use Database\Seeders\AssignmentSeeder;
+use Database\Seeders\AppointmentSeeder;
 use Database\Seeders\DefaultUserSeeder;
 use Database\Seeders\EstablishmentSeeder;
 use Database\Seeders\AssemblyHasProfileSeeder;
 use Database\Seeders\AssignmentHasProfileSeeder;
+use Database\Seeders\AppointmentHasProfileSeeder;
 use Database\Seeders\AssemblyRelationshipsSeeder;
 use Database\Seeders\AssignmentRelationshipsSeeder;
 use Database\Seeders\EstablishmentHasProfileSeeder;
+use Database\Seeders\AppointmentRelationshipsSeeder;
 use Database\Seeders\EstablishmentRelationshipsSeeder;
 use Database\Seeders\AssemblyHasProfileRelationshipsSeeder;
 use Database\Seeders\AssignmentHasProfileRelationshipsSeeder;
+use Database\Seeders\AppointmentHasProfileRelationshipsSeeder;
 use Database\Seeders\EstablishmentHasProfileRelationshipsSeeder;
 
 final class DatabaseSeeder extends Seeder
@@ -38,9 +42,11 @@ final class DatabaseSeeder extends Seeder
                     UserSeeder::class,
                     AssemblySeeder::class,
                     AssignmentSeeder::class,
+                    AppointmentSeeder::class,
                     EstablishmentSeeder::class,
                     AssemblyHasProfileSeeder::class,
                     AssignmentHasProfileSeeder::class,
+                    AppointmentHasProfileSeeder::class,
                     EstablishmentHasProfileSeeder::class,
                 ],
                 silent: false,
@@ -52,9 +58,11 @@ final class DatabaseSeeder extends Seeder
                     // NOTE: Some relationships must be attached last because they depend on other Models that need to be created first.
                     AssemblyRelationshipsSeeder::class,
                     AssignmentRelationshipsSeeder::class,
+                    AppointmentRelationshipsSeeder::class,
                     EstablishmentRelationshipsSeeder::class,
                     AssemblyHasProfileRelationshipsSeeder::class,
                     AssignmentHasProfileRelationshipsSeeder::class,
+                    AppointmentHasProfileRelationshipsSeeder::class,
                     EstablishmentHasProfileRelationshipsSeeder::class,
                 ],
                 silent: false,
