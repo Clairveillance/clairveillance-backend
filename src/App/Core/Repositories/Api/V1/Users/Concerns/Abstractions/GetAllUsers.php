@@ -67,6 +67,62 @@ abstract class GetAllUsers
                             );
                         },
                         'assemblables_has_profile.type',
+                        'assignables' => function (MorphToMany $assignables) {
+                            $assignables->withCount(
+                                [
+                                    // 'likes as likes_total',
+                                    'likes as likes_count' => function ($likes) {
+                                        $likes->where('is_dislike', 0);
+                                    },
+                                    'likes as dislikes_count' => function ($likes) {
+                                        $likes->where('is_dislike', 1);
+                                    }
+                                ]
+                            );
+                        },
+                        'assignables.type',
+                        'assignables_has_profile.profile' => function ($profile) {
+                            $profile->withCount(
+                                [
+                                    // 'likes as likes_total',
+                                    'likes as likes_count' => function ($likes) {
+                                        $likes->where('is_dislike', 0);
+                                    },
+                                    'likes as dislikes_count' => function ($likes) {
+                                        $likes->where('is_dislike', 1);
+                                    }
+                                ]
+                            );
+                        },
+                        'assignables_has_profile.type',
+                        'assignables' => function (MorphToMany $establishables) {
+                            $establishables->withCount(
+                                [
+                                    // 'likes as likes_total',
+                                    'likes as likes_count' => function ($likes) {
+                                        $likes->where('is_dislike', 0);
+                                    },
+                                    'likes as dislikes_count' => function ($likes) {
+                                        $likes->where('is_dislike', 1);
+                                    }
+                                ]
+                            );
+                        },
+                        'establishables.type',
+                        'establishables_has_profile.profile' => function ($profile) {
+                            $profile->withCount(
+                                [
+                                    // 'likes as likes_total',
+                                    'likes as likes_count' => function ($likes) {
+                                        $likes->where('is_dislike', 0);
+                                    },
+                                    'likes as dislikes_count' => function ($likes) {
+                                        $likes->where('is_dislike', 1);
+                                    }
+                                ]
+                            );
+                        },
+                        'establishables_has_profile.type',
                         'posts' => function (HasMany $posts) {
                             $posts->published();
                         },
@@ -77,6 +133,10 @@ abstract class GetAllUsers
                     relations: [
                         'assemblables',
                         'assemblables_has_profile',
+                        'assignables',
+                        'assignables_has_profile',
+                        'establishables',
+                        'establishables_has_profile',
                         'posts' => function (PostQueryBuilder $posts) {
                             $posts->published();
                         },

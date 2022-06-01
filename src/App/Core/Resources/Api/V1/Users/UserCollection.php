@@ -11,9 +11,9 @@ use App\Models\Assignment\Assignment;
 use App\Models\Assembly\AssemblyHasProfile;
 use App\Models\Establishment\Establishment;
 use Illuminate\Contracts\Support\Arrayable;
-use App\Models\Assignment\AssignmentWithProfile;
+use App\Models\Assignment\AssignmentHasProfile;
 use App\Core\Resources\Api\V1\Users\UserResource;
-use App\Models\Establishment\EstablishmentWithProfile;
+use App\Models\Establishment\EstablishmentHasProfile;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 final class UserCollection extends ResourceCollection
@@ -107,64 +107,98 @@ final class UserCollection extends ResourceCollection
                                         ]);
                                     }
                                 ),
-                            'assignments_with_profile_count' => $user->userAssignmentsWithProfile->count(),
-                            'assignments_with_profile' => $user->userAssignmentsWithProfile
-                                ->sortBy((array) ['type.name'])
+                            'assignments_has_profile_count' => $user->assignables_has_profile_count,
+                            'assignments_has_profile' => $user->assignables_has_profile
+                                // FIXME: Surprisingly, the sortBy() method works fine on child relationships
+                                // but it fails when we try to use sortByDesc() instead.
+                                ->sortBy(
+                                    callback: (array) ['type.name', 'name'],
+                                    options: (int) SORT_REGULAR,
+                                    descending: (bool) false
+                                )
                                 ->map(
-                                    function (AssignmentWithProfile $userAssignmentWithProfile) {
+                                    function (AssignmentHasProfile $assignable) {
                                         return collect([
-                                            'id' => $userAssignmentWithProfile->uuid,
-                                            'name' => $userAssignmentWithProfile->name,
-                                            'slug' => $userAssignmentWithProfile->slug,
-                                            'type_id' => $userAssignmentWithProfile->type->uuid,
-                                            'type' => $userAssignmentWithProfile->type->name,
-                                            'profile' => $userAssignmentWithProfile->profile->uuid,
-                                            'likes_count' => $userAssignmentWithProfile->profile->likes_count,
-                                            'dislikes_count' => $userAssignmentWithProfile->profile->dislikes_count,
+                                            'id' => $assignable->uuid,
+                                            'name' => $assignable->name,
+                                            'slug' => $assignable->slug,
+                                            'type_id' => $assignable->type->uuid,
+                                            'type' => $assignable->type->name,
+                                            'profile' => $assignable->profile->uuid,
+                                            // 'likes_total' => $assignable->profile->likes_total,
+                                            'likes_count' => $assignable->profile->likes_count,
+                                            'dislikes_count' => $assignable->profile->dislikes_count,
                                         ]);
                                     }
                                 ),
-                            'assignments_count' => $user->userAssignments->count(),
-                            'assignments' => $user->userAssignments->sortBy((array) ['type.name'])->map(
-                                function (Assignment $userAssignment) {
-                                    return collect([
-                                        'id' => $userAssignment->uuid,
-                                        'name' => $userAssignment->name,
-                                        'type_id' => $userAssignment->type->uuid,
-                                        'type' => $userAssignment->type->name,
-                                        'likes_count' => $userAssignment->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $userAssignment->likes->where((string) 'is_dislike', (int) 1)->count(),
-                                    ]);
-                                }
-                            ),
-                            'establishments_with_profile_count' => $user->userEstablishmentsWithProfile->count(),
-                            'establishments_with_profile' => $user->userEstablishmentsWithProfile->sortBy((array) ['type.name'])->map(
-                                function (EstablishmentWithProfile $userEstablishmentWithProfile) {
-                                    return collect([
-                                        'id' => $userEstablishmentWithProfile->uuid,
-                                        'name' => $userEstablishmentWithProfile->name,
-                                        'slug' => $userEstablishmentWithProfile->slug,
-                                        'type_id' => $userEstablishmentWithProfile->type->uuid,
-                                        'type' => $userEstablishmentWithProfile->type->name,
-                                        'profile' => $userEstablishmentWithProfile->profile->uuid,
-                                        'likes_count' => $userEstablishmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $userEstablishmentWithProfile->profile->likes->where((string) 'is_dislike', (int) 1)->count(),
-                                    ]);
-                                }
-                            ),
-                            'establishments_count' => $user->userEstablishments->count(),
-                            'establishments' => $user->userEstablishments->sortBy((array) ['type.name'])->map(
-                                function (Establishment $userEstablishment) {
-                                    return collect([
-                                        'id' => $userEstablishment->uuid,
-                                        'name' => $userEstablishment->name,
-                                        'type_id' => $userEstablishment->type->uuid,
-                                        'type' => $userEstablishment->type->name,
-                                        'likes_count' => $userEstablishment->likes->where((string) 'is_dislike', (int) 0)->count(),
-                                        'dislikes_count' => $userEstablishment->likes->where((string) 'is_dislike', (int) 1)->count(),
-                                    ]);
-                                }
-                            ),
+                            'assignments_count' => $user->assignables_count,
+                            'assignments' => $user->assignables
+                                // FIXME: Surprisingly, the sortBy() method works fine on child relationships
+                                // but it fails when we try to use sortByDesc() instead.
+                                ->sortBy(
+                                    callback: (array) ['type.name', 'name'],
+                                    options: (int) SORT_REGULAR,
+                                    descending: (bool) false
+                                )
+                                ->map(
+                                    function (Assignment $assignable) {
+                                        return collect([
+                                            'id' => $assignable->uuid,
+                                            'name' => $assignable->name,
+                                            'type_id' => $assignable->type->uuid,
+                                            'type' => $assignable->type->name,
+                                            // 'likes_total' => $assignable->likes_total,
+                                            'likes_count' => $assignable->likes_count,
+                                            'dislikes_count' => $assignable->dislikes_count,
+                                        ]);
+                                    }
+                                ),
+                            'establishments_has_profile_count' => $user->establishables_has_profile_count,
+                            'establishments_has_profile' => $user->establishables_has_profile
+                                // FIXME: Surprisingly, the sortBy() method works fine on child relationships
+                                // but it fails when we try to use sortByDesc() instead.
+                                ->sortBy(
+                                    callback: (array) ['type.name', 'name'],
+                                    options: (int) SORT_REGULAR,
+                                    descending: (bool) false
+                                )
+                                ->map(
+                                    function (EstablishmentHasProfile $establishable) {
+                                        return collect([
+                                            'id' => $establishable->uuid,
+                                            'name' => $establishable->name,
+                                            'slug' => $establishable->slug,
+                                            'type_id' => $establishable->type->uuid,
+                                            'type' => $establishable->type->name,
+                                            'profile' => $establishable->profile->uuid,
+                                            // 'likes_total' => $establishable->profile->likes_total,
+                                            'likes_count' => $establishable->profile->likes_count,
+                                            'dislikes_count' => $establishable->profile->dislikes_count,
+                                        ]);
+                                    }
+                                ),
+                            'establishments_count' => $user->establishables_count,
+                            'establishments' => $user->establishables
+                                // FIXME: Surprisingly, the sortBy() method works fine on child relationships
+                                // but it fails when we try to use sortByDesc() instead.
+                                ->sortBy(
+                                    callback: (array) ['type.name', 'name'],
+                                    options: (int) SORT_REGULAR,
+                                    descending: (bool) false
+                                )
+                                ->map(
+                                    function (Establishment $establishable) {
+                                        return collect([
+                                            'id' => $establishable->uuid,
+                                            'name' => $establishable->name,
+                                            'type_id' => $establishable->type->uuid,
+                                            'type' => $establishable->type->name,
+                                            // 'likes_total' => $establishable->likes_total,
+                                            'likes_count' => $establishable->likes_count,
+                                            'dislikes_count' => $establishable->dislikes_count,
+                                        ]);
+                                    }
+                                ),
                             'published_posts_count' => $user->posts_count,
                             'published_posts' => $user->posts->map(
                                 function (Post $post) use ($user) {

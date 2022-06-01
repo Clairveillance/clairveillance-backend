@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    public const HOME = '/home';
     private const API_PATH = 'src/Infrastructure/routes/api/';
     private const WEB_PATH = 'src/Infrastructure/routes/web/';
 

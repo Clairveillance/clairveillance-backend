@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
-use App\Models\EstablishmentWithProfile\EstablishmentWithProfile;
+use App\Models\EstablishmentHasProfile\EstablishmentHasProfile;
 use App\Models\Shared\Concerns\Traits\HasFactory;
 use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
@@ -45,7 +45,7 @@ final class EstablishmentType extends Model
     public function establishmentsWithProfile(): HasMany
     {
         return $this->hasMany(
-            related: EstablishmentWithProfile::class,
+            related: EstablishmentHasProfile::class,
             foreignKey: 'establishment_type_uuid',
             localKey: 'uuid'
         );

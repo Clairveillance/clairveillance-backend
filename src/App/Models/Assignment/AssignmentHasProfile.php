@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Assembly;
+namespace App\Models\Assignment;
 
+use App\Models\Assignment\AbstractAssignment;
 use App\Models\Profile\Profile;
-use App\Models\Assembly\AbstractAssembly;
 use App\Models\Shared\Concerns\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
-final class AssemblyHasProfile extends AbstractAssembly
+final class AssignmentHasProfile extends AbstractAssignment
 {
     use HasSlug;
 
     /** @var string */
-    protected $morphClass = 'assembly_has_profile';
+    protected $morphClass = 'assignment_has_profile';
 
-    protected function slugSources(): array
+    public function slugSources(): array
     {
         return [
             'source' => 'name',

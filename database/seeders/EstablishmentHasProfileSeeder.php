@@ -6,14 +6,14 @@ namespace Database\Seeders;
 
 use App\Models\User\User;
 use Illuminate\Database\Seeder;
-use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyType;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
 use Database\Seeders\Shared\ImageSeeder;
+use App\Models\Establishment\EstablishmentType;
+use App\Models\Establishment\EstablishmentHasProfile;
 
-final class AssemblySeeder extends Seeder
+final class EstablishmentHasProfileSeeder extends Seeder
 {
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -21,13 +21,13 @@ final class AssemblySeeder extends Seeder
         public PostSeeder $postSeeder,
         public TypeSeeder $typeSeeder
     ) {
-        $this->typeSeeder->setModel(new AssemblyType)->run();
+        $this->typeSeeder->setModel(new EstablishmentType)->run();
     }
 
     public function run(): void
     {
         try {
-            Assembly::factory(50)->make()
+            EstablishmentHasProfile::factory(25)->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -36,32 +36,32 @@ final class AssemblySeeder extends Seeder
                     descending: false
                 )
                 ->each(
-                    callback: function (Assembly $assembly) {
-                        $assembly_types = AssemblyType::where(
+                    callback: function (EstablishmentHasProfile $establishment) {
+                        $establishment_types = EstablishmentType::where(
                             column: 'created_at',
                             operator: '<=',
-                            value: $assembly->created_at
+                            value: $establishment->created_at
                         )->get();
                         $users = User::where(
                             column: 'created_at',
                             operator: '<=',
-                            value: $assembly->created_at
+                            value: $establishment->created_at
                         )->get();
-                        $assembly
+                        $establishment
                             ->user()->associate($users->random())
-                            ->type()->associate($assembly_types->random())
+                            ->type()->associate($establishment_types->random())
                             ->save();
                         $this->imageSeeder
                             ->setUsers($users)
-                            ->setModel($assembly)
+                            ->setModel($establishment->profile)
                             ->run();
                         $this->likeSeeder
                             ->setUsers($users)
-                            ->setModel($assembly)
+                            ->setModel($establishment->profile)
                             ->run();
                         $this->postSeeder
                             ->setUsers($users)
-                            ->setModel($assembly)
+                            ->setModel($establishment->profile)
                             ->run();
                     }
                 );

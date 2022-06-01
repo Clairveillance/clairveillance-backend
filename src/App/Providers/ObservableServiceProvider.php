@@ -8,8 +8,8 @@ use App\Core\Observers\ModelHasProfileObserver;
 use App\Core\Observers\UserObserver;
 use App\Models\Appointment\AppointmentWithProfile;
 use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Assignment\AssignmentWithProfile;
-use App\Models\Establishment\EstablishmentWithProfile;
+use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Establishment\EstablishmentHasProfile;
 use App\Models\User\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,7 +20,7 @@ class ObservableServiceProvider extends ServiceProvider
         User::observe(classes: UserObserver::class);
         AppointmentWithProfile::observe(classes: ModelHasProfileObserver::class);
         AssemblyHasProfile::observe(classes: ModelHasProfileObserver::class);
-        AssignmentWithProfile::observe(classes: ModelHasProfileObserver::class);
-        EstablishmentWithProfile::observe(classes: ModelHasProfileObserver::class);
+        AssignmentHasProfile::observe(classes: ModelHasProfileObserver::class);
+        EstablishmentHasProfile::observe(classes: ModelHasProfileObserver::class);
     }
 }

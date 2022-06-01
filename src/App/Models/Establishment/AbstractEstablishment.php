@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
-use App\Models\Establishment\EstablishmentType;
 use App\Models\Post\Post;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasUuid;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Establishment\Establishment;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\Establishment\EstablishmentType;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Establishment\EstablishmentHasProfile;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 abstract class AbstractEstablishment extends Model
 {
@@ -65,36 +68,44 @@ abstract class AbstractEstablishment extends Model
         );
     }
 
-    public function comments(): MorphMany
+    public function establishables(Model $model): MorphToMany
     {
-        return $this->morphMany(
-            related: Comment::class,
-            name: 'commentable',
-            type: 'commentable_type',
-            id: 'commentable_uuid',
-            localKey: 'uuid'
+        return $this->morphedByMany(
+            related: $model,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishment_uuid',
+            relatedPivotKey: 'establishable_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid'
+        )->withPivot(['has_profile']);
+    }
+
+    public function establishments(): MorphToMany
+    {
+        return $this->morphToMany(
+            related: Establishment::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishable_uuid',
+            relatedPivotKey: 'establishment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
         );
     }
 
-    public function likes(): MorphMany
+    public function establishmentsHasProfile(): MorphToMany
     {
-        return $this->morphMany(
-            related: Like::class,
-            name: 'likeable',
-            type: 'likeable_type',
-            id: 'likeable_uuid',
-            localKey: 'uuid'
-        );
-    }
-
-    public function posts(): MorphMany
-    {
-        return $this->morphMany(
-            related: Post::class,
-            name: 'postable',
-            type: 'postable_type',
-            id: 'postable_uuid',
-            localKey: 'uuid'
+        return $this->morphToMany(
+            related: EstablishmentHasProfile::class,
+            name: 'establishable',
+            table: null,
+            foreignPivotKey: 'establishable_uuid',
+            relatedPivotKey: 'establishment_uuid',
+            parentKey: 'uuid',
+            relatedKey: 'uuid',
+            inverse: false
         );
     }
 }
