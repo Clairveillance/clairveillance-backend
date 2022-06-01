@@ -37,9 +37,9 @@ final class UserCollection extends ResourceCollection
             $this::$wrap => $this->collection->map(
                 function (UserResource $user) {
                     return collect([
-                        'id' => $user->uuid,
+                        'uuid' => $user->uuid,
                         'type' => 'users',
-                        'profile' => $user->profile->uuid,
+                        'profile_uuid' => $user->profile->uuid,
                         'attributes' => [
                             'username' => $user->username,
                             'firstname' => $user->firstname,
@@ -73,12 +73,12 @@ final class UserCollection extends ResourceCollection
                                 ->map(
                                     function (AssemblyHasProfile $assemblable) {
                                         return collect([
-                                            'id' => $assemblable->uuid,
+                                            'uuid' => $assemblable->uuid,
                                             'name' => $assemblable->name,
                                             'slug' => $assemblable->slug,
-                                            'type_id' => $assemblable->type->uuid,
-                                            'type' => $assemblable->type->name,
-                                            'profile' => $assemblable->profile->uuid,
+                                            'type_uuid' => $assemblable->type->uuid,
+                                            'type_name' => $assemblable->type->name,
+                                            'profile_uuid' => $assemblable->profile->uuid,
                                             // 'likes_total' => $assemblable->profile->likes_total,
                                             'likes_count' => $assemblable->profile->likes_count,
                                             'dislikes_count' => $assemblable->profile->dislikes_count,
@@ -97,10 +97,10 @@ final class UserCollection extends ResourceCollection
                                 ->map(
                                     function (Assembly $assemblable) {
                                         return collect([
-                                            'id' => $assemblable->uuid,
+                                            'uuid' => $assemblable->uuid,
                                             'name' => $assemblable->name,
-                                            'type_id' => $assemblable->type->uuid,
-                                            'type' => $assemblable->type->name,
+                                            'type_uuid' => $assemblable->type->uuid,
+                                            'type_name' => $assemblable->type->name,
                                             // 'likes_total' => $assemblable->likes_total,
                                             'likes_count' => $assemblable->likes_count,
                                             'dislikes_count' => $assemblable->dislikes_count,
@@ -119,12 +119,12 @@ final class UserCollection extends ResourceCollection
                                 ->map(
                                     function (AssignmentHasProfile $assignable) {
                                         return collect([
-                                            'id' => $assignable->uuid,
+                                            'uuid' => $assignable->uuid,
                                             'name' => $assignable->name,
                                             'slug' => $assignable->slug,
-                                            'type_id' => $assignable->type->uuid,
-                                            'type' => $assignable->type->name,
-                                            'profile' => $assignable->profile->uuid,
+                                            'type_uuid' => $assignable->type->uuid,
+                                            'type_name' => $assignable->type->name,
+                                            'profile_uuid' => $assignable->profile->uuid,
                                             // 'likes_total' => $assignable->profile->likes_total,
                                             'likes_count' => $assignable->profile->likes_count,
                                             'dislikes_count' => $assignable->profile->dislikes_count,
@@ -143,10 +143,10 @@ final class UserCollection extends ResourceCollection
                                 ->map(
                                     function (Assignment $assignable) {
                                         return collect([
-                                            'id' => $assignable->uuid,
+                                            'uuid' => $assignable->uuid,
                                             'name' => $assignable->name,
-                                            'type_id' => $assignable->type->uuid,
-                                            'type' => $assignable->type->name,
+                                            'type_uuid' => $assignable->type->uuid,
+                                            'type_name' => $assignable->type->name,
                                             // 'likes_total' => $assignable->likes_total,
                                             'likes_count' => $assignable->likes_count,
                                             'dislikes_count' => $assignable->dislikes_count,
@@ -165,12 +165,12 @@ final class UserCollection extends ResourceCollection
                                 ->map(
                                     function (EstablishmentHasProfile $establishable) {
                                         return collect([
-                                            'id' => $establishable->uuid,
+                                            'uuid' => $establishable->uuid,
                                             'name' => $establishable->name,
                                             'slug' => $establishable->slug,
-                                            'type_id' => $establishable->type->uuid,
-                                            'type' => $establishable->type->name,
-                                            'profile' => $establishable->profile->uuid,
+                                            'type_uuid' => $establishable->type->uuid,
+                                            'type_name' => $establishable->type->name,
+                                            'profile_uuid' => $establishable->profile->uuid,
                                             // 'likes_total' => $establishable->profile->likes_total,
                                             'likes_count' => $establishable->profile->likes_count,
                                             'dislikes_count' => $establishable->profile->dislikes_count,
@@ -189,10 +189,10 @@ final class UserCollection extends ResourceCollection
                                 ->map(
                                     function (Establishment $establishable) {
                                         return collect([
-                                            'id' => $establishable->uuid,
+                                            'uuid' => $establishable->uuid,
                                             'name' => $establishable->name,
-                                            'type_id' => $establishable->type->uuid,
-                                            'type' => $establishable->type->name,
+                                            'type_uuid' => $establishable->type->uuid,
+                                            'type_name' => $establishable->type->name,
                                             // 'likes_total' => $establishable->likes_total,
                                             'likes_count' => $establishable->likes_count,
                                             'dislikes_count' => $establishable->dislikes_count,
@@ -203,15 +203,15 @@ final class UserCollection extends ResourceCollection
                             'published_posts' => $user->posts->map(
                                 function (Post $post) use ($user) {
                                     return collect([
-                                        'id' => $post->uuid,
+                                        'uuid' => $post->uuid,
                                         'title' => $post->title,
                                         'slug' => $post->slug,
                                         'description' => $post->description,
                                         'published_at' => null === $post->published_at ?
                                             $post->published_at :
                                             date((string) 'Y-m-d H:i:s', strtotime((string) $post->published_at)),
-                                        'type_id' => $post->type->uuid,
-                                        'type' => $post->type->name,
+                                        'type_uuid' => $post->type->uuid,
+                                        'type_name' => $post->type->name,
                                         'likes_count' => $post->likes->where((string) 'is_dislike', (int) 0)->count(),
                                         'dislikes_count' => $post->likes->where((string) 'is_dislike', (int) 1)->count(),
                                         'links' => [

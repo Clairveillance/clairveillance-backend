@@ -56,7 +56,7 @@ final class TypeSeeder extends Seeder
     {
         $model = $this->model;
         try {
-            $model::factory(rand(1, 20))->make()
+            $model::factory(rand(1, 10))->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
