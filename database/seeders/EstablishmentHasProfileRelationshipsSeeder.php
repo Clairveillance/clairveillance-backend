@@ -20,6 +20,7 @@ final class EstablishmentHasProfileRelationshipsSeeder extends Seeder
 {
     public function run(): void
     {
+        $errors = [];
         try {
             $establishments = EstablishmentHasProfile::has('profile')->get(); // FIXME
             foreach ($establishments as $establishment) {
@@ -37,12 +38,20 @@ final class EstablishmentHasProfileRelationshipsSeeder extends Seeder
                 };
             }
         } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
+            }
         }
-        dump(__METHOD__ . ' [success]');
+        if (empty($errors)) {
+            $errors[] = false;
+            dump(__METHOD__ . ' [success]');
+        }
     }
 
     private function establishables(EstablishmentHasProfile $establishment, Model $model): void
     {
+        $errors = [];
         $pivots = ['has_profile' => 1];
         for ($i = 0; $i < 5; $i++) {
             try {
@@ -57,7 +66,11 @@ final class EstablishmentHasProfileRelationshipsSeeder extends Seeder
                         $establishment->establishables($model)->attach($establishable, $pivots);
                     }
                 }
-            } catch (\Throwable  $e) {
+            } catch (\Throwable $e) {
+                if (empty($errors)) {
+                    $errors[] = true;
+                    dump(__METHOD__ . ' [error]');
+                }
             }
         }
     }

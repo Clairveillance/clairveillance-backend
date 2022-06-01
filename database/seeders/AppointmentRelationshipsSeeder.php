@@ -20,6 +20,7 @@ final class AppointmentRelationshipsSeeder extends Seeder
 {
     public function run(): void
     {
+        $errors = [];
         try {
             $appointments = Appointment::has('likes')->get(); // FIXME
             foreach ($appointments as $appointment) {
@@ -37,12 +38,20 @@ final class AppointmentRelationshipsSeeder extends Seeder
                 };
             }
         } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
+            }
         }
-        dump(__METHOD__ . ' [success]');
+        if (empty($errors)) {
+            $errors[] = false;
+            dump(__METHOD__ . ' [success]');
+        }
     }
 
     private function appointables(Appointment $appointment, Model $model): void
     {
+        $errors = [];
         $pivots = ['has_profile' => 0];
         for ($i = 0; $i < 10; $i++) {
             try {
@@ -57,7 +66,11 @@ final class AppointmentRelationshipsSeeder extends Seeder
                         $appointment->appointables($model)->attach($appointable, $pivots);
                     }
                 }
-            } catch (\Throwable  $e) {
+            } catch (\Throwable $e) {
+                if (empty($errors)) {
+                    $errors[] = true;
+                    dump(__METHOD__ . ' [error]');
+                }
             }
         }
     }

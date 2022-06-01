@@ -20,6 +20,7 @@ final class AssignmentRelationshipsSeeder extends Seeder
 {
     public function run(): void
     {
+        $errors = [];
         try {
             $assignments = Assignment::has('likes')->get(); // FIXME
             foreach ($assignments as $assignment) {
@@ -37,12 +38,20 @@ final class AssignmentRelationshipsSeeder extends Seeder
                 };
             }
         } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
+            }
         }
-        dump(__METHOD__ . ' [success]');
+        if (empty($errors)) {
+            $errors[] = false;
+            dump(__METHOD__ . ' [success]');
+        }
     }
 
     private function assignables(Assignment $assignment, Model $model): void
     {
+        $errors = [];
         $pivots = ['has_profile' => 0];
         for ($i = 0; $i < 10; $i++) {
             try {
@@ -57,7 +66,11 @@ final class AssignmentRelationshipsSeeder extends Seeder
                         $assignment->assignables($model)->attach($assignable, $pivots);
                     }
                 }
-            } catch (\Throwable  $e) {
+            } catch (\Throwable $e) {
+                if (empty($errors)) {
+                    $errors[] = true;
+                    dump(__METHOD__ . ' [error]');
+                }
             }
         }
     }

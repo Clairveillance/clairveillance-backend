@@ -20,6 +20,7 @@ final class AppointmentHasProfileRelationshipsSeeder extends Seeder
 {
     public function run(): void
     {
+        $errors = [];
         try {
             $appointments = AppointmentHasProfile::has('profile')->get(); // FIXME
             foreach ($appointments as $appointment) {
@@ -37,12 +38,20 @@ final class AppointmentHasProfileRelationshipsSeeder extends Seeder
                 };
             }
         } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
+            }
         }
-        dump(__METHOD__ . ' [success]');
+        if (empty($errors)) {
+            $errors[] = false;
+            dump(__METHOD__ . ' [success]');
+        }
     }
 
     private function appointables(AppointmentHasProfile $appointment, Model $model): void
     {
+        $errors = [];
         $pivots = ['has_profile' => 1];
         for ($i = 0; $i < 5; $i++) {
             try {
@@ -57,7 +66,11 @@ final class AppointmentHasProfileRelationshipsSeeder extends Seeder
                         $appointment->appointables($model)->attach($appointable, $pivots);
                     }
                 }
-            } catch (\Throwable  $e) {
+            } catch (\Throwable $e) {
+                if (empty($errors)) {
+                    $errors[] = true;
+                    dump(__METHOD__ . ' [error]');
+                }
             }
         }
     }

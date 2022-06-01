@@ -15,6 +15,8 @@ use Database\Seeders\Shared\ImageSeeder;
 
 final class AssemblySeeder extends Seeder
 {
+    public const NUMBER  = 50;
+
     public function __construct(
         public LikeSeeder $likeSeeder,
         public ImageSeeder $imageSeeder,
@@ -26,8 +28,9 @@ final class AssemblySeeder extends Seeder
 
     public function run(): void
     {
+        $errors = [];
         try {
-            Assembly::factory(50)->make()
+            Assembly::factory(self::NUMBER)->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -66,7 +69,14 @@ final class AssemblySeeder extends Seeder
                     }
                 );
         } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
+            }
         }
-        dump(__METHOD__ . ' [success]');
+        if (empty($errors)) {
+            $errors[] = false;
+            dump(__METHOD__ . ' [success]');
+        }
     }
 }
