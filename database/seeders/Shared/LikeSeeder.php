@@ -67,40 +67,48 @@ final class LikeSeeder
      */
     public function run(): void
     {
-        $model = $this->model;
-        $users = $this->users;
-        $likeTypeImageType = ImageType::where('name', 'likeable images')->first();
-        if (!$likeTypeImageType) {
-            $likeTypeImageType = new ImageType(['name' => 'likeable images']);
-            $likeTypeImageType->save();
-        }
-        $likeTypeImage = Image::where('name', 'heart')->first();
-        if (!$likeTypeImage) {
-            $likeTypeImage = new Image([
-                'name' => 'heart',
-                'type' => 'jpg',
-                'size' => '127198271',
-                'description' => 'Just a simple heart',
-            ]);
-            $likeTypeImage->user()->associate($users->random())
-                ->type()->associate($likeTypeImageType)
-                ->save();
-        }
-        $this->typeSeeder->setModel(new LikeType)->setAttributes(['image_uuid', $likeTypeImage->uuid])->run();
-        $likeType = LikeType::where('name', 'heart')->first();
-        if (!$likeType) {
-            $likeType = new LikeType(['name' => 'heart']);
-            $likeType->image()->associate($likeTypeImage)->save();
-        }
-        for ($i = 0; $i < rand(0, 15); $i++) {
-            try {
-                $like = new Like();
-                $like->is_dislike = rand(0, 10) > 1 ? 0 : 1;
-                $like->user()->associate($users->random())
-                    ->type()->associate($likeType)
-                    ->likeable()->associate($model)
+        $errors = [];
+        try {
+            $model = $this->model;
+            $users = $this->users;
+            $likeTypeImageType = ImageType::where('name', 'likeable images')->first();
+            if (!$likeTypeImageType) {
+                $likeTypeImageType = new ImageType(['name' => 'likeable images']);
+                $likeTypeImageType->save();
+            }
+            $likeTypeImage = Image::where('name', 'heart')->first();
+            if (!$likeTypeImage) {
+                $likeTypeImage = new Image([
+                    'name' => 'heart',
+                    'type' => 'jpg',
+                    'size' => '127198271',
+                    'description' => 'Just a simple heart',
+                ]);
+                $likeTypeImage->user()->associate($users->random())
+                    ->type()->associate($likeTypeImageType)
                     ->save();
-            } catch (\Throwable  $e) {
+            }
+            $this->typeSeeder->setModel(new LikeType)->setAttributes(['image_uuid', $likeTypeImage->uuid])->run();
+            $likeType = LikeType::where('name', 'heart')->first();
+            if (!$likeType) {
+                $likeType = new LikeType(['name' => 'heart']);
+                $likeType->image()->associate($likeTypeImage)->save();
+            }
+            for ($i = 0; $i < rand(0, 15); $i++) {
+                try {
+                    $like = new Like();
+                    $like->is_dislike = rand(0, 10) > 1 ? 0 : 1;
+                    $like->user()->associate($users->random())
+                        ->type()->associate($likeType)
+                        ->likeable()->associate($model)
+                        ->save();
+                } catch (\Throwable $e) {
+                }
+            }
+        } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
             }
         }
     }

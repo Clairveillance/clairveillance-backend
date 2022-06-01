@@ -15,6 +15,8 @@ use App\Models\Appointment\AppointmentHasProfile;
 
 final class AppointmentHasProfileSeeder extends Seeder
 {
+    public const NUMBER  = 25;
+
     public function __construct(
         public LikeSeeder $likeSeeder,
         public ImageSeeder $imageSeeder,
@@ -26,8 +28,9 @@ final class AppointmentHasProfileSeeder extends Seeder
 
     public function run(): void
     {
+        $errors = [];
         try {
-            AppointmentHasProfile::factory(25)->make()
+            AppointmentHasProfile::factory(self::NUMBER)->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -66,7 +69,14 @@ final class AppointmentHasProfileSeeder extends Seeder
                     }
                 );
         } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
+            }
         }
-        dump(__METHOD__ . ' [success]');
+        if (empty($errors)) {
+            $errors[] = false;
+            dump(__METHOD__ . ' [success]');
+        }
     }
 }

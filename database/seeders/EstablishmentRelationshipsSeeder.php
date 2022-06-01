@@ -20,6 +20,7 @@ final class EstablishmentRelationshipsSeeder extends Seeder
 {
     public function run(): void
     {
+        $errors = [];
         try {
             $establishments = Establishment::has('likes')->get(); // FIXME
             foreach ($establishments as $establishment) {
@@ -27,22 +28,30 @@ final class EstablishmentRelationshipsSeeder extends Seeder
                 match ((int) $randomeEtablishments) {
                     1 => $this->establishables($establishment, new Appointment),
                     2 => $this->establishables($establishment, new AppointmentHasProfile),
-                    1 => $this->establishables($establishment, new Assembly),
-                    2 => $this->establishables($establishment, new AssemblyHasProfile),
-                    3 => $this->establishables($establishment, new Assignment),
-                    4 => $this->establishables($establishment, new AssignmentHasProfile),
-                    5 => $this->establishables($establishment, new Establishment),
-                    6 => $this->establishables($establishment, new EstablishmentHasProfile),
-                    7 => $this->establishables($establishment, new User),
+                    3 => $this->establishables($establishment, new Assembly),
+                    4 => $this->establishables($establishment, new AssemblyHasProfile),
+                    5 => $this->establishables($establishment, new Assignment),
+                    6 => $this->establishables($establishment, new AssignmentHasProfile),
+                    7 => $this->establishables($establishment, new Establishment),
+                    8 => $this->establishables($establishment, new EstablishmentHasProfile),
+                    9 => $this->establishables($establishment, new User),
                 };
             }
         } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
+            }
         }
-        dump(__METHOD__ . ' [success]');
+        if (empty($errors)) {
+            $errors[] = false;
+            dump(__METHOD__ . ' [success]');
+        }
     }
 
     private function establishables(Establishment $establishment, Model $model): void
     {
+        $errors = [];
         $pivots = ['has_profile' => 0];
         for ($i = 0; $i < 10; $i++) {
             try {
@@ -57,7 +66,11 @@ final class EstablishmentRelationshipsSeeder extends Seeder
                         $establishment->establishables($model)->attach($establishable, $pivots);
                     }
                 }
-            } catch (\Throwable  $e) {
+            } catch (\Throwable $e) {
+                if (empty($errors)) {
+                    $errors[] = true;
+                    dump(__METHOD__ . ' [error]');
+                }
             }
         }
     }

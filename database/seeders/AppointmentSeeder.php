@@ -15,6 +15,8 @@ use App\Models\Appointment\AppointmentType;
 
 final class AppointmentSeeder extends Seeder
 {
+    public const NUMBER  = 50;
+
     public function __construct(
         public LikeSeeder $likeSeeder,
         public ImageSeeder $imageSeeder,
@@ -26,8 +28,9 @@ final class AppointmentSeeder extends Seeder
 
     public function run(): void
     {
+        $errors = [];
         try {
-            Appointment::factory(50)->make()
+            Appointment::factory(self::NUMBER)->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -66,7 +69,14 @@ final class AppointmentSeeder extends Seeder
                     }
                 );
         } catch (\Throwable $e) {
+            if (empty($errors)) {
+                $errors[] = true;
+                dump(__METHOD__ . ' [error]');
+            }
         }
-        dump(__METHOD__ . ' [success]');
+        if (empty($errors)) {
+            $errors[] = false;
+            dump(__METHOD__ . ' [success]');
+        }
     }
 }
