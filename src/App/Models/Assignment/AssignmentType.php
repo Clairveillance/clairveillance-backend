@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Assignment;
 
-use App\Models\AssignmentWithProfile\AssignmentWithProfile;
+use App\Models\AssignmentHasProfile\AssignmentHasProfile;
 use App\Models\Shared\Concerns\Traits\HasFactory;
 use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
@@ -42,10 +42,10 @@ final class AssignmentType extends Model
         );
     }
 
-    public function assignmentsWithProfile(): HasMany
+    public function assignmentsHasProfile(): HasMany
     {
         return $this->hasMany(
-            related: AssignmentWithProfile::class,
+            related: AssignmentHasProfile::class,
             foreignKey: 'assignment_type_uuid',
             localKey: 'uuid'
         );

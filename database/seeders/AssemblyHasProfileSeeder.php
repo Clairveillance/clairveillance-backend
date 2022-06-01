@@ -27,7 +27,7 @@ final class AssemblyHasProfileSeeder extends Seeder
     public function run(): void
     {
         try {
-            AssemblyHasProfile::factory(rand(25, 50))->make()
+            AssemblyHasProfile::factory(25)->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;

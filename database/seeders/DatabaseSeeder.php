@@ -11,10 +11,14 @@ use Database\Seeders\AssignmentSeeder;
 use Database\Seeders\DefaultUserSeeder;
 use Database\Seeders\EstablishmentSeeder;
 use Database\Seeders\AssemblyHasProfileSeeder;
+use Database\Seeders\AssignmentHasProfileSeeder;
 use Database\Seeders\AssemblyRelationshipsSeeder;
-use Database\Seeders\AssignmentWithProfileSeeder;
-use Database\Seeders\EstablishmentWithProfileSeeder;
+use Database\Seeders\AssignmentRelationshipsSeeder;
+use Database\Seeders\EstablishmentHasProfileSeeder;
+use Database\Seeders\EstablishmentRelationshipsSeeder;
 use Database\Seeders\AssemblyHasProfileRelationshipsSeeder;
+use Database\Seeders\AssignmentHasProfileRelationshipsSeeder;
+use Database\Seeders\EstablishmentHasProfileRelationshipsSeeder;
 
 final class DatabaseSeeder extends Seeder
 {
@@ -33,11 +37,11 @@ final class DatabaseSeeder extends Seeder
                     DefaultUserSeeder::class,
                     UserSeeder::class,
                     AssemblySeeder::class,
-                    AssemblyHasProfileSeeder::class,
                     AssignmentSeeder::class,
-                    AssignmentWithProfileSeeder::class,
                     EstablishmentSeeder::class,
-                    EstablishmentWithProfileSeeder::class,
+                    AssemblyHasProfileSeeder::class,
+                    AssignmentHasProfileSeeder::class,
+                    EstablishmentHasProfileSeeder::class,
                 ],
                 silent: false,
                 parameters: [
@@ -47,7 +51,11 @@ final class DatabaseSeeder extends Seeder
                 class: [
                     // NOTE: Some relationships must be attached last because they depend on other Models that need to be created first.
                     AssemblyRelationshipsSeeder::class,
+                    AssignmentRelationshipsSeeder::class,
+                    EstablishmentRelationshipsSeeder::class,
                     AssemblyHasProfileRelationshipsSeeder::class,
+                    AssignmentHasProfileRelationshipsSeeder::class,
+                    EstablishmentHasProfileRelationshipsSeeder::class,
                 ],
                 silent: false,
                 parameters: [

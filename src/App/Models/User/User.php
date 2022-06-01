@@ -23,24 +23,21 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use App\Models\Assignment\Assignment;
 use App\Models\Connection\Connection;
-use App\Models\Appointment\Appointment;
-use App\Models\Shared\Concerns\Traits\HasUuid;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Establishment\Establishment;
 use App\Models\Assembly\AssemblyHasProfile;
+use App\Models\Establishment\Establishment;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\Assignment\AssignmentHasProfile;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use App\Models\Assignment\AssignmentWithProfile;
-use App\Models\Appointment\AppointmentWithProfile;
+use App\Models\Shared\Concerns\Traits\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use App\Models\Establishment\EstablishmentWithProfile;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use App\Models\Shared\Concerns\Abstractions\Assemblable;
+use App\Models\Establishment\EstablishmentHasProfile;
+use App\Models\Shared\Concerns\Abstractions\ModelHasPolymorphicRelationships;
 
-final class User extends Assemblable
+final class User extends ModelHasPolymorphicRelationships
 {
     use HasUuid;
     use HasFactory;
@@ -134,60 +131,6 @@ final class User extends Assemblable
         );
     }
 
-    public function appointments(): HasMany
-    {
-        return $this->hasMany(
-            related: Appointment::class,
-            foreignKey: 'user_uuid',
-            localKey: 'uuid'
-        );
-    }
-
-    public function appointmentsWithProfile(): HasMany
-    {
-        return $this->hasMany(
-            related: AppointmentWithProfile::class,
-            foreignKey: 'user_uuid',
-            localKey: 'uuid'
-        );
-    }
-
-    public function assemblies(): HasMany
-    {
-        return $this->hasMany(
-            related: Assembly::class,
-            foreignKey: 'user_uuid',
-            localKey: 'uuid'
-        );
-    }
-
-    public function assembliesHasProfile(): HasMany
-    {
-        return $this->hasMany(
-            related: AssemblyHasProfile::class,
-            foreignKey: 'user_uuid',
-            localKey: 'uuid'
-        );
-    }
-
-    public function assignments(): HasMany
-    {
-        return $this->hasMany(
-            related: Assignment::class,
-            foreignKey: 'user_uuid',
-            localKey: 'uuid'
-        );
-    }
-
-    public function assignmentsWithProfile(): HasMany
-    {
-        return $this->hasMany(
-            related: AssignmentWithProfile::class,
-            foreignKey: 'user_uuid',
-            localKey: 'uuid'
-        );
-    }
-
     public function comments(): HasMany
     {
         return $this->hasMany(
@@ -210,24 +153,6 @@ final class User extends Assemblable
     {
         return $this->hasMany(
             related: Email::class,
-            foreignKey: 'user_uuid',
-            localKey: 'uuid'
-        );
-    }
-
-    public function establishments(): HasMany
-    {
-        return $this->hasMany(
-            related: Establishment::class,
-            foreignKey: 'user_uuid',
-            localKey: 'uuid'
-        );
-    }
-
-    public function establishmentsWithProfile(): HasMany
-    {
-        return $this->hasMany(
-            related: EstablishmentWithProfile::class,
             foreignKey: 'user_uuid',
             localKey: 'uuid'
         );
@@ -298,55 +223,57 @@ final class User extends Assemblable
         );
     }
 
-    public function userAssignments(): MorphToMany
+    public function assemblies(): HasMany
     {
-        return $this->morphedByMany(
+        return $this->hasMany(
+            related: Assembly::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
+        );
+    }
+
+    public function assembliesHasProfile(): HasMany
+    {
+        return $this->hasMany(
+            related: AssemblyHasProfile::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
+        );
+    }
+
+    public function assignments(): HasMany
+    {
+        return $this->hasMany(
             related: Assignment::class,
-            name: 'assignable',
-            table: null,
-            foreignPivotKey: 'assignment_uuid',
-            relatedPivotKey: 'assignable_uuid',
-            parentKey: 'uuid',
-            relatedKey: 'uuid'
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
         );
     }
 
-    public function userAssignmentsWithProfile(): MorphToMany
+    public function assignmentsHasProfile(): HasMany
     {
-        return $this->morphedByMany(
-            related: AssignmentWithProfile::class,
-            name: 'assignable',
-            table: null,
-            foreignPivotKey: 'assignment_uuid',
-            relatedPivotKey: 'assignable_uuid',
-            parentKey: 'uuid',
-            relatedKey: 'uuid'
+        return $this->hasMany(
+            related: AssignmentHasProfile::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
         );
     }
 
-    public function userEstablishments(): MorphToMany
+    public function establishments(): HasMany
     {
-        return $this->morphedByMany(
+        return $this->hasMany(
             related: Establishment::class,
-            name: 'establishable',
-            table: null,
-            foreignPivotKey: 'establishment_uuid',
-            relatedPivotKey: 'establishable_uuid',
-            parentKey: 'uuid',
-            relatedKey: 'uuid'
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
         );
     }
 
-    public function userEstablishmentsWithProfile(): MorphToMany
+    public function establishmentsHasProfile(): HasMany
     {
-        return $this->morphedByMany(
-            related: EstablishmentWithProfile::class,
-            name: 'establishable',
-            table: null,
-            foreignPivotKey: 'establishment_uuid',
-            relatedPivotKey: 'establishable_uuid',
-            parentKey: 'uuid',
-            relatedKey: 'uuid'
+        return $this->hasMany(
+            related: EstablishmentHasProfile::class,
+            foreignKey: 'user_uuid',
+            localKey: 'uuid'
         );
     }
 }

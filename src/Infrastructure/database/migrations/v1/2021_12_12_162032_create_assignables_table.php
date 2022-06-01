@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('assignables', function (Blueprint $table) {
@@ -14,6 +15,7 @@ return new class extends Migration {
             $table->uuid('assignable_uuid');
             $table->string('assignable_type', 100);
             $table->unique(['assignable_type', 'assignable_uuid', 'assignment_uuid'], 'polymorphic_unique');
+            $table->boolean('has_profile');
         });
     }
 

@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Assignment\Assignment;
-use App\Models\Assignment\AssignmentType;
 use App\Models\User\User;
+use Illuminate\Database\Seeder;
+use App\Models\Assignment\Assignment;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use Illuminate\Database\Seeder;
+use Database\Seeders\Shared\ImageSeeder;
+use App\Models\Assignment\AssignmentType;
 
 final class AssignmentSeeder extends Seeder
 {
     public function __construct(
         public LikeSeeder $likeSeeder,
+        public ImageSeeder $imageSeeder,
         public PostSeeder $postSeeder,
         public TypeSeeder $typeSeeder
     ) {
@@ -25,7 +27,7 @@ final class AssignmentSeeder extends Seeder
     public function run(): void
     {
         try {
-            Assignment::factory(rand(25, 50))->make()
+            Assignment::factory(50)->make()
                 ->sortBy(
                     callback: function ($sort) {
                         return $sort->created_at;
@@ -35,40 +37,36 @@ final class AssignmentSeeder extends Seeder
                 )
                 ->each(
                     callback: function (Assignment $assignment) {
-                        $assignment_types = AssignmentType::where('created_at', '<=', $assignment->created_at)->get();
-                        $assignment->assignment_type_uuid = $assignment_types->random()->uuid;
-                        $users = User::where('created_at', '<=', $assignment->created_at)->get();
-                        $assignment->user()->associate($users->random())->save();
-                        $this->likeSeeder->setUsers($users)
+                        $assignment_types = AssignmentType::where(
+                            column: 'created_at',
+                            operator: '<=',
+                            value: $assignment->created_at
+                        )->get();
+                        $users = User::where(
+                            column: 'created_at',
+                            operator: '<=',
+                            value: $assignment->created_at
+                        )->get();
+                        $assignment
+                            ->user()->associate($users->random())
+                            ->type()->associate($assignment_types->random())
+                            ->save();
+                        $this->imageSeeder
+                            ->setUsers($users)
                             ->setModel($assignment)
                             ->run();
-                        $this->postSeeder->setUsers($users)
+                        $this->likeSeeder
+                            ->setUsers($users)
                             ->setModel($assignment)
                             ->run();
-                        $this->userAssignments($assignment);
+                        $this->postSeeder
+                            ->setUsers($users)
+                            ->setModel($assignment)
+                            ->run();
                     }
                 );
         } catch (\Throwable $e) {
         }
         dump(__METHOD__ . ' [success]');
-    }
-
-    private function userAssignments(Assignment $assignment): void
-    {
-        for ($i = 0; $i < rand(1, 25); $i++) {
-            try {
-                $users = User::all();
-                $assignable = $users->random();
-                if (
-                    $assignable->userAssignments->isEmpty()
-                    ||
-                    !$assignable->userAssignments->contains($assignment)
-                ) {
-                    $assignable->userAssignments()->attach($assignment);
-                }
-                $assignable->save();
-            } catch (\Throwable  $e) {
-            }
-        }
     }
 }

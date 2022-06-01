@@ -11,8 +11,8 @@ use App\Models\Assignment\Assignment;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Establishment\Establishment;
 use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Assignment\AssignmentWithProfile;
-use App\Models\Establishment\EstablishmentWithProfile;
+use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Establishment\EstablishmentHasProfile;
 
 final class AssemblyHasProfileRelationshipsSeeder extends Seeder
 {
@@ -26,9 +26,9 @@ final class AssemblyHasProfileRelationshipsSeeder extends Seeder
                     1 => $this->assemblables($assembly, new Assembly),
                     2 => $this->assemblables($assembly, new AssemblyHasProfile),
                     3 => $this->assemblables($assembly, new Assignment),
-                    4 => $this->assemblables($assembly, new AssignmentWithProfile),
+                    4 => $this->assemblables($assembly, new AssignmentHasProfile),
                     5 => $this->assemblables($assembly, new Establishment),
-                    6 => $this->assemblables($assembly, new EstablishmentWithProfile),
+                    6 => $this->assemblables($assembly, new EstablishmentHasProfile),
                     7 => $this->assemblables($assembly, new User),
                 };
             }
@@ -40,7 +40,7 @@ final class AssemblyHasProfileRelationshipsSeeder extends Seeder
     private function assemblables(AssemblyHasProfile $assembly, Model $model): void
     {
         $pivots = ['has_profile' => 1];
-        for ($i = 0; $i < rand(1, 25); $i++) {
+        for ($i = 0; $i < 5; $i++) {
             try {
                 $models = $model::where('uuid', '!=', $assembly->uuid)->get();
                 if ($models->isNotEmpty()) {

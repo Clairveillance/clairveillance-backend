@@ -30,9 +30,9 @@ class AppServiceProvider extends ServiceProvider
         //     'assembly' => 'App\Models\Assembly\Assembly',
         //     'assembly_has_profile' => 'App\Models\Assembly\AssemblyHasProfile',
         //     'assignment' => 'App\Models\Assignment\Assignment',
-        //     'assignment_with_profile' => 'App\Models\Assignment\AssignmentWithProfile',
+        //     'assignment_has_profile' => 'App\Models\Assignment\AssignmentHasProfile',
         //     'establishment' => 'App\Models\Establishment\Establishment',
-        //     'establishment_with_profile' => 'App\Models\Establishment\EstablishmentWithProfile',
+        //     'establishment_has_profile' => 'App\Models\Establishment\EstablishmentHasProfile',
         // ]);
 
         if (config('app.dblisten') === true) {
