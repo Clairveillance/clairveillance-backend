@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Repositories\Api\V1\Users\Concerns\Contracts;
+namespace App\Core\Repositories\Api\Contracts;
 
 use App\Core\Resources\Api\V1\Users\UserCollection;
 

@@ -26,11 +26,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Api routes.
              */
-            Route::prefix('api')->middleware([
-                'api',
-                'custom.cors', // NOTE: Custom CORS middleware.
-                'json.response'  // NOTE: Set Request Headers to force Json.
-            ])->as('api.')->group(function () {
+            Route::prefix('api')->middleware(['api'])->as('api.')->group(function () {
 
                 /*
                  * Version 1
@@ -43,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Web routes.
              */
-            Route::middleware('web')
+            Route::middleware(['web'])
                 ->namespace($this->namespace)
                 ->group(base_path(self::WEB_PATH . config('app.api_version') . '.php'));
         });

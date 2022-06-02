@@ -6,7 +6,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Core\Repositories\Api\V1\Users\UserRepository;
-use App\Core\Repositories\Api\V1\Users\Concerns\Contracts\UserRepositoryInterface;
+use App\Core\Repositories\Api\Contracts\UserRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

@@ -2,21 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Middleware;
+namespace App\Core\Middleware\Api;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class Cors
+final class Cors
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $headers = [
             'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin',
