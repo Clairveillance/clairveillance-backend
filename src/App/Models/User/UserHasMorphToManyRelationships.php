@@ -19,6 +19,7 @@ use App\Models\Shared\Concerns\Contracts\AssemblableInterface;
 use App\Models\Shared\Concerns\Contracts\AppointableInterface;
 use App\Models\Shared\Concerns\Contracts\EstablishableInterface;
 
+// TODO: Replace this class by traits.
 abstract class UserHasMorphToManyRelationships extends Model implements
     AppointableInterface,
     AssemblableInterface,

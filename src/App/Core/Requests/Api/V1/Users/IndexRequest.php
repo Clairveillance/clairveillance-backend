@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Core\Requests\Api\V1\Users;
 
-use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\ValidationException;
 
 final class IndexRequest extends FormRequest
 {
@@ -50,6 +51,13 @@ final class IndexRequest extends FormRequest
         ]);
     }
 
+    protected function failedValidation(Validator $validator): void
+    {
+        throw (new ValidationException($validator))
+            ->errorBag($this->errorBag)
+            ->redirectTo($this->getRedirectUrl());
+    }
+
     public function messages(): array
     {
         return [
@@ -62,7 +70,7 @@ final class IndexRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            // 'order_by.in' => 'order by',
+            // 'order_by' => 'order by',
         ];
     }
 

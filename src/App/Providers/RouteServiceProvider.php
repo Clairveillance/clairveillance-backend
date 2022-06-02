@@ -26,7 +26,11 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Api routes.
              */
-            Route::prefix('api')->middleware(['api', 'custom.cors'])->as('api.')->group(function () {
+            Route::prefix('api')->middleware([
+                'api',
+                'custom.cors', // NOTE: Custom CORS middleware.
+                'json.response'  // NOTE: Set Request Headers to force Json.
+            ])->as('api.')->group(function () {
 
                 /*
                  * Version 1

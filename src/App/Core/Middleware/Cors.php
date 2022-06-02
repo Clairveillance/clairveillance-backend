@@ -18,14 +18,11 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-
-        // header("Access-Control-Allow-Origin: *");
-
         $headers = [
-            // 'Accept' => 'application/json',
             'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin',
             'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
             'Access-Control-Allow-Origin' => '*',
+            'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             // 'Origin' => config('app.url')
         ];
