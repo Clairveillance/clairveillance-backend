@@ -32,6 +32,7 @@ final class TypeSeeder extends Seeder
     public function setModel(Model $model): self
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -44,6 +45,7 @@ final class TypeSeeder extends Seeder
     public function setAttributes(array $attributes): self
     {
         $this->attributes = $attributes;
+
         return $this;
     }
 

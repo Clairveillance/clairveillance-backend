@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Appointment;
 
+use App\Models\Appointment\AbstractAppointment;
+use App\Models\Comment\Comment;
 use App\Models\Like\Like;
 use App\Models\Post\Post;
-use App\Models\Comment\Comment;
-use App\Models\Appointment\AbstractAppointment;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 final class Appointment extends AbstractAppointment

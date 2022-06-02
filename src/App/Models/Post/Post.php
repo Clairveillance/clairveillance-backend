@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Models\Post;
 
-use App\Models\Like\Like;
-use App\Models\User\User;
-use App\Models\Image\Image;
-use App\Models\Post\PostType;
 use App\Models\Comment\Comment;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Image\Image;
+use App\Models\Like\Like;
+use App\Models\Post\PostType;
+use App\Models\Post\QueryBuilder\PostQueryBuilder;
+use App\Models\Shared\Concerns\Traits\HasFactory;
 use App\Models\Shared\Concerns\Traits\HasSlug;
 use App\Models\Shared\Concerns\Traits\HasUuid;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Post\QueryBuilder\PostQueryBuilder;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
@@ -51,7 +51,7 @@ class Post extends Model
     {
         return [
             'source' => 'title',
-            'params' => '-by-' . $this->user->username,
+            'params' => '-by-'.$this->user->username,
         ];
     }
 

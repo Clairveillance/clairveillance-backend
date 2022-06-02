@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Core\Repositories\Api\V1\Users\Concerns;
 
-use App\Models\User\User;
-use App\Models\Post\QueryBuilder\PostQueryBuilder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Core\Resources\Api\V1\Users\UserCollection;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use App\Models\Appointment\QueryBuilder\AppointmentQueryBuilder;
+use App\Models\Post\QueryBuilder\PostQueryBuilder;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 abstract class GetAllUsers
 {
@@ -40,7 +40,7 @@ abstract class GetAllUsers
                                     },
                                     'likes as dislikes_count' => function ($likes) {
                                         $likes->where('is_dislike', 1);
-                                    }
+                                    },
                                 ]
                             );
                         },
@@ -54,7 +54,7 @@ abstract class GetAllUsers
                                     },
                                     'likes as dislikes_count' => function ($likes) {
                                         $likes->where('is_dislike', 1);
-                                    }
+                                    },
                                 ]
                             );
                         },
@@ -68,7 +68,7 @@ abstract class GetAllUsers
                                     },
                                     'likes as dislikes_count' => function ($likes) {
                                         $likes->where('is_dislike', 1);
-                                    }
+                                    },
                                 ]
                             );
                         },
@@ -82,7 +82,7 @@ abstract class GetAllUsers
                                     },
                                     'likes as dislikes_count' => function ($likes) {
                                         $likes->where('is_dislike', 1);
-                                    }
+                                    },
                                 ]
                             );
                         },
@@ -96,7 +96,7 @@ abstract class GetAllUsers
                                     },
                                     'likes as dislikes_count' => function ($likes) {
                                         $likes->where('is_dislike', 1);
-                                    }
+                                    },
                                 ]
                             );
                         },
@@ -110,7 +110,7 @@ abstract class GetAllUsers
                                     },
                                     'likes as dislikes_count' => function ($likes) {
                                         $likes->where('is_dislike', 1);
-                                    }
+                                    },
                                 ]
                             );
                         },
@@ -126,7 +126,7 @@ abstract class GetAllUsers
                                         },
                                         'likes as dislikes_count' => function ($likes) {
                                             $likes->where('is_dislike', 1);
-                                        }
+                                        },
                                     ]
                                 );
                         },
@@ -143,7 +143,7 @@ abstract class GetAllUsers
                                     },
                                     'likes as dislikes_count' => function ($likes) {
                                         $likes->where('is_dislike', 1);
-                                    }
+                                    },
                                 ]
                             );
                         },
@@ -187,6 +187,7 @@ abstract class GetAllUsers
                 )
         );
         $users::$wrap = 'data';
+
         return $users;
     }
 }

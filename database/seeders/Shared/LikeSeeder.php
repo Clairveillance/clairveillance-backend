@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Shared;
 
-use App\Models\Like\Like;
 use App\Models\Image\Image;
-use App\Models\Like\LikeType;
 use App\Models\Image\ImageType;
-use Illuminate\Support\Collection;
+use App\Models\Like\Like;
+use App\Models\Like\LikeType;
 use Database\Seeders\Shared\TypeSeeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * LikeSeeder
@@ -72,12 +72,12 @@ final class LikeSeeder
             $model = $this->model;
             $users = $this->users;
             $likeTypeImageType = ImageType::where('name', 'likeable images')->first();
-            if (!$likeTypeImageType) {
+            if (! $likeTypeImageType) {
                 $likeTypeImageType = new ImageType(['name' => 'likeable images']);
                 $likeTypeImageType->save();
             }
             $likeTypeImage = Image::where('name', 'heart')->first();
-            if (!$likeTypeImage) {
+            if (! $likeTypeImage) {
                 $likeTypeImage = new Image([
                     'name' => 'heart',
                     'type' => 'jpg',
@@ -90,7 +90,7 @@ final class LikeSeeder
             }
             $this->typeSeeder->setModel(new LikeType)->setAttributes(['image_uuid', $likeTypeImage->uuid])->run();
             $likeType = LikeType::where('name', 'heart')->first();
-            if (!$likeType) {
+            if (! $likeType) {
                 $likeType = new LikeType(['name' => 'heart']);
                 $likeType->image()->associate($likeTypeImage)->save();
             }
@@ -108,7 +108,7 @@ final class LikeSeeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__ . ' [error]');
+                dump(__METHOD__.' [error]');
             }
         }
     }

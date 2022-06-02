@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Requests\Api\V1\Users;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
 final class IndexRequest extends FormRequest
@@ -35,7 +35,7 @@ final class IndexRequest extends FormRequest
             'per_page' => [
                 'nullable',
                 'integer',
-                // 'numeric', 
+                // 'numeric',
             ],
         ];
     }
@@ -45,9 +45,9 @@ final class IndexRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'order_by' => (string)$this->order_by === '' ? 'username' : (string)$this->order_by,
-            'order_direction' => (string)$this->order_direction === '' ? 'asc' : (string)$this->order_direction,
-            'per_page' => (int)$this->per_page === 0 ? 25 : (int)$this->per_page,
+            'order_by' => (string) $this->order_by === '' ? 'username' : (string) $this->order_by,
+            'order_direction' => (string) $this->order_direction === '' ? 'asc' : (string) $this->order_direction,
+            'per_page' => (int) $this->per_page === 0 ? 25 : (int) $this->per_page,
         ]);
     }
 

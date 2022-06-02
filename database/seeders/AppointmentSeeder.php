@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Appointment\Appointment;
+use App\Models\Appointment\AppointmentType;
 use App\Models\User\User;
-use Illuminate\Database\Seeder;
+use Database\Seeders\Shared\ImageSeeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use App\Models\Appointment\Appointment;
-use Database\Seeders\Shared\ImageSeeder;
-use App\Models\Appointment\AppointmentType;
+use Illuminate\Database\Seeder;
 
 final class AppointmentSeeder extends Seeder
 {
-    public const NUMBER  = 50;
+    public const NUMBER = 50;
 
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -71,12 +71,12 @@ final class AppointmentSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__ . ' [error]');
+                dump(__METHOD__.' [error]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__ . ' [success]');
+            dump(__METHOD__.' [success]');
         }
     }
 }

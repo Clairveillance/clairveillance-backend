@@ -22,6 +22,7 @@ final class DeleteController extends Controller
         DeleteUserJob::dispatch(
             $user->id,
         );
+
         return response()->json(
             data: [
                 'success' => true,

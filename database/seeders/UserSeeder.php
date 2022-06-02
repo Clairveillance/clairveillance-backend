@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 
 final class UserSeeder extends Seeder
 {
-    public const NUMBER  = 199;
+    public const NUMBER = 199;
 
     public function run(): void
     {
@@ -31,12 +31,12 @@ final class UserSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__ . ' [error]');
+                dump(__METHOD__.' [error]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__ . ' [success]');
+            dump(__METHOD__.' [success]');
         }
     }
 }

@@ -4,27 +4,23 @@ declare(strict_types=1);
 
 namespace App\Models\User;
 
-use App\Models\Assembly\Assembly;
-use App\Models\Assignment\Assignment;
 use App\Models\Appointment\Appointment;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Establishment\Establishment;
-use App\Models\Assignment\AssignmentHasProfile;
 use App\Models\Appointment\AppointmentHasProfile;
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyHasProfile;
+use App\Models\Assignment\Assignment;
+use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Establishment\Establishment;
 use App\Models\Establishment\EstablishmentHasProfile;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use App\Models\Shared\Concerns\Contracts\AssignableInterface;
-use App\Models\Shared\Concerns\Contracts\AssemblableInterface;
 use App\Models\Shared\Concerns\Contracts\AppointableInterface;
+use App\Models\Shared\Concerns\Contracts\AssemblableInterface;
+use App\Models\Shared\Concerns\Contracts\AssignableInterface;
 use App\Models\Shared\Concerns\Contracts\EstablishableInterface;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 // TODO: Replace this class by traits.
-abstract class UserHasMorphToManyRelationships extends Model implements
-    AppointableInterface,
-    AssemblableInterface,
-    AssignableInterface,
-    EstablishableInterface
+abstract class UserHasMorphToManyRelationships extends Model implements AppointableInterface, AssemblableInterface, AssignableInterface, EstablishableInterface
 {
     public function getMorphClass(): string
     {

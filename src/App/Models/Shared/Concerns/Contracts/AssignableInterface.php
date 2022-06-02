@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 interface AssignableInterface
 {
     public function getMorphClass(): string;
+
     public function assignables(): MorphToMany;
+
     public function assignables_has_profile(): MorphToMany;
 }

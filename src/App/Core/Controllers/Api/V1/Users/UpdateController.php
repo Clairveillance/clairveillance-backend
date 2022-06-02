@@ -26,6 +26,7 @@ final class UpdateController extends Controller
                 attributes: $request->validated(),
             ),
         );
+
         return response()->json(
             data: [
                 'success' => true,

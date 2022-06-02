@@ -6,10 +6,10 @@ namespace Database\Seeders\Shared;
 
 use App\Models\Image\Image;
 use App\Models\Image\ImageType;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Collection;
 use Database\Seeders\Shared\TypeSeeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 
 /**
  * PostSeeder
@@ -37,6 +37,7 @@ final class ImageSeeder extends Seeder
     public function setModel(Model $model): self
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -49,6 +50,7 @@ final class ImageSeeder extends Seeder
     public function setUsers(Collection $users): self
     {
         $this->users = $users;
+
         return $this;
     }
 
@@ -91,7 +93,7 @@ final class ImageSeeder extends Seeder
                                     if (
                                         $image->imageables($model)->get()->isEmpty()
                                         ||
-                                        !$image->imageables($model)->get()->contains($imageable)
+                                        ! $image->imageables($model)->get()->contains($imageable)
                                     ) {
                                         $image->imageables($model)->attach($imageable);
                                     }
@@ -104,7 +106,7 @@ final class ImageSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__ . ' [error]');
+                dump(__METHOD__.' [error]');
             }
         }
     }

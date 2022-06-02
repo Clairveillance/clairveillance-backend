@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Assembly;
 
+use App\Models\Assembly\AbstractAssembly;
+use App\Models\Comment\Comment;
 use App\Models\Like\Like;
 use App\Models\Post\Post;
-use App\Models\Comment\Comment;
-use App\Models\Assembly\AbstractAssembly;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 final class Assembly extends AbstractAssembly

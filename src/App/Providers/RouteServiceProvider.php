@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     public const HOME = '/home';
+
     private const API_PATH = 'src/Infrastructure/routes/api/';
+
     private const WEB_PATH = 'src/Infrastructure/routes/web/';
 
     public function boot(): void
@@ -31,8 +33,8 @@ class RouteServiceProvider extends ServiceProvider
                 /*
                  * Version 1
                  */
-                Route::prefix(config('app.api_version'))->as(config('app.api_version') . '.')->group(
-                    base_path(self::API_PATH . config('app.api_version') . '.php')
+                Route::prefix(config('app.api_version'))->as(config('app.api_version').'.')->group(
+                    base_path(self::API_PATH.config('app.api_version').'.php')
                 );
             });
 
@@ -41,7 +43,7 @@ class RouteServiceProvider extends ServiceProvider
              */
             Route::middleware(['web'])
                 ->namespace($this->namespace)
-                ->group(base_path(self::WEB_PATH . config('app.api_version') . '.php'));
+                ->group(base_path(self::WEB_PATH.config('app.api_version').'.php'));
         });
     }
 

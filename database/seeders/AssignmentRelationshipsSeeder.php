@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\User\User;
-use Illuminate\Database\Seeder;
-use App\Models\Assembly\Assembly;
-use App\Models\Assignment\Assignment;
 use App\Models\Appointment\Appointment;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Establishment\Establishment;
-use App\Models\Assignment\AssignmentHasProfile;
 use App\Models\Appointment\AppointmentHasProfile;
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyHasProfile;
+use App\Models\Assignment\Assignment;
+use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Establishment\Establishment;
 use App\Models\Establishment\EstablishmentHasProfile;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 final class AssignmentRelationshipsSeeder extends Seeder
 {
@@ -40,12 +40,12 @@ final class AssignmentRelationshipsSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__ . ' [error]');
+                dump(__METHOD__.' [error]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__ . ' [success]');
+            dump(__METHOD__.' [success]');
         }
     }
 
@@ -61,7 +61,7 @@ final class AssignmentRelationshipsSeeder extends Seeder
                     if (
                         $assignment->assignables($model)->get()->isEmpty()
                         ||
-                        !$assignment->assignables($model)->get()->contains($assignable)
+                        ! $assignment->assignables($model)->get()->contains($assignable)
                     ) {
                         $assignment->assignables($model)->attach($assignable, $pivots);
                     }
@@ -69,7 +69,7 @@ final class AssignmentRelationshipsSeeder extends Seeder
             } catch (\Throwable $e) {
                 if (empty($errors)) {
                     $errors[] = true;
-                    dump(__METHOD__ . ' [error]');
+                    dump(__METHOD__.' [error]');
                 }
             }
         }

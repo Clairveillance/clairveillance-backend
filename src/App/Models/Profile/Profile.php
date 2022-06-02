@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Models\Profile;
 
+use App\Models\Comment\Comment;
+use App\Models\Image\Image;
 use App\Models\Like\Like;
 use App\Models\Post\Post;
-use App\Models\User\User;
-use App\Models\Image\Image;
-use App\Models\Comment\Comment;
 use App\Models\Profile\ProfileType;
-use App\Models\Shared\Concerns\Traits\HasUuid;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Concerns\Traits\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class Profile extends Model
 {

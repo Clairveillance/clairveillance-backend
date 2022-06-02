@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\User\User;
-use Illuminate\Database\Seeder;
 use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyType;
+use App\Models\User\User;
+use Database\Seeders\Shared\ImageSeeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use Database\Seeders\Shared\ImageSeeder;
+use Illuminate\Database\Seeder;
 
 final class AssemblySeeder extends Seeder
 {
-    public const NUMBER  = 50;
+    public const NUMBER = 50;
 
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -71,12 +71,12 @@ final class AssemblySeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__ . ' [error]');
+                dump(__METHOD__.' [error]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__ . ' [success]');
+            dump(__METHOD__.' [success]');
         }
     }
 }

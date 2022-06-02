@@ -23,6 +23,7 @@ final class ShowController extends Controller
                 // ->withTrashed()
                 ->firstOrFail()
         );
+
         return response()->json(
             data: [
                 'succes' => true,

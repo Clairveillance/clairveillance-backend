@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
-use App\Models\Like\Like;
-use App\Models\Post\Post;
 use App\Models\Comment\Comment;
 use App\Models\Establishment\AbstractEstablishment;
+use App\Models\Like\Like;
+use App\Models\Post\Post;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 final class Establishment extends AbstractEstablishment

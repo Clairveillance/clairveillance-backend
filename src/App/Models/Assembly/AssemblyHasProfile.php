@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Assembly;
 
-use App\Models\Profile\Profile;
 use App\Models\Assembly\AbstractAssembly;
+use App\Models\Profile\Profile;
 use App\Models\Shared\Concerns\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models\Assembly;
 
-use App\Models\User\User;
 use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyType;
-use App\Models\Shared\Concerns\Traits\HasUuid;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Concerns\Traits\HasFactory;
 use App\Models\Assembly\AssemblyHasProfile;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Assembly\AssemblyType;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 abstract class AbstractAssembly extends Model
 {

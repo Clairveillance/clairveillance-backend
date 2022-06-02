@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 final class Handler extends ExceptionHandler
 {
@@ -33,7 +33,7 @@ final class Handler extends ExceptionHandler
     public function render($request, \Throwable $exception): JsonResponse
     {
         // NOTE: Since we already use custom middleware to force Json Request Headers,
-        // the following condition is not needed. 
+        // the following condition is not needed.
         /*
             if ($request->wantsJson()) {   //add Accept: application/json in request
                 return $this->handleApiException($request, $exception);

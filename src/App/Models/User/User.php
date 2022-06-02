@@ -4,40 +4,40 @@ declare(strict_types=1);
 
 namespace App\Models\User;
 
+use App\Models\Address\Address;
+use App\Models\Appointment\Appointment;
+use App\Models\Appointment\AppointmentHasProfile;
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyHasProfile;
+use App\Models\Assignment\Assignment;
+use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Comment\Comment;
+use App\Models\Connection\Connection;
+use App\Models\Email\Email;
+use App\Models\Establishment\Establishment;
+use App\Models\Establishment\EstablishmentHasProfile;
+use App\Models\Language\Language;
 use App\Models\Like\Like;
 use App\Models\Link\Link;
-use App\Models\Post\Post;
-use App\Models\Email\Email;
 use App\Models\Phone\Phone;
-use App\Models\Theme\Theme;
-use App\Models\Address\Address;
-use App\Models\Comment\Comment;
+use App\Models\Post\Post;
 use App\Models\Profile\Profile;
-use App\Models\Assembly\Assembly;
-use App\Models\Language\Language;
 use App\Models\Sequence\Sequence;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use App\Models\Taxonomy\Taxonomy;
+use App\Models\Theme\Theme;
 use App\Models\Timezone\Timezone;
-use Laravel\Sanctum\HasApiTokens;
+use App\Models\User\UserHasMorphToManyRelationships;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
-use App\Models\Assignment\Assignment;
-use App\Models\Connection\Connection;
-use App\Models\Appointment\Appointment;
-use Illuminate\Notifications\Notifiable;
-use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Establishment\Establishment;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Shared\Concerns\Traits\HasUuid;
-use App\Models\Assignment\AssignmentHasProfile;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use App\Models\Appointment\AppointmentHasProfile;
-use App\Models\Shared\Concerns\Traits\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use App\Models\User\UserHasMorphToManyRelationships;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use App\Models\Establishment\EstablishmentHasProfile;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 final class User extends UserHasMorphToManyRelationships
 {
@@ -190,7 +190,7 @@ final class User extends UserHasMorphToManyRelationships
     public function posts(): HasMany
     {
         // NOTE:  We add orderByDesc() here cause we sort posts by 'published_at' field by default.
-        // Maybe it will be better to move this logic to another place if we need to implement a conditional ordering. 
+        // Maybe it will be better to move this logic to another place if we need to implement a conditional ordering.
         return $this->hasMany(
             related: Post::class,
             foreignKey: 'user_uuid',

@@ -16,7 +16,7 @@ trait HasSlug
         static::creating(function (Model $model) {
             $params = '';
             extract($model->slugSources());
-            $slug = $model->$source . $params;
+            $slug = $model->$source.$params;
             $model->slug = Str::slug($slug);
         });
     }
