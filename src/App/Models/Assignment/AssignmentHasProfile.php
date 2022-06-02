@@ -6,7 +6,7 @@ namespace App\Models\Assignment;
 
 use App\Models\Assignment\AbstractAssignment;
 use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\Traits\HasSlug;
+use App\Models\Shared\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 final class AssignmentHasProfile extends AbstractAssignment

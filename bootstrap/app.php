@@ -22,7 +22,7 @@ $app->singleton(
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     // NOTE: This is where we bind custom Exceptions Handler.
-    App\Exceptions\Handler::class
+    App\Exceptions\Contracts\HandlerInterface::class
 );
 
 return $app;

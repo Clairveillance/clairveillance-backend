@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-final class Handler extends ExceptionHandler implements HandlerInterface
+final class AppDebugHandler extends ExceptionHandler implements HandlerInterface
 {
     protected $dontReport = [
         //
@@ -36,22 +36,26 @@ final class Handler extends ExceptionHandler implements HandlerInterface
         return $this->handleApiException($request, $exception);
     }
 
-    public function handleApiException(Request $request, \Throwable $exception): JsonResponse
+    private function handleApiException(Request $request, \Throwable $exception): JsonResponse
     {
         $exception = $this->prepareException($exception);
+
         if ($exception instanceof HttpResponseException) {
             $exception = $exception->getResponse();
         }
+
         if ($exception instanceof AuthenticationException) {
             $exception = $this->unauthenticated($request, $exception);
         }
+
         if ($exception instanceof ValidationException) {
             $exception = $this->convertValidationExceptionToResponse($exception, $request);
         }
+
         return $this->customApiResponse($exception);
     }
 
-    public function customApiResponse(mixed $exception): JsonResponse
+    private function customApiResponse(mixed $exception): JsonResponse
     {
         if (method_exists($exception, 'getStatusCode')) {
             $statusCode = $exception->getStatusCode();
@@ -76,6 +80,9 @@ final class Handler extends ExceptionHandler implements HandlerInterface
                 'Internal Server Error' :
                 $exception->getMessage(),
         };
+        // IMPORTANT: Only for Debugging Application.
+        $response['trace'] = $exception->getTrace();
+        // $response['code'] = $exception->getCode();
         return response()->json(
             data: $response,
             status: $statusCode

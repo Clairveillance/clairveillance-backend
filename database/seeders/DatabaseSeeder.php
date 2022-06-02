@@ -83,6 +83,6 @@ final class DatabaseSeeder extends Seeder
         $this->call(
             class: [],
         );
-        dump(__METHOD__.' [success]');
+        dump(__METHOD__ . ' [success]');
     }
 }

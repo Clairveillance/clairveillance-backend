@@ -10,31 +10,8 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register()
-    {
-        //
-    }
-
     public function boot()
     {
-        // NOTE: Not sure if this is necessary.
-        // Defining property $morhpClass and method getMorphClass() in the desired Models seems good enough.
-        // This approach is even better cause we have more flexibility. We only change the polymorphic type when we need it.
-        // But with enforceMorhMap() function we have to fill the arguments array with all the polymorphic relations
-        // that are present in our application or the system will break.
-
-        // Relation::enforceMorphMap([
-        //     'user' => 'App\Models\User\User',
-        //     'post' => 'App\Models\Post\Post',
-        //     'profile' => 'App\Models\Profile\Profile',
-        //     'assembly' => 'App\Models\Assembly\Assembly',
-        //     'assembly_has_profile' => 'App\Models\Assembly\AssemblyHasProfile',
-        //     'assignment' => 'App\Models\Assignment\Assignment',
-        //     'assignment_has_profile' => 'App\Models\Assignment\AssignmentHasProfile',
-        //     'establishment' => 'App\Models\Establishment\Establishment',
-        //     'establishment_has_profile' => 'App\Models\Establishment\EstablishmentHasProfile',
-        // ]);
-
         if (config('app.dblisten') === true) {
             DB::listen(function ($query) {
                 $sql = $query->sql;
@@ -46,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
                 dump([
                     'SQL' => $sql,
                     // 'Bindings' => $bindings,
-                    'Time' => $executionTime.'ms',
+                    'Time' => $executionTime . 'ms',
                     // 'Connection' => $connection,
                     // 'Connection name' => $connectionName
                 ]);

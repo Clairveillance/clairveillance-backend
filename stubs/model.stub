@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace {{namespace}};
 
-use App\Models\Shared\Concerns\Traits\HasUuid;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Shared\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Shared\Traits\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class {{ class }} extends Model
 {
     use HasUuid;
     use HasFactory;
     use SoftDeletes;
+
+    /** @var string */
+    protected $morphClass = '';
 
     /** @var array<string> */
     protected $fillable = [];
@@ -23,6 +26,11 @@ final class {{ class }} extends Model
         'id',
         'uuid'
     ];
+
+    public function getMorphClass(): string
+    {
+        return $this->morphClass;
+    }
 
     public function getRouteKeyName(): string
     {

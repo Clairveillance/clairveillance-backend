@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-final class Handler extends ExceptionHandler implements HandlerInterface
+final class CustomHandler extends ExceptionHandler implements HandlerInterface
 {
     protected $dontReport = [
         //
@@ -36,7 +36,7 @@ final class Handler extends ExceptionHandler implements HandlerInterface
         return $this->handleApiException($request, $exception);
     }
 
-    public function handleApiException(Request $request, \Throwable $exception): JsonResponse
+    private function handleApiException(Request $request, \Throwable $exception): JsonResponse
     {
         $exception = $this->prepareException($exception);
         if ($exception instanceof HttpResponseException) {
@@ -51,7 +51,7 @@ final class Handler extends ExceptionHandler implements HandlerInterface
         return $this->customApiResponse($exception);
     }
 
-    public function customApiResponse(mixed $exception): JsonResponse
+    private function customApiResponse(mixed $exception): JsonResponse
     {
         if (method_exists($exception, 'getStatusCode')) {
             $statusCode = $exception->getStatusCode();

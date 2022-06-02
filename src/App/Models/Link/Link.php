@@ -6,8 +6,8 @@ namespace App\Models\Link;
 
 use App\Models\Image\Image;
 use App\Models\Link\LinkType;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\Shared\Traits\HasFactory;
+use App\Models\Shared\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;

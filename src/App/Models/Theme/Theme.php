@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Theme;
 
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\Shared\Traits\HasFactory;
+use App\Models\Shared\Traits\HasUuid;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

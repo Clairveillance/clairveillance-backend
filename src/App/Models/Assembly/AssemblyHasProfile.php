@@ -6,7 +6,7 @@ namespace App\Models\Assembly;
 
 use App\Models\Assembly\AbstractAssembly;
 use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\Traits\HasSlug;
+use App\Models\Shared\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 final class AssemblyHasProfile extends AbstractAssembly

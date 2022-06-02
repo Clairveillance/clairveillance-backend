@@ -291,16 +291,16 @@ final class UserCollection extends ResourceCollection
                                         'likes_count' => $post->likes->where((string) 'is_dislike', (int) 0)->count(),
                                         'dislikes_count' => $post->likes->where((string) 'is_dislike', (int) 1)->count(),
                                         'links' => [
-                                            'self' => route((string) 'api.'.config('app.api_version').'.posts.show', (string) $post->slug),
-                                            'parent' => route((string) 'api.'.config('app.api_version').'.users.index.posts', (string) $user->uuid),
+                                            'self' => route((string) 'api.' . config('app.api_version') . '.posts.show', (string) $post->slug),
+                                            'parent' => route((string) 'api.' . config('app.api_version') . '.users.index.posts', (string) $user->uuid),
                                         ],
                                     ]);
                                 }
                             ),
                         ],
                         'links' => [
-                            'self' => route((string) 'api.'.config('app.api_version').'.users.show', (string) $user->uuid),
-                            'parent' => route((string) 'api.'.config('app.api_version').'.users.index'),
+                            'self' => route((string) 'api.' . config('app.api_version') . '.users.show', (string) $user->uuid),
+                            'parent' => route((string) 'api.' . config('app.api_version') . '.users.index'),
                         ],
                     ]);
                 }

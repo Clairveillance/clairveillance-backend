@@ -47,6 +47,7 @@
     43 => 'App\\Providers\\RouteServiceProvider',
     44 => 'App\\Providers\\RepositoryServiceProvider',
     45 => 'App\\Providers\\ObservableServiceProvider',
+    46 => 'App\\Providers\\ExceptionsHandlerServiceProvider',
   ),
   'eager' => 
   array (
@@ -82,6 +83,7 @@
     29 => 'App\\Providers\\RouteServiceProvider',
     30 => 'App\\Providers\\RepositoryServiceProvider',
     31 => 'App\\Providers\\ObservableServiceProvider',
+    32 => 'App\\Providers\\ExceptionsHandlerServiceProvider',
   ),
   'deferred' => 
   array (

@@ -40,12 +40,12 @@ final class AssemblyHasProfileRelationshipsSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__.' [error]');
+                dump(__METHOD__ . ' [warning]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__.' [success]');
+            dump(__METHOD__ . ' [success]');
         }
     }
 
@@ -61,7 +61,7 @@ final class AssemblyHasProfileRelationshipsSeeder extends Seeder
                     if (
                         $assembly->assemblables($model)->get()->isEmpty()
                         ||
-                        ! $assembly->assemblables($model)->get()->contains($assemblable)
+                        !$assembly->assemblables($model)->get()->contains($assemblable)
                     ) {
                         $assembly->assemblables($model)->attach($assemblable, $pivots);
                     }
@@ -69,7 +69,7 @@ final class AssemblyHasProfileRelationshipsSeeder extends Seeder
             } catch (\Throwable $e) {
                 if (empty($errors)) {
                     $errors[] = true;
-                    dump(__METHOD__.' [error]');
+                    dump(__METHOD__ . ' [warning]');
                 }
             }
         }
