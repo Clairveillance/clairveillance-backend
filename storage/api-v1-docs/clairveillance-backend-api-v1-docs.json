@@ -78,7 +78,7 @@
                         "description": "Method Not Allowed"
                     },
                     "422": {
-                        "description": "Unprocessable Entity"
+                        "description": "Unprocessable Content"
                     },
                     "429": {
                         "description": "Too Many Requests"
@@ -133,7 +133,7 @@
                         "description": "Method Not Allowed"
                     },
                     "422": {
-                        "description": "Unprocessable Entity"
+                        "description": "Unprocessable Content"
                     },
                     "429": {
                         "description": "Too Many Requests"

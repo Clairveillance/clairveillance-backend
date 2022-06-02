@@ -8,7 +8,7 @@ use App\Core\Controllers\Controller;
 use App\Core\Requests\Api\V1\Users\IndexRequest;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Core\Resources\Api\V1\Users\UserCollection;
-use App\Core\Repositories\Api\V1\Users\Concerns\Contracts\UserRepositoryInterface;
+use App\Core\Repositories\Api\Contracts\UserRepositoryInterface;
 
 final class IndexController extends Controller
 {

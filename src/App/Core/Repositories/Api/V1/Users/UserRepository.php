@@ -6,7 +6,7 @@ namespace App\Core\Repositories\Api\V1\Users;
 
 use App\Core\Resources\Api\V1\Users\UserCollection;
 use App\Core\Repositories\Api\V1\Users\Concerns\GetAllUsers;
-use App\Core\Repositories\Api\V1\Users\Concerns\Contracts\UserRepositoryInterface;
+use App\Core\Repositories\Api\Contracts\UserRepositoryInterface;
 
 final class UserRepository implements UserRepositoryInterface
 {

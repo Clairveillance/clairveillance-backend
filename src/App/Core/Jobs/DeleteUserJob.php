@@ -18,9 +18,8 @@ final class DeleteUserJob implements ShouldQueue
     use SerializesModels;
     use InteractsWithQueue;
 
-    public function __construct(
-        public int $userId
-    ) {
+    public function __construct(public int $userId)
+    {
     }
 
     public function handle(): void

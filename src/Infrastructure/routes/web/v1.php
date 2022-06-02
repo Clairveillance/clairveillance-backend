@@ -50,5 +50,9 @@ Route::get(uri: '/upstash', action: function () {
 
 // Route::get('/{any?}') must be declared last or it will overwrite all other route methods.
 Route::get(uri: '/{any?}', action: function () {
-    return view(view: 'welcome');
+    // NOTE: We return a Forbidden response  with status code 403.
+    return response(
+        content: 'Forbidden',
+        status: 403
+    );
 })->where(name: 'any', expression: '.*');
