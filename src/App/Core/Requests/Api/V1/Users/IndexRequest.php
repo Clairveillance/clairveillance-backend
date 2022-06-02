@@ -51,13 +51,6 @@ final class IndexRequest extends FormRequest
         ]);
     }
 
-    protected function failedValidation(Validator $validator): void
-    {
-        throw (new ValidationException($validator))
-            ->errorBag($this->errorBag)
-            ->redirectTo($this->getRedirectUrl());
-    }
-
     public function messages(): array
     {
         return [
@@ -74,11 +67,20 @@ final class IndexRequest extends FormRequest
         ];
     }
 
-    // NOTE: We will use this method if we need custom validation hooks.
+    // NOTE: We will use this method if we need to add custom validation hooks.
     public function withValidator(Validator $validator): void
     {
         $validator->after(function (Validator $validator) {
             // $validator->errors()->add('field', 'Something is wrong with this field!');
         });
+    }
+
+    // NOTE: We will use this method if we need  to add custom validation exceptions.
+    // Since we already use custom exceptions Handler, this method is not needed at the moment.
+    protected function failedValidation(Validator $validator): void
+    {
+        throw (new ValidationException($validator))
+            ->errorBag($this->errorBag)
+            ->redirectTo($this->getRedirectUrl());
     }
 }

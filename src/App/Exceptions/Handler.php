@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 final class Handler extends ExceptionHandler
 {
@@ -31,6 +32,8 @@ final class Handler extends ExceptionHandler
 
     public function render($request, \Throwable $exception): JsonResponse
     {
+        // NOTE: Since we already use custom middleware to force Json Request Headers,
+        // the following condition is not needed. 
         /*
             if ($request->wantsJson()) {   //add Accept: application/json in request
                 return $this->handleApiException($request, $exception);
@@ -44,7 +47,7 @@ final class Handler extends ExceptionHandler
         return $this->handleApiException($request, $exception);
     }
 
-    private function handleApiException($request, \Throwable $exception): JsonResponse
+    private function handleApiException(Request $request, \Throwable $exception): JsonResponse
     {
         $exception = $this->prepareException($exception);
 
@@ -85,9 +88,13 @@ final class Handler extends ExceptionHandler
                 $response['errors'] = $exception->original['errors'],
             ],
             429 => $response['message'] = 'Too Many Requests',
-            default => $response['message'] = ($statusCode == 500) ? 'Internal Server Error' : $exception->getMessage(),
+            default => $response['message'] =
+                ($statusCode === 500) ?
+                'Internal Server Error' :
+                $exception->getMessage(),
         };
 
+        // NOTE: Uncomment the following condition to trace exceptions in debug mode.
         /*
             if (config('app.debug')) {
                 $response['trace'] = $exception->getTrace();
@@ -95,6 +102,9 @@ final class Handler extends ExceptionHandler
             }
             */
 
-        return response()->json($response, $statusCode);
+        return response()->json(
+            data: $response,
+            status: $statusCode
+        );
     }
 }
