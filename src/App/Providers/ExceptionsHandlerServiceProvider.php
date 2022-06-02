@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Exceptions\Handler;
 use App\Exceptions\CustomHandler;
 use App\Exceptions\AppDebugHandler;
 use Illuminate\Support\ServiceProvider;
@@ -17,7 +16,7 @@ class ExceptionsHandlerServiceProvider extends ServiceProvider
         // HandlerInterface::class => Handler::class
     ];
 
-    // NOTE: We bind custom Handlers depending on the Debug mode that we have defined in our environment file.
+    // NOTE: We bind custom Handlers depending on the Debug value that we defined in our environment file.
     public function register()
     {
         match (config('app.debug')) {
