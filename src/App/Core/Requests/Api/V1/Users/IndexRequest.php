@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Core\Requests\Api\V1\Users;
 
+use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 final class IndexRequest extends FormRequest
 {
-    // TODO: Add custom redirect route for displaying error messages.
     /** @var string */
     protected $redirectRoute = 'api.v1.users.index';
 
+    // TODO
     public function authorize(): bool
     {
         return true;
@@ -24,25 +25,22 @@ final class IndexRequest extends FormRequest
         return [
             'order_by' => [
                 'nullable',
-                'string',
                 'in:id,username,firstname,lastname,email,created_at,updated_at',
             ],
             'order_direction' => [
                 'nullable',
-                'string',
                 'in:asc,desc',
             ],
             'per_page' => [
                 'nullable',
                 'integer',
-                // NOTE: Since we force type hint validators, this option is useless.
                 // 'numeric', 
             ],
         ];
     }
 
-    // NOTE: Because HTTP request inputs are formatted as string by default,
-    // we use prepareForValidation() method to force type hint validators.
+    // NOTE: By default HTTP requests are formatted as string.
+    // We use prepareForValidation() method to force type hint on validator inputs.
     protected function prepareForValidation(): void
     {
         $this->merge([
@@ -52,11 +50,27 @@ final class IndexRequest extends FormRequest
         ]);
     }
 
-    // TODO: Add custom validation messages.
     public function messages(): array
     {
         return [
-            // 'order_by.in' => 'A title is required',
+            'order_by.in' => "Only allowed values: 'id', 'username', 'firstname', 'lastname', 'email', 'created_at' or 'updated_at'",
+            'order_direction.in' => "Only allowed values: 'asc' or 'desc'",
         ];
+    }
+
+    // FIXME: Be able to replace attributes with custom names.
+    public function attributes(): array
+    {
+        return [
+            // 'order_by.in' => 'order by',
+        ];
+    }
+
+    // NOTE: We will use this method if we need custom validation hooks.
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function (Validator $validator) {
+            // $validator->errors()->add('field', 'Something is wrong with this field!');
+        });
     }
 }

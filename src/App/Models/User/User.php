@@ -35,11 +35,11 @@ use App\Models\Appointment\AppointmentHasProfile;
 use App\Models\Shared\Concerns\Traits\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use App\Models\User\UserHasMorphToManyRelationships;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Models\Establishment\EstablishmentHasProfile;
-use App\Models\Shared\Concerns\Abstractions\ModelHasPolymorphicRelationships;
 
-final class User extends ModelHasPolymorphicRelationships
+final class User extends UserHasMorphToManyRelationships
 {
     use HasUuid;
     use HasFactory;

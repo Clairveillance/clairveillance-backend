@@ -16,9 +16,14 @@ use App\Models\Establishment\EstablishmentHasProfile;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use App\Models\Shared\Concerns\Contracts\AssignableInterface;
 use App\Models\Shared\Concerns\Contracts\AssemblableInterface;
+use App\Models\Shared\Concerns\Contracts\AppointableInterface;
 use App\Models\Shared\Concerns\Contracts\EstablishableInterface;
 
-abstract class ModelHasPolymorphicRelationships extends Model implements AssemblableInterface, AssignableInterface, EstablishableInterface
+abstract class ModelHasMorphToManyRelationships extends Model implements
+    AppointableInterface,
+    AssemblableInterface,
+    AssignableInterface,
+    EstablishableInterface
 {
     public function getMorphClass(): string
     {
