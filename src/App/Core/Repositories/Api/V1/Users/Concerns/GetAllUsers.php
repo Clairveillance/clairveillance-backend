@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Repositories\Api\V1\Users\Concerns\Abstractions;
+namespace App\Core\Repositories\Api\V1\Users\Concerns;
 
 use App\Models\User\User;
 use App\Models\Post\QueryBuilder\PostQueryBuilder;
@@ -13,20 +13,10 @@ use App\Models\Appointment\QueryBuilder\AppointmentQueryBuilder;
 
 abstract class GetAllUsers
 {
-    abstract function getAllUsers(): UserCollection;
-
-    /**
-     * withRelationsPaginated
-     *
-     * @param string $orderBy
-     * @param string $orderDirection
-     * @param int $perPage
-     * @return \App\Core\Resources\Api\V1\Users\UserCollection
-     */
-    protected static function withRelationsPaginated(
-        string $orderBy = 'username',
-        string $orderDirection = 'asc',
-        int $perPage = 25
+    public static function withRelationsPaginated(
+        string $orderBy,
+        string $orderDirection,
+        int $perPage
     ): UserCollection {
         $users = new UserCollection(
             resource: User::select(

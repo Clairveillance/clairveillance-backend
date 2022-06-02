@@ -46,9 +46,11 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'checkAccess' => \App\Core\Middleware\CheckAccess::class,
-        'json.response' => \App\Core\Middleware\ForceJsonResponse::class,
+        // 'checkAccess' => \App\Core\Middleware\CheckAccess::class,
+
         // NOTE: Setup custom CORS (used by api).
         'custom.cors' => \App\Core\Middleware\Cors::class,
+        // NOTE: Setup Request Headers (used by api).
+        'json.response' => \App\Core\Middleware\ForceJsonResponse::class,
     ];
 }

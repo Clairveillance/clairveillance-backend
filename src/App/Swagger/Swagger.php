@@ -26,6 +26,33 @@ namespace App\Swagger;
  *   tags={"Users"},
  *   summary="Show users list.",
  *   description="Display a listing of all users.",
+ *     @OA\Parameter(
+ *         name="order_by",
+ *         in="query",
+ *         required=false,
+ *         @OA\Schema(
+ *           type="string",
+ *           maximum=36
+ *         )
+ *     ),
+ *     @OA\Parameter(
+ *         name="order_direction",
+ *         in="query",
+ *         required=false,
+ *         @OA\Schema(
+ *           type="string",
+ *           maximum=36
+ *         )
+ *     ),
+ *     @OA\Parameter(
+ *         name="per_page",
+ *         in="query",
+ *         required=false,
+ *         @OA\Schema(
+ *           type="string",
+ *           maximum=36
+ *         )
+ *     ),
  *   @OA\Response(response=200, description="OK"),
  *   @OA\Response(response=201, description="Created"),
  *   @OA\Response(response=202, description="Accepted"),
@@ -34,7 +61,7 @@ namespace App\Swagger;
  *   @OA\Response(response=403, description="Forbidden"),
  *   @OA\Response(response=404, description="Not Found"),
  *   @OA\Response(response=405, description="Method Not Allowed"),
- *   @OA\Response(response=422, description="Unprocessable Entity"),
+ *   @OA\Response(response=422, description="Unprocessable Content"),
  *   @OA\Response(response=429, description="Too Many Requests"),
  *   @OA\Response(response=500, description="Internal Server Error")
  * ),
@@ -60,7 +87,7 @@ namespace App\Swagger;
  *   @OA\Response(response=403, description="Forbidden"),
  *   @OA\Response(response=404, description="Not Found"),
  *   @OA\Response(response=405, description="Method Not Allowed"),
- *   @OA\Response(response=422, description="Unprocessable Entity"),
+ *   @OA\Response(response=422, description="Unprocessable Content"),
  *   @OA\Response(response=429, description="Too Many Requests"),
  *   @OA\Response(response=500, description="Internal Server Error")
  * )

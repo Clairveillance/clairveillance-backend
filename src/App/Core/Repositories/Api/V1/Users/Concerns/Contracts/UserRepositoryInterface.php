@@ -8,5 +8,9 @@ use App\Core\Resources\Api\V1\Users\UserCollection;
 
 interface UserRepositoryInterface
 {
-    public function getAllUsers(): UserCollection;
+    public function getAllUsers(
+        string $orderBy,
+        string $orderDirection,
+        int $perPage
+    ): UserCollection;
 }

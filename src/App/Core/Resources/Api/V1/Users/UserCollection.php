@@ -307,4 +307,9 @@ final class UserCollection extends ResourceCollection
             ),
         ];
     }
+
+    public function withResponse($request, $response)
+    {
+        $response->header('Accept', 'application/json');
+    }
 }

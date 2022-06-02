@@ -23,6 +23,35 @@
                 ],
                 "summary": "Show users list.",
                 "description": "Display a listing of all users.",
+                "parameters": [
+                    {
+                        "name": "order_by",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maximum": 36
+                        }
+                    },
+                    {
+                        "name": "order_direction",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maximum": 36
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maximum": 36
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"

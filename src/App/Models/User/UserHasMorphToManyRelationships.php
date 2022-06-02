@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Shared\Concerns\Abstractions;
+namespace App\Models\User;
 
 use App\Models\Assembly\Assembly;
 use App\Models\Assignment\Assignment;
@@ -16,9 +16,15 @@ use App\Models\Establishment\EstablishmentHasProfile;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use App\Models\Shared\Concerns\Contracts\AssignableInterface;
 use App\Models\Shared\Concerns\Contracts\AssemblableInterface;
+use App\Models\Shared\Concerns\Contracts\AppointableInterface;
 use App\Models\Shared\Concerns\Contracts\EstablishableInterface;
 
-abstract class ModelHasPolymorphicRelationships extends Model implements AssemblableInterface, AssignableInterface, EstablishableInterface
+// TODO: Replace this class by traits.
+abstract class UserHasMorphToManyRelationships extends Model implements
+    AppointableInterface,
+    AssemblableInterface,
+    AssignableInterface,
+    EstablishableInterface
 {
     public function getMorphClass(): string
     {
