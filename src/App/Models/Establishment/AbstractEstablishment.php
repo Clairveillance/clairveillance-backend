@@ -78,7 +78,9 @@ abstract class AbstractEstablishment extends Model
             relatedPivotKey: 'establishable_uuid',
             parentKey: 'uuid',
             relatedKey: 'uuid'
-        )->withPivot(['has_profile']);
+        )->withPivot(
+            columns: ['has_profile']
+        );
     }
 
     public function establishments(): MorphToMany

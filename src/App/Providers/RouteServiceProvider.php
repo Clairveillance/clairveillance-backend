@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     public const HOME = '/home';
-
     private const API_PATH = 'src/Infrastructure/routes/api/';
-
     private const WEB_PATH = 'src/Infrastructure/routes/web/';
 
     public function boot(): void
@@ -23,34 +21,34 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
         $this->routes(function () {
 
-            //  NOTE: Route::middleware('web') must be declared last or it will overwrite all other routes.
+            // NOTE: Route::middleware('web') must be declared last or it will overwrite all other routes.
 
             /*
              * Api routes.
              */
-            Route::prefix('api')->middleware(['api'])->as('api.')->group(function () {
+            Route::prefix('api')->middleware(['api'])->as('api.')->group(
+                fn () =>
 
                 /*
-                 * Version 1
+                 * Api Version 1
                  */
-                Route::prefix(config('app.api_version'))->as(config('app.api_version').'.')->group(
-                    base_path(self::API_PATH.config('app.api_version').'.php')
-                );
-            });
+                Route::prefix(config('app.api_version'))->as(config('app.api_version') . '.')->group(
+                    base_path(self::API_PATH . config('app.api_version') . '.php')
+                )
+            );
 
             /*
              * Web routes.
              */
             Route::middleware(['web'])
                 ->namespace($this->namespace)
-                ->group(base_path(self::WEB_PATH.config('app.api_version').'.php'));
+                ->group(base_path(self::WEB_PATH . config('app.api_version') . '.php'));
         });
     }
 
     protected function configureRateLimiting(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        RateLimiter::for('api', fn (Request $request) =>
+        Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
     }
 }

@@ -13,21 +13,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         if (config('app.dblisten') === true) {
-            DB::listen(function ($query) {
-                $sql = $query->sql;
-                $bindings = $query->bindings;
-                $executionTime = $query->time;
-                $connection = $query->connection;
-                $connectionName = $query->connectionName;
-
+            DB::listen(
+                fn ($query) =>
                 dump([
-                    'SQL' => $sql,
-                    // 'Bindings' => $bindings,
-                    'Time' => $executionTime . 'ms',
-                    // 'Connection' => $connection,
-                    // 'Connection name' => $connectionName
-                ]);
-            });
+                    'SQL' => $query->sql,
+                    // 'Bindings' => $query->bindings,
+                    'Time' => $query->time . 'ms',
+                    // 'Connection' => $query->connection,
+                    // 'Connection name' => $query->connectionName
+                ])
+            );
         }
     }
 }

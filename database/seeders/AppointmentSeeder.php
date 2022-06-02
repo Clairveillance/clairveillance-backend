@@ -32,9 +32,7 @@ final class AppointmentSeeder extends Seeder
         try {
             Appointment::factory(self::NUMBER)->make()
                 ->sortBy(
-                    callback: function ($sort) {
-                        return $sort->created_at;
-                    },
+                    callback: fn ($sort) => $sort->created_at,
                     options: SORT_REGULAR,
                     descending: false
                 )
