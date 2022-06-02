@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             // NOTE: Custom CORS.
             \App\Core\Middleware\Api\Cors::class,
             // NOTE: Custom Request Headers.
+            // TODO: We need to find a way to unactivate this middleware for debugging.
             \App\Core\Middleware\Api\ForceJsonResponse::class,
         ],
     ];

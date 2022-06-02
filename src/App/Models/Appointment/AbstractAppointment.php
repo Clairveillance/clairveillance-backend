@@ -85,7 +85,9 @@ abstract class AbstractAppointment extends Model
             relatedPivotKey: 'appointable_uuid',
             parentKey: 'uuid',
             relatedKey: 'uuid'
-        )->withPivot(['has_profile']);
+        )->withPivot(
+            columns: ['has_profile']
+        );
     }
 
     public function appointments(): MorphToMany
