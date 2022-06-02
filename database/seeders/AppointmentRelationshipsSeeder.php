@@ -40,12 +40,12 @@ final class AppointmentRelationshipsSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__.' [error]');
+                dump(__METHOD__ . ' [warning]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__.' [success]');
+            dump(__METHOD__ . ' [success]');
         }
     }
 
@@ -61,7 +61,7 @@ final class AppointmentRelationshipsSeeder extends Seeder
                     if (
                         $appointment->appointables($model)->get()->isEmpty()
                         ||
-                        ! $appointment->appointables($model)->get()->contains($appointable)
+                        !$appointment->appointables($model)->get()->contains($appointable)
                     ) {
                         $appointment->appointables($model)->attach($appointable, $pivots);
                     }
@@ -69,7 +69,7 @@ final class AppointmentRelationshipsSeeder extends Seeder
             } catch (\Throwable $e) {
                 if (empty($errors)) {
                     $errors[] = true;
-                    dump(__METHOD__.' [error]');
+                    dump(__METHOD__ . ' [warning]');
                 }
             }
         }

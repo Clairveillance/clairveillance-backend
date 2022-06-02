@@ -31,12 +31,12 @@ final class UserSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__.' [error]');
+                dump(__METHOD__ . ' [warning]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__.' [success]');
+            dump(__METHOD__ . ' [success]');
         }
     }
 }

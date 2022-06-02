@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Shared\Concerns\Traits;
+namespace App\Models\Shared\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;

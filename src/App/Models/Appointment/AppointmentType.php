@@ -6,8 +6,8 @@ namespace App\Models\Appointment;
 
 use App\Models\Appointment\Appointment;
 use App\Models\Appointment\AppointmentHasProfile;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\Shared\Traits\HasFactory;
+use App\Models\Shared\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;

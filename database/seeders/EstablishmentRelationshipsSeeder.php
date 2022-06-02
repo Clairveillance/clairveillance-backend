@@ -40,12 +40,12 @@ final class EstablishmentRelationshipsSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__.' [error]');
+                dump(__METHOD__ . ' [warning]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__.' [success]');
+            dump(__METHOD__ . ' [success]');
         }
     }
 
@@ -61,7 +61,7 @@ final class EstablishmentRelationshipsSeeder extends Seeder
                     if (
                         $establishment->establishables($model)->get()->isEmpty()
                         ||
-                        ! $establishment->establishables($model)->get()->contains($establishable)
+                        !$establishment->establishables($model)->get()->contains($establishable)
                     ) {
                         $establishment->establishables($model)->attach($establishable, $pivots);
                     }
@@ -69,7 +69,7 @@ final class EstablishmentRelationshipsSeeder extends Seeder
             } catch (\Throwable $e) {
                 if (empty($errors)) {
                     $errors[] = true;
-                    dump(__METHOD__.' [error]');
+                    dump(__METHOD__ . ' [warning]');
                 }
             }
         }

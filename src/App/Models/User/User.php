@@ -4,52 +4,60 @@ declare(strict_types=1);
 
 namespace App\Models\User;
 
-use App\Models\Address\Address;
-use App\Models\Appointment\Appointment;
-use App\Models\Appointment\AppointmentHasProfile;
-use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Assignment\Assignment;
-use App\Models\Assignment\AssignmentHasProfile;
-use App\Models\Comment\Comment;
-use App\Models\Connection\Connection;
-use App\Models\Email\Email;
-use App\Models\Establishment\Establishment;
-use App\Models\Establishment\EstablishmentHasProfile;
-use App\Models\Language\Language;
 use App\Models\Like\Like;
 use App\Models\Link\Link;
-use App\Models\Phone\Phone;
 use App\Models\Post\Post;
-use App\Models\Profile\Profile;
-use App\Models\Sequence\Sequence;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasUuid;
-use App\Models\Taxonomy\Taxonomy;
+use App\Models\Email\Email;
+use App\Models\Phone\Phone;
 use App\Models\Theme\Theme;
+use App\Models\Address\Address;
+use App\Models\Comment\Comment;
+use App\Models\Profile\Profile;
+use App\Models\Assembly\Assembly;
+use App\Models\Language\Language;
+use App\Models\Sequence\Sequence;
+use App\Models\Taxonomy\Taxonomy;
 use App\Models\Timezone\Timezone;
-use App\Models\User\UserHasMorphToManyRelationships;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\Access\Authorizable;
+use App\Models\Assignment\Assignment;
+use App\Models\Connection\Connection;
+use App\Models\Shared\Traits\HasUuid;
+use App\Models\Appointment\Appointment;
+use App\Models\Shared\Traits\HasFactory;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use App\Models\Assembly\AssemblyHasProfile;
+use App\Models\Establishment\Establishment;
+use App\Models\Shared\Traits\HasAssignables;
+use App\Models\Shared\Traits\HasAppointables;
+use App\Models\Shared\Traits\HasAssemblables;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Shared\Traits\HasEstablishables;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Models\Appointment\AppointmentHasProfile;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use App\Models\Establishment\EstablishmentHasProfile;
+use Illuminate\Database\Eloquent\Model;
 
-final class User extends UserHasMorphToManyRelationships
+final class User extends Model
 {
     use HasUuid;
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
-    use Authenticatable;
     use Authorizable;
-    use CanResetPassword;
-    use MustVerifyEmail;
     use HasApiTokens;
+    use HasAssignables;
+    use HasAppointables;
+    use HasAssemblables;
+    use MustVerifyEmail;
+    use Authenticatable;
+    use CanResetPassword;
+    use HasEstablishables;
 
     /** @var string */
     protected $morphClass = 'user';
@@ -77,6 +85,11 @@ final class User extends UserHasMorphToManyRelationships
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getMorphClass(): string
+    {
+        return $this->morphClass;
+    }
 
     public function getRouteKeyName(): string
     {

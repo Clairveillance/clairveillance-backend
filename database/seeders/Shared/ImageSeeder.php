@@ -93,7 +93,7 @@ final class ImageSeeder extends Seeder
                                     if (
                                         $image->imageables($model)->get()->isEmpty()
                                         ||
-                                        ! $image->imageables($model)->get()->contains($imageable)
+                                        !$image->imageables($model)->get()->contains($imageable)
                                     ) {
                                         $image->imageables($model)->attach($imageable);
                                     }
@@ -106,7 +106,7 @@ final class ImageSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__.' [error]');
+                dump(__METHOD__ . ' [warning]');
             }
         }
     }

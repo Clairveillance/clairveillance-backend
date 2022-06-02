@@ -9,9 +9,9 @@ use App\Models\Image\Image;
 use App\Models\Like\Like;
 use App\Models\Post\PostType;
 use App\Models\Post\QueryBuilder\PostQueryBuilder;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Shared\Concerns\Traits\HasSlug;
-use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\Shared\Traits\HasFactory;
+use App\Models\Shared\Traits\HasSlug;
+use App\Models\Shared\Traits\HasUuid;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -51,7 +51,7 @@ class Post extends Model
     {
         return [
             'source' => 'title',
-            'params' => '-by-'.$this->user->username,
+            'params' => '-by-' . $this->user->username,
         ];
     }
 

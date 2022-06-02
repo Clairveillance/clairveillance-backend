@@ -40,12 +40,12 @@ final class AssignmentRelationshipsSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__.' [error]');
+                dump(__METHOD__ . ' [warning]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__.' [success]');
+            dump(__METHOD__ . ' [success]');
         }
     }
 
@@ -61,7 +61,7 @@ final class AssignmentRelationshipsSeeder extends Seeder
                     if (
                         $assignment->assignables($model)->get()->isEmpty()
                         ||
-                        ! $assignment->assignables($model)->get()->contains($assignable)
+                        !$assignment->assignables($model)->get()->contains($assignable)
                     ) {
                         $assignment->assignables($model)->attach($assignable, $pivots);
                     }
@@ -69,7 +69,7 @@ final class AssignmentRelationshipsSeeder extends Seeder
             } catch (\Throwable $e) {
                 if (empty($errors)) {
                     $errors[] = true;
-                    dump(__METHOD__.' [error]');
+                    dump(__METHOD__ . ' [warning]');
                 }
             }
         }

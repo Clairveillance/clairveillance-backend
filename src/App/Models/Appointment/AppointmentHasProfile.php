@@ -6,7 +6,7 @@ namespace App\Models\Appointment;
 
 use App\Models\Appointment\AbstractAppointment;
 use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\Traits\HasSlug;
+use App\Models\Shared\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 final class AppointmentHasProfile extends AbstractAppointment
