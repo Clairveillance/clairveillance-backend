@@ -24,6 +24,7 @@ final class StoreController extends Controller
                 attributes: $request->validated(),
             )
         );
+
         return response()->json(
             data: [
                 'success' => true,

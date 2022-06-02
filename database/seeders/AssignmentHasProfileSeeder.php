@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Assignment\AssignmentType;
 use App\Models\User\User;
-use Illuminate\Database\Seeder;
+use Database\Seeders\Shared\ImageSeeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use Database\Seeders\Shared\ImageSeeder;
-use App\Models\Assignment\AssignmentType;
-use App\Models\Assignment\AssignmentHasProfile;
+use Illuminate\Database\Seeder;
 
 final class AssignmentHasProfileSeeder extends Seeder
 {
-    public const NUMBER  = 25;
+    public const NUMBER = 25;
 
     public function __construct(
         public LikeSeeder $likeSeeder,
@@ -71,12 +71,12 @@ final class AssignmentHasProfileSeeder extends Seeder
         } catch (\Throwable $e) {
             if (empty($errors)) {
                 $errors[] = true;
-                dump(__METHOD__ . ' [error]');
+                dump(__METHOD__.' [error]');
             }
         }
         if (empty($errors)) {
             $errors[] = false;
-            dump(__METHOD__ . ' [success]');
+            dump(__METHOD__.' [success]');
         }
     }
 }

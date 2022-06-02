@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
+use App\Models\Establishment\AbstractEstablishment;
 use App\Models\Profile\Profile;
 use App\Models\Shared\Concerns\Traits\HasSlug;
-use App\Models\Establishment\AbstractEstablishment;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 final class EstablishmentHasProfile extends AbstractEstablishment

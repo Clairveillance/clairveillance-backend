@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models\Appointment;
 
+use App\Models\Appointment\Appointment;
+use App\Models\Appointment\AppointmentHasProfile;
+use App\Models\Appointment\AppointmentType;
+use App\Models\Appointment\QueryBuilder\AppointmentQueryBuilder;
+use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Shared\Concerns\Traits\HasUuid;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Appointment\Appointment;
-use App\Models\Appointment\AppointmentType;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Shared\Concerns\Traits\HasUuid;
-use App\Models\Shared\Concerns\Traits\HasFactory;
-use App\Models\Appointment\AppointmentHasProfile;
-use App\Models\Appointment\QueryBuilder\AppointmentQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 abstract class AbstractAppointment extends Model
 {
@@ -31,7 +31,7 @@ abstract class AbstractAppointment extends Model
         'description',
         'start_at',
         'end_at',
-        'note'
+        'note',
     ];
 
     /** @var array<string> */

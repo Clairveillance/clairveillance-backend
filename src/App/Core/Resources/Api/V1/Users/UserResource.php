@@ -74,8 +74,8 @@ final class UserResource extends JsonResource
                 ),
             ],
             'links' => [
-                'self' => route('api.' . config('app.api_version') . '.users.show', $this->uuid),
-                'parent' => route('api.' . config('app.api_version') . '.users.index'),
+                'self' => route('api.'.config('app.api_version').'.users.show', $this->uuid),
+                'parent' => route('api.'.config('app.api_version').'.users.index'),
             ],
         ];
     }

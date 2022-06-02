@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models\Assignment;
 
-use App\Models\User\User;
 use App\Models\Assignment\Assignment;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Assignment\AssignmentType;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Shared\Concerns\Traits\HasUuid;
 use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Assignment\AssignmentType;
 use App\Models\Shared\Concerns\Traits\HasFactory;
+use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 abstract class AbstractAssignment extends Model
 {

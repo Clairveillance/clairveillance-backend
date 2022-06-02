@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Core\Resources\Api\V1\Users;
 
-use JsonSerializable;
-use App\Models\Post\Post;
-use App\Models\Assembly\Assembly;
-use App\Models\Assignment\Assignment;
-use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Establishment\Establishment;
-use Illuminate\Contracts\Support\Arrayable;
-use App\Models\Assignment\AssignmentHasProfile;
 use App\Core\Resources\Api\V1\Users\UserResource;
 use App\Models\Appointment\Appointment;
 use App\Models\Appointment\AppointmentHasProfile;
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyHasProfile;
+use App\Models\Assignment\Assignment;
+use App\Models\Assignment\AssignmentHasProfile;
+use App\Models\Establishment\Establishment;
 use App\Models\Establishment\EstablishmentHasProfile;
+use App\Models\Post\Post;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use JsonSerializable;
 
 final class UserCollection extends ResourceCollection
 {
@@ -291,16 +291,16 @@ final class UserCollection extends ResourceCollection
                                         'likes_count' => $post->likes->where((string) 'is_dislike', (int) 0)->count(),
                                         'dislikes_count' => $post->likes->where((string) 'is_dislike', (int) 1)->count(),
                                         'links' => [
-                                            'self' => route((string) 'api.' . config('app.api_version') . '.posts.show', (string) $post->slug),
-                                            'parent' => route((string) 'api.' . config('app.api_version') . '.users.index.posts', (string) $user->uuid),
+                                            'self' => route((string) 'api.'.config('app.api_version').'.posts.show', (string) $post->slug),
+                                            'parent' => route((string) 'api.'.config('app.api_version').'.users.index.posts', (string) $user->uuid),
                                         ],
                                     ]);
                                 }
                             ),
                         ],
                         'links' => [
-                            'self' => route((string) 'api.' . config('app.api_version') . '.users.show', (string) $user->uuid),
-                            'parent' => route((string) 'api.' . config('app.api_version') . '.users.index'),
+                            'self' => route((string) 'api.'.config('app.api_version').'.users.show', (string) $user->uuid),
+                            'parent' => route((string) 'api.'.config('app.api_version').'.users.index'),
                         ],
                     ]);
                 }

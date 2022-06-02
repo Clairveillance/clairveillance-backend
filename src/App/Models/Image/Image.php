@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace App\Models\Image;
 
-use App\Models\Like\Like;
-use App\Models\Link\Link;
-use App\Models\Post\Post;
-use App\Models\User\User;
 use App\Models\Comment\Comment;
 use App\Models\Country\Country;
 use App\Models\Image\ImageType;
+use App\Models\Like\Like;
+use App\Models\Link\Link;
+use App\Models\Post\Post;
 use App\Models\Profile\Profile;
-use App\Models\Shared\Concerns\Traits\HasUuid;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Concerns\Traits\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Shared\Concerns\Traits\HasUuid;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class Image extends Model
 {

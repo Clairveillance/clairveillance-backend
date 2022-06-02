@@ -19,7 +19,7 @@ final class UpdateUserJob implements ShouldQueue
     use SerializesModels;
     use InteractsWithQueue;
 
-    public function __construct(public int $userId, public UserValueObject $object,)
+    public function __construct(public int $userId, public UserValueObject $object)
     {
     }
 
