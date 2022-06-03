@@ -21,11 +21,8 @@ $app->singleton(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    // NOTE: This is where we bind custom Exceptions Handler.
-    // FIXME: Unfortunately it doesn't work when we run migrations.
-    // App\Exceptions\Contracts\HandlerInterface::class,
-    App\Exceptions\AppDebugHandler::class //IMPORTANT: Only for debugging!!!
-    // App\Exceptions\CustomHandler::class //IMPORTANT: Turn this on when on production!!!
+    // App\Exceptions\AppDebugHandler::class //IMPORTANT: Only for debugging!!!
+    App\Exceptions\CustomHandler::class //IMPORTANT: Turn this on when on production!!!
 );
 
 return $app;

@@ -4,25 +4,26 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Database\Seeders\AppointmentHasProfileRelationshipsSeeder;
-use Database\Seeders\AppointmentHasProfileSeeder;
-use Database\Seeders\AppointmentRelationshipsSeeder;
-use Database\Seeders\AppointmentSeeder;
-use Database\Seeders\AssemblyHasProfileRelationshipsSeeder;
-use Database\Seeders\AssemblyHasProfileSeeder;
-use Database\Seeders\AssemblyRelationshipsSeeder;
-use Database\Seeders\AssemblySeeder;
-use Database\Seeders\AssignmentHasProfileRelationshipsSeeder;
-use Database\Seeders\AssignmentHasProfileSeeder;
-use Database\Seeders\AssignmentRelationshipsSeeder;
-use Database\Seeders\AssignmentSeeder;
-use Database\Seeders\DefaultUserSeeder;
-use Database\Seeders\EstablishmentHasProfileRelationshipsSeeder;
-use Database\Seeders\EstablishmentHasProfileSeeder;
-use Database\Seeders\EstablishmentRelationshipsSeeder;
-use Database\Seeders\EstablishmentSeeder;
-use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\AssemblySeeder;
+use Database\Seeders\AssignmentSeeder;
+use Database\Seeders\AppointmentSeeder;
+use Database\Seeders\DefaultUserSeeder;
+use Illuminate\Database\Capsule\Manager;
+use Database\Seeders\EstablishmentSeeder;
+use Database\Seeders\AssemblyHasProfileSeeder;
+use Database\Seeders\AssignmentHasProfileSeeder;
+use Database\Seeders\AppointmentHasProfileSeeder;
+use Database\Seeders\AssemblyRelationshipsSeeder;
+use Database\Seeders\AssignmentRelationshipsSeeder;
+use Database\Seeders\EstablishmentHasProfileSeeder;
+use Database\Seeders\AppointmentRelationshipsSeeder;
+use Database\Seeders\EstablishmentRelationshipsSeeder;
+use Database\Seeders\AssemblyHasProfileRelationshipsSeeder;
+use Database\Seeders\AssignmentHasProfileRelationshipsSeeder;
+use Database\Seeders\AppointmentHasProfileRelationshipsSeeder;
+use Database\Seeders\EstablishmentHasProfileRelationshipsSeeder;
 
 final class DatabaseSeeder extends Seeder
 {

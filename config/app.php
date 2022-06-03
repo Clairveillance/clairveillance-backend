@@ -222,7 +222,6 @@ return (array) [
          */
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\ObservableServiceProvider::class,
-        App\Providers\ExceptionsHandlerServiceProvider::class,
 
     ],
 

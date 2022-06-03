@@ -7,13 +7,11 @@ namespace App\Models\Establishment;
 use App\Models\Establishment\Establishment;
 use App\Models\Establishment\EstablishmentHasProfile;
 use App\Models\Establishment\EstablishmentType;
-use App\Models\Post\Post;
 use App\Models\Shared\Traits\HasFactory;
 use App\Models\Shared\Traits\HasUuid;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
