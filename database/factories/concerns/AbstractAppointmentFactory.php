@@ -100,7 +100,7 @@ abstract class AbstractAppointmentFactory extends Factory
                 )]
             ),
             'published' => $published,
-            'published_at' => ! $published ? null : $this->faker->dateTimeBetween(
+            'published_at' => !$published ? null : $this->faker->dateTimeBetween(
                 startDate: $created_date,
                 endDate: $updated_date,
                 timezone: env(

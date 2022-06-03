@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Appointment\Appointment;
-use App\Models\Appointment\AppointmentType;
 use App\Models\User\User;
-use Database\Seeders\Shared\ImageSeeder;
+use Illuminate\Database\Seeder;
+use App\Models\Appointment\Appointment;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;
 use Database\Seeders\Shared\TypeSeeder;
-use Illuminate\Database\Seeder;
+use Database\Seeders\Shared\ImageSeeder;
+use App\Models\Appointment\AppointmentType;
 
 final class AppointmentSeeder extends Seeder
 {
