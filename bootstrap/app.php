@@ -21,8 +21,8 @@ $app->singleton(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    // App\Exceptions\AppDebugHandler::class //IMPORTANT: Only for debugging!!!
-    App\Exceptions\CustomHandler::class //IMPORTANT: Turn this on when on production!!!
+    App\Exceptions\AppDebugHandler::class //IMPORTANT: Only for debugging!!!
+    // App\Exceptions\CustomHandler::class //IMPORTANT: Turn this on when on production!!!
 );
 
 return $app;

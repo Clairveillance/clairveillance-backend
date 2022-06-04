@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models\Appointment;
 
-use App\Models\Appointment\Appointment;
-use App\Models\Appointment\AppointmentHasProfile;
-use App\Models\Appointment\AppointmentType;
-use App\Models\Appointment\QueryBuilder\AppointmentQueryBuilder;
-use App\Models\Shared\Traits\HasFactory;
-use App\Models\Shared\Traits\HasUuid;
 use App\Models\User\User;
+use App\Models\Shared\Traits\HasUuid;
+use App\Models\Appointment\Appointment;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use App\Models\Shared\Traits\HasFactory;
+use App\Models\Appointment\AppointmentType;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Appointment\AppointmentHasProfile;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Shared\QueryBuilders\CustomQueryBuilder;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 abstract class AbstractAppointment extends Model
 {
@@ -118,9 +118,9 @@ abstract class AbstractAppointment extends Model
         );
     }
 
-    public function newEloquentBuilder($query): AppointmentQueryBuilder
+    public function newEloquentBuilder($query): CustomQueryBuilder
     {
-        return new AppointmentQueryBuilder(
+        return new CustomQueryBuilder(
             query: $query
         );
     }

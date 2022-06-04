@@ -8,7 +8,7 @@ use App\Models\Comment\Comment;
 use App\Models\Image\Image;
 use App\Models\Like\Like;
 use App\Models\Post\PostType;
-use App\Models\Post\QueryBuilder\PostQueryBuilder;
+use App\Models\Shared\QueryBuilders\CustomQueryBuilder;
 use App\Models\Shared\Traits\HasFactory;
 use App\Models\Shared\Traits\HasSlug;
 use App\Models\Shared\Traits\HasUuid;
@@ -127,9 +127,9 @@ class Post extends Model
         );
     }
 
-    public function newEloquentBuilder($query): PostQueryBuilder
+    public function newEloquentBuilder($query): CustomQueryBuilder
     {
-        return new PostQueryBuilder(
+        return new CustomQueryBuilder(
             query: $query
         );
     }

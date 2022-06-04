@@ -6,10 +6,16 @@ namespace Database\Seeders;
 
 use App\Models\User\User;
 use Illuminate\Database\Seeder;
+use Database\Seeders\Shared\LikeSeeder;
 
 final class UserSeeder extends Seeder
 {
     public const NUMBER = 199;
+
+    public function __construct(
+        public LikeSeeder $likeSeeder
+    ) {
+    }
 
     public function run(): void
     {
@@ -25,7 +31,16 @@ final class UserSeeder extends Seeder
                 )
                 ->each(
                     callback: function ($user) {
+                        $users = User::where(
+                            column: 'created_at',
+                            operator: '<=',
+                            value: $user->created_at
+                        )->get();
                         $user->save();
+                        $this->likeSeeder
+                            ->setUsers($users)
+                            ->setModel($user->profile)
+                            ->run();
                     }
                 );
         } catch (\Throwable $e) {

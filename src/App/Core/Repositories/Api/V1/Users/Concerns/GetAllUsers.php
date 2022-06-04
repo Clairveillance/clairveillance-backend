@@ -6,19 +6,22 @@ namespace App\Core\Repositories\Api\V1\Users\Concerns;
 
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Builder;
-use App\Models\Post\QueryBuilder\PostQueryBuilder;
 use App\Core\Resources\Api\V1\Users\UserCollection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use App\Models\Appointment\QueryBuilder\AppointmentQueryBuilder;
+use App\Models\Shared\QueryBuilders\CustomQueryBuilder;
 
 abstract class GetAllUsers
 {
-    public static function withRelationsPaginated(
+    public static function withRelations(
+        int $perPage,
         string $orderBy,
         string $orderDirection,
-        int $perPage
+        array $morphOneRelationships,
+        array $hasManyRelationships,
+        array $morphToManyRelationships,
+        array $morphToManyRelationshipsHasProfile,
     ): UserCollection {
         $users = new UserCollection(
             resource: User::select(
@@ -31,144 +34,148 @@ abstract class GetAllUsers
                 'created_at',
                 'updated_at'
             )
-                ->with(
-                    relations: [
-                        'assemblables' =>
-                        fn (MorphToMany $assemblables) =>
-                        $assemblables->withCount(
-                            [
-                                // 'likes as likes_total', //NOTE
-                                'likes as likes_count' =>
-                                fn (Builder $likes)
-                                => $likes->where('is_dislike', 0),
-                                'likes as dislikes_count' =>
-                                fn (Builder $likes)
-                                => $likes->where('is_dislike', 1),
-                            ]
-                        ),
-                        'assemblables.type',
-                        'assemblables_has_profile.profile' =>
-                        fn (MorphOne $profile) =>
-                        $profile->withCount(
-                            [
-                                'likes as likes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 0),
-                                'likes as dislikes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 1),
-                            ]
-                        ),
-                        'assemblables_has_profile.type',
-                        'assignables' =>
-                        fn (MorphToMany $assignables) =>
-                        $assignables->withCount(
-                            [
-                                'likes as likes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 0),
-                                'likes as dislikes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 1),
-                            ]
-                        ),
-                        'assignables.type',
-                        'assignables_has_profile.profile' =>
-                        fn (MorphOne $profile) =>
-                        $profile->withCount(
-                            [
-                                'likes as likes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 0),
-                                'likes as dislikes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 1),
-                            ]
-                        ),
-                        'assignables_has_profile.type',
-                        'assignables' =>
-                        fn (MorphToMany $establishables) =>
-                        $establishables->withCount(
-                            [
-                                'likes as likes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 0),
-                                'likes as dislikes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 1),
-                            ]
-                        ),
-                        'establishables.type',
-                        'establishables_has_profile.profile' =>
-                        fn (MorphOne $profile) =>
-                        $profile->withCount(
-                            [
-                                'likes as likes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 0),
-                                'likes as dislikes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 1),
-                            ]
-                        ),
-                        'establishables_has_profile.type',
-                        'appointables' =>
-                        fn (MorphToMany $appointments) =>
-                        $appointments
-                            ->published()
-                            ->withCount(
-                                [
-                                    'likes as likes_count' =>
-                                    fn (Builder $likes) =>
-                                    $likes->where('is_dislike', 0),
-                                    'likes as dislikes_count' =>
-                                    fn (Builder $likes) =>
-                                    $likes->where('is_dislike', 1),
-                                ]
-                            ),
-                        'appointables.type',
-                        'appointables_has_profile' =>
-                        fn (MorphToMany $appointables) =>
-                        $appointables->published(),
-                        'appointables_has_profile.profile' =>
-                        fn (MorphOne $profile) =>
-                        $profile->withCount(
-                            [
-                                'likes as likes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 0),
-                                'likes as dislikes_count' =>
-                                fn (Builder $likes) =>
-                                $likes->where('is_dislike', 1),
-                            ]
-                        ),
-                        'appointables_has_profile.type',
-                        'posts' =>
-                        fn (HasMany $posts) =>
-                        $posts->published(),
-                        'profile' =>
-                        fn (MorphOne $profile) =>
-                        $profile,
-                    ]
+                ->when(
+                    $morphOneRelationships,
+                    function (Builder $user) use ($morphOneRelationships) {
+                        foreach ($morphOneRelationships as $relationship => $value) {
+                            $user->when(
+                                $morphOneRelationships[(string)$relationship],
+                                fn (Builder $user) =>
+                                $user->with(
+                                    relations: [
+                                        (string)$relationship =>
+                                        fn (MorphOne $relationship) =>
+                                        $relationship->withCount(
+                                            [
+                                                'likes as likes_total',
+                                                'likes as likes_count' =>
+                                                fn (Builder $likes)
+                                                => $likes->where('is_dislike', 0),
+                                                'likes as dislikes_count' =>
+                                                fn (Builder $likes)
+                                                => $likes->where('is_dislike', 1),
+                                            ]
+                                        ),
+                                        (string)$relationship . '.type',
+                                    ]
+                                )
+                            );
+                        }
+                    }
                 )
-                ->withCount(
-                    relations: [
-                        'assemblables',
-                        'assemblables_has_profile',
-                        'assignables',
-                        'assignables_has_profile',
-                        'establishables',
-                        'establishables_has_profile',
-                        'appointables' =>
-                        fn (AppointmentQueryBuilder $appointables) =>
-                        $appointables->published(),
-                        'appointables_has_profile' =>
-                        fn (AppointmentQueryBuilder $appointables) =>
-                        $appointables->published(),
-                        'posts' =>
-                        fn (PostQueryBuilder $posts) =>
-                        $posts->published(),
-                    ]
+                ->when(
+                    $hasManyRelationships,
+                    function (Builder $user) use ($hasManyRelationships) {
+                        foreach ($hasManyRelationships as $relationship => $value) {
+                            $user->when(
+                                $hasManyRelationships[(string)$relationship],
+                                fn (Builder $user) =>
+                                $user->with(
+                                    relations: [
+                                        (string)$relationship =>
+                                        fn (HasMany $relationship) =>
+                                        $relationship->published()
+                                            ->withCount(
+                                                [
+                                                    'likes as likes_total',
+                                                    'likes as likes_count' =>
+                                                    fn (Builder $likes)
+                                                    => $likes->where('is_dislike', 0),
+                                                    'likes as dislikes_count' =>
+                                                    fn (Builder $likes)
+                                                    => $likes->where('is_dislike', 1),
+                                                ]
+                                            ),
+                                        (string)$relationship . '.type',
+                                    ]
+                                )
+                                    ->withCount(
+                                        relations: [
+                                            $relationship =>
+                                            fn (CustomQueryBuilder $relationship) =>
+                                            $relationship->published(),
+                                        ]
+                                    )
+                            );
+                        }
+                    }
+                )
+                ->when(
+                    $morphToManyRelationships,
+                    function (Builder $user) use ($morphToManyRelationships) {
+                        foreach ($morphToManyRelationships as $relationship => $value) {
+                            $user->when(
+                                $morphToManyRelationships[(string)$relationship],
+                                fn (Builder $user) =>
+                                $user->with(
+                                    relations: [
+                                        (string)$relationship =>
+                                        fn (MorphToMany $relationship) =>
+                                        $relationship
+                                            ->published()
+                                            ->withCount(
+                                                [
+                                                    'likes as likes_total',
+                                                    'likes as likes_count' =>
+                                                    fn (Builder $likes)
+                                                    => $likes->where('is_dislike', 0),
+                                                    'likes as dislikes_count' =>
+                                                    fn (Builder $likes)
+                                                    => $likes->where('is_dislike', 1),
+                                                ]
+                                            ),
+                                        (string)$relationship . '.type',
+                                    ]
+                                )
+                                    ->withCount(
+                                        relations: [
+                                            $relationship =>
+                                            fn (CustomQueryBuilder $relationship) =>
+                                            $relationship->published(),
+                                        ]
+                                    )
+                            );
+                        }
+                    }
+                )
+                ->when(
+                    $morphToManyRelationshipsHasProfile,
+                    function (Builder $user) use ($morphToManyRelationshipsHasProfile) {
+                        foreach ($morphToManyRelationshipsHasProfile as $relationship => $value) {
+                            $user->when(
+                                $morphToManyRelationshipsHasProfile[(string)$relationship],
+                                fn (Builder $user) =>
+                                $user->with(
+                                    relations: [
+                                        (string)$relationship =>
+                                        fn (MorphToMany $relationship) =>
+                                        $relationship->published(),
+                                        $relationship . '.profile' =>
+                                        fn (MorphOne $profile) =>
+                                        $profile->withCount(
+                                            [
+                                                'likes as likes_total',
+                                                'likes as likes_count' =>
+                                                fn (Builder $likes)
+                                                => $likes->where('is_dislike', 0),
+                                                'likes as dislikes_count' =>
+                                                fn (Builder $likes)
+                                                => $likes->where('is_dislike', 1),
+                                            ]
+                                        ),
+                                        (string)$relationship . '.type',
+                                    ]
+                                )
+                                    ->withCount(
+                                        relations: [
+                                            (string)$relationship =>
+                                            fn (CustomQueryBuilder $relationship) =>
+                                            $relationship->published(),
+                                        ]
+                                    )
+                            );
+                        }
+                    }
                 )
                 // ->withTrashed() //NOTE
                 // ->onlyTrashed() //NOTE

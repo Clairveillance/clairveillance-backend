@@ -9,8 +9,12 @@ use App\Core\Resources\Api\V1\Users\UserCollection;
 interface UserRepositoryInterface
 {
     public function getAllUsers(
+        int $perPage,
         string $orderBy,
         string $orderDirection,
-        int $perPage
+        array $morphOneRelationships,
+        array $hasManyRelationships,
+        array $morphToManyRelationships,
+        array $morphToManyRelationshipsHasProfile,
     ): UserCollection;
 }

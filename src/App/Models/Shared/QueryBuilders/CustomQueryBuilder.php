@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Post\QueryBuilder;
+namespace App\Models\Shared\QueryBuilders;
 
 use Illuminate\Database\Eloquent\Builder;
 
-final class PostQueryBuilder extends Builder
+final class CustomQueryBuilder extends Builder
 {
     public function published(bool $value = true): self
     {

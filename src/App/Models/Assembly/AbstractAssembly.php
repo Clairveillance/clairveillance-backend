@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models\Assembly;
 
-use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Assembly\AssemblyType;
-use App\Models\Shared\Traits\HasFactory;
-use App\Models\Shared\Traits\HasUuid;
 use App\Models\User\User;
+use App\Models\Assembly\Assembly;
+use App\Models\Assembly\AssemblyType;
+use App\Models\Shared\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use App\Models\Shared\Traits\HasFactory;
+use App\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Shared\QueryBuilders\CustomQueryBuilder;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 abstract class AbstractAssembly extends Model
 {
@@ -106,6 +107,13 @@ abstract class AbstractAssembly extends Model
             parentKey: 'uuid',
             relatedKey: 'uuid',
             inverse: false
+        );
+    }
+
+    public function newEloquentBuilder($query): CustomQueryBuilder
+    {
+        return new CustomQueryBuilder(
+            query: $query
         );
     }
 }
