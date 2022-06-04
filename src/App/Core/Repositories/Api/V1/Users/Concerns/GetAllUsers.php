@@ -191,7 +191,6 @@ abstract class GetAllUsers
                 )
         );
         $users::$wrap = 'data';
-
         return $users;
     }
 }
