@@ -6,16 +6,18 @@ namespace App\Core\Resources\Api\V1\Shared\Traits;
 
 use App\Models\Establishment\Establishment;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Core\Resources\Api\V1\Shared\Traits\HasType;
 use App\Models\Establishment\EstablishmentHasProfile;
 
 trait HasEstablishments
 {
+    use HasType;
+    use HasProfile;
+
     public function establishments(JsonResource $resource): array
     {
         return [
-            'establishments_count' =>
-            $resource->relationLoaded('establishables') ?
-                $resource->establishables_count : null,
+            'establishments_count' => $resource->establishables_count ?? null,
             'establishments' =>
             $resource->relationLoaded('establishables') ?
                 $resource->establishables
@@ -31,12 +33,9 @@ trait HasEstablishments
                         'name' => $establishable->name,
                         'description' => $establishable->description,
                         'published_at' => $this->getFormattedDate($establishable->published_at),
-                        'type_uuid' => $establishable->relationLoaded('type') ?
-                            $establishable->type->uuid : null,
-                        'type_name' => $establishable->relationLoaded('type') ?
-                            $establishable->type->name : null,
                         'likes_count' => $establishable->likes_count,
                         'dislikes_count' => $establishable->dislikes_count,
+                        'type'  => $this->type($establishable),
                     ])
                 ) : null,
         ];
@@ -45,9 +44,7 @@ trait HasEstablishments
     public function establishments_has_profile(JsonResource $resource): array
     {
         return [
-            'establishments_has_profile_count' =>
-            $resource->relationLoaded('establishables_has_profile') ?
-                $resource->establishables_has_profile_count : null,
+            'establishments_has_profile_count' => $resource->establishables_has_profile_count ?? null,
             'establishments_has_profile' =>
             $resource->relationLoaded('establishables_has_profile') ?
                 $resource->establishables_has_profile
@@ -64,14 +61,8 @@ trait HasEstablishments
                         'slug' => $establishable->slug,
                         'description' => $establishable->description,
                         'published_at' => $this->getFormattedDate($establishable->published_at),
-                        'type_uuid' => $establishable->relationLoaded('type') ?
-                            $establishable->type->uuid : null,
-                        'type_name' => $establishable->relationLoaded('type') ?
-                            $establishable->type->name : null,
-                        'profile_uuid' => $establishable->relationLoaded('profile') ?
-                            $establishable->profile->uuid : null,
-                        'likes_count' => $establishable->profile->likes_count,
-                        'dislikes_count' => $establishable->profile->dislikes_count,
+                        'profile'  => $this->profile($establishable),
+                        'type'  => $this->type($establishable),
                     ])
                 ) : null,
         ];

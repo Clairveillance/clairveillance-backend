@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Core\Resources\Api\V1\Shared\Traits\HasType;
 
 trait HasProfile
 {
-    public function profile(JsonResource $resource): array|null
+    use HasType;
+
+    public function profile(JsonResource|Model $resource): array|null
     {
         return
             $resource->relationLoaded('profile') ?
@@ -18,6 +22,7 @@ trait HasProfile
                     $this->getFormattedDate($resource->profile->published_at) : null,
                 'likes_count' => $resource->profile->likes_count ?? null,
                 'dislikes_count' => $resource->profile->dislikes_count ?? null,
+                // 'type'  => $this->type($resource->profile), //NOTE
             ] : null;
     }
 }

@@ -7,15 +7,18 @@ namespace App\Core\Resources\Api\V1\Shared\Traits;
 use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Core\Resources\Api\V1\Shared\Traits\HasType;
+use App\Core\Resources\Api\V1\Shared\Traits\HasProfile;
 
 trait HasAssemblies
 {
+    use HasType;
+    use HasProfile;
+
     public function assemblies(JsonResource $resource): array
     {
         return [
-            'assemblies_count' =>
-            $resource->relationLoaded('assemblables') ?
-                $resource->assemblables_count : null,
+            'assemblies_count' => $resource->assemblables_count ?? null,
             'assemblies' =>
             $resource->relationLoaded('assemblables') ?
                 $resource->assemblables
@@ -31,12 +34,9 @@ trait HasAssemblies
                         'name' => $assemblable->name,
                         'description' => $assemblable->description,
                         'published_at' => $this->getFormattedDate($assemblable->published_at),
-                        'type_uuid' => $assemblable->relationLoaded('type') ?
-                            $assemblable->type->uuid : null,
-                        'type_name' => $assemblable->relationLoaded('type') ?
-                            $assemblable->type->name : null,
                         'likes_count' => $assemblable->likes_count,
                         'dislikes_count' => $assemblable->dislikes_count,
+                        'type'  => $this->type($assemblable),
                     ])
                 ) : null,
         ];
@@ -45,9 +45,7 @@ trait HasAssemblies
     public function assemblies_has_profile(JsonResource $resource): array
     {
         return [
-            'assemblies_has_profile_count' =>
-            $resource->relationLoaded('assemblables_has_profile') ?
-                $resource->assemblables_has_profile_count : null,
+            'assemblies_has_profile_count' => $resource->assemblables_has_profile_count ?? null,
             'assemblies_has_profile' =>
             $resource->relationLoaded('assemblables_has_profile') ?
                 $resource->assemblables_has_profile
@@ -64,14 +62,8 @@ trait HasAssemblies
                         'slug' => $assemblable->slug,
                         'description' => $assemblable->description,
                         'published_at' => $this->getFormattedDate($assemblable->published_at),
-                        'type_uuid' => $assemblable->relationLoaded('type') ?
-                            $assemblable->type->uuid : null,
-                        'type_name' => $assemblable->relationLoaded('type') ?
-                            $assemblable->type->name : null,
-                        'profile_uuid' => $assemblable->relationLoaded('profile') ?
-                            $assemblable->profile->uuid : null,
-                        'likes_count' => $assemblable->profile->likes_count,
-                        'dislikes_count' => $assemblable->profile->dislikes_count,
+                        'profile'  => $this->profile($assemblable),
+                        'type'  => $this->type($assemblable),
                     ])
                 ) : null,
         ];

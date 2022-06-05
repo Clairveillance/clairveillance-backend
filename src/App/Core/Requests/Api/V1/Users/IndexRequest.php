@@ -38,121 +38,81 @@ final class IndexRequest extends FormRequest
             ],
             'appointables' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'appointables.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'appointables.published' => [
+            'appointables.*' => [
                 'nullable',
                 'boolean'
             ],
             'appointables_has_profile' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'appointables_has_profile.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'appointables_has_profile.published' => [
+            'appointables_has_profile.*' => [
                 'nullable',
                 'boolean'
             ],
             'assemblables' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'assemblables.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'assemblables.published' => [
+            'assemblables.*' => [
                 'nullable',
                 'boolean'
             ],
             'assemblables_has_profile' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'assemblables_has_profile.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'assemblables_has_profile.published' => [
+            'assemblables_has_profile.*' => [
                 'nullable',
                 'boolean'
             ],
             'assignables' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'assignables.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'assignables.published' => [
+            'assignables.*' => [
                 'nullable',
                 'boolean'
             ],
             'assignables_has_profile' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'assignables_has_profile.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'assignables_has_profile.published' => [
+            'assignables_has_profile.*' => [
                 'nullable',
                 'boolean'
             ],
             'establishables' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'establishables.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'establishables.published' => [
+            'establishables.*' => [
                 'nullable',
                 'boolean'
             ],
             'establishables_has_profile' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'establishables_has_profile.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'establishables_has_profile.published' => [
+            'establishables_has_profile.*' => [
                 'nullable',
                 'boolean'
             ],
             'posts' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,count,published'
             ],
-            'posts.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'posts.published' => [
+            'posts.*' => [
                 'nullable',
                 'boolean'
             ],
             'profile' => [
                 'nullable',
-                'array:visible,published'
+                'array:show,published'
             ],
-            'profile.visible' => [
-                'nullable',
-                'boolean'
-            ],
-            'profile.published' => [
+            'profile.*' => [
                 'nullable',
                 'boolean'
             ],
@@ -185,7 +145,8 @@ final class IndexRequest extends FormRequest
         return [
             'order_by.in' => "Only allowed values: 'id', 'username', 'firstname', 'lastname', 'email', 'created_at' or 'updated_at'",
             'order_direction.in' => "Only allowed values: 'asc' or 'desc'",
-            '*.array' => "Must be an array.",
+            'profile.array' => "Must be an array that contains: 'show' and/or 'published'",
+            '*.array' => "Must be an array that contains: 'show', 'count' and/or 'published'",
             '*.*.boolean' => "Must be a boolean value.",
         ];
     }
