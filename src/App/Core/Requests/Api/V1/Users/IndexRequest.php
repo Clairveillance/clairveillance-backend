@@ -167,33 +167,15 @@ final class IndexRequest extends FormRequest
             'order_by' => (string) $this->order_by === '' ? 'username' : (string) $this->order_by,
             'order_direction' => (string) $this->order_direction === '' ? 'asc' : (string) $this->order_direction,
             'per_page' => (int) $this->per_page === 0 ? 25 : (int) $this->per_page,
-            'appointables' => isset($this->appointables) &&
-                isset($this->appointables['visible']) ?
-                $this->appointables : null,
-            'appointables_has_profile' => isset($this->appointables_has_profile) &&
-                isset($this->appointables_has_profile['visible']) ?
-                $this->appointables_has_profile : null,
-            'assemblables' => isset($this->assemblables) &&
-                isset($this->assemblables['visible']) ?
-                $this->assemblables : null,
-            'assemblables_has_profile' => isset($this->assemblables_has_profile) &&
-                isset($this->assemblables_has_profile['visible']) ?
-                $this->assemblables_has_profile : null,
-            'assignables' => isset($this->assignables) &&
-                isset($this->assignables['visible']) ?
-                $this->assignables : null,
-            'assignables_has_profile' => isset($this->assignables_has_profile) &&
-                isset($this->assignables_has_profile['visible']) ?
-                $this->assignables_has_profile : null,
-            'establishables' => isset($this->establishables) &&
-                isset($this->establishables['visible']) ?
-                $this->establishables : null,
-            'establishables_has_profile' => isset($this->establishables_has_profile) &&
-                isset($this->establishables_has_profile['visible']) ?
-                $this->establishables_has_profile : null,
-            'posts' => isset($this->posts) &&
-                isset($this->posts['visible']) ?
-                $this->posts : null,
+            'appointables' => isset($this->appointables) ? $this->appointables : null,
+            'appointables_has_profile' => isset($this->appointables_has_profile) ? $this->appointables_has_profile : null,
+            'assemblables' => isset($this->assemblables) ? $this->assemblables : null,
+            'assemblables_has_profile' => isset($this->assemblables_has_profile) ? $this->assemblables_has_profile : null,
+            'assignables' => isset($this->assignables) ? $this->assignables : null,
+            'assignables_has_profile' => isset($this->assignables_has_profile) ? $this->assignables_has_profile : null,
+            'establishables' => isset($this->establishables) ? $this->establishables : null,
+            'establishables_has_profile' => isset($this->establishables_has_profile) ? $this->establishables_has_profile : null,
+            'posts' => isset($this->posts) ? $this->posts : null,
             'profile' => isset($this->profile) ? $this->profile : null,
         ]);
     }

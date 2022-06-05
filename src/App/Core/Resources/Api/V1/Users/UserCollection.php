@@ -42,8 +42,12 @@ final class UserCollection extends ResourceCollection
                     'profile_uuid' => $user->relationLoaded('profile') ?
                         $user->profile->uuid : null,
                     // 'likes_total' => $user->profile->likes_total, //NOTE
-                    'likes_count' => $user->profile->likes_count,
-                    'dislikes_count' => $user->profile->dislikes_count,
+                    'likes_count' =>
+                    $user->relationLoaded('profile') ?
+                        $user->profile->likes_count : null,
+                    'dislikes_count' =>
+                    $user->relationLoaded('profile') ?
+                        $user->profile->dislikes_count : null,
                     'attributes' => [
                         'username' => $user->username,
                         'firstname' => $user->firstname,
