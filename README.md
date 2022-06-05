@@ -34,6 +34,6 @@ _Running the above command will ignore environment requirements._
 
 ![EER Diagram](EER_diagram_003.png "EER Diagram")
 
-#### [API Response ('users')](https://github.com/Clairveillance/clairveillance-backend/blob/master/api_users_003.png)
+#### [API Response ('users')](https://github.com/Clairveillance/clairveillance-backend/blob/master/api_users_0043.png)
 
-![API Response ('users')](api_users_003.png "API Response ('users')")
+![API Response ('users')](api_users_004.png "API Response ('users')")
