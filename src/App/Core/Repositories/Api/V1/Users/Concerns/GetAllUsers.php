@@ -56,10 +56,9 @@ abstract class GetAllUsers
                                         (string)$relationship =>
                                         fn (MorphOne $relationship) =>
                                         $relationship
-                                            // ->published($published) //TODO
+                                            ->published($published)
                                             ->withCount(
                                                 [
-                                                    'likes as likes_total',
                                                     'likes as likes_count' =>
                                                     fn (Builder $likes)
                                                     => $likes->where('is_dislike', 0),

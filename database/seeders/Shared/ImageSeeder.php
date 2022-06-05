@@ -67,7 +67,6 @@ final class ImageSeeder extends Seeder
      */
     public function run(): void
     {
-        $errors = [];
         $model = $this->model;
         $users = $this->users;
         try {
@@ -104,10 +103,6 @@ final class ImageSeeder extends Seeder
                     }
                 );
         } catch (\Throwable $e) {
-            if (empty($errors)) {
-                $errors[] = true;
-                dump(__METHOD__ . ' [warning]');
-            }
         }
     }
 }
