@@ -26,6 +26,10 @@ final class UserCollection extends ResourceCollection
 
     public function toArray($request): array|Arrayable|JsonSerializable
     {
+        // TODO: Add links to relationships.
+        // TODO: Add Resources for eager loaded relationships.
+        // FIXME: Surprisingly, the sortBy() method works fine on eager loaded relationships
+        // but it fails when we try to use sortByDesc() instead.
         return [
             'succes' => true,
             'status' => 200,
@@ -68,8 +72,6 @@ final class UserCollection extends ResourceCollection
                                 strtotime((string) $user->email_verified_at)
                             ),
                     ],
-                    // TODO: Add links to relationships.
-                    // TODO: Add Resources for eager loaded relationships.
                     'relationships' => [
                         'appointments_has_profile_count' =>
                         $user->relationLoaded('appointables_has_profile') ?
@@ -77,8 +79,6 @@ final class UserCollection extends ResourceCollection
                         'appointments_has_profile' =>
                         $user->relationLoaded('appointables_has_profile') ?
                             $user->appointables_has_profile
-                            // FIXME: Surprisingly, the sortBy() method works fine on eager loaded relationships
-                            // but it fails when we try to use sortByDesc() instead.
                             ->sortBy(
                                 callback: (array) ['type.name', 'name'],
                                 options: (int) SORT_REGULAR,
@@ -119,8 +119,7 @@ final class UserCollection extends ResourceCollection
                                     'likes_count' => $appointable->profile->likes_count,
                                     'dislikes_count' => $appointable->profile->dislikes_count,
                                 ])
-                            )
-                            : null,
+                            ) : null,
                         'appointments_count' =>
                         $user->relationLoaded('appointables') ?
                             $user->appointables_count : null,
@@ -164,8 +163,7 @@ final class UserCollection extends ResourceCollection
                                     'likes_count' => $appointable->likes_count,
                                     'dislikes_count' => $appointable->dislikes_count,
                                 ])
-                            )
-                            : null,
+                            ) : null,
                         'assemblies_has_profile_count' =>
                         $user->relationLoaded('assemblables_has_profile') ?
                             $user->assemblables_has_profile_count : null,
@@ -199,8 +197,7 @@ final class UserCollection extends ResourceCollection
                                     'likes_count' => $assemblable->profile->likes_count,
                                     'dislikes_count' => $assemblable->profile->dislikes_count,
                                 ])
-                            )
-                            : null,
+                            ) : null,
                         'assemblies_count' =>
                         $user->relationLoaded('assemblables') ?
                             $user->assemblables_count : null,
@@ -231,8 +228,7 @@ final class UserCollection extends ResourceCollection
                                     'likes_count' => $assemblable->likes_count,
                                     'dislikes_count' => $assemblable->dislikes_count,
                                 ])
-                            )
-                            : null,
+                            ) : null,
                         'assignments_has_profile_count' =>
                         $user->relationLoaded('assignables_has_profile') ?
                             $user->assignables_has_profile_count : null,
@@ -266,8 +262,7 @@ final class UserCollection extends ResourceCollection
                                     'likes_count' => $assignable->profile->likes_count,
                                     'dislikes_count' => $assignable->profile->dislikes_count,
                                 ])
-                            )
-                            : null,
+                            ) : null,
                         'assignments_count' =>
                         $user->relationLoaded('assignables') ?
                             $user->assignables_count : null,
@@ -298,8 +293,7 @@ final class UserCollection extends ResourceCollection
                                     'likes_count' => $assignable->likes_count,
                                     'dislikes_count' => $assignable->dislikes_count,
                                 ])
-                            )
-                            : null,
+                            ) : null,
                         'establishments_has_profile_count' =>
                         $user->relationLoaded('establishables_has_profile') ?
                             $user->establishables_has_profile_count : null,
@@ -333,8 +327,7 @@ final class UserCollection extends ResourceCollection
                                     'likes_count' => $establishable->profile->likes_count,
                                     'dislikes_count' => $establishable->profile->dislikes_count,
                                 ])
-                            )
-                            : null,
+                            ) : null,
                         'establishments_count' =>
                         $user->relationLoaded('establishables') ?
                             $user->establishables_count : null,
@@ -365,8 +358,7 @@ final class UserCollection extends ResourceCollection
                                     'likes_count' => $establishable->likes_count,
                                     'dislikes_count' => $establishable->dislikes_count,
                                 ])
-                            )
-                            : null,
+                            ) : null,
                         'posts_count' =>
                         $user->relationLoaded('posts') ?
                             $user->posts_count : null,
@@ -394,11 +386,10 @@ final class UserCollection extends ResourceCollection
                                     'dislikes_count' => $post->dislikes_count,
                                     'links' => [
                                         'self' => route((string) 'api.' . config('app.api_version') . '.posts.show', (string) $post->slug),
-                                        'parent' => route((string) 'api.' . config('app.api_version') . '.users.index.posts', (string) $user->uuid),
+                                        'parent' => route((string) 'api.' . config('app.api_version') . '.users.show.posts', (string) $user->uuid),
                                     ],
                                 ])
-                            )
-                            : null
+                            ) : null,
                     ],
                     'links' => [
                         'self' => route((string) 'api.' . config('app.api_version') . '.users.show', (string) $user->uuid),

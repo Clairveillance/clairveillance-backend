@@ -11,34 +11,34 @@ trait HasRelationships
     protected function getMorphOneRelationships(IndexRequest $request): array
     {
         return [
-            'profile' => $request->validated()['profile'],
+            'profile' => (array)$request->validated()['profile'],
         ];
     }
 
     protected function getHasManyRelationships(IndexRequest $request): array
     {
         return [
-            'posts' => (bool)$request->validated()['posts'],
+            'posts' => (array)$request->validated()['posts'],
         ];
     }
 
     protected function getMorphToManyRelationships(IndexRequest $request): array
     {
         return [
-            'appointables' => (bool)$request->validated()['appointables'],
-            'assemblables' => (bool)$request->validated()['assemblables'],
-            'assignables' => (bool)$request->validated()['assignables'],
-            'establishables' => (bool)$request->validated()['establishables'],
+            'appointables' => (array)$request->validated()['appointables'],
+            'assemblables' => (array)$request->validated()['assemblables'],
+            'assignables' => (array)$request->validated()['assignables'],
+            'establishables' => (array)$request->validated()['establishables'],
         ];
     }
 
     protected function getMorphToManyRelationshipsHasProfile(IndexRequest $request): array
     {
         return [
-            'appointables_has_profile' => (bool)$request->validated()['appointables_has_profile'],
-            'assemblables_has_profile' => (bool)$request->validated()['assemblables_has_profile'],
-            'assignables_has_profile' => (bool)$request->validated()['assignables_has_profile'],
-            'establishables_has_profile' => (bool)$request->validated()['establishables_has_profile'],
+            'appointables_has_profile' => (array)$request->validated()['appointables_has_profile'],
+            'assemblables_has_profile' => (array)$request->validated()['assemblables_has_profile'],
+            'assignables_has_profile' => (array)$request->validated()['assignables_has_profile'],
+            'establishables_has_profile' => (array)$request->validated()['establishables_has_profile'],
         ];
     }
 }

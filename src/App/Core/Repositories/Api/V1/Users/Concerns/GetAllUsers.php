@@ -38,24 +38,36 @@ abstract class GetAllUsers
                     $morphOneRelationships,
                     function (Builder $user) use ($morphOneRelationships) {
                         foreach ($morphOneRelationships as $relationship => $value) {
+                            $visible = false;
+                            $published = true;
+                            if ($morphOneRelationships[$relationship]) {
+                                if (isset($morphOneRelationships[$relationship]['visible'])) {
+                                    $visible = $morphOneRelationships[$relationship]['visible'] === 1 ? true : false;
+                                }
+                                if (isset($morphOneRelationships[$relationship]['published'])) {
+                                    $published = $morphOneRelationships[$relationship]['published'] === 0 ? false : true;
+                                }
+                            }
                             $user->when(
-                                $morphOneRelationships[(string)$relationship],
+                                $visible === true,
                                 fn (Builder $user) =>
                                 $user->with(
                                     relations: [
                                         (string)$relationship =>
                                         fn (MorphOne $relationship) =>
-                                        $relationship->withCount(
-                                            [
-                                                'likes as likes_total',
-                                                'likes as likes_count' =>
-                                                fn (Builder $likes)
-                                                => $likes->where('is_dislike', 0),
-                                                'likes as dislikes_count' =>
-                                                fn (Builder $likes)
-                                                => $likes->where('is_dislike', 1),
-                                            ]
-                                        ),
+                                        $relationship
+                                            // ->published($published) //TODO
+                                            ->withCount(
+                                                [
+                                                    'likes as likes_total',
+                                                    'likes as likes_count' =>
+                                                    fn (Builder $likes)
+                                                    => $likes->where('is_dislike', 0),
+                                                    'likes as dislikes_count' =>
+                                                    fn (Builder $likes)
+                                                    => $likes->where('is_dislike', 1),
+                                                ]
+                                            ),
                                         (string)$relationship . '.type',
                                     ]
                                 )
@@ -67,14 +79,24 @@ abstract class GetAllUsers
                     $hasManyRelationships,
                     function (Builder $user) use ($hasManyRelationships) {
                         foreach ($hasManyRelationships as $relationship => $value) {
+                            $visible = false;
+                            $published = true;
+                            if ($hasManyRelationships[$relationship]) {
+                                if (isset($hasManyRelationships[$relationship]['visible'])) {
+                                    $visible = $hasManyRelationships[$relationship]['visible'] === 1 ? true : false;
+                                }
+                                if (isset($hasManyRelationships[$relationship]['published'])) {
+                                    $published = $hasManyRelationships[$relationship]['published'] === 0 ? false : true;
+                                }
+                            }
                             $user->when(
-                                $hasManyRelationships[(string)$relationship],
+                                $visible === true,
                                 fn (Builder $user) =>
                                 $user->with(
                                     relations: [
                                         (string)$relationship =>
                                         fn (HasMany $relationship) =>
-                                        $relationship->published()
+                                        $relationship->published($published)
                                             ->withCount(
                                                 [
                                                     'likes as likes_total',
@@ -93,7 +115,7 @@ abstract class GetAllUsers
                                         relations: [
                                             $relationship =>
                                             fn (CustomQueryBuilder $relationship) =>
-                                            $relationship->published(),
+                                            $relationship->published($published),
                                         ]
                                     )
                             );
@@ -104,15 +126,25 @@ abstract class GetAllUsers
                     $morphToManyRelationships,
                     function (Builder $user) use ($morphToManyRelationships) {
                         foreach ($morphToManyRelationships as $relationship => $value) {
+                            $visible = false;
+                            $published = true;
+                            if ($morphToManyRelationships[$relationship]) {
+                                if (isset($morphToManyRelationships[$relationship]['visible'])) {
+                                    $visible = $morphToManyRelationships[$relationship]['visible'] === 1 ? true : false;
+                                }
+                                if (isset($morphToManyRelationships[$relationship]['published'])) {
+                                    $published = $morphToManyRelationships[$relationship]['published'] === 0 ? false : true;
+                                }
+                            }
                             $user->when(
-                                $morphToManyRelationships[(string)$relationship],
+                                $visible === true,
                                 fn (Builder $user) =>
                                 $user->with(
                                     relations: [
                                         (string)$relationship =>
                                         fn (MorphToMany $relationship) =>
                                         $relationship
-                                            ->published()
+                                            ->published($published)
                                             ->withCount(
                                                 [
                                                     'likes as likes_total',
@@ -125,13 +157,13 @@ abstract class GetAllUsers
                                                 ]
                                             ),
                                         (string)$relationship . '.type',
-                                    ]
+                                    ],
                                 )
                                     ->withCount(
                                         relations: [
                                             $relationship =>
                                             fn (CustomQueryBuilder $relationship) =>
-                                            $relationship->published(),
+                                            $relationship->published($published),
                                         ]
                                     )
                             );
@@ -142,14 +174,24 @@ abstract class GetAllUsers
                     $morphToManyRelationshipsHasProfile,
                     function (Builder $user) use ($morphToManyRelationshipsHasProfile) {
                         foreach ($morphToManyRelationshipsHasProfile as $relationship => $value) {
+                            $visible = false;
+                            $published = true;
+                            if ($morphToManyRelationshipsHasProfile[$relationship]) {
+                                if (isset($morphToManyRelationshipsHasProfile[$relationship]['visible'])) {
+                                    $visible = $morphToManyRelationshipsHasProfile[$relationship]['visible'] === 1 ? true : false;
+                                }
+                                if (isset($morphToManyRelationshipsHasProfile[$relationship]['published'])) {
+                                    $published = $morphToManyRelationshipsHasProfile[$relationship]['published'] === 0 ? false : true;
+                                }
+                            }
                             $user->when(
-                                $morphToManyRelationshipsHasProfile[(string)$relationship],
+                                $visible === true,
                                 fn (Builder $user) =>
                                 $user->with(
                                     relations: [
                                         (string)$relationship =>
                                         fn (MorphToMany $relationship) =>
-                                        $relationship->published(),
+                                        $relationship->published($published),
                                         $relationship . '.profile' =>
                                         fn (MorphOne $profile) =>
                                         $profile->withCount(
@@ -170,7 +212,7 @@ abstract class GetAllUsers
                                         relations: [
                                             (string)$relationship =>
                                             fn (CustomQueryBuilder $relationship) =>
-                                            $relationship->published(),
+                                            $relationship->published($published),
                                         ]
                                     )
                             );
