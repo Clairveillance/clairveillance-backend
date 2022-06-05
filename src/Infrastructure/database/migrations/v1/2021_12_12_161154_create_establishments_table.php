@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('establishments', function (Blueprint $table) {
@@ -15,6 +16,8 @@ return new class extends Migration {
             $table->string('slug')->nullable()->unique();
             $table->string('name')->unique();
             $table->text('description')->nullable();
+            $table->boolean('published')->default(false);
+            $table->timestampTz('published_at')->nullable();
             $table->timestampsTz();
             $table->softDeletes();
             $table->foreignUuid('user_uuid')->constrained('users', 'uuid')->cascadeOnUpdate()->cascadeOnDelete();

@@ -47,6 +47,9 @@ abstract class AbstractAssemblyFactory extends Factory
                 default: 'UTC'
             )
         );
+        $published = $this->faker->boolean(
+            chanceOfGettingTrue: 80
+        );
 
         return [
             'name' => $name,
@@ -58,6 +61,15 @@ abstract class AbstractAssemblyFactory extends Factory
                     ),
                     variableNbWords: true
                 )]
+            ),
+            'published' => $published,
+            'published_at' => !$published ? null : $this->faker->dateTimeBetween(
+                startDate: $created_date,
+                endDate: $updated_date,
+                timezone: env(
+                    key: 'APP_TIMEZONE',
+                    default: 'UTC'
+                )
             ),
             'created_at' => $created_date,
             'updated_at' => $updated_date,

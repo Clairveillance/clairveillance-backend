@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models\Establishment;
 
-use App\Models\Establishment\Establishment;
-use App\Models\Establishment\EstablishmentHasProfile;
-use App\Models\Establishment\EstablishmentType;
-use App\Models\Shared\Traits\HasFactory;
-use App\Models\Shared\Traits\HasUuid;
 use App\Models\User\User;
+use App\Models\Shared\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use App\Models\Shared\Traits\HasFactory;
+use App\Models\Establishment\Establishment;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Establishment\EstablishmentType;
+use App\Models\Establishment\EstablishmentHasProfile;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Shared\QueryBuilders\CustomQueryBuilder;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 abstract class AbstractEstablishment extends Model
 {
@@ -106,6 +107,13 @@ abstract class AbstractEstablishment extends Model
             parentKey: 'uuid',
             relatedKey: 'uuid',
             inverse: false
+        );
+    }
+
+    public function newEloquentBuilder($query): CustomQueryBuilder
+    {
+        return new CustomQueryBuilder(
+            query: $query
         );
     }
 }

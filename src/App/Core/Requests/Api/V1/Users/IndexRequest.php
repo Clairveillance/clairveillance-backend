@@ -35,7 +35,126 @@ final class IndexRequest extends FormRequest
             'per_page' => [
                 'nullable',
                 'integer',
-                // 'numeric',
+            ],
+            'appointables' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'appointables.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'appointables.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'appointables_has_profile' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'appointables_has_profile.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'appointables_has_profile.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'assemblables' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'assemblables.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'assemblables.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'assemblables_has_profile' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'assemblables_has_profile.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'assemblables_has_profile.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'assignables' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'assignables.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'assignables.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'assignables_has_profile' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'assignables_has_profile.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'assignables_has_profile.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'establishables' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'establishables.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'establishables.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'establishables_has_profile' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'establishables_has_profile.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'establishables_has_profile.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'posts' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'posts.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'posts.published' => [
+                'nullable',
+                'boolean'
+            ],
+            'profile' => [
+                'nullable',
+                'array:visible,published'
+            ],
+            'profile.visible' => [
+                'nullable',
+                'boolean'
+            ],
+            'profile.published' => [
+                'nullable',
+                'boolean'
             ],
         ];
     }
@@ -48,6 +167,34 @@ final class IndexRequest extends FormRequest
             'order_by' => (string) $this->order_by === '' ? 'username' : (string) $this->order_by,
             'order_direction' => (string) $this->order_direction === '' ? 'asc' : (string) $this->order_direction,
             'per_page' => (int) $this->per_page === 0 ? 25 : (int) $this->per_page,
+            'appointables' => isset($this->appointables) &&
+                isset($this->appointables['visible']) ?
+                $this->appointables : null,
+            'appointables_has_profile' => isset($this->appointables_has_profile) &&
+                isset($this->appointables_has_profile['visible']) ?
+                $this->appointables_has_profile : null,
+            'assemblables' => isset($this->assemblables) &&
+                isset($this->assemblables['visible']) ?
+                $this->assemblables : null,
+            'assemblables_has_profile' => isset($this->assemblables_has_profile) &&
+                isset($this->assemblables_has_profile['visible']) ?
+                $this->assemblables_has_profile : null,
+            'assignables' => isset($this->assignables) &&
+                isset($this->assignables['visible']) ?
+                $this->assignables : null,
+            'assignables_has_profile' => isset($this->assignables_has_profile) &&
+                isset($this->assignables_has_profile['visible']) ?
+                $this->assignables_has_profile : null,
+            'establishables' => isset($this->establishables) &&
+                isset($this->establishables['visible']) ?
+                $this->establishables : null,
+            'establishables_has_profile' => isset($this->establishables_has_profile) &&
+                isset($this->establishables_has_profile['visible']) ?
+                $this->establishables_has_profile : null,
+            'posts' => isset($this->posts) &&
+                isset($this->posts['visible']) ?
+                $this->posts : null,
+            'profile' => isset($this->profile) ? $this->profile : null,
         ]);
     }
 
@@ -56,6 +203,8 @@ final class IndexRequest extends FormRequest
         return [
             'order_by.in' => "Only allowed values: 'id', 'username', 'firstname', 'lastname', 'email', 'created_at' or 'updated_at'",
             'order_direction.in' => "Only allowed values: 'asc' or 'desc'",
+            '*.array' => "Must be an array.",
+            '*.*.boolean' => "Must be a boolean value.",
         ];
     }
 

@@ -11,14 +11,22 @@ use App\Core\Resources\Api\V1\Users\UserCollection;
 final class UserRepository implements UserRepositoryInterface
 {
     public function getAllUsers(
+        int $perPage,
         string $orderBy,
         string $orderDirection,
-        int $perPage
+        array $morphOneRelationships,
+        array $hasManyRelationships,
+        array $morphToManyRelationships,
+        array $morphToManyRelationshipsHasProfile,
     ): UserCollection {
-        return GetAllUsers::withRelationsPaginated(
+        return GetAllUsers::withRelations(
+            (int) $perPage,
             (string) $orderBy,
             (string) $orderDirection,
-            (int) $perPage
+            (array) $morphOneRelationships,
+            (array) $hasManyRelationships,
+            (array) $morphToManyRelationships,
+            (array) $morphToManyRelationshipsHasProfile,
         );
     }
 }

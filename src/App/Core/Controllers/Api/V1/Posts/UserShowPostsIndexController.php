@@ -9,7 +9,7 @@ use App\Models\Post\Post;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-final class IndexByUserController extends Controller
+final class UserShowPostsIndexController extends Controller
 {
     public function __invoke(Request $request, string $uuid): LengthAwarePaginator
     {
