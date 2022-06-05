@@ -67,7 +67,6 @@ final class LikeSeeder
      */
     public function run(): void
     {
-        $errors = [];
         try {
             $model = $this->model;
             $users = $this->users;
@@ -106,10 +105,6 @@ final class LikeSeeder
                 }
             }
         } catch (\Throwable $e) {
-            if (empty($errors)) {
-                $errors[] = true;
-                dump(__METHOD__ . ' [warning]');
-            }
         }
     }
 }

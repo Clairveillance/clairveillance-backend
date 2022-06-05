@@ -10,13 +10,13 @@ final class CustomQueryBuilder extends Builder
 {
     public function published(bool $value = true): self
     {
-        return $this->where('published', $value);
+        return $this->where('published', $value) ?? null;
     }
 
     public function unpublished(bool $value = true): self
     {
         $value = $value !== true ?: false;
 
-        return $this->where('published', $value);
+        return $this->where('published', $value) ?? null;
     }
 }
