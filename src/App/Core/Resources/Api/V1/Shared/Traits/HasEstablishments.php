@@ -7,14 +7,16 @@ namespace App\Core\Resources\Api\V1\Shared\Traits;
 use App\Models\Establishment\Establishment;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
+use App\Core\Resources\Api\V1\Shared\Traits\HasLinks;
 use App\Models\Establishment\EstablishmentHasProfile;
 
 trait HasEstablishments
 {
     use HasType;
+    use HasLinks;
     use HasProfile;
 
-    public function establishments(JsonResource $resource): array
+    public function establishments(JsonResource $resource, string $name): array
     {
         return [
             'establishments_count' => $resource->establishables_count ?? null,
@@ -35,13 +37,13 @@ trait HasEstablishments
                         'published_at' => $this->getFormattedDate($establishable->published_at),
                         'likes_count' => $establishable->likes_count,
                         'dislikes_count' => $establishable->dislikes_count,
-                        'type'  => $this->type($establishable),
+                        'type'  => $this->type($establishable, 'establishments'),
                     ])
                 ) : null,
         ];
     }
 
-    public function establishments_has_profile(JsonResource $resource): array
+    public function establishments_has_profile(JsonResource $resource, string $name): array
     {
         return [
             'establishments_has_profile_count' => $resource->establishables_has_profile_count ?? null,
@@ -61,8 +63,8 @@ trait HasEstablishments
                         'slug' => $establishable->slug,
                         'description' => $establishable->description,
                         'published_at' => $this->getFormattedDate($establishable->published_at),
-                        'profile'  => $this->profile($establishable),
-                        'type'  => $this->type($establishable),
+                        'profile'  => $this->profile($establishable, 'establishments'),
+                        'type'  => $this->type($establishable, 'establishments'),
                     ])
                 ) : null,
         ];

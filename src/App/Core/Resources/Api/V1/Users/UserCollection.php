@@ -7,6 +7,7 @@ namespace App\Core\Resources\Api\V1\Users;
 use JsonSerializable;
 use Illuminate\Contracts\Support\Arrayable;
 use App\Core\Resources\Api\V1\Users\UserResource;
+use App\Core\Resources\Api\V1\Shared\Traits\HasLinks;
 use App\Core\Resources\Api\V1\Shared\Traits\HasPosts;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Core\Resources\Api\V1\Shared\Traits\HasFilters;
@@ -19,6 +20,7 @@ use App\Core\Resources\Api\V1\Shared\Traits\HasEstablishments;
 final class UserCollection extends ResourceCollection
 {
     use HasPosts;
+    use HasLinks;
     use HasFilters;
     use HasProfile;
     use HasAssemblies;
@@ -52,24 +54,21 @@ final class UserCollection extends ResourceCollection
                         'email_verified_at' => $this->getFormattedDate($user->email_verified_at),
                     ],
                     // TODO: Add links to profile and relationships.
-                    'profile'  => $this->profile($user),
+                    'profile'  => $this->profile($user, 'users'),
                     // FIXME: Surprisingly, the sortBy() method works fine on eager loaded relationships
                     // but it fails when we try to use sortByDesc() instead.
                     'relationships' => [
-                        ...$this->appointments($user),
-                        ...$this->appointments_has_profile($user),
-                        ...$this->assemblies($user),
-                        ...$this->assemblies_has_profile($user),
-                        ...$this->assignments($user),
-                        ...$this->assignments_has_profile($user),
-                        ...$this->establishments($user),
-                        ...$this->establishments_has_profile($user),
+                        ...$this->appointments($user, 'users'),
+                        ...$this->appointments_has_profile($user, 'users'),
+                        ...$this->assemblies($user, 'users'),
+                        ...$this->assemblies_has_profile($user, 'users'),
+                        ...$this->assignments($user, 'users'),
+                        ...$this->assignments_has_profile($user, 'users'),
+                        ...$this->establishments($user, 'users'),
+                        ...$this->establishments_has_profile($user, 'users'),
                         ...$this->posts($user, 'users'),
                     ],
-                    'links' => [
-                        'self' => route((string) 'api.' . config('app.api_version') . '.users.show', (string) $user->uuid),
-                        'parent' => route((string) 'api.' . config('app.api_version') . '.users.index'),
-                    ],
+                    'links' => $this->selfLink('.users.show', $user->uuid)->parentLink('.users.index')->getLinks(),
                 ])
             ),
         ];

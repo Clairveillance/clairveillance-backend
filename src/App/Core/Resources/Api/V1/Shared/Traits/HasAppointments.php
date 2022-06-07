@@ -13,9 +13,10 @@ use App\Core\Resources\Api\V1\Shared\Traits\HasProfile;
 trait HasAppointments
 {
     use HasType;
+    use HasLinks;
     use HasProfile;
 
-    public function appointments(JsonResource $resource): array
+    public function appointments(JsonResource $resource, string $name): array
     {
         return [
             'appointments_count' => $resource->appointables_count ?? null,
@@ -39,13 +40,13 @@ trait HasAppointments
                         'published_at' => $this->getFormattedDate($appointable->published_at),
                         'likes_count' => $appointable->likes_count,
                         'dislikes_count' => $appointable->dislikes_count,
-                        'type'  => $this->type($appointable),
+                        'type'  => $this->type($appointable, 'appointments'),
                     ])
                 ) : null,
         ];
     }
 
-    public function appointments_has_profile(JsonResource $resource): array
+    public function appointments_has_profile(JsonResource $resource, string $name): array
     {
         return [
             'appointments_has_profile_count' => $resource->appointables_has_profile_count ?? null,
@@ -68,8 +69,8 @@ trait HasAppointments
                         'start_at' => $this->getFormattedDate($appointable->start_at),
                         'end_at' => $this->getFormattedDate($appointable->end_at),
                         'published_at' => $this->getFormattedDate($appointable->published_at),
-                        'profile'  => $this->profile($appointable),
-                        'type'  => $this->type($appointable),
+                        'profile'  => $this->profile($appointable, 'appointments'),
+                        'type'  => $this->type($appointable, 'appointments'),
                     ])
                 ) : null,
         ];

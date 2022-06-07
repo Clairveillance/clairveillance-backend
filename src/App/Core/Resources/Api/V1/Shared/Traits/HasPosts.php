@@ -7,10 +7,12 @@ namespace App\Core\Resources\Api\V1\Shared\Traits;
 use App\Models\Post\Post;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
+use App\Core\Resources\Api\V1\Shared\Traits\HasLinks;
 
 trait HasPosts
 {
     use HasType;
+    use HasLinks;
 
     public function posts(JsonResource $resource, string $name): array
     {
@@ -29,11 +31,8 @@ trait HasPosts
                         'published_at' => $this->getFormattedDate($post->published_at),
                         'likes_count' => $post->likes_count,
                         'dislikes_count' => $post->dislikes_count,
-                        'links' => [
-                            'self' => route((string) 'api.' . config('app.api_version') . '.posts.show', (string) $post->slug),
-                            'parent' => route((string) 'api.' . config('app.api_version') . '.' . $name . '.show.posts', (string) $resource->uuid),
-                        ],
-                        'type'  => $this->type($post),
+                        'type'  => $this->type($post, 'posts'),
+                        'links' => $this->selfLink('.posts.show', $post->slug)->parentLink('.' . $name . '.show.posts', $resource->uuid)->getLinks(),
                     ])
                 ) : null,
         ];

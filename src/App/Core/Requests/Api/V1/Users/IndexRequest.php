@@ -35,86 +35,78 @@ final class IndexRequest extends FormRequest
             'per_page' => [
                 'nullable',
                 'integer',
+                'min:1',
+                'max:100',
             ],
             'appointables' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'appointables.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'appointables_has_profile' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'appointables_has_profile.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'assemblables' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'assemblables.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'assemblables_has_profile' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'assemblables_has_profile.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'assignables' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'assignables.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'assignables_has_profile' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'assignables_has_profile.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'establishables' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'establishables.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'establishables_has_profile' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'establishables_has_profile.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'posts' => [
                 'nullable',
-                'array:show,count,published'
             ],
             'posts.*' => [
                 'nullable',
-                'boolean'
+                'in:show,count,unpublished',
             ],
             'profile' => [
-                'nullable',
-                'array:show,published'
+                'nullable'
             ],
             'profile.*' => [
                 'nullable',
-                'boolean'
+                'in:show,unpublished',
             ],
         ];
     }
@@ -124,30 +116,70 @@ final class IndexRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'order_by' => (string) $this->order_by === '' ? 'username' : (string) $this->order_by,
-            'order_direction' => (string) $this->order_direction === '' ? 'asc' : (string) $this->order_direction,
-            'per_page' => (int) $this->per_page === 0 ? 25 : (int) $this->per_page,
-            'appointables' => isset($this->appointables) ? $this->appointables : null,
-            'appointables_has_profile' => isset($this->appointables_has_profile) ? $this->appointables_has_profile : null,
-            'assemblables' => isset($this->assemblables) ? $this->assemblables : null,
-            'assemblables_has_profile' => isset($this->assemblables_has_profile) ? $this->assemblables_has_profile : null,
-            'assignables' => isset($this->assignables) ? $this->assignables : null,
-            'assignables_has_profile' => isset($this->assignables_has_profile) ? $this->assignables_has_profile : null,
-            'establishables' => isset($this->establishables) ? $this->establishables : null,
-            'establishables_has_profile' => isset($this->establishables_has_profile) ? $this->establishables_has_profile : null,
-            'posts' => isset($this->posts) ? $this->posts : null,
-            'profile' => isset($this->profile) ? $this->profile : null,
+            'order_by' =>
+            (string) $this->order_by === '' ?
+                'username' :
+                (string) $this->order_by,
+            'order_direction' =>
+            (string) $this->order_direction === '' ?
+                'asc' :
+                (string) $this->order_direction,
+            'per_page' =>
+            (int) $this->per_page === 0 ?
+                25 :
+                (int) $this->per_page,
+            'appointables' =>
+            isset($this->appointables) ?
+                explode(',', $this->appointables) :
+                null,
+            'appointables_has_profile' =>
+            isset($this->appointables_has_profile) ?
+                explode(',', $this->appointables_has_profile) :
+                null,
+            'assemblables' =>
+            isset($this->assemblables) ?
+                explode(',', $this->assemblables) :
+                null,
+            'assemblables_has_profile' =>
+            isset($this->assemblables_has_profile) ?
+                explode(',', $this->assemblables_has_profile) :
+                null,
+            'assignables' =>
+            isset($this->assignables) ?
+                explode(',', $this->assignables) :
+                null,
+            'assignables_has_profile' =>
+            isset($this->assignables_has_profile) ?
+                explode(',', $this->assignables_has_profile) :
+                null,
+            'establishables' =>
+            isset($this->establishables) ?
+                explode(',', $this->establishables) :
+                null,
+            'establishables_has_profile' =>
+            isset($this->establishables_has_profile) ?
+                explode(',', $this->establishables_has_profile) :
+                null,
+            'posts' =>
+            isset($this->posts) ?
+                explode(',', $this->posts) :
+                null,
+            'profile' =>
+            isset($this->profile) ?
+                explode(',', $this->profile) :
+                null,
         ]);
     }
 
     public function messages(): array
     {
         return [
-            'order_by.in' => "Only allowed values: 'id', 'username', 'firstname', 'lastname', 'email', 'created_at' or 'updated_at'",
-            'order_direction.in' => "Only allowed values: 'asc' or 'desc'",
-            'profile.array' => "Must be an array that contains: 'show' and/or 'published'",
-            '*.array' => "Must be an array that contains: 'show', 'count' and/or 'published'",
-            '*.*.boolean' => "Must be a boolean value.",
+            'order_by.in' => "Available values: 'id', 'username', 'firstname', 'lastname', 'email', 'created_at' or 'updated_at'.",
+            'order_direction.in' => "Available values: 'asc' or 'desc'.",
+            'per_page.min' => "Only a minimum of 1 and a maximum of 100 is allowed.",
+            'per_page.max' => "Only a minimum of 1 and a maximum of 100 is allowed.",
+            'profile.*.in' => "Available values: 'show' and/or 'unpublished'.",
+            '*.*.in' => "Available values: 'show', 'count' and/or 'unpublished'",
         ];
     }
 

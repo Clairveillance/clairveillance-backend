@@ -25,6 +25,7 @@
     "spatie/laravel-query-builder": "^4.0"
   },
   "require-dev": {
+    "barryvdh/laravel-ide-helper": "^2.12",
     "eduarguz/shift-php-cs": "^3.0",
     "facade/ignition": "^2.5",
     "fakerphp/faker": "^1.9.1",
@@ -67,7 +68,9 @@
   },
   "extra": {
     "laravel": {
-      "dont-discover": []
+      "dont-discover": [
+        "barryvdh/laravel-ide-helper"
+      ]
     }
   },
   "config": {

@@ -8,13 +8,15 @@ use App\Models\Assignment\Assignment;
 use App\Models\Assignment\AssignmentHasProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
+use App\Core\Resources\Api\V1\Shared\Traits\HasLinks;
 
 trait HasAssignments
 {
     use HasType;
+    use HasLinks;
     use HasProfile;
 
-    public function assignments(JsonResource $resource): array
+    public function assignments(JsonResource $resource, string $name): array
     {
         return [
             'assignments_count' => $resource->assignables_count ?? null,
@@ -35,13 +37,13 @@ trait HasAssignments
                         'published_at' => $this->getFormattedDate($assignable->published_at),
                         'likes_count' => $assignable->likes_count,
                         'dislikes_count' => $assignable->dislikes_count,
-                        'type'  => $this->type($assignable),
+                        'type'  => $this->type($assignable, 'assignments'),
                     ])
                 ) : null,
         ];
     }
 
-    public function assignments_has_profile(JsonResource $resource): array
+    public function assignments_has_profile(JsonResource $resource, string $name): array
     {
         return [
             'assignments_has_profile_count' => $resource->assignables_has_profile_count ?? null,
@@ -61,8 +63,8 @@ trait HasAssignments
                         'slug' => $assignable->slug,
                         'description' => $assignable->description,
                         'published_at' => $this->getFormattedDate($assignable->published_at),
-                        'profile'  => $this->profile($assignable),
-                        'type'  => $this->type($assignable),
+                        'profile'  => $this->profile($assignable, 'assignments'),
+                        'type'  => $this->type($assignable, 'assignments'),
                     ])
                 ) : null,
         ];
