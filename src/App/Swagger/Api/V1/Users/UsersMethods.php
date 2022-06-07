@@ -2,62 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Swagger;
+namespace App\Swagger\Api\V1\Users;
+
 
 /**
- * @OA\OpenApi(
- *     @OA\Info(
- *         version="1.0.0",
- *         title="Clairveillance",
- *         description="Clairveillance API Documentation.",
- *         @OA\License(
- *             name="MIT",
- *             url="https://github.com/Clairveillance/clairveillance-backend/blob/master/LICENSE.md"
- *         )
- *     ),
- * ),
- *
- * @OA\Server(
- *   description="Version 1",
- *   url=L5_SWAGGER_CONST_API_V1
- * ),
- *
- * @OA\Get(path="/users",
+ * 
+ * @OA\Get(
+ *   path="/users",
  *   tags={"Users"},
  *   summary="Show users list.",
- *   description="Display a listing of all users.",
+ *   description="Display a listing of all users.
+ *     See parameters below.",
  *     @OA\Parameter(
- *         name="order_by",
- *         in="query",
- *         required=false,
- *         @OA\Schema(
- *           type="string",
- *           maximum=36
- *         )
+ *          ref="#/components/parameters/UsersParametersOrderBy",
  *     ),
  *     @OA\Parameter(
- *         name="order_direction",
- *         in="query",
- *         required=false,
- *         @OA\Schema(
- *           type="string",
- *           maximum=36
- *         )
+ *          ref="#/components/parameters/UsersParametersOrderDirection",
  *     ),
  *     @OA\Parameter(
- *         name="per_page",
- *         in="query",
- *         required=false,
- *         @OA\Schema(
- *           type="string",
- *           maximum=36
- *         )
+ *          ref="#/components/parameters/UsersParametersPerPage",
+ *     ),
+ *     @OA\Parameter(
+ *          ref="#/components/parameters/UsersParametersProfile",
  *     ),
  *   @OA\Response(response=200, description="OK"),
- *   @OA\Response(response=201, description="Created"),
- *   @OA\Response(response=202, description="Accepted"),
- *   @OA\Response(response=400, description="Bad Request"),
- *   @OA\Response(response=401, description="Unauthorized"),
  *   @OA\Response(response=403, description="Forbidden"),
  *   @OA\Response(response=404, description="Not Found"),
  *   @OA\Response(response=405, description="Method Not Allowed"),
@@ -65,8 +33,9 @@ namespace App\Swagger;
  *   @OA\Response(response=429, description="Too Many Requests"),
  *   @OA\Response(response=500, description="Internal Server Error")
  * ),
- *
- * @OA\Get(path="/users/{uuid}",
+ * 
+ * @OA\Get(
+ *   path="/users/{uuid}",
  *   tags={"Users"},
  *   summary="Show user data.",
  *   description="Display a specified user.",
@@ -92,6 +61,6 @@ namespace App\Swagger;
  *   @OA\Response(response=500, description="Internal Server Error")
  * )
  */
-final class Swagger
+final class UsersMethods
 {
 }

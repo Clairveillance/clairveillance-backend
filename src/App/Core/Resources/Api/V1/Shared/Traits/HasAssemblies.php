@@ -8,14 +8,16 @@ use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
+use App\Core\Resources\Api\V1\Shared\Traits\HasLinks;
 use App\Core\Resources\Api\V1\Shared\Traits\HasProfile;
 
 trait HasAssemblies
 {
     use HasType;
+    use HasLinks;
     use HasProfile;
 
-    public function assemblies(JsonResource $resource): array
+    public function assemblies(JsonResource $resource, string $name): array
     {
         return [
             'assemblies_count' => $resource->assemblables_count ?? null,
@@ -36,13 +38,13 @@ trait HasAssemblies
                         'published_at' => $this->getFormattedDate($assemblable->published_at),
                         'likes_count' => $assemblable->likes_count,
                         'dislikes_count' => $assemblable->dislikes_count,
-                        'type'  => $this->type($assemblable),
+                        'type'  => $this->type($assemblable, 'assemblies'),
                     ])
                 ) : null,
         ];
     }
 
-    public function assemblies_has_profile(JsonResource $resource): array
+    public function assemblies_has_profile(JsonResource $resource, string $name): array
     {
         return [
             'assemblies_has_profile_count' => $resource->assemblables_has_profile_count ?? null,
@@ -62,8 +64,8 @@ trait HasAssemblies
                         'slug' => $assemblable->slug,
                         'description' => $assemblable->description,
                         'published_at' => $this->getFormattedDate($assemblable->published_at),
-                        'profile'  => $this->profile($assemblable),
-                        'type'  => $this->type($assemblable),
+                        'profile'  => $this->profile($assemblable, 'assemblies'),
+                        'type'  => $this->type($assemblable, 'assemblies'),
                     ])
                 ) : null,
         ];

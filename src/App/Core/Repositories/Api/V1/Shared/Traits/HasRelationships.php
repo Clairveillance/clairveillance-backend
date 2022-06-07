@@ -21,11 +21,11 @@ trait HasRelationships
                     $show = false;
                     $published = true;
                     if ($relationships[$relationship]) {
-                        if (isset($relationships[$relationship]['show'])) {
-                            $show = $relationships[$relationship]['show'] === 1 ? true : false;
+                        if (in_array('show', $relationships[$relationship])) {
+                            $show = true;
                         }
-                        if (isset($relationships[$relationship]['published'])) {
-                            $published = $relationships[$relationship]['published'] === 0 ? false : true;
+                        if (in_array('unpublished', $relationships[$relationship])) {
+                            $published = false;
                         }
                     }
                     $model->when(
@@ -56,11 +56,11 @@ trait HasRelationships
                     $count = false;
                     $published = true;
                     if ($relationships[$relationship]) {
-                        if (isset($relationships[$relationship]['count'])) {
-                            $count = $relationships[$relationship]['count'] === 1 ? true : false;
+                        if (in_array('count', $relationships[$relationship])) {
+                            $count = true;
                         }
-                        if (isset($relationships[$relationship]['published'])) {
-                            $published = $relationships[$relationship]['published'] === 0 ? false : true;
+                        if (in_array('unpublished', $relationships[$relationship])) {
+                            $published = false;
                         }
                     }
                     $model->when(
@@ -88,11 +88,11 @@ trait HasRelationships
                     $show = false;
                     $published = true;
                     if ($relationships[$relationship]) {
-                        if (isset($relationships[$relationship]['show'])) {
-                            $show = $relationships[$relationship]['show'] === 1 ? true : false;
+                        if (in_array('show', $relationships[$relationship])) {
+                            $show = true;
                         }
-                        if (isset($relationships[$relationship]['published'])) {
-                            $published = $relationships[$relationship]['published'] === 0 ? false : true;
+                        if (in_array('unpublished', $relationships[$relationship])) {
+                            $published = false;
                         }
                     }
                     $model->when(
@@ -130,11 +130,11 @@ trait HasRelationships
                     $count = false;
                     $published = true;
                     if ($relationships[$relationship]) {
-                        if (isset($relationships[$relationship]['count'])) {
-                            $count = $relationships[$relationship]['count'] === 1 ? true : false;
+                        if (in_array('count', $relationships[$relationship])) {
+                            $count = true;
                         }
-                        if (isset($relationships[$relationship]['published'])) {
-                            $published = $relationships[$relationship]['published'] === 0 ? false : true;
+                        if (in_array('unpublished', $relationships[$relationship])) {
+                            $published = false;
                         }
                     }
                     $model->when(
@@ -162,11 +162,11 @@ trait HasRelationships
                     $show = false;
                     $published = true;
                     if ($relationships[$relationship]) {
-                        if (isset($relationships[$relationship]['show'])) {
-                            $show = $relationships[$relationship]['show'] === 1 ? true : false;
+                        if (in_array('show', $relationships[$relationship])) {
+                            $show = true;
                         }
-                        if (isset($relationships[$relationship]['published'])) {
-                            $published = $relationships[$relationship]['published'] === 0 ? false : true;
+                        if (in_array('unpublished', $relationships[$relationship])) {
+                            $published = false;
                         }
                     }
                     $model->when(
@@ -205,11 +205,11 @@ trait HasRelationships
                     $count = false;
                     $published = true;
                     if ($relationships[$relationship]) {
-                        if (isset($relationships[$relationship]['count'])) {
-                            $count = $relationships[$relationship]['count'] === 1 ? true : false;
+                        if (in_array('count', $relationships[$relationship])) {
+                            $count = true;
                         }
-                        if (isset($relationships[$relationship]['published'])) {
-                            $published = $relationships[$relationship]['published'] === 0 ? false : true;
+                        if (in_array('unpublished', $relationships[$relationship])) {
+                            $published = false;
                         }
                     }
                     $model->when(
@@ -237,11 +237,11 @@ trait HasRelationships
                     $show = false;
                     $published = true;
                     if ($relationships[$relationship]) {
-                        if (isset($relationships[$relationship]['show'])) {
-                            $show = $relationships[$relationship]['show'] === 1 ? true : false;
+                        if (in_array('show', $relationships[$relationship])) {
+                            $show = true;
                         }
-                        if (isset($relationships[$relationship]['published'])) {
-                            $published = $relationships[$relationship]['published'] === 0 ? false : true;
+                        if (in_array('unpublished', $relationships[$relationship])) {
+                            $published = false;
                         }
                     }
                     $model->when(
