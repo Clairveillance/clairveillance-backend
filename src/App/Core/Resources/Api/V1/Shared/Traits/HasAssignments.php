@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
+use App\Support\FormatDate;
 use App\Models\Assignment\Assignment;
 use App\Models\Assignment\AssignmentHasProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -34,7 +35,7 @@ trait HasAssignments
                         'uuid' => $assignable->uuid,
                         'name' => $assignable->name,
                         'description' => $assignable->description,
-                        'published_at' => $this->getFormattedDate($assignable->published_at),
+                        'published_at' => FormatDate::humanizeYmdHis($assignable->published_at),
                         'likes_count' => $assignable->likes_count,
                         'dislikes_count' => $assignable->dislikes_count,
                         'type'  => $this->type($assignable, 'assignments'),
@@ -62,7 +63,7 @@ trait HasAssignments
                         'name' => $assignable->name,
                         'slug' => $assignable->slug,
                         'description' => $assignable->description,
-                        'published_at' => $this->getFormattedDate($assignable->published_at),
+                        'published_at' => FormatDate::humanizeYmdHis($assignable->published_at),
                         'profile'  => $this->profile($assignable, 'assignments'),
                         'type'  => $this->type($assignable, 'assignments'),
                     ])

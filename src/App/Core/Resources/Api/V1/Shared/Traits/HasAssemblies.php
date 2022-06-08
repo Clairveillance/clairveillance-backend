@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
+use App\Support\FormatDate;
 use App\Models\Assembly\Assembly;
 use App\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -35,7 +36,7 @@ trait HasAssemblies
                         'uuid' => $assemblable->uuid,
                         'name' => $assemblable->name,
                         'description' => $assemblable->description,
-                        'published_at' => $this->getFormattedDate($assemblable->published_at),
+                        'published_at' => FormatDate::humanizeYmdHis($assemblable->published_at),
                         'likes_count' => $assemblable->likes_count,
                         'dislikes_count' => $assemblable->dislikes_count,
                         'type'  => $this->type($assemblable, 'assemblies'),
@@ -63,7 +64,7 @@ trait HasAssemblies
                         'name' => $assemblable->name,
                         'slug' => $assemblable->slug,
                         'description' => $assemblable->description,
-                        'published_at' => $this->getFormattedDate($assemblable->published_at),
+                        'published_at' => FormatDate::humanizeYmdHis($assemblable->published_at),
                         'profile'  => $this->profile($assemblable, 'assemblies'),
                         'type'  => $this->type($assemblable, 'assemblies'),
                     ])

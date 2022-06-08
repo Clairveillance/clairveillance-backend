@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
 use App\Models\Post\Post;
+use App\Support\FormatDate;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
 use App\Core\Resources\Api\V1\Shared\Traits\HasLinks;
@@ -28,7 +29,7 @@ trait HasPosts
                         'title' => $post->title,
                         'slug' => $post->slug,
                         'description' => $post->description,
-                        'published_at' => $this->getFormattedDate($post->published_at),
+                        'published_at' => FormatDate::humanizeYmdHis($post->published_at),
                         'likes_count' => $post->likes_count,
                         'dislikes_count' => $post->dislikes_count,
                         'type'  => $this->type($post, 'posts'),

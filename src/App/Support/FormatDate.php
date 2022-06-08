@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Resources\Api\V1\Shared\Traits;
+namespace App\Support;
 
 use Illuminate\Support\Carbon;
 
-trait HasFilters
+final class FormatDate
 {
-    public function getFormattedDate(Carbon|string|null $date): string|null
+    public static function humanizeYmdHis(Carbon|string|null $date): ?string
     {
         return
             null === $date ? $date :

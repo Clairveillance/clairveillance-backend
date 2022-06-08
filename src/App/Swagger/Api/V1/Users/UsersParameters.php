@@ -10,7 +10,7 @@ namespace App\Swagger\Api\V1\Users;
  * @OA\Parameter(
  *      parameter="UsersParametersOrderBy",
  *      description="Sort results by a particular field. (optional)
- *     When no value is provided, the results will be sorted by 'username'.",
+ *     When no value is provided, results are sorted by 'username'.",
  *      name="order_by",
  *      in="query",
  *      required=false,
@@ -24,8 +24,8 @@ namespace App\Swagger\Api\V1\Users;
  * ),
  * @OA\Parameter(
  *      parameter="UsersParametersOrderDirection",
- *      description="Sort results direction. (optional)
- *     When no value is provided, the sort direction will be 'asc' (ascending).",
+ *      description="Sort direction. (optional)
+ *     When no value is provided, sort direction is 'asc' (ascending).",
  *      name="order_direction",
  *      in="query",
  *      required=false,
@@ -38,16 +38,30 @@ namespace App\Swagger\Api\V1\Users;
  *     ),
  * ),
  * @OA\Parameter(
+ *      parameter="UsersParametersPage",
+ *      description="Page number. (optional)
+ *     When no value is provided, the first page is displayed.",
+ *      name="page",
+ *      in="query",
+ *      required=false,
+ *      @OA\Schema(
+ *          type="integer",
+ *          format= "int32",
+ *          default="",
+ *          example="",
+ *      ),
+ * ),
+ * @OA\Parameter(
  *      parameter="UsersParametersPerPage",
- *      description="Number of results to display per page. (optional)
- *     When no value is provided, 25 results will be displayed per page.
- *     Only a minimum of 1 and a maximum of 100 is allowed.",
+ *      description="Number of results to return per page. (optional)
+ *     When no value is provided, 25 results are displayed.
+ *     For performance reasons, only a maximum of 100 results is allowed.",
  *      name="per_page",
  *      in="query",
  *      required=false,
  *      @OA\Schema(
  *          type="integer",
- *          minimum="1",
+ *          format= "int32",
  *          maximum="100",
  *          default="",
  *          example="",
@@ -56,8 +70,8 @@ namespace App\Swagger\Api\V1\Users;
  * @OA\Parameter(
  *      parameter="UsersParametersProfile",
  *      description="Eager load user profiles. (optional / multiple selection)
- *     When 'show' option is unselected, profiles will not be loaded.
- *     When 'unpublished' option is selected, it will only returns unpublished profiles.",
+ *     When 'show' option is selected, profiles are loaded then displayed.
+ *     When both 'show' and 'unpublished' options are selected, only unpublished profiles are displayed.",
  *      name="profile",
  *      in="query",
  *      required=false,
