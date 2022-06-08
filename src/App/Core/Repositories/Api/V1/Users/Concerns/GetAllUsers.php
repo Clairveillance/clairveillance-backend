@@ -51,7 +51,7 @@ abstract class GetAllUsers
                 page: null
             );
         $users = new UserCollection($query);
-        $users::$wrap = 'data';
+        $users::$wrap = 'users';
         return $users;
     }
 }

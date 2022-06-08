@@ -38,7 +38,7 @@ trait HasRelationships
                                 $relationship
                                     ->published($published)
                                     ->withCount(self::likesCount()),
-                                // (string)$relationship . '.type', //NOTE
+                                (string)$relationship . '.type',
                             ]
                         )
                     );
