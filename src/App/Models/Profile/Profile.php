@@ -30,6 +30,11 @@ final class Profile extends Model
     protected $morphClass = 'profile';
 
     /** @var array<string> */
+    protected $fillable = [
+        'published',
+    ];
+
+    /** @var array<string> */
     protected $hidden = [
         'id',
     ];

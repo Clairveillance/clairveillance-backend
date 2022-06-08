@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use App\Support\Facades\Schema;
+use App\Database\Migrations\Migration;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         // NOTE: 'post_code' is not an integer to prevent errors (i.e. using 'en_US' locale).
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('addresses', function ($table) {
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('name')->nullable();

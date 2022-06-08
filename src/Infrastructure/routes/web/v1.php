@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use App\Redis\Redis;
-use Illuminate\Support\Facades\Route;
+use App\Support\Facades\Route;
 
 // Ip address.
 Route::get(uri: '/ip', action: function () {
-    return 'remote address = '.$_SERVER['REMOTE_ADDR'].PHP_EOL.'browser = '.$_SERVER['HTTP_USER_AGENT'];
+    return 'remote address = ' . $_SERVER['REMOTE_ADDR'] . PHP_EOL . 'browser = ' . $_SERVER['HTTP_USER_AGENT'];
 });
 
 // PHP Info.
