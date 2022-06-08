@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Controllers\Api\V1\Users;
+namespace Interface\Controllers\Api\V1\Users;
 
-use App\Core\Controllers\Controller;
+use Interface\Controllers\Controller;
 use App\Core\Jobs\DeleteUserJob;
 use Infrastructure\Models\User\User;
 use Illuminate\Http\JsonResponse;

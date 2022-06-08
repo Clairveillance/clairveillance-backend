@@ -1,9 +1,17 @@
 const mix = require("laravel-mix");
-const path = require("path");
+let minifier = require("minifier");
 
-// NOTE: We set custom public path.
-mix.setPublicPath(path.resolve(__dirname, "src/Interface/public"));
+mix
+  .setPublicPath(__dirname)
+  .setResourceRoot(__dirname)
+  .js("src/Interface/resources/js/app.js", "src/Interface/public/js")
+  .postCss("src/Interface/resources/css/app.css", "src/Interface/public/css", [
+    //
+  ])
+  .copy("mix-manifest.json", "src/Interface/public/");
 
-mix.js("resources/js/app.js", "js").postCss("resources/css/app.css", "css", [
-  //
-]);
+if (mix.inProduction()) {
+  mix.then(() => {
+    minifier.minify(__dirname + "/src/Interface/public/css/app.css");
+  });
+}

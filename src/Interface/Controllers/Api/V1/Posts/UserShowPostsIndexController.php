@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Controllers\Api\V1\Posts;
+namespace Interface\Controllers\Api\V1\Posts;
 
-use App\Core\Controllers\Controller;
+use Interface\Controllers\Controller;
 use Infrastructure\Models\Post\Post;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;

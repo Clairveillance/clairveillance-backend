@@ -17,6 +17,7 @@
     "axios": "^0.21",
     "laravel-mix": "^6.0.6",
     "lodash": "^4.17.19",
+    "minifier": "^0.8.1",
     "postcss": "^8.1.14"
   }
 }
