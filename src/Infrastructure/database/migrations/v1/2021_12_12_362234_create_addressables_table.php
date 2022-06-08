@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use App\Support\Facades\Schema;
+use App\Database\Migrations\Migration;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
-        Schema::create('addressables', function (Blueprint $table) {
+        Schema::create('addressables', function ($table) {
             $table->uuid('address_uuid');
             $table->uuid('addressable_uuid');
             $table->string('addressable_type', 100);

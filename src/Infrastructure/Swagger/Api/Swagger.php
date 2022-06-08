@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Swagger\Api;
+namespace Infrastructure\Swagger\Api;
 
 /**
  * @OA\OpenApi(

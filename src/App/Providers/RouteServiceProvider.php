@@ -16,6 +16,10 @@ class RouteServiceProvider extends ServiceProvider
     private const API_PATH = 'src/Infrastructure/routes/api/';
     private const WEB_PATH = 'src/Infrastructure/routes/web/';
 
+    // TODO: Implements interface bindings to connect App and Infrastructure namespaces (Adapter pattern).
+    /** @var array<class-string,class-string> */
+    public array $bindings = [];
+
     public function boot(): void
     {
         $this->configureRateLimiting();

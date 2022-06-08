@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Swagger\Api\V1\Users;
+namespace Infrastructure\Swagger\Api\V1\Users;
 
 
 /**

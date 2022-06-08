@@ -25,6 +25,7 @@ use App\Models\Assignment\Assignment;
 use App\Models\Connection\Connection;
 use App\Models\Shared\Traits\HasUuid;
 use App\Models\Appointment\Appointment;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\Traits\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Assembly\AssemblyHasProfile;
@@ -41,7 +42,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Models\Establishment\EstablishmentHasProfile;
-use Illuminate\Database\Eloquent\Model;
 
 final class User extends Model
 {
