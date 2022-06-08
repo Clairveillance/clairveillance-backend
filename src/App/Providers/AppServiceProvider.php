@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        \Debugbar::disable(); //NOTE
+
         if (config('app.dblisten') === true) {
             DB::listen(
                 fn ($query) =>

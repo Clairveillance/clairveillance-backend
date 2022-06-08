@@ -64,6 +64,6 @@ _Running the above command will ignore environment requirements._
 
 ![Swagger](swagger_001.png "Swagger Overview")
 
-#### [Php Documentor](https://github.com/Clairveillance/clairveillance-backend/blob/master/php_documentor_001.png)
+#### [Php Documentor](https://github.com/Clairveillance/clairveillance-backend/blob/master/php_documentor_002.png)
 
-![Php Documentor](php_documentor_001.png "Php Documentor Overview")
+![Php Documentor](php_documentor_002.png "Php Documentor Overview")
