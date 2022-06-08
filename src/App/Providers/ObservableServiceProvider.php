@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Core\Observers\ModelHasProfileObserver;
-use App\Core\Observers\UserObserver;
+use App\Core\V1\Shared\Observers\ModelHasProfileObserver;
+use App\Core\V1\Users\Observers\UserObserver;
 use Infrastructure\Models\Appointment\AppointmentHasProfile;
 use Infrastructure\Models\Assembly\AssemblyHasProfile;
 use Infrastructure\Models\Assignment\AssignmentHasProfile;

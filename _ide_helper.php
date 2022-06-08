@@ -1823,7 +1823,7 @@ namespace Illuminate\Support\Facades {
       /**
        * Get the currently authenticated user.
        *
-       * @return \Domain\User\Models\User|null 
+       * @return \Domain\Core\V1\Users\Models\User|null 
        * @static 
        */
       public static function user()
@@ -1858,7 +1858,7 @@ namespace Illuminate\Support\Facades {
        * Log the given user ID into the application without sessions or cookies.
        *
        * @param mixed $id
-       * @return \Domain\User\Models\User|false 
+       * @return \Domain\Core\V1\Users\Models\User|false 
        * @static 
        */
       public static function onceUsingId($id)
@@ -1936,7 +1936,7 @@ namespace Illuminate\Support\Facades {
        *
        * @param mixed $id
        * @param bool $remember
-       * @return \Domain\User\Models\User|false 
+       * @return \Domain\Core\V1\Users\Models\User|false 
        * @static 
        */
       public static function loginUsingId($id, $remember = false)
@@ -1988,7 +1988,7 @@ namespace Illuminate\Support\Facades {
        *
        * @param string $password
        * @param string $attribute
-       * @return \Domain\User\Models\User|null 
+       * @return \Domain\Core\V1\Users\Models\User|null 
        * @throws \Illuminate\Auth\AuthenticationException
        * @static 
        */
@@ -2012,7 +2012,7 @@ namespace Illuminate\Support\Facades {
       /**
        * Get the last user we attempted to authenticate.
        *
-       * @return \Domain\User\Models\User 
+       * @return \Domain\Core\V1\Users\Models\User 
        * @static 
        */
       public static function getLastAttempted()
@@ -2126,7 +2126,7 @@ namespace Illuminate\Support\Facades {
       /**
        * Return the currently cached user.
        *
-       * @return \Domain\User\Models\User|null 
+       * @return \Domain\Core\V1\Users\Models\User|null 
        * @static 
        */
       public static function getUser()
@@ -2172,7 +2172,7 @@ namespace Illuminate\Support\Facades {
       /**
        * Determine if the current user is authenticated. If not, throw an exception.
        *
-       * @return \Domain\User\Models\User 
+       * @return \Domain\Core\V1\Users\Models\User 
        * @throws \Illuminate\Auth\AuthenticationException
        * @static 
        */

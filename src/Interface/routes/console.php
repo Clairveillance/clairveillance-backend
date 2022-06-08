@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Interface\routes;
 
-use Interface\Foundation\Inspiring;
-use Interface\Support\Facades\Artisan;
+use Illuminate\Foundation\Inspiring;
+use Illuminate\Support\Facades\Artisan;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());

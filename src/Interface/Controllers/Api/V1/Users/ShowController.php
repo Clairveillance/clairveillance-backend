@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Interface\Controllers\Api\V1\Users;
 
 use Interface\Controllers\Controller;
-use App\Core\Resources\Api\V1\Users\UserResource;
+use App\Core\V1\Users\Resources\UserResource;
 use Infrastructure\Models\User\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
