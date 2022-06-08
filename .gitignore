@@ -18,6 +18,7 @@ composer.lock
 docker-compose.override.yml
 Homestead.json
 Homestead.yaml
+mix-manifest.json
 npm-debug.log
 package-lock.json
 programmatic-types.graphql
