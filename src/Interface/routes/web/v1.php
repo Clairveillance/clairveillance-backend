@@ -5,7 +5,19 @@ declare(strict_types=1);
 namespace Interface\routes\web;
 
 use App\Redis\Redis;
+use GuzzleHttp\Psr7\MimeType;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+
+// PhpDocumentor.
+Route::redirect('/docs', '/docs/index.html');
+Route::get(uri: '/docs/{any?}', action: function ($any = "index.html") {
+    $resp = response(Storage::disk('local-docs')->get($any));
+    $resp->header('content-type', MimeType::fromFilename($any));
+    return $resp;
+})->where('any', '(.*)')
+    //TODO: ->middleware('auth')
+;
 
 // Ip address.
 Route::get(uri: '/ip', action: function () {
