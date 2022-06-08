@@ -25,7 +25,9 @@ trait HasProfile
                     FormatDate::humanizeYmdHis($resource->profile->published_at) : null,
                 'likes_count' => $resource->profile->likes_count ?? null,
                 'dislikes_count' => $resource->profile->dislikes_count ?? null,
-                // 'type'  => $this->type($resource->profile), //NOTE
+                'type'  => isset(
+                    $resource->profile
+                ) ? $this->type($resource->profile, 'profile') : null,
             ] : null;
     }
 }

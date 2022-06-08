@@ -4,31 +4,53 @@ This project was generated with [Laravel Installer](https://github.com/laravel/i
 
 #### Make New Migrations
 
-`php artisan make:migration <name> --path=src/Infrastructure/database/migrations/v1`
+```
+php artisan make:migration <name> --path=src/Infrastructure/database/migrations/v1
+```
 
 #### Run Migrations (with seeders)
 
-`php artisan migrate:fresh --path=src/Infrastructure/database/migrations/v1 --seed`
+```
+php artisan migrate:fresh --path=src/Infrastructure/database/migrations/v1 --seed
+```
 
-`php artisan migrate:refresh --path=src/Infrastructure/database/migrations/v1 --seed`
+```
+php artisan migrate:refresh --path=src/Infrastructure/database/migrations/v1 --seed
+```
 
-#### Generate [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger) documentation files
+#### Generate Php Documentation with [Php Documentor](https://www.phpdoc.org/)
 
-`php artisan l5-swagger:generate`
+```
+phpDocumentor -d src/ -t src/Infrastructure/PhpDocumentor`
+```
+
+#### Generate Api Documentation with [Swagger](https://github.com/DarkaOnLine/L5-Swagger)
+
+```
+php artisan l5-swagger:generate
+```
+
+phpDocumentor -d src/ -t src/Infrastructure/PhpDocumentor
 
 #### [PHP CS Fixer](https://github.com/eduarguz/shift-php-cs)
 
-`./vendor/bin/php-cs-fixer fix`
+```
+./vendor/bin/php-cs-fixer fix
+```
 
 _PHP needs to be a minimum version of PHP 7.2.5 and maximum version of PHP 8.0.\*._
 
-`PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix`
+```
+PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix
+```
 
 _Running the above command will ignore environment requirements._
 
 #### [PHP Lint](https://github.com/overtrue/phplint)
 
-`./vendor/bin/phplint`
+```
+./vendor/bin/phplint
+```
 
 #### [EER Diagram](https://github.com/Clairveillance/clairveillance-backend/blob/master/EER_diagram_003.png)
 

@@ -41,7 +41,7 @@ final class UserCollection extends ResourceCollection
                 fn (UserResource $user) =>
                 collect([
                     'uuid' => $user->uuid,
-                    'type' => 'users',
+                    'type' => 'user',
                     'attributes' => [
                         'username' => $user->username,
                         'firstname' => $user->firstname,
