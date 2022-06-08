@@ -28,6 +28,8 @@ paths:
         -
           $ref: '#/components/parameters/UsersParametersOrderDirection'
         -
+          $ref: '#/components/parameters/UsersParametersPage'
+        -
           $ref: '#/components/parameters/UsersParametersPerPage'
         -
           $ref: '#/components/parameters/UsersParametersProfile'
@@ -88,7 +90,7 @@ components:
     UsersParametersOrderBy:
       name: order_by
       in: query
-      description: "Sort results by a particular field. (optional)\r\n *     When no value is provided, the results will be sorted by 'username'."
+      description: "Sort results by a particular field. (optional)\r\n *     When no value is provided, results are sorted by 'username'."
       required: false
       schema:
         schema: UsersSchemasOrderBy
@@ -106,7 +108,7 @@ components:
     UsersParametersOrderDirection:
       name: order_direction
       in: query
-      description: "Sort results direction. (optional)\r\n *     When no value is provided, the sort direction will be 'asc' (ascending)."
+      description: "Sort direction. (optional)\r\n *     When no value is provided, sort direction is 'asc' (ascending)."
       required: false
       schema:
         title: 'Order Direction'
@@ -116,21 +118,31 @@ components:
           - asc
           - desc
         example: ''
-    UsersParametersPerPage:
-      name: per_page
+    UsersParametersPage:
+      name: page
       in: query
-      description: "Number of results to display per page. (optional)\r\n *     When no value is provided, 25 results will be displayed per page.\r\n *     Only a minimum of 1 and a maximum of 100 is allowed."
+      description: "Page number. (optional)\r\n *     When no value is provided, the first page is displayed."
       required: false
       schema:
         type: integer
+        format: int32
+        default: ''
+        example: ''
+    UsersParametersPerPage:
+      name: per_page
+      in: query
+      description: "Number of results to return per page. (optional)\r\n *     When no value is provided, 25 results are displayed.\r\n *     For performance reasons, only a maximum of 100 results is allowed."
+      required: false
+      schema:
+        type: integer
+        format: int32
         default: ''
         maximum: '100'
-        minimum: '1'
         example: ''
     UsersParametersProfile:
       name: profile
       in: query
-      description: "Eager load user profiles. (optional / multiple selection)\r\n *     When 'show' option is unselected, profiles will not be loaded.\r\n *     When 'unpublished' option is selected, it will only returns unpublished profiles."
+      description: "Eager load user profiles. (optional / multiple selection)\r\n *     When 'show' option is selected, profiles are loaded then displayed.\r\n *     When both 'show' and 'unpublished' options are selected, only unpublished profiles are displayed."
       required: false
       explode: false
       schema:

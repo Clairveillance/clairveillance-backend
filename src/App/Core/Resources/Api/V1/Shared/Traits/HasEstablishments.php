@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
+use App\Support\FormatDate;
 use App\Models\Establishment\Establishment;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
@@ -34,7 +35,7 @@ trait HasEstablishments
                         'uuid' => $establishable->uuid,
                         'name' => $establishable->name,
                         'description' => $establishable->description,
-                        'published_at' => $this->getFormattedDate($establishable->published_at),
+                        'published_at' => FormatDate::humanizeYmdHis($establishable->published_at),
                         'likes_count' => $establishable->likes_count,
                         'dislikes_count' => $establishable->dislikes_count,
                         'type'  => $this->type($establishable, 'establishments'),
@@ -62,7 +63,7 @@ trait HasEstablishments
                         'name' => $establishable->name,
                         'slug' => $establishable->slug,
                         'description' => $establishable->description,
-                        'published_at' => $this->getFormattedDate($establishable->published_at),
+                        'published_at' => FormatDate::humanizeYmdHis($establishable->published_at),
                         'profile'  => $this->profile($establishable, 'establishments'),
                         'type'  => $this->type($establishable, 'establishments'),
                     ])

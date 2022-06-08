@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
+use App\Support\FormatDate;
 use App\Models\Appointment\Appointment;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Appointment\AppointmentHasProfile;
@@ -35,9 +36,9 @@ trait HasAppointments
                         'name' => $appointable->name,
                         'description' => $appointable->description,
                         'note' => $appointable->note,
-                        'start_at' => $this->getFormattedDate($appointable->start_at),
-                        'end_at' => $this->getFormattedDate($appointable->end_at),
-                        'published_at' => $this->getFormattedDate($appointable->published_at),
+                        'start_at' => FormatDate::humanizeYmdHis($appointable->start_at),
+                        'end_at' => FormatDate::humanizeYmdHis($appointable->end_at),
+                        'published_at' => FormatDate::humanizeYmdHis($appointable->published_at),
                         'likes_count' => $appointable->likes_count,
                         'dislikes_count' => $appointable->dislikes_count,
                         'type'  => $this->type($appointable, 'appointments'),
@@ -66,9 +67,9 @@ trait HasAppointments
                         'slug' => $appointable->slug,
                         'description' => $appointable->description,
                         'note' => $appointable->note,
-                        'start_at' => $this->getFormattedDate($appointable->start_at),
-                        'end_at' => $this->getFormattedDate($appointable->end_at),
-                        'published_at' => $this->getFormattedDate($appointable->published_at),
+                        'start_at' => FormatDate::humanizeYmdHis($appointable->start_at),
+                        'end_at' => FormatDate::humanizeYmdHis($appointable->end_at),
+                        'published_at' => FormatDate::humanizeYmdHis($appointable->published_at),
                         'profile'  => $this->profile($appointable, 'appointments'),
                         'type'  => $this->type($appointable, 'appointments'),
                     ])

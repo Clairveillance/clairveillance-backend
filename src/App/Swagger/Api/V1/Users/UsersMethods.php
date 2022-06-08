@@ -20,6 +20,9 @@ namespace App\Swagger\Api\V1\Users;
  *          ref="#/components/parameters/UsersParametersOrderDirection",
  *     ),
  *     @OA\Parameter(
+ *          ref="#/components/parameters/UsersParametersPage",
+ *     ),
+ *     @OA\Parameter(
  *          ref="#/components/parameters/UsersParametersPerPage",
  *     ),
  *     @OA\Parameter(
