@@ -12,7 +12,6 @@
   ],
   "require": {
     "php": "^7.3|^8.0",
-    "barryvdh/laravel-debugbar": "^3.6",
     "darkaonline/l5-swagger": "^8.0",
     "friendsofphp/php-cs-fixer": "^3.3",
     "fruitcake/laravel-cors": "^2.0",
@@ -26,6 +25,7 @@
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.12",
+    "barryvdh/laravel-debugbar": "^3.6",
     "eduarguz/shift-php-cs": "^3.0",
     "facade/ignition": "^2.5",
     "fakerphp/faker": "^1.9.1",
