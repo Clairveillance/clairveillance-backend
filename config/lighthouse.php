@@ -38,7 +38,7 @@ return [
             // \Nuwave\Lighthouse\Support\Http\Middleware\LogGraphQLQueries::class,
 
             // NOTE: Setup custom CORS for graphql.
-            \App\Core\Middleware\Api\Cors::class,
+            \App\Middleware\Api\Cors::class,
         ],
 
         /*

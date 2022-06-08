@@ -18,7 +18,7 @@ return [
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
         'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
-        env('APP_URL') ? ','.parse_url(env('APP_URL'), PHP_URL_HOST) : ''
+        env('APP_URL') ? ',' . parse_url(env('APP_URL'), PHP_URL_HOST) : ''
     ))),
 
     /*
@@ -46,8 +46,8 @@ return [
     */
 
     'middleware' => [
-        'verify_csrf_token' => App\Core\Middleware\VerifyCsrfToken::class,
-        'encrypt_cookies' => App\Core\Middleware\EncryptCookies::class,
+        'verify_csrf_token' => App\Middleware\VerifyCsrfToken::class,
+        'encrypt_cookies' => App\Middleware\EncryptCookies::class,
     ],
 
 ];

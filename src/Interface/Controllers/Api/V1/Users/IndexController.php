@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Interface\Controllers\Api\V1\Users;
 
 use Interface\Controllers\Controller;
-use App\Core\Requests\Api\V1\Users\IndexRequest;
+use App\Core\V1\Users\Requests\IndexRequest;
 use Illuminate\Foundation\Auth\User as AuthUser;
-use App\Core\Resources\Api\V1\Users\UserCollection;
-use Interface\Controllers\Api\V1\Users\Traits\HasRelationships;
-use App\Core\Repositories\Api\Contracts\UserRepositoryInterface;
+use App\Core\V1\Users\Resources\UserCollection;
+use Interface\Controllers\Api\V1\Shared\Traits\HasRelationships;
+use Domain\Core\V1\Users\Repositories\UserRepositoryInterface;
 
 final class IndexController extends Controller
 {

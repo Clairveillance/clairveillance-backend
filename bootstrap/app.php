@@ -11,7 +11,7 @@ $app->useAppPath('src/App');
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    App\Core\Kernel::class
+    App\Core\V1\Kernel::class
 );
 
 $app->singleton(
@@ -21,8 +21,8 @@ $app->singleton(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\AppDebugHandler::class //IMPORTANT: Only for debugging!!!
-    // App\Exceptions\CustomHandler::class //IMPORTANT: Turn this on when on production!!!
+    // App\Exceptions\CustomHandler::class //IMPORTANT: Turn on when in production.
+    App\Exceptions\AppDebugHandler::class //IMPORTANT: Turn off when in production, Only for debugging!!!
 );
 
 return $app;
