@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Resources\Api\V1\Users;
 
-use App\Models\Post\Post;
+use Infrastructure\Models\Post\Post;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
@@ -74,8 +74,8 @@ final class UserResource extends JsonResource
                 ),
             ],
             'links' => [
-                'self' => route('api.'.config('app.api_version').'.users.show', $this->uuid),
-                'parent' => route('api.'.config('app.api_version').'.users.index'),
+                'self' => route('api.' . config('app.api_version') . '.users.show', $this->uuid),
+                'parent' => route('api.' . config('app.api_version') . '.users.index'),
             ],
         ];
     }

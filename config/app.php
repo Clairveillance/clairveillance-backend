@@ -219,10 +219,15 @@ return (array) [
         App\Providers\RouteServiceProvider::class,
 
         /*
-         * Custom Service Providers...
+         * Custom Application Service Providers...
          */
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\ObservableServiceProvider::class,
+
+
+        /*
+         * Custom Interface Service Providers...
+         */
 
     ],
 

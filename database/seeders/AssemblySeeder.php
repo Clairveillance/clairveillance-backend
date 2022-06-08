@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Assembly\Assembly;
-use App\Models\Assembly\AssemblyType;
-use App\Models\User\User;
+use Infrastructure\Models\Assembly\Assembly;
+use Infrastructure\Models\Assembly\AssemblyType;
+use Infrastructure\Models\User\User;
 use Database\Seeders\Shared\ImageSeeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;

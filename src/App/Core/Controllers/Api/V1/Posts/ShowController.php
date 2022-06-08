@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Controllers\Api\V1\Posts;
 
 use App\Core\Controllers\Controller;
-use App\Models\Post\Post;
+use Infrastructure\Models\Post\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

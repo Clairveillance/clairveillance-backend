@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Post\Post;
-use App\Models\Post\PostType;
+use Infrastructure\Models\Post\Post;
+use Infrastructure\Models\Post\PostType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 final class PostFactory extends Factory
@@ -70,7 +70,7 @@ final class PostFactory extends Factory
                 maxWidth: 4
             ),
             'published' => $published,
-            'published_at' => ! $published ? null : $this->faker->dateTimeBetween(
+            'published_at' => !$published ? null : $this->faker->dateTimeBetween(
                 startDate: $created_date,
                 endDate: $updated_date,
                 timezone: env(

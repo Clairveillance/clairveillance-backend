@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
-use App\Models\Post\Post;
+use Infrastructure\Models\Post\Post;
 use App\Support\FormatDate;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;

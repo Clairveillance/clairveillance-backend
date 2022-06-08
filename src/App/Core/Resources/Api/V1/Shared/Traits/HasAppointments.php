@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
 use App\Support\FormatDate;
-use App\Models\Appointment\Appointment;
+use Infrastructure\Models\Appointment\Appointment;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Appointment\AppointmentHasProfile;
+use Infrastructure\Models\Appointment\AppointmentHasProfile;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
 use App\Core\Resources\Api\V1\Shared\Traits\HasProfile;
 

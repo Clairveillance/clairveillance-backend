@@ -1,10 +1,9 @@
 /bootstrap/cache
 /cache
-/docs
 /node_modules
-/public/hot
-/public/storage
-/src/Infrastructure/PhpDocumentor
+/src/Interface/public/hot
+/src/Interface/public/storage
+/src/Interface/PhpDocumentor
 /storage
 /vendor
 .env

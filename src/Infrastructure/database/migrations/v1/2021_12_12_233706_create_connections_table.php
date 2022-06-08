@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Support\Facades\Schema;
-use App\Database\Migrations\Migration;
+use Interface\Support\Facades\Schema;
+use Interface\Database\Migrations\Migration;
 
 return new class extends Migration
 {

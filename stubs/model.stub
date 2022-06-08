@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace {{namespace}};
 
-use App\Models\Shared\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Shared\Traits\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Infrastructure\Models\Shared\Traits\HasUuid;
+use Infrastructure\Models\Shared\Traits\HasFactory;
 
 final class {{ class }} extends Model
 {
