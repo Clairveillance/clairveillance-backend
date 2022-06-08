@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories\Concerns;
 
-use App\Models\User\User;
+use Infrastructure\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 abstract class AbstractTypeFactory extends Factory

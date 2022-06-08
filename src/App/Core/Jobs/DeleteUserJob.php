@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Jobs;
 
-use App\Models\User\User;
+use Infrastructure\Models\User\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

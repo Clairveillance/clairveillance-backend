@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
 use App\Support\FormatDate;
-use App\Models\Assignment\Assignment;
-use App\Models\Assignment\AssignmentHasProfile;
+use Infrastructure\Models\Assignment\Assignment;
+use Infrastructure\Models\Assignment\AssignmentHasProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
 use App\Core\Resources\Api\V1\Shared\Traits\HasLinks;

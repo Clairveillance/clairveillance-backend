@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Image\ImageType;
+use Infrastructure\Models\Image\ImageType;
 use Database\Factories\Concerns\AbstractTypeFactory;
 
 final class ImageTypeFactory extends AbstractTypeFactory

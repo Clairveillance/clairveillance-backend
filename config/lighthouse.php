@@ -16,12 +16,12 @@ return [
         /*
          * The URI the endpoint responds to, e.g. mydomain.com/graphql.
          */
-        'uri' => '/graphql/'.env('API_VERSION', 'v1'),
+        'uri' => '/graphql/' . env('API_VERSION', 'v1'),
 
         /*
          * Lighthouse creates a named route for convenient URL generation and redirects.
          */
-        'name' => 'graphql.'.env('API_VERSION', 'v1'),
+        'name' => 'graphql.' . env('API_VERSION', 'v1'),
 
         /*
          * Beware that middleware defined here runs before the GraphQL execution phase,
@@ -38,7 +38,7 @@ return [
             // \Nuwave\Lighthouse\Support\Http\Middleware\LogGraphQLQueries::class,
 
             // NOTE: Setup custom CORS for graphql.
-            \App\Core\Middleware\Cors::class,
+            \App\Core\Middleware\Api\Cors::class,
         ],
 
         /*
@@ -138,18 +138,18 @@ return [
     'namespaces' => [
         // TODO: Add all Models used by graphql here !!!
         'models' => [
-            'App\\Models',
-            'App\\Models\\User',
-            'App\\Models\\Post',
+            'Infrastructure\\Models',
+            'Infrastructure\\Models\\User',
+            'Infrastructure\\Models\\Post',
         ],
-        'queries' => 'App\\GraphQL\\Queries',
-        'mutations' => 'App\\GraphQL\\Mutations',
-        'subscriptions' => 'App\\GraphQL\\Subscriptions',
-        'interfaces' => 'App\\GraphQL\\Interfaces',
-        'unions' => 'App\\GraphQL\\Unions',
-        'scalars' => 'App\\GraphQL\\Scalars',
-        'directives' => ['App\\GraphQL\\Directives'],
-        'validators' => ['App\\GraphQL\\Validators'],
+        'queries' => 'Infrastructure\\GraphQL\\Queries',
+        'mutations' => 'Infrastructure\\GraphQL\\Mutations',
+        'subscriptions' => 'Infrastructure\\GraphQL\\Subscriptions',
+        'interfaces' => 'Infrastructure\\GraphQL\\Interfaces',
+        'unions' => 'Infrastructure\\GraphQL\\Unions',
+        'scalars' => 'Infrastructure\\GraphQL\\Scalars',
+        'directives' => ['Infrastructure\\GraphQL\\Directives'],
+        'validators' => ['Infrastructure\\GraphQL\\Validators'],
     ],
 
     /*
@@ -406,13 +406,13 @@ return [
             ],
             'pusher' => [
                 'driver' => 'pusher',
-                'routes' => \Nuwave\Lighthouse\Subscriptions\SubscriptionRouter::class.'@pusher',
+                'routes' => \Nuwave\Lighthouse\Subscriptions\SubscriptionRouter::class . '@pusher',
                 'connection' => 'pusher',
             ],
             'echo' => [
                 'driver' => 'echo',
                 'connection' => env('LIGHTHOUSE_SUBSCRIPTION_REDIS_CONNECTION', 'default'),
-                'routes' => \Nuwave\Lighthouse\Subscriptions\SubscriptionRouter::class.'@echoRoutes',
+                'routes' => \Nuwave\Lighthouse\Subscriptions\SubscriptionRouter::class . '@echoRoutes',
             ],
         ],
 
@@ -470,6 +470,6 @@ return [
         /*
          * Location of resolver classes when resolving the `_entities` field.
          */
-        'entities_resolver_namespace' => 'App\\GraphQL\\Entities',
+        'entities_resolver_namespace' => 'Infrastructure\\GraphQL\\Entities',
     ],
 ];

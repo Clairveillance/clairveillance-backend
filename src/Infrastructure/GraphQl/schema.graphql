@@ -1,6 +1,6 @@
 type Query
 
-#import ../../App/GraphQl/Enums/*.graphql
-#import ../../App/GraphQl/Queries/*/*.graphql
-#import ../../App/GraphQl/Scalars/*.graphql
-#import ../../App/GraphQl/Types/*.graphql
+#import Enums/*.graphql
+#import Queries/*/*.graphql
+#import Scalars/*.graphql
+#import Types/*.graphql

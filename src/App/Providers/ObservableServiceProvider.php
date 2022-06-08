@@ -6,11 +6,11 @@ namespace App\Providers;
 
 use App\Core\Observers\ModelHasProfileObserver;
 use App\Core\Observers\UserObserver;
-use App\Models\Appointment\AppointmentHasProfile;
-use App\Models\Assembly\AssemblyHasProfile;
-use App\Models\Assignment\AssignmentHasProfile;
-use App\Models\Establishment\EstablishmentHasProfile;
-use App\Models\User\User;
+use Infrastructure\Models\Appointment\AppointmentHasProfile;
+use Infrastructure\Models\Assembly\AssemblyHasProfile;
+use Infrastructure\Models\Assignment\AssignmentHasProfile;
+use Infrastructure\Models\Establishment\EstablishmentHasProfile;
+use Infrastructure\Models\User\User;
 use Illuminate\Support\ServiceProvider;
 
 class ObservableServiceProvider extends ServiceProvider

@@ -6,7 +6,7 @@ namespace App\Core\Controllers\Api\V1\Users;
 
 use App\Core\Controllers\Controller;
 use App\Core\Resources\Api\V1\Users\UserResource;
-use App\Models\User\User;
+use Infrastructure\Models\User\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

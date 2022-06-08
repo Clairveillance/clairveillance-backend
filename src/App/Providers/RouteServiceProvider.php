@@ -13,8 +13,8 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 class RouteServiceProvider extends ServiceProvider
 {
     public const HOME = '/home';
-    private const API_PATH = 'src/Infrastructure/routes/api/';
-    private const WEB_PATH = 'src/Infrastructure/routes/web/';
+    private const API_PATH = 'src/Interface/routes/api/';
+    private const WEB_PATH = 'src/Interface/routes/web/';
 
     // TODO: Implements interface bindings to connect App and Infrastructure namespaces (Adapter pattern).
     /** @var array<class-string,class-string> */

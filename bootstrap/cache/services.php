@@ -24,31 +24,30 @@
     20 => 'Illuminate\\Validation\\ValidationServiceProvider',
     21 => 'Illuminate\\View\\ViewServiceProvider',
     22 => 'Barryvdh\\Debugbar\\ServiceProvider',
-    23 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
-    24 => 'L5Swagger\\L5SwaggerServiceProvider',
-    25 => 'Facade\\Ignition\\IgnitionServiceProvider',
-    26 => 'Fruitcake\\Cors\\CorsServiceProvider',
-    27 => 'Laravel\\Sail\\SailServiceProvider',
-    28 => 'Laravel\\Sanctum\\SanctumServiceProvider',
-    29 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    30 => 'Carbon\\Laravel\\ServiceProvider',
-    31 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    32 => 'Nuwave\\Lighthouse\\LighthouseServiceProvider',
-    33 => 'Nuwave\\Lighthouse\\Auth\\AuthServiceProvider',
-    34 => 'Nuwave\\Lighthouse\\GlobalId\\GlobalIdServiceProvider',
-    35 => 'Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider',
-    36 => 'Nuwave\\Lighthouse\\Pagination\\PaginationServiceProvider',
-    37 => 'Nuwave\\Lighthouse\\Scout\\ScoutServiceProvider',
-    38 => 'Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider',
-    39 => 'Nuwave\\Lighthouse\\Validation\\ValidationServiceProvider',
-    40 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
-    41 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
-    42 => 'App\\Providers\\AppServiceProvider',
-    43 => 'App\\Providers\\AuthServiceProvider',
-    44 => 'App\\Providers\\EventServiceProvider',
-    45 => 'App\\Providers\\RouteServiceProvider',
-    46 => 'App\\Providers\\RepositoryServiceProvider',
-    47 => 'App\\Providers\\ObservableServiceProvider',
+    23 => 'L5Swagger\\L5SwaggerServiceProvider',
+    24 => 'Facade\\Ignition\\IgnitionServiceProvider',
+    25 => 'Fruitcake\\Cors\\CorsServiceProvider',
+    26 => 'Laravel\\Sail\\SailServiceProvider',
+    27 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    28 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    29 => 'Carbon\\Laravel\\ServiceProvider',
+    30 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    31 => 'Nuwave\\Lighthouse\\LighthouseServiceProvider',
+    32 => 'Nuwave\\Lighthouse\\Auth\\AuthServiceProvider',
+    33 => 'Nuwave\\Lighthouse\\GlobalId\\GlobalIdServiceProvider',
+    34 => 'Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider',
+    35 => 'Nuwave\\Lighthouse\\Pagination\\PaginationServiceProvider',
+    36 => 'Nuwave\\Lighthouse\\Scout\\ScoutServiceProvider',
+    37 => 'Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider',
+    38 => 'Nuwave\\Lighthouse\\Validation\\ValidationServiceProvider',
+    39 => 'Spatie\\QueryBuilder\\QueryBuilderServiceProvider',
+    40 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+    41 => 'App\\Providers\\AppServiceProvider',
+    42 => 'App\\Providers\\AuthServiceProvider',
+    43 => 'App\\Providers\\EventServiceProvider',
+    44 => 'App\\Providers\\RouteServiceProvider',
+    45 => 'App\\Providers\\RepositoryServiceProvider',
+    46 => 'App\\Providers\\ObservableServiceProvider',
   ),
   'eager' => 
   array (
@@ -207,11 +206,11 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
-    'command.ide-helper.generate' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
-    'command.ide-helper.models' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     'Laravel\\Sail\\Console\\InstallCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'Laravel\\Sail\\Console\\PublishCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
+    'command.ide-helper.generate' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+    'command.ide-helper.models' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
   ),
   'when' => 
   array (
@@ -251,13 +250,13 @@
     'Illuminate\\Validation\\ValidationServiceProvider' => 
     array (
     ),
-    'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider' => 
-    array (
-    ),
     'Laravel\\Sail\\SailServiceProvider' => 
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 
+    array (
+    ),
+    'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider' => 
     array (
     ),
   ),

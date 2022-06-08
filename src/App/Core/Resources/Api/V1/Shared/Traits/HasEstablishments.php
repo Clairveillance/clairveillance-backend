@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Core\Resources\Api\V1\Shared\Traits;
 
 use App\Support\FormatDate;
-use App\Models\Establishment\Establishment;
+use Infrastructure\Models\Establishment\Establishment;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\Resources\Api\V1\Shared\Traits\HasType;
 use App\Core\Resources\Api\V1\Shared\Traits\HasLinks;
-use App\Models\Establishment\EstablishmentHasProfile;
+use Infrastructure\Models\Establishment\EstablishmentHasProfile;
 
 trait HasEstablishments
 {

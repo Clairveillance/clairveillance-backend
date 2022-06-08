@@ -42,6 +42,7 @@
       "Database\\Seeders\\": "database/seeders/",
       "App\\": "src/App/",
       "Domain\\": "src/Domain/",
+      "Interface\\": "src/Interface",
       "Infrastructure\\": "src/Infrastructure"
     }
   },

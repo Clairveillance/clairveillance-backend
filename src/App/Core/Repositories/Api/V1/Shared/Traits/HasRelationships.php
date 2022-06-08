@@ -7,7 +7,7 @@ namespace App\Core\Repositories\Api\V1\Shared\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use App\Models\Shared\QueryBuilders\CustomQueryBuilder;
+use Infrastructure\Models\Shared\QueryBuilders\CustomQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasRelationships

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories\Concerns;
 
-use App\Models\Establishment\EstablishmentType;
+use Infrastructure\Models\Establishment\EstablishmentType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 abstract class AbstractEstablishmentFactory extends Factory
