@@ -50,18 +50,18 @@ _Running the above command will ignore environment requirements._
 ./vendor/bin/phplint
 ```
 
-#### [EER Diagram](https://github.com/Clairveillance/clairveillance-backend/blob/master/EER_diagram_003.png)
+#### [EER Diagram](https://github.com/Clairveillance/clairveillance-backend/blob/master/assets/img/EER_diagram_003.png)
 
-![EER Diagram](EER_diagram_003.png "EER Diagram")
+![EER Diagram](assets/img/EER_diagram_003.png "EER Diagram")
 
-#### [API Response](https://github.com/Clairveillance/clairveillance-backend/blob/master/api_users_0043.png)
+#### [API Response](https://github.com/Clairveillance/clairveillance-backend/blob/master/assets/img/api_users_0043.png)
 
-![API Response](api_users_004.png "API Response Overview")
+![API Response](assets/img/api_users_004.png "API Response Overview")
 
-#### [Swagger](https://github.com/Clairveillance/clairveillance-backend/blob/master/swagger_001.png)
+#### [Swagger](https://github.com/Clairveillance/clairveillance-backend/blob/master/assets/img/swagger_001.png)
 
-![Swagger](swagger_001.png "Swagger Overview")
+![Swagger](assets/img/swagger_001.png "Swagger Overview")
 
-#### [Php Documentor](https://github.com/Clairveillance/clairveillance-backend/blob/master/php_documentor_002.png)
+#### [Php Documentor](https://github.com/Clairveillance/clairveillance-backend/blob/master/assets/img/php_documentor_002.png)
 
-![Php Documentor](php_documentor_002.png "Php Documentor Overview")
+![Php Documentor](assets/img/php_documentor_002.png "Php Documentor Overview")

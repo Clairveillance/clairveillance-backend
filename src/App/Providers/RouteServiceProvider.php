@@ -13,6 +13,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class RouteServiceProvider extends ServiceProvider
 {
+    /** @var string */
     public const HOME = '/home';
 
     public function boot(): void

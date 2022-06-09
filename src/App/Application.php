@@ -8,19 +8,63 @@ use Illuminate\Foundation\Application as BaseApplication;
 
 class Application extends BaseApplication
 {
-    protected $namespace = 'App\\';
-
+    /** @var string */
     public const API_PATH =
     'src' . DIRECTORY_SEPARATOR .
         'Interface' . DIRECTORY_SEPARATOR .
         'routes' . DIRECTORY_SEPARATOR .
         'api' . DIRECTORY_SEPARATOR;
 
+    /** @var string */
     public const WEB_PATH =
     'src' . DIRECTORY_SEPARATOR .
         'Interface' . DIRECTORY_SEPARATOR .
         'routes' . DIRECTORY_SEPARATOR .
         'web' . DIRECTORY_SEPARATOR;
+
+    /** @var string */
+    protected $namespace = 'App\\';
+
+    /**
+     * @param  string $path
+     * @return string
+     */
+    public function path($path = ''): string
+    {
+        return $this->buildPath(
+            $this->basePath,
+            'src',
+            'App',
+        );
+    }
+
+    /**
+     * @param  string $path
+     * @return string
+     */
+    public function configPath($path = ''): string
+    {
+        return $this->buildPath(
+            $this->basePath,
+            'src',
+            'Interface',
+            'config',
+        );
+    }
+
+    /**
+     * @param  string $path
+     * @return string
+     */
+    public function databasePath($path = ''): string
+    {
+        return $this->buildPath(
+            $this->basePath,
+            'src',
+            'Infrastructure',
+            'Database',
+        );
+    }
 
     /**
      * @return string
@@ -49,16 +93,29 @@ class Application extends BaseApplication
     }
 
     /**
-     * @param  string $path
+     * @param  string  $path
      * @return string
      */
-    public function databasePath($path = ''): string
+    public function resourcePath($path = ''): string
+    {
+        return  $this->buildPath(
+            $this->basePath,
+            'src',
+            'Interface',
+            'resources',
+        );
+    }
+
+    /**
+     * @return string
+     */
+    public function langPath(): string
     {
         return $this->buildPath(
             $this->basePath,
             'src',
-            'Infrastructure',
-            'Database',
+            'Interface',
+            'lang',
         );
     }
 
