@@ -8,6 +8,8 @@ $app = new Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 $app->useAppPath('src/App');
+$app->useDatabasePath('src/Infrastructure/Database');
+// $app->useStoragePath('src/Infrastructure/storage');
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
