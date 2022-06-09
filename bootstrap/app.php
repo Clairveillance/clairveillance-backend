@@ -11,8 +11,6 @@ $app = new Application(
 
 (new DotEnv(dirname(__DIR__) . '/.env'))->load();
 
-$app->useAppPath('src/App');
-
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     App\Core\V1\Kernel::class

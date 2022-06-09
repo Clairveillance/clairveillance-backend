@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Log;
 
 class AppServiceProvider extends ServiceProvider
 {
