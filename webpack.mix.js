@@ -1,5 +1,5 @@
 const mix = require("laravel-mix");
-let minifier = require("minifier");
+const minifier = require("minifier");
 
 mix
   .setPublicPath(__dirname)
