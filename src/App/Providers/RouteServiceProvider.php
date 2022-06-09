@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -13,31 +14,27 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 class RouteServiceProvider extends ServiceProvider
 {
     public const HOME = '/home';
-    private const API_PATH = 'src/Interface/routes/api/';
-    private const WEB_PATH = 'src/Interface/routes/web/';
-
-    // TODO: Implements interface bindings to connect App and Infrastructure namespaces (Adapter pattern).
-    /** @var array<class-string,class-string> */
-    public array $bindings = [];
 
     public function boot(): void
     {
         $this->configureRateLimiting();
         $this->routes(function () {
 
+            // TODO: Add condition for turning off/on JsonResponse middleware when APP_DEBUG set true/false.
             /** Api routes. */
             Route::prefix('api')->middleware(['api'])->as('api.')->group(
                 fn () =>
                 /** Api Version 1 */
                 Route::prefix(config('app.api_version'))->as(config('app.api_version') . '.')->group(
-                    base_path(self::API_PATH . config('app.api_version') . '.php')
+                    base_path(Application::API_PATH . config('app.api_version') . '.php')
                 )
             );
 
             // NOTE: Web route must be declared last or it will overwrite all other routes.
+            /** Web routes. */
             Route::middleware(['web'])
                 ->namespace($this->namespace)
-                ->group(base_path(self::WEB_PATH . config('app.api_version') . '.php'));
+                ->group(base_path(Application::WEB_PATH . config('app.api_version') . '.php'));
         });
     }
 
