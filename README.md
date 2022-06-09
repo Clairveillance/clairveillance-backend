@@ -21,7 +21,7 @@ php artisan migrate:refresh --path=src/Infrastructure/database/migrations/v1 --s
 #### Generate Php Documentation with [Php Documentor](https://www.phpdoc.org/)
 
 ```
-phpDocumentor -d src/ -t storage/docs/
+phpDocumentor -d src/ -t src/Infrastructure/storage/docs/phpDocumentor
 ```
 
 #### Generate Api Documentation with [Swagger](https://github.com/DarkaOnLine/L5-Swagger)

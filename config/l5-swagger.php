@@ -79,7 +79,7 @@ return [
             /*
              * Absolute path to location where parsed annotations will be stored
             */
-            'docs' => storage_path('api-' . env('API_VERSION', 'v1') . '-docs'),
+            'docs' => storage_path('docs/swagger/' . env('API_VERSION', 'v1')),
 
             /*
              * Absolute path to directory where to export views

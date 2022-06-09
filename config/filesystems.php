@@ -39,12 +39,12 @@ return [
 
         'local-docs' => [
             'driver' => 'local',
-            'root' => storage_path('docs'),
+            'root' => storage_path('docs/phpDocumentor'),
         ],
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('src/Interface/public'),
+            'root' => storage_path('public'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
@@ -74,7 +74,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('src/Interface/public'),
+        public_path('storage') => storage_path('public'),
     ],
 
 ];

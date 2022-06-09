@@ -3,7 +3,6 @@
 /node_modules
 /src/Interface/public/hot
 /src/Interface/public/storage
-/src/Interface/PhpDocumentor
 /storage
 /vendor
 .env
