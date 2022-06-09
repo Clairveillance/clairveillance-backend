@@ -47,7 +47,7 @@ class Application extends BaseApplication
         return $this->buildPath(
             $this->basePath,
             'src',
-            'Interface',
+            'App',
             'config',
         );
     }
