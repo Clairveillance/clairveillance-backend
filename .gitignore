@@ -3,7 +3,7 @@
 /node_modules
 /src/Interface/public/hot
 /src/Interface/public/storage
-/storage
+/src/Infrastructure/storage
 /vendor
 .env
 .env.backup
