@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
-class Application extends \Illuminate\Foundation\Application
+use Illuminate\Foundation\Application as BaseApplication;
+
+class Application extends BaseApplication
 {
     protected $namespace = 'App\\';
 

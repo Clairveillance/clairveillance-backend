@@ -1,0 +1,112 @@
+[2022-06-09 05:16:00] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve()
+#1 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get()
+#2 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error()
+#4 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): Illuminate\\Foundation\\Exceptions\\Handler->report()
+#5 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException()
+#6 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\src\\Interface\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle()
+#7 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\server.php(23): require_once('...')
+#8 {main}
+"} 
+[2022-06-09 05:16:00] laravel.ERROR: RecursiveDirectoryIterator::__construct(): Argument #1 ($directory) cannot be empty {"exception":"[object] (ValueError(code: 0): RecursiveDirectoryIterator::__construct(): Argument #1 ($directory) cannot be empty at D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Iterator\\RecursiveDirectoryIterator.php:48)
+[stacktrace]
+#0 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Iterator\\RecursiveDirectoryIterator.php(48): RecursiveDirectoryIterator->__construct()
+#1 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Finder.php(740): Symfony\\Component\\Finder\\Iterator\\RecursiveDirectoryIterator->__construct()
+#2 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Finder.php(618): Symfony\\Component\\Finder\\Finder->searchInDirectory()
+#3 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(88): Symfony\\Component\\Finder\\Finder->getIterator()
+#4 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(65): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->getConfigurationFiles()
+#5 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#6 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#7 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith()
+#8 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#9 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#10 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\src\\Interface\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle()
+#11 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\server.php(23): require_once('...')
+#12 {main}
+"} 
+[2022-06-09 05:16:01] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve()
+#1 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get()
+#2 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error()
+#4 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): Illuminate\\Foundation\\Exceptions\\Handler->report()
+#5 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException()
+#6 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\src\\Interface\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle()
+#7 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\server.php(23): require_once('...')
+#8 {main}
+"} 
+[2022-06-09 05:16:01] laravel.ERROR: RecursiveDirectoryIterator::__construct(): Argument #1 ($directory) cannot be empty {"exception":"[object] (ValueError(code: 0): RecursiveDirectoryIterator::__construct(): Argument #1 ($directory) cannot be empty at D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Iterator\\RecursiveDirectoryIterator.php:48)
+[stacktrace]
+#0 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Iterator\\RecursiveDirectoryIterator.php(48): RecursiveDirectoryIterator->__construct()
+#1 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Finder.php(740): Symfony\\Component\\Finder\\Iterator\\RecursiveDirectoryIterator->__construct()
+#2 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Finder.php(618): Symfony\\Component\\Finder\\Finder->searchInDirectory()
+#3 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(88): Symfony\\Component\\Finder\\Finder->getIterator()
+#4 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(65): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->getConfigurationFiles()
+#5 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#6 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#7 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith()
+#8 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#9 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#10 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\src\\Interface\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle()
+#11 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\server.php(23): require_once('...')
+#12 {main}
+"} 
+[2022-06-09 05:16:03] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve()
+#1 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get()
+#2 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error()
+#4 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): Illuminate\\Foundation\\Exceptions\\Handler->report()
+#5 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException()
+#6 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\src\\Interface\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle()
+#7 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\server.php(23): require_once('...')
+#8 {main}
+"} 
+[2022-06-09 05:16:03] laravel.ERROR: RecursiveDirectoryIterator::__construct(): Argument #1 ($directory) cannot be empty {"exception":"[object] (ValueError(code: 0): RecursiveDirectoryIterator::__construct(): Argument #1 ($directory) cannot be empty at D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Iterator\\RecursiveDirectoryIterator.php:48)
+[stacktrace]
+#0 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Iterator\\RecursiveDirectoryIterator.php(48): RecursiveDirectoryIterator->__construct()
+#1 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Finder.php(740): Symfony\\Component\\Finder\\Iterator\\RecursiveDirectoryIterator->__construct()
+#2 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Finder.php(618): Symfony\\Component\\Finder\\Finder->searchInDirectory()
+#3 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(88): Symfony\\Component\\Finder\\Finder->getIterator()
+#4 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(65): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->getConfigurationFiles()
+#5 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#6 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#7 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith()
+#8 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#9 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#10 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\src\\Interface\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle()
+#11 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\server.php(23): require_once('...')
+#12 {main}
+"} 
+[2022-06-09 05:16:04] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve()
+#1 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get()
+#2 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error()
+#4 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): Illuminate\\Foundation\\Exceptions\\Handler->report()
+#5 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException()
+#6 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\src\\Interface\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle()
+#7 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\server.php(23): require_once('...')
+#8 {main}
+"} 
+[2022-06-09 05:16:04] laravel.ERROR: RecursiveDirectoryIterator::__construct(): Argument #1 ($directory) cannot be empty {"exception":"[object] (ValueError(code: 0): RecursiveDirectoryIterator::__construct(): Argument #1 ($directory) cannot be empty at D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Iterator\\RecursiveDirectoryIterator.php:48)
+[stacktrace]
+#0 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Iterator\\RecursiveDirectoryIterator.php(48): RecursiveDirectoryIterator->__construct()
+#1 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Finder.php(740): Symfony\\Component\\Finder\\Iterator\\RecursiveDirectoryIterator->__construct()
+#2 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\symfony\\finder\\Finder.php(618): Symfony\\Component\\Finder\\Finder->searchInDirectory()
+#3 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(88): Symfony\\Component\\Finder\\Finder->getIterator()
+#4 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(65): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->getConfigurationFiles()
+#5 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles()
+#6 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap()
+#7 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith()
+#8 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#9 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter()
+#10 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\src\\Interface\\public\\index.php(54): Illuminate\\Foundation\\Http\\Kernel->handle()
+#11 D:\\WebDev\\Projects\\clairveillance\\clairveillance-backend\\server.php(23): require_once('...')
+#12 {main}
+"} 

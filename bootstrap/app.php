@@ -3,10 +3,14 @@
 declare(strict_types=1);
 
 use App\Application;
+use DevCoder\DotEnv;
 
 $app = new Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+
+(new DotEnv(dirname(__DIR__) . '/.env'))->load();
+
 $app->useAppPath('src/App');
 $app->useDatabasePath('src/Infrastructure/Database');
 // $app->useStoragePath('src/Infrastructure/storage');
@@ -21,10 +25,15 @@ $app->singleton(
     Interface\Console\Kernel::class
 );
 
-$app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    // App\Exceptions\CustomHandler::class //IMPORTANT: Turn on when in production.
-    App\Exceptions\AppDebugHandler::class //IMPORTANT: Turn off when in production, Only for debugging!!!
-);
+match (env('APP_DEBUG')) {
+    true => $app->singleton(
+        Illuminate\Contracts\Debug\ExceptionHandler::class,
+        App\Exceptions\AppDebugHandler::class
+    ),
+    default => $app->singleton(
+        Illuminate\Contracts\Debug\ExceptionHandler::class,
+        App\Exceptions\CustomHandler::class
+    ),
+};
 
 return $app;

@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
             // NOTE: Custom CORS.
             \App\Middleware\Api\Cors::class,
             // NOTE: Custom Request Headers.
-            \App\Middleware\Api\ForceJsonResponse::class,
+            \App\Middleware\Api\ForceJsonResponse::class, //IMPORTANT
         ],
     ];
 
