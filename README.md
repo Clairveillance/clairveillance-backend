@@ -30,8 +30,6 @@ phpDocumentor -d src/ -t src/Infrastructure/storage/docs/phpDocumentor
 php artisan l5-swagger:generate
 ```
 
-phpDocumentor -d src/ -t src/Infrastructure/PhpDocumentor
-
 #### [PHP CS Fixer](https://github.com/eduarguz/shift-php-cs)
 
 ```
