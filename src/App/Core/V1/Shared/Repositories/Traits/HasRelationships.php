@@ -45,48 +45,6 @@ trait HasRelationships
         );
     }
 
-    public static function hasMany(Builder $query, array $relationships): Builder
-    {
-        return $query->when(
-            $relationships,
-            function (Builder $model) use ($relationships) {
-                foreach ($relationships as $relationship => $value) {
-                    $show = false;
-                    $published = true;
-                    if ($relationships[$relationship]) {
-                        if (in_array('show', $relationships[$relationship])) {
-                            $show = true;
-                        }
-                        if (in_array('unpublished', $relationships[$relationship])) {
-                            $published = false;
-                        }
-                    }
-                    $model->when(
-                        $show === true,
-                        fn (Builder $model) =>
-                        $model
-                            ->with(
-                                relations: [
-                                    (string)$relationship =>
-                                    fn (HasMany $relationship) =>
-                                    $relationship->published($published)
-                                        ->withCount(self::likesCount()),
-                                    (string)$relationship . '.type',
-                                ]
-                            )
-                            ->withCount(
-                                relations: [
-                                    $relationship =>
-                                    fn (CustomQueryBuilder $relationship) =>
-                                    $relationship->published($published),
-                                ]
-                            )
-                    );
-                }
-            }
-        );
-    }
-
     public static function morphToManyCount(Builder $query, array $relationships): Builder
     {
         return $query->when(
@@ -113,49 +71,6 @@ trait HasRelationships
                                 $relationship->published($published),
                             ]
                         )
-                    );
-                }
-            }
-        );
-    }
-
-    public static function morphToMany(Builder $query, array $relationships): Builder
-    {
-        return $query->when(
-            $relationships,
-            function (Builder $model) use ($relationships) {
-                foreach ($relationships as $relationship => $value) {
-                    $show = false;
-                    $published = true;
-                    if ($relationships[$relationship]) {
-                        if (in_array('show', $relationships[$relationship])) {
-                            $show = true;
-                        }
-                        if (in_array('unpublished', $relationships[$relationship])) {
-                            $published = false;
-                        }
-                    }
-                    $model->when(
-                        $show === true,
-                        fn (Builder $model) =>
-                        $model
-                            ->with(
-                                relations: [
-                                    (string)$relationship =>
-                                    fn (MorphToMany $relationship) =>
-                                    $relationship
-                                        ->published($published)
-                                        ->withCount(self::likesCount()),
-                                    (string)$relationship . '.type',
-                                ],
-                            )
-                            ->withCount(
-                                relations: [
-                                    $relationship =>
-                                    fn (CustomQueryBuilder $relationship) =>
-                                    $relationship->published($published),
-                                ]
-                            )
                     );
                 }
             }

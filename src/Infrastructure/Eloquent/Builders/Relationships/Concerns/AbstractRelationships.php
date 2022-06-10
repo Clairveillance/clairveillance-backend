@@ -12,7 +12,7 @@ abstract class AbstractRelationships
     {
         return
             [
-                // 'likes as likes_total', //NOTE
+                'likes as likes_total',
                 'likes as likes_count' => fn (Builder $likes) => $likes->where('is_dislike', 0),
                 'likes as dislikes_count' => fn (Builder $likes) => $likes->where('is_dislike', 1),
             ];

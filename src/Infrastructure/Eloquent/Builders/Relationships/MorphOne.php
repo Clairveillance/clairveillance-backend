@@ -32,8 +32,8 @@ final class MorphOne extends AbstractRelationships
                         $model->with(
                             relations: [
                                 (string)$relationship =>
-                                fn (EloquentMorphOne $relationship) =>
-                                $relationship
+                                fn (EloquentMorphOne $childRelationship) =>
+                                $childRelationship
                                     ->published($published)
                                     ->withCount($this::likesCount()),
                                 (string)$relationship . '.type',
