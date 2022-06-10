@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Eloquent\Builders\Relationships;
+namespace Infrastructure\Eloquent\Builders\Read\Relationships;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\MorphOne as EloquentMorphOne;
-use Infrastructure\Eloquent\Builders\Relationships\Concerns\AbstractRelationships;
+use Infrastructure\Eloquent\Models\Shared\QueryBuilders\CustomQueryBuilder;
+use Infrastructure\Eloquent\Builders\Read\Relationships\Concerns\AbstractRelationships;
 
-final class MorphOne extends AbstractRelationships
+final class HasManyCount extends AbstractRelationships
 {
     public function __invoke(Builder $query, array $relationships): Builder
     {
@@ -16,27 +16,25 @@ final class MorphOne extends AbstractRelationships
             $relationships,
             function (Builder $model) use ($relationships) {
                 foreach ($relationships as $relationship => $value) {
-                    $show = false;
+                    $count = false;
                     $published = true;
                     if ($relationships[$relationship]) {
-                        if (in_array('show', $relationships[$relationship])) {
-                            $show = true;
+                        if (in_array('count', $relationships[$relationship])) {
+                            $count = true;
                         }
                         if (in_array('unpublished', $relationships[$relationship])) {
                             $published = false;
                         }
                     }
                     $model->when(
-                        $show === true,
+                        $count === true,
                         fn (Builder $model) =>
-                        $model->with(
+                        $model->withCount(
                             relations: [
                                 (string)$relationship =>
-                                fn (EloquentMorphOne $childRelationship) =>
-                                $childRelationship
-                                    ->published($published)
-                                    ->withCount($this::likesCount()),
-                                (string)$relationship . '.type',
+                                // TODO: Move CustomQueryBuilder to Builder folder.
+                                fn (CustomQueryBuilder $childRelationship) =>
+                                $childRelationship->published($published),
                             ]
                         )
                     );

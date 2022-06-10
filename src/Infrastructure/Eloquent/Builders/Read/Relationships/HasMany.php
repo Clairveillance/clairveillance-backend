@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Eloquent\Builders\Relationships;
+namespace Infrastructure\Eloquent\Builders\Read\Relationships;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany as EloquentHasMany;
 use Infrastructure\Eloquent\Models\Shared\QueryBuilders\CustomQueryBuilder;
-use Infrastructure\Eloquent\Builders\Relationships\Concerns\AbstractRelationships;
+use Infrastructure\Eloquent\Builders\Read\Relationships\Concerns\AbstractRelationships;
 
 final class HasMany extends AbstractRelationships
 {
