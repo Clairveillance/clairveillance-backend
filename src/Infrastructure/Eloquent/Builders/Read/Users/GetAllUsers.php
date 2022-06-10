@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\V1\Users\Repositories\Concerns;
+namespace Infrastructure\Eloquent\Builders\Read\Users;
 
 use Infrastructure\Eloquent\Models\User\User;
-use App\Core\V1\Users\Resources\UserCollection;
 use Infrastructure\Eloquent\Builders\Read\Relationships\HasMany;
 use Infrastructure\Eloquent\Builders\Read\Relationships\MorphOne;
 use Infrastructure\Eloquent\Builders\Read\Relationships\MorphToMany;
@@ -23,7 +22,7 @@ abstract class GetAllUsers
         array $hasManyRelationships,
         array $morphToManyRelationships,
         array $morphToManyRelationshipsHasProfile,
-    ): UserCollection {
+    ) {
         $query = User::select(
             'uuid',
             'username',
@@ -74,8 +73,6 @@ abstract class GetAllUsers
                 pageName: 'page',
                 page: null
             );
-        $users = new UserCollection($query);
-        $users::$wrap = 'users';
-        return $users;
+        return $query;
     }
 }
