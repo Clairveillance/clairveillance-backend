@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Redis\Contracts;
+namespace Infrastructure\Redis\Contracts;
 
 use Illuminate\Redis\Connections\Connection;
 
