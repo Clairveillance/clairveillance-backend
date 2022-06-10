@@ -6,8 +6,10 @@ namespace App\Core\V1\Users\Repositories\Concerns;
 
 use Infrastructure\Eloquent\Models\User\User;
 use App\Core\V1\Users\Resources\UserCollection;
+use Infrastructure\Eloquent\Builders\Relationships\HasMany;
 use App\Core\V1\Shared\Repositories\Traits\HasRelationships;
 use Infrastructure\Eloquent\Builders\Relationships\MorphOne;
+use Infrastructure\Eloquent\Builders\Relationships\MorphToMany;
 
 abstract class GetAllUsers
 {
@@ -37,15 +39,20 @@ abstract class GetAllUsers
             args: [$query, $morphOneRelationships]
         );
         call_user_func_array(
-            callback: new MorphOne,
+            callback: new HasMany,
             args: [$query, $hasManyRelationships]
         );
+        call_user_func_array(
+            callback: new MorphToMany,
+            args: [$query, $morphToManyRelationships]
+        );
+        call_user_func_array(
+            callback: new MorphToMany,
+            args: [$query, $morphToManyRelationshipsHasProfile, true]
+        );
         HasRelationships::hasManyCount($query, $hasManyRelationships);
-        HasRelationships::hasMany($query, $hasManyRelationships);
         HasRelationships::morphToManyCount($query, $morphToManyRelationships);
-        HasRelationships::morphToMany($query, $morphToManyRelationships);
         HasRelationships::morphToManyHasProfileCount($query, $morphToManyRelationshipsHasProfile);
-        HasRelationships::morphToManyHasProfile($query, $morphToManyRelationshipsHasProfile);
         $query = $query->orderBy(
             column: $orderBy,
             direction: $orderDirection

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Infrastructure\Eloquent\Models\Address;
 
-use Infrastructure\Eloquent\Models\Country\Country;
-use Infrastructure\Eloquent\Models\Shared\Traits\HasFactory;
-use Infrastructure\Eloquent\Models\Shared\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Infrastructure\Eloquent\Models\Country\Country;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Infrastructure\Eloquent\Models\Shared\Traits\HasUuid;
+use Infrastructure\Eloquent\Models\Shared\Traits\HasFactory;
 
 final class Address extends Model
 {
