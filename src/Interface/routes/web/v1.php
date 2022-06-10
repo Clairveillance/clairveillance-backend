@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Interface\routes\web;
 
-use App\Redis\Redis;
+use Infrastructure\Redis\Redis;
 use GuzzleHttp\Psr7\MimeType;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;

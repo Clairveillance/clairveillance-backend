@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 final class UserFactory
 {
+    // TODO: Move to Domain layer.
     public static function create(array $attributes): UserEntity
     {
         return new UserEntity(
@@ -17,6 +18,7 @@ final class UserFactory
             lastname: $attributes['lastname'],
             description: $attributes['description'],
             email: $attributes['email'],
+            // TODO: Make helper for password hash.
             password: Hash::make($attributes['password']),
         );
     }
