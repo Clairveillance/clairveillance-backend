@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Users\Observers;
 
-use Infrastructure\Models\Profile\ProfileType;
-use Infrastructure\Models\User\User;
+use Infrastructure\Eloquent\Models\Profile\ProfileType;
+use Infrastructure\Eloquent\Models\User\User;
 
 final class UserObserver
 {

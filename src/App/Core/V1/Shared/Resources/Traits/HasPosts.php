@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\V1\Shared\Resources\Traits;
 
 use App\Support\Traits\FormatDates;
-use Infrastructure\Models\Post\Post;
+use Infrastructure\Eloquent\Models\Post\Post;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;

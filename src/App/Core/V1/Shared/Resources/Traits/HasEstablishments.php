@@ -8,8 +8,8 @@ use App\Support\Traits\FormatDates;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;
-use Infrastructure\Models\Establishment\Establishment;
-use Infrastructure\Models\Establishment\EstablishmentHasProfile;
+use Infrastructure\Eloquent\Models\Establishment\Establishment;
+use Infrastructure\Eloquent\Models\Establishment\EstablishmentHasProfile;
 
 trait HasEstablishments
 {

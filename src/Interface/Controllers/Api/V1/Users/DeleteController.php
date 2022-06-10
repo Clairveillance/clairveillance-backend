@@ -6,7 +6,7 @@ namespace Interface\Controllers\Api\V1\Users;
 
 use Interface\Controllers\Controller;
 use App\Core\V1\Users\Jobs\DeleteUserJob;
-use Infrastructure\Models\User\User;
+use Infrastructure\Eloquent\Models\User\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

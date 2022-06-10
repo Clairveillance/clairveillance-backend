@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Core\V1\Shared\Resources\Traits;
 
 use App\Support\Traits\FormatDates;
-use Infrastructure\Models\Assembly\Assembly;
+use Infrastructure\Eloquent\Models\Assembly\Assembly;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;
 use App\Core\V1\Shared\Resources\Traits\HasProfile;
-use Infrastructure\Models\Assembly\AssemblyHasProfile;
+use Infrastructure\Eloquent\Models\Assembly\AssemblyHasProfile;
 
 trait HasAssemblies
 {

@@ -6,8 +6,8 @@ namespace {{namespace}};
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Infrastructure\Models\Shared\Traits\HasUuid;
-use Infrastructure\Models\Shared\Traits\HasFactory;
+use Infrastructure\Eloquent\Models\Shared\Traits\HasUuid;
+use Infrastructure\Eloquent\Models\Shared\Traits\HasFactory;
 
 final class {{ class }} extends Model
 {

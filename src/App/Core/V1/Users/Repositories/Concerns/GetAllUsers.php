@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Users\Repositories\Concerns;
 
-use Infrastructure\Models\User\User;
+use Infrastructure\Eloquent\Models\User\User;
 use App\Core\V1\Users\Resources\UserCollection;
 use App\Core\V1\Shared\Repositories\Traits\HasRelationships;
+use Infrastructure\Eloquent\Builders\Relationships\MorphOne;
 
 abstract class GetAllUsers
 {
@@ -31,7 +32,14 @@ abstract class GetAllUsers
             'created_at',
             'updated_at'
         );
-        HasRelationships::morphOne($query, $morphOneRelationships);
+        call_user_func_array(
+            callback: new MorphOne,
+            args: [$query, $morphOneRelationships]
+        );
+        call_user_func_array(
+            callback: new MorphOne,
+            args: [$query, $hasManyRelationships]
+        );
         HasRelationships::hasManyCount($query, $hasManyRelationships);
         HasRelationships::hasMany($query, $hasManyRelationships);
         HasRelationships::morphToManyCount($query, $morphToManyRelationships);

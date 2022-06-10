@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use Infrastructure\Models\Assembly\AssemblyType;
+use Infrastructure\Eloquent\Models\Assembly\AssemblyType;
 use Database\Factories\Concerns\AbstractTypeFactory;
 
 final class AssemblyTypeFactory extends AbstractTypeFactory

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Infrastructure\Models\User\User;
+use Infrastructure\Eloquent\Models\User\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Shared\LikeSeeder;
 

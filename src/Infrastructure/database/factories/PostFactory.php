@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use Infrastructure\Models\Post\Post;
-use Infrastructure\Models\Post\PostType;
+use Infrastructure\Eloquent\Models\Post\Post;
+use Infrastructure\Eloquent\Models\Post\PostType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 final class PostFactory extends Factory
