@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Gate;
 class AuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
-        // 'Infrastructure\Models\Model' => 'App\Policies\ModelPolicy',
+        // 'Infrastructure\Eloquent\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
     public function boot()

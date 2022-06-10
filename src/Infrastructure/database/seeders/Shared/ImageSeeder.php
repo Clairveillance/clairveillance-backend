@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Shared;
 
-use Infrastructure\Models\Image\Image;
-use Infrastructure\Models\Image\ImageType;
+use Infrastructure\Eloquent\Models\Image\Image;
+use Infrastructure\Eloquent\Models\Image\ImageType;
 use Database\Seeders\Shared\TypeSeeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;

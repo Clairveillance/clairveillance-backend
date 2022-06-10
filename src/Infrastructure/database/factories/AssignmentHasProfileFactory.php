@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use Infrastructure\Models\Assignment\AssignmentHasProfile;
+use Infrastructure\Eloquent\Models\Assignment\AssignmentHasProfile;
 use Database\Factories\Concerns\AbstractAssignmentFactory;
 
 final class AssignmentHasProfileFactory extends AbstractAssignmentFactory

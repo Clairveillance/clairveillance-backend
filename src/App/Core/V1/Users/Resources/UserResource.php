@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Users\Resources;
 
-use Infrastructure\Models\Post\Post;
+use Infrastructure\Eloquent\Models\Post\Post;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 

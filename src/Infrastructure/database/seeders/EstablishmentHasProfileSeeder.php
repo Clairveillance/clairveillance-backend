@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Infrastructure\Models\Establishment\EstablishmentHasProfile;
-use Infrastructure\Models\Establishment\EstablishmentType;
-use Infrastructure\Models\User\User;
+use Infrastructure\Eloquent\Models\Establishment\EstablishmentHasProfile;
+use Infrastructure\Eloquent\Models\Establishment\EstablishmentType;
+use Infrastructure\Eloquent\Models\User\User;
 use Database\Seeders\Shared\ImageSeeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;

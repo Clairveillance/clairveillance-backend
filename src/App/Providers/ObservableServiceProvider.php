@@ -6,11 +6,11 @@ namespace App\Providers;
 
 use App\Core\V1\Shared\Observers\ModelHasProfileObserver;
 use App\Core\V1\Users\Observers\UserObserver;
-use Infrastructure\Models\Appointment\AppointmentHasProfile;
-use Infrastructure\Models\Assembly\AssemblyHasProfile;
-use Infrastructure\Models\Assignment\AssignmentHasProfile;
-use Infrastructure\Models\Establishment\EstablishmentHasProfile;
-use Infrastructure\Models\User\User;
+use Infrastructure\Eloquent\Models\Appointment\AppointmentHasProfile;
+use Infrastructure\Eloquent\Models\Assembly\AssemblyHasProfile;
+use Infrastructure\Eloquent\Models\Assignment\AssignmentHasProfile;
+use Infrastructure\Eloquent\Models\Establishment\EstablishmentHasProfile;
+use Infrastructure\Eloquent\Models\User\User;
 use Illuminate\Support\ServiceProvider;
 
 class ObservableServiceProvider extends ServiceProvider

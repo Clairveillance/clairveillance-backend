@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Infrastructure\Models\Appointment\AppointmentHasProfile;
-use Infrastructure\Models\Appointment\AppointmentType;
-use Infrastructure\Models\User\User;
+use Infrastructure\Eloquent\Models\Appointment\AppointmentHasProfile;
+use Infrastructure\Eloquent\Models\Appointment\AppointmentType;
+use Infrastructure\Eloquent\Models\User\User;
 use Database\Seeders\Shared\ImageSeeder;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\PostSeeder;

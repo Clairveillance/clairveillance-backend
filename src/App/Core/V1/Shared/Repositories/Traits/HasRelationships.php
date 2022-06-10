@@ -7,45 +7,11 @@ namespace App\Core\V1\Shared\Repositories\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Infrastructure\Models\Shared\QueryBuilders\CustomQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Infrastructure\Eloquent\Models\Shared\QueryBuilders\CustomQueryBuilder;
 
 trait HasRelationships
 {
-    public static function morphOne(Builder $query, array $relationships): Builder
-    {
-        return $query->when(
-            $relationships,
-            function (Builder $model) use ($relationships) {
-                foreach ($relationships as $relationship => $value) {
-                    $show = false;
-                    $published = true;
-                    if ($relationships[$relationship]) {
-                        if (in_array('show', $relationships[$relationship])) {
-                            $show = true;
-                        }
-                        if (in_array('unpublished', $relationships[$relationship])) {
-                            $published = false;
-                        }
-                    }
-                    $model->when(
-                        $show === true,
-                        fn (Builder $model) =>
-                        $model->with(
-                            relations: [
-                                (string)$relationship =>
-                                fn (MorphOne $relationship) =>
-                                $relationship
-                                    ->published($published)
-                                    ->withCount(self::likesCount()),
-                                (string)$relationship . '.type',
-                            ]
-                        )
-                    );
-                }
-            }
-        );
-    }
 
     public static function hasManyCount(Builder $query, array $relationships): Builder
     {

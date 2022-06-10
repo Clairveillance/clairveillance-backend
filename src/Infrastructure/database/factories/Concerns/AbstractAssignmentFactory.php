@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories\Concerns;
 
-use Infrastructure\Models\Assignment\AssignmentType;
+use Infrastructure\Eloquent\Models\Assignment\AssignmentType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 abstract class AbstractAssignmentFactory extends Factory

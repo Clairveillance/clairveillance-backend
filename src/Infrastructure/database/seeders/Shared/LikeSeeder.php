@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Shared;
 
-use Infrastructure\Models\Image\Image;
-use Infrastructure\Models\Image\ImageType;
-use Infrastructure\Models\Like\Like;
-use Infrastructure\Models\Like\LikeType;
+use Infrastructure\Eloquent\Models\Image\Image;
+use Infrastructure\Eloquent\Models\Image\ImageType;
+use Infrastructure\Eloquent\Models\Like\Like;
+use Infrastructure\Eloquent\Models\Like\LikeType;
 use Database\Seeders\Shared\TypeSeeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

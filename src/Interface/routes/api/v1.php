@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Interface\routes\api;
 
 use Illuminate\Support\Facades\Route;
-use Infrastructure\Models\Assembly\Assembly;
+use Infrastructure\Eloquent\Models\Assembly\Assembly;
 use Interface\Controllers\Api\V1\Posts\ShowController as PostShow;
 use Interface\Controllers\Api\V1\Users\ShowController as UserShow;
 use Interface\Controllers\Api\V1\Posts\IndexController as PostIndex;

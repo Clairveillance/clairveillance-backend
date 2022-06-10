@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Core\V1\Shared\Resources\Traits;
 
 use App\Support\Traits\FormatDates;
-use Infrastructure\Models\Assignment\Assignment;
+use Infrastructure\Eloquent\Models\Assignment\Assignment;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;
-use Infrastructure\Models\Assignment\AssignmentHasProfile;
+use Infrastructure\Eloquent\Models\Assignment\AssignmentHasProfile;
 
 trait HasAssignments
 {

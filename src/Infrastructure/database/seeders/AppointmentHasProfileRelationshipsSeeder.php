@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Infrastructure\Models\Appointment\Appointment;
-use Infrastructure\Models\Appointment\AppointmentHasProfile;
-use Infrastructure\Models\Assembly\Assembly;
-use Infrastructure\Models\Assembly\AssemblyHasProfile;
-use Infrastructure\Models\Assignment\Assignment;
-use Infrastructure\Models\Assignment\AssignmentHasProfile;
-use Infrastructure\Models\Establishment\Establishment;
-use Infrastructure\Models\Establishment\EstablishmentHasProfile;
-use Infrastructure\Models\User\User;
+use Infrastructure\Eloquent\Models\Appointment\Appointment;
+use Infrastructure\Eloquent\Models\Appointment\AppointmentHasProfile;
+use Infrastructure\Eloquent\Models\Assembly\Assembly;
+use Infrastructure\Eloquent\Models\Assembly\AssemblyHasProfile;
+use Infrastructure\Eloquent\Models\Assignment\Assignment;
+use Infrastructure\Eloquent\Models\Assignment\AssignmentHasProfile;
+use Infrastructure\Eloquent\Models\Establishment\Establishment;
+use Infrastructure\Eloquent\Models\Establishment\EstablishmentHasProfile;
+use Infrastructure\Eloquent\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 

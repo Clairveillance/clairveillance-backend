@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use Infrastructure\Models\Assignment\AssignmentType;
+use Infrastructure\Eloquent\Models\Assignment\AssignmentType;
 use Database\Factories\Concerns\AbstractTypeFactory;
 
 final class AssignmentTypeFactory extends AbstractTypeFactory

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use Infrastructure\Models\Image\Image;
-use Infrastructure\Models\Image\ImageType;
+use Infrastructure\Eloquent\Models\Image\Image;
+use Infrastructure\Eloquent\Models\Image\ImageType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 final class ImageFactory extends Factory

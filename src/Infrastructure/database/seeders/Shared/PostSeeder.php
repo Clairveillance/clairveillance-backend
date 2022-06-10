@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders\Shared;
 
-use Infrastructure\Models\Post\Post;
-use Infrastructure\Models\Post\PostType;
+use Infrastructure\Eloquent\Models\Post\Post;
+use Infrastructure\Eloquent\Models\Post\PostType;
 use Database\Seeders\Shared\LikeSeeder;
 use Database\Seeders\Shared\TypeSeeder;
 use Illuminate\Database\Eloquent\Model;

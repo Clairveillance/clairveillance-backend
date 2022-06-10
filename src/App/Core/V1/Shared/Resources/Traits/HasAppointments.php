@@ -7,9 +7,9 @@ namespace App\Core\V1\Shared\Resources\Traits;
 use App\Support\Traits\FormatDates;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Infrastructure\Models\Appointment\Appointment;
+use Infrastructure\Eloquent\Models\Appointment\Appointment;
 use App\Core\V1\Shared\Resources\Traits\HasProfile;
-use Infrastructure\Models\Appointment\AppointmentHasProfile;
+use Infrastructure\Eloquent\Models\Appointment\AppointmentHasProfile;
 
 trait HasAppointments
 {
