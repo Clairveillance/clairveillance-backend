@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Interface\Controllers\Api\V1\Users;
+namespace App\Core\V1\Users\Controllers\Api;
 
-use Interface\Controllers\Controller;
+use App\Core\V1\Controller;
 use App\Core\V1\Users\Requests\IndexRequest;
+use App\Core\V1\Shared\Traits\HasRelationships;
 use App\Core\V1\Users\Resources\UserCollection;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Domain\Core\V1\Repositories\UserRepositoryInterface;
-use Interface\Controllers\Api\V1\Shared\Traits\HasRelationships;
 
 final class IndexController extends Controller
 {

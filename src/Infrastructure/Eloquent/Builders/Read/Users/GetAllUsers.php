@@ -13,7 +13,6 @@ use Infrastructure\Eloquent\Builders\Read\Relationships\MorphToManyCount;
 
 abstract class GetAllUsers
 {
-
     public static function withRelations(
         int $perPage,
         string $orderBy,

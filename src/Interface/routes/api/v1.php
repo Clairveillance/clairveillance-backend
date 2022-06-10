@@ -6,17 +6,17 @@ namespace Interface\routes\api;
 
 use Illuminate\Support\Facades\Route;
 use Infrastructure\Eloquent\Models\Assembly\Assembly;
-use Interface\Controllers\Api\V1\Posts\ShowController as PostShow;
-use Interface\Controllers\Api\V1\Users\ShowController as UserShow;
-use Interface\Controllers\Api\V1\Posts\IndexController as PostIndex;
-use Interface\Controllers\Api\V1\Posts\StoreController as PostStore;
-use Interface\Controllers\Api\V1\Users\IndexController as UserIndex;
-use Interface\Controllers\Api\V1\Users\StoreController as UserStore;
-use Interface\Controllers\Api\V1\Posts\DeleteController as PostDelete;
-use Interface\Controllers\Api\V1\Posts\UpdateController as PostUpdate;
-use Interface\Controllers\Api\V1\Users\DeleteController as UserDelete;
-use Interface\Controllers\Api\V1\Users\UpdateController as UserUpdate;
-use Interface\Controllers\Api\V1\Posts\UserShowPostsIndexController as UserShowPostsIndex;
+use App\Core\V1\Posts\Controllers\Api\ShowController as PostShow;
+use App\Core\V1\Users\Controllers\Api\ShowController as UserShow;
+use App\Core\V1\Posts\Controllers\Api\IndexController as PostIndex;
+use App\Core\V1\Posts\Controllers\Api\StoreController as PostStore;
+use App\Core\V1\Users\Controllers\Api\IndexController as UserIndex;
+use App\Core\V1\Users\Controllers\Api\StoreController as UserStore;
+use App\Core\V1\Posts\Controllers\Api\DeleteController as PostDelete;
+use App\Core\V1\Posts\Controllers\Api\UpdateController as PostUpdate;
+use App\Core\V1\Users\Controllers\Api\DeleteController as UserDelete;
+use App\Core\V1\Users\Controllers\Api\UpdateController as UserUpdate;
+use App\Core\V1\Posts\Controllers\Api\UserShowPostsIndexController as UserShowPostsIndex;
 
 /*
  * Users Endpoints.
