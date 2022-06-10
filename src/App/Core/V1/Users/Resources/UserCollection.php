@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Core\V1\Users\Resources;
 
 use JsonSerializable;
-use App\Core\V1\Shared\Support\FormatDate;
+use App\Support\Traits\FormatDates;
 use Illuminate\Contracts\Support\Arrayable;
 use App\Core\V1\Users\Resources\UserResource;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;
 use App\Core\V1\Shared\Resources\Traits\HasPosts;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Core\V1\Shared\Resources\Traits\HasProfile;
 use App\Core\V1\Shared\Resources\Traits\HasAssemblies;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Core\V1\Shared\Resources\Traits\HasAssignments;
 use App\Core\V1\Shared\Resources\Traits\HasAppointments;
 use App\Core\V1\Shared\Resources\Traits\HasEstablishments;
@@ -26,6 +26,7 @@ final class UserCollection extends ResourceCollection
     use HasAssignments;
     use HasAppointments;
     use HasEstablishments;
+    use FormatDates;
 
     public static $wrap = 'data';
 
@@ -48,9 +49,9 @@ final class UserCollection extends ResourceCollection
                         'lastname' => $user->lastname,
                         'description' => $user->description,
                         'email' => $user->email,
-                        'created_at' => FormatDate::humanizeYmdHis($user->created_at),
-                        'updated_at' => FormatDate::humanizeYmdHis($user->updated_at),
-                        'email_verified_at' => FormatDate::humanizeYmdHis($user->email_verified_at),
+                        'created_at' => $this::dateTimeToString($user->created_at),
+                        'updated_at' => $this::dateTimeToString($user->updated_at),
+                        'email_verified_at' => $this::dateTimeToString($user->email_verified_at),
                     ],
                     // TODO: Add links to profile and relationships.
                     'profile'  => $this->profile($user, 'users'),

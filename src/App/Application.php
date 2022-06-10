@@ -4,34 +4,28 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Support\Traits\ApplicationHelpers;
 use Illuminate\Foundation\Application as BaseApplication;
+
+define('API_PATH', ApplicationHelpers::setPath('src', 'Interface', 'routes', 'api') . DIRECTORY_SEPARATOR);
+define('WEB_PATH', ApplicationHelpers::setPath('src', 'Interface', 'routes', 'web') . DIRECTORY_SEPARATOR);
 
 class Application extends BaseApplication
 {
-    /** @var string */
-    public const API_PATH =
-    'src' . DIRECTORY_SEPARATOR .
-        'Interface' . DIRECTORY_SEPARATOR .
-        'routes' . DIRECTORY_SEPARATOR .
-        'api' . DIRECTORY_SEPARATOR;
-
-    /** @var string */
-    public const WEB_PATH =
-    'src' . DIRECTORY_SEPARATOR .
-        'Interface' . DIRECTORY_SEPARATOR .
-        'routes' . DIRECTORY_SEPARATOR .
-        'web' . DIRECTORY_SEPARATOR;
+    use ApplicationHelpers;
 
     /** @var string */
     protected $namespace = 'App\\';
 
     /**
+     * This is where we overwrite Laravel's default Application path.
+     * 
      * @param  string $path
      * @return string
      */
     public function path($path = ''): string
     {
-        return $this->buildPath(
+        return $this::setPath(
             $this->basePath,
             'src',
             'App',
@@ -39,12 +33,14 @@ class Application extends BaseApplication
     }
 
     /**
+     * This is where we overwrite Laravel's default Configuration path.
+     * 
      * @param  string $path
      * @return string
      */
     public function configPath($path = ''): string
     {
-        return $this->buildPath(
+        return $this::setPath(
             $this->basePath,
             'src',
             'App',
@@ -53,12 +49,14 @@ class Application extends BaseApplication
     }
 
     /**
+     * This is where we overwrite Laravel's default Database path.
+     * 
      * @param  string $path
      * @return string
      */
     public function databasePath($path = ''): string
     {
-        return $this->buildPath(
+        return $this::setPath(
             $this->basePath,
             'src',
             'Infrastructure',
@@ -67,11 +65,13 @@ class Application extends BaseApplication
     }
 
     /**
+     * This is where we overwrite Laravel's default Public path.
+     * 
      * @return string
      */
     public function publicPath(): string
     {
-        return $this->buildPath(
+        return $this::setPath(
             $this->basePath,
             'src',
             'Interface',
@@ -80,11 +80,13 @@ class Application extends BaseApplication
     }
 
     /**
+     * This is where we overwrite Laravel's default Storage path.
+     * 
      * @return string
      */
     public function storagePath(): string
     {
-        return  $this->buildPath(
+        return  $this::setPath(
             $this->basePath,
             'src',
             'Infrastructure',
@@ -93,12 +95,14 @@ class Application extends BaseApplication
     }
 
     /**
+     * This is where we overwrite Laravel's default Resources path.
+     * 
      * @param  string  $path
      * @return string
      */
     public function resourcePath($path = ''): string
     {
-        return  $this->buildPath(
+        return  $this::setPath(
             $this->basePath,
             'src',
             'Interface',
@@ -107,27 +111,17 @@ class Application extends BaseApplication
     }
 
     /**
+     * This is where we overwrite Laravel's default Languages path.
+     * 
      * @return string
      */
     public function langPath(): string
     {
-        return $this->buildPath(
+        return $this::setPath(
             $this->basePath,
             'src',
             'Interface',
             'lang',
-        );
-    }
-
-    /**
-     * @param  string $segments
-     * @return string
-     */
-    private function buildPath(string ...$segments): string
-    {
-        return join(
-            separator: DIRECTORY_SEPARATOR,
-            array: $segments
         );
     }
 }

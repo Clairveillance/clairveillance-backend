@@ -6,12 +6,12 @@
   "private": true,
   "scripts": {
     "dev": "npm run development",
-    "development": "mix",
+    "development": "mix && rm mix-manifest.json",
     "watch": "mix watch",
     "watch-poll": "mix watch -- --watch-options-poll=1000",
     "hot": "mix watch --hot",
     "prod": "npm run production",
-    "production": "mix --production"
+    "production": "mix --production && rm mix-manifest.json"
   },
   "devDependencies": {
     "axios": "^0.21",

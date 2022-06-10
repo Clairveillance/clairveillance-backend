@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Application;
 use DevCoder\DotEnv;
 
+/** Bootstrap Laravel's Application */
 $app = new Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
@@ -31,5 +32,4 @@ match (env('APP_DEBUG')) {
         App\Exceptions\CustomHandler::class
     ),
 };
-
 return $app;

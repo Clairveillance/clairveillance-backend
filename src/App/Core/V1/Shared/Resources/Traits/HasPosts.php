@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Shared\Resources\Traits;
 
+use App\Support\Traits\FormatDates;
 use Infrastructure\Models\Post\Post;
-use App\Core\V1\Shared\Support\FormatDate;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;
@@ -14,6 +14,7 @@ trait HasPosts
 {
     use HasType;
     use HasLinks;
+    use FormatDates;
 
     public function posts(JsonResource $resource, string $name): array
     {
@@ -29,7 +30,7 @@ trait HasPosts
                         'title' => $post->title,
                         'slug' => $post->slug,
                         'description' => $post->description,
-                        'published_at' => FormatDate::humanizeYmdHis($post->published_at),
+                        'published_at' => $this::dateTimeToString($post->published_at),
                         'likes_count' => $post->likes_count,
                         'dislikes_count' => $post->dislikes_count,
                         'type'  => $this->type($post, 'posts'),

@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Shared\Resources\Traits;
 
-use App\Core\V1\Shared\Support\FormatDate;
+use App\Support\Traits\FormatDates;
 use Infrastructure\Models\Assembly\Assembly;
-use Infrastructure\Models\Assembly\AssemblyHasProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;
 use App\Core\V1\Shared\Resources\Traits\HasProfile;
+use Infrastructure\Models\Assembly\AssemblyHasProfile;
 
 trait HasAssemblies
 {
     use HasType;
     use HasLinks;
     use HasProfile;
+    use FormatDates;
 
     public function assemblies(JsonResource $resource, string $name): array
     {
@@ -36,7 +37,7 @@ trait HasAssemblies
                         'uuid' => $assemblable->uuid,
                         'name' => $assemblable->name,
                         'description' => $assemblable->description,
-                        'published_at' => FormatDate::humanizeYmdHis($assemblable->published_at),
+                        'published_at' => $this::dateTimeToString($assemblable->published_at),
                         'likes_count' => $assemblable->likes_count,
                         'dislikes_count' => $assemblable->dislikes_count,
                         'type'  => $this->type($assemblable, 'assemblies'),
@@ -64,7 +65,7 @@ trait HasAssemblies
                         'name' => $assemblable->name,
                         'slug' => $assemblable->slug,
                         'description' => $assemblable->description,
-                        'published_at' => FormatDate::humanizeYmdHis($assemblable->published_at),
+                        'published_at' => $this::dateTimeToString($assemblable->published_at),
                         'profile'  => $this->profile($assemblable, 'assemblies'),
                         'type'  => $this->type($assemblable, 'assemblies'),
                     ])

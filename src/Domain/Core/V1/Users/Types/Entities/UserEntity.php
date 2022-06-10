@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\Core\V1\Users\ValueObjects;
+namespace Domain\Core\V1\Users\Types\Entities;
 
-final class UserValueObject
+final class UserEntity
 {
     public function __construct(
         public string $username,

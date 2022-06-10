@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Shared\Resources\Traits;
 
-use App\Core\V1\Shared\Support\FormatDate;
-use Infrastructure\Models\Establishment\Establishment;
+use App\Support\Traits\FormatDates;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;
+use Infrastructure\Models\Establishment\Establishment;
 use Infrastructure\Models\Establishment\EstablishmentHasProfile;
 
 trait HasEstablishments
@@ -16,6 +16,7 @@ trait HasEstablishments
     use HasType;
     use HasLinks;
     use HasProfile;
+    use FormatDates;
 
     public function establishments(JsonResource $resource, string $name): array
     {
@@ -35,7 +36,7 @@ trait HasEstablishments
                         'uuid' => $establishable->uuid,
                         'name' => $establishable->name,
                         'description' => $establishable->description,
-                        'published_at' => FormatDate::humanizeYmdHis($establishable->published_at),
+                        'published_at' => $this::dateTimeToString($establishable->published_at),
                         'likes_count' => $establishable->likes_count,
                         'dislikes_count' => $establishable->dislikes_count,
                         'type'  => $this->type($establishable, 'establishments'),
@@ -63,7 +64,7 @@ trait HasEstablishments
                         'name' => $establishable->name,
                         'slug' => $establishable->slug,
                         'description' => $establishable->description,
-                        'published_at' => FormatDate::humanizeYmdHis($establishable->published_at),
+                        'published_at' => $this::dateTimeToString($establishable->published_at),
                         'profile'  => $this->profile($establishable, 'establishments'),
                         'type'  => $this->type($establishable, 'establishments'),
                     ])

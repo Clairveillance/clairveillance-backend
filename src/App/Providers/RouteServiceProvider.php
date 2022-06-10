@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -27,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
                 fn () =>
                 /** Api Version 1 */
                 Route::prefix(config('app.api_version'))->as(config('app.api_version') . '.')->group(
-                    base_path(Application::API_PATH . config('app.api_version') . '.php')
+                    base_path(API_PATH . config('app.api_version') . '.php')
                 )
             );
 
@@ -35,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
             /** Web routes. */
             Route::middleware(['web'])
                 ->namespace($this->namespace)
-                ->group(base_path(Application::WEB_PATH . config('app.api_version') . '.php'));
+                ->group(base_path(WEB_PATH . config('app.api_version') . '.php'));
         });
     }
 
