@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Interface\Controllers\Api\V1\Posts;
+namespace App\Core\V1\Posts\Controllers\Api;
 
-use Interface\Controllers\Controller;
+use App\Core\V1\Controller;
 use Infrastructure\Eloquent\Models\Post\Post;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Interface\Controllers\Api\V1\Shared\Traits;
+namespace App\Core\V1\Shared\Traits;
 
 use App\Core\V1\Users\Requests\IndexRequest;
 

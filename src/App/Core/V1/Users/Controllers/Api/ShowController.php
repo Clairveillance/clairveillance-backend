@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Interface\Controllers\Api\V1\Users;
+namespace App\Core\V1\Users\Controllers\Api;
 
-use Interface\Controllers\Controller;
+use App\Core\V1\Controller;
 use App\Core\V1\Users\Resources\UserResource;
 use Infrastructure\Eloquent\Models\User\User;
 use Illuminate\Http\JsonResponse;
