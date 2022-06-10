@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Shared\Resources\Traits;
 
-use App\Core\V1\Shared\Support\FormatDate;
+use App\Support\Traits\FormatDates;
 use Infrastructure\Models\Assignment\Assignment;
-use Infrastructure\Models\Assignment\AssignmentHasProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Core\V1\Shared\Resources\Traits\HasType;
 use App\Core\V1\Shared\Resources\Traits\HasLinks;
+use Infrastructure\Models\Assignment\AssignmentHasProfile;
 
 trait HasAssignments
 {
     use HasType;
     use HasLinks;
     use HasProfile;
+    use FormatDates;
 
     public function assignments(JsonResource $resource, string $name): array
     {
@@ -35,7 +36,7 @@ trait HasAssignments
                         'uuid' => $assignable->uuid,
                         'name' => $assignable->name,
                         'description' => $assignable->description,
-                        'published_at' => FormatDate::humanizeYmdHis($assignable->published_at),
+                        'published_at' => $this::dateTimeToString($assignable->published_at),
                         'likes_count' => $assignable->likes_count,
                         'dislikes_count' => $assignable->dislikes_count,
                         'type'  => $this->type($assignable, 'assignments'),
@@ -63,7 +64,7 @@ trait HasAssignments
                         'name' => $assignable->name,
                         'slug' => $assignable->slug,
                         'description' => $assignable->description,
-                        'published_at' => FormatDate::humanizeYmdHis($assignable->published_at),
+                        'published_at' => $this::dateTimeToString($assignable->published_at),
                         'profile'  => $this->profile($assignable, 'assignments'),
                         'type'  => $this->type($assignable, 'assignments'),
                     ])

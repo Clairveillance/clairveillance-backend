@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Shared\Resources\Traits;
 
-use App\Core\V1\Shared\Support\FormatDate;
-use Infrastructure\Models\Appointment\Appointment;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Infrastructure\Models\Appointment\AppointmentHasProfile;
+use App\Support\Traits\FormatDates;
 use App\Core\V1\Shared\Resources\Traits\HasType;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Infrastructure\Models\Appointment\Appointment;
 use App\Core\V1\Shared\Resources\Traits\HasProfile;
+use Infrastructure\Models\Appointment\AppointmentHasProfile;
 
 trait HasAppointments
 {
     use HasType;
     use HasLinks;
     use HasProfile;
+    use FormatDates;
 
     public function appointments(JsonResource $resource, string $name): array
     {
@@ -36,9 +37,9 @@ trait HasAppointments
                         'name' => $appointable->name,
                         'description' => $appointable->description,
                         'note' => $appointable->note,
-                        'start_at' => FormatDate::humanizeYmdHis($appointable->start_at),
-                        'end_at' => FormatDate::humanizeYmdHis($appointable->end_at),
-                        'published_at' => FormatDate::humanizeYmdHis($appointable->published_at),
+                        'start_at' => $this::dateTimeToString($appointable->start_at),
+                        'end_at' => $this::dateTimeToString($appointable->end_at),
+                        'published_at' => $this::dateTimeToString($appointable->published_at),
                         'likes_count' => $appointable->likes_count,
                         'dislikes_count' => $appointable->dislikes_count,
                         'type'  => $this->type($appointable, 'appointments'),
@@ -67,9 +68,9 @@ trait HasAppointments
                         'slug' => $appointable->slug,
                         'description' => $appointable->description,
                         'note' => $appointable->note,
-                        'start_at' => FormatDate::humanizeYmdHis($appointable->start_at),
-                        'end_at' => FormatDate::humanizeYmdHis($appointable->end_at),
-                        'published_at' => FormatDate::humanizeYmdHis($appointable->published_at),
+                        'start_at' => $this::dateTimeToString($appointable->start_at),
+                        'end_at' => $this::dateTimeToString($appointable->end_at),
+                        'published_at' => $this::dateTimeToString($appointable->published_at),
                         'profile'  => $this->profile($appointable, 'appointments'),
                         'type'  => $this->type($appointable, 'appointments'),
                     ])

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Users\Jobs;
 
-use Domain\Core\V1\Users\Actions\CreateUserAction;
-use Domain\Core\V1\Users\ValueObjects\UserValueObject;
+use Domain\Core\V1\Users\Actions\Commands\CreateUserAction;
+use Domain\Core\V1\Users\Types\Entities\UserEntity;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -19,7 +19,7 @@ final class CreateUserJob implements ShouldQueue
     use SerializesModels;
     use InteractsWithQueue;
 
-    public function __construct(public UserValueObject $object)
+    public function __construct(public UserEntity $object)
     {
     }
 

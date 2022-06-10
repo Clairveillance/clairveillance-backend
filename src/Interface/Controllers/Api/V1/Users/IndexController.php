@@ -9,7 +9,7 @@ use App\Core\V1\Users\Requests\IndexRequest;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Core\V1\Users\Resources\UserCollection;
 use Interface\Controllers\Api\V1\Shared\Traits\HasRelationships;
-use Domain\Core\V1\Users\Repositories\UserRepositoryInterface;
+use Domain\Core\V1\Users\Boundaries\Inputs\Repositories\UserRepositoryInterface;
 
 final class IndexController extends Controller
 {

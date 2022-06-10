@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Core\V1\Users\Repositories;
+namespace Domain\Core\V1\Users\Boundaries\Inputs\Repositories;
 
 use App\Core\V1\Users\Resources\UserCollection;
 

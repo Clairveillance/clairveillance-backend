@@ -6,7 +6,7 @@ namespace App\Core\V1\Users\Repositories;
 
 use App\Core\V1\Users\Resources\UserCollection;
 use App\Core\V1\Users\Repositories\Concerns\GetAllUsers;
-use Domain\Core\V1\Users\Repositories\UserRepositoryInterface;
+use Domain\Core\V1\Users\Boundaries\Inputs\Repositories\UserRepositoryInterface;
 
 final class UserRepository implements UserRepositoryInterface
 {

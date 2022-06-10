@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\V1\Users\Jobs;
 
 use Infrastructure\Models\User\User;
-use Domain\Core\V1\Users\ValueObjects\UserValueObject;
+use Domain\Core\V1\Users\Types\Entities\UserEntity;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -19,7 +19,7 @@ final class UpdateUserJob implements ShouldQueue
     use SerializesModels;
     use InteractsWithQueue;
 
-    public function __construct(public int $userId, public UserValueObject $object)
+    public function __construct(public int $userId, public UserEntity $object)
     {
     }
 
