@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Core\V1\Users\Repositories;
+namespace Infrastructure\Repositories;
 
-use App\Core\V1\Users\Resources\UserCollection;
-use App\Core\V1\Users\Repositories\Concerns\GetAllUsers;
-use Domain\Core\V1\Users\Boundaries\Inputs\Repositories\UserRepositoryInterface;
+use Domain\Core\V1\Repositories\UserRepositoryInterface;
+use Infrastructure\Eloquent\Builders\Read\Users\GetAllUsers;
 
 final class UserRepository implements UserRepositoryInterface
 {
@@ -18,7 +17,7 @@ final class UserRepository implements UserRepositoryInterface
         array $hasManyRelationships,
         array $morphToManyRelationships,
         array $morphToManyRelationshipsHasProfile,
-    ): UserCollection {
+    ) {
         return GetAllUsers::withRelations(
             (int) $perPage,
             (string) $orderBy,

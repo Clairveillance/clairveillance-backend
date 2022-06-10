@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Eloquent\Builders\Relationships;
+namespace Infrastructure\Eloquent\Builders\Read\Relationships;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphOne as EloquentMorphOne;
 use Infrastructure\Eloquent\Models\Shared\QueryBuilders\CustomQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphToMany as EloquentMorphToMany;
-use Infrastructure\Eloquent\Builders\Relationships\Concerns\AbstractRelationships;
+use Infrastructure\Eloquent\Builders\Read\Relationships\Concerns\AbstractRelationships;
 
 final class MorphToMany extends AbstractRelationships
 {
@@ -34,19 +34,20 @@ final class MorphToMany extends AbstractRelationships
                         $model
                             ->when(
                                 !$hasProfile,
-                                fn () =>
-                                $model
-                                    ->with(
+                                function (Builder $model) use ($relationship, $published) {
+                                    $model->with(
                                         relations: [
                                             (string)$relationship =>
                                             fn (EloquentMorphToMany $childRelationship) =>
-                                            $childRelationship->published($published)
+                                            $childRelationship
+                                                ->published($published)
                                                 ->withCount($this::likesCount()),
-                                        ],
-                                    ),
-                                fn () =>
-                                $model
-                                    ->with(
+                                            (string)$relationship . '.type',
+                                        ]
+                                    );
+                                },
+                                function (Builder $model) use ($relationship, $published) {
+                                    $model->with(
                                         relations: [
                                             (string)$relationship =>
                                             fn (EloquentMorphToMany $childRelationship) =>
@@ -56,13 +57,10 @@ final class MorphToMany extends AbstractRelationships
                                                 $profile->published($published)->withCount($this::likesCount());
                                                 // $profile->with('type'); //NOTE
                                             },
-                                        ],
-                                    )
-                            )
-                            ->with(
-                                relations: [
-                                    (string)$relationship . '.type',
-                                ],
+                                            (string)$relationship . '.type',
+                                        ]
+                                    );
+                                },
                             )
                             ->withCount(
                                 relations: [

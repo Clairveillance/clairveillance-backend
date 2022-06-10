@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Core\V1\Users\Boundaries\Inputs\Repositories;
-
-use App\Core\V1\Users\Resources\UserCollection;
+namespace Domain\Core\V1\Repositories;
 
 interface UserRepositoryInterface
 {
@@ -16,5 +14,5 @@ interface UserRepositoryInterface
         array $hasManyRelationships,
         array $morphToManyRelationships,
         array $morphToManyRelationshipsHasProfile,
-    ): UserCollection;
+    );
 }

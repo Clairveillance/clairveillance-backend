@@ -6,10 +6,10 @@ namespace Interface\Controllers\Api\V1\Users;
 
 use Interface\Controllers\Controller;
 use App\Core\V1\Users\Requests\IndexRequest;
-use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Core\V1\Users\Resources\UserCollection;
+use Illuminate\Foundation\Auth\User as AuthUser;
+use Domain\Core\V1\Repositories\UserRepositoryInterface;
 use Interface\Controllers\Api\V1\Shared\Traits\HasRelationships;
-use Domain\Core\V1\Users\Boundaries\Inputs\Repositories\UserRepositoryInterface;
 
 final class IndexController extends Controller
 {
@@ -19,8 +19,8 @@ final class IndexController extends Controller
     public function __invoke(
         IndexRequest $request,
         UserRepositoryInterface $userRepository
-    ): UserCollection {
-        return $userRepository->getAllUsers(
+    ) {
+        $query = $userRepository->getAllUsers(
             perPage: $request->validated()['per_page'],
             orderBy: $request->validated()['order_by'],
             orderDirection: $request->validated()['order_direction'],
@@ -29,5 +29,8 @@ final class IndexController extends Controller
             morphToManyRelationships: $this->getMorphToManyRelationships($request),
             morphToManyRelationshipsHasProfile: $this->getMorphToManyRelationshipsHasProfile($request)
         );
+        $users = new UserCollection($query);
+        $users::$wrap = 'users';
+        return $users;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Eloquent\Builders\Relationships\Concerns;
+namespace Infrastructure\Eloquent\Builders\Read\Relationships\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 

@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Core\V1\Users\Repositories\Concerns;
+namespace Infrastructure\Eloquent\Builders\Read\Users;
 
 use Infrastructure\Eloquent\Models\User\User;
-use App\Core\V1\Users\Resources\UserCollection;
-use Infrastructure\Eloquent\Builders\Relationships\HasMany;
-use App\Core\V1\Shared\Repositories\Traits\HasRelationships;
-use Infrastructure\Eloquent\Builders\Relationships\MorphOne;
-use Infrastructure\Eloquent\Builders\Relationships\MorphToMany;
+use Infrastructure\Eloquent\Builders\Read\Relationships\HasMany;
+use Infrastructure\Eloquent\Builders\Read\Relationships\MorphOne;
+use Infrastructure\Eloquent\Builders\Read\Relationships\MorphToMany;
+use Infrastructure\Eloquent\Builders\Read\Relationships\HasManyCount;
+use Infrastructure\Eloquent\Builders\Read\Relationships\MorphToManyCount;
 
 abstract class GetAllUsers
 {
-    use HasRelationships;
 
     public static function withRelations(
         int $perPage,
@@ -23,7 +22,7 @@ abstract class GetAllUsers
         array $hasManyRelationships,
         array $morphToManyRelationships,
         array $morphToManyRelationshipsHasProfile,
-    ): UserCollection {
+    ) {
         $query = User::select(
             'uuid',
             'username',
@@ -43,16 +42,25 @@ abstract class GetAllUsers
             args: [$query, $hasManyRelationships]
         );
         call_user_func_array(
+            callback: new HasManyCount,
+            args: [$query, $hasManyRelationships]
+        );
+        call_user_func_array(
             callback: new MorphToMany,
+            args: [$query, $morphToManyRelationships]
+        );
+        call_user_func_array(
+            callback: new MorphToManyCount,
             args: [$query, $morphToManyRelationships]
         );
         call_user_func_array(
             callback: new MorphToMany,
             args: [$query, $morphToManyRelationshipsHasProfile, true]
         );
-        HasRelationships::hasManyCount($query, $hasManyRelationships);
-        HasRelationships::morphToManyCount($query, $morphToManyRelationships);
-        HasRelationships::morphToManyHasProfileCount($query, $morphToManyRelationshipsHasProfile);
+        call_user_func_array(
+            callback: new MorphToManyCount,
+            args: [$query, $morphToManyRelationshipsHasProfile]
+        );
         $query = $query->orderBy(
             column: $orderBy,
             direction: $orderDirection
@@ -65,8 +73,6 @@ abstract class GetAllUsers
                 pageName: 'page',
                 page: null
             );
-        $users = new UserCollection($query);
-        $users::$wrap = 'users';
-        return $users;
+        return $query;
     }
 }
