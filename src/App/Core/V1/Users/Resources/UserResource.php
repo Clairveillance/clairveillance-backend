@@ -4,12 +4,46 @@ declare(strict_types=1);
 
 namespace App\Core\V1\Users\Resources;
 
+use JsonSerializable;
+use App\Support\Traits\FormatDates;
 use Infrastructure\Eloquent\Models\Post\Post;
 use Illuminate\Http\Resources\Json\JsonResource;
-use JsonSerializable;
+use App\Core\V1\Shared\Resources\Traits\HasLinks;
+use App\Core\V1\Shared\Resources\Traits\HasPosts;
+use App\Core\V1\Shared\Resources\Traits\HasProfile;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Infrastructure\Eloquent\Models\Profile\Profile;
+use App\Core\V1\Shared\Resources\Traits\HasAssemblies;
+use App\Core\V1\Shared\Resources\Traits\HasAssignments;
+use App\Core\V1\Shared\Resources\Traits\HasAppointments;
+use App\Core\V1\Shared\Resources\Traits\HasEstablishments;
 
+/**
+ * UserResource
+ * 
+ * @property string $uuid
+ * @property string $username
+ * @property string $firstname
+ * @property string $lastname
+ * @property string $description
+ * @property string $email
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $email_verified_at
+ * @property Profile $profile
+ * @property HasMany $posts
+ */
 final class UserResource extends JsonResource
 {
+    use HasPosts;
+    use HasLinks;
+    use HasProfile;
+    use HasAssemblies;
+    use HasAssignments;
+    use HasAppointments;
+    use HasEstablishments;
+    use FormatDates;
+
     /**
      * Transform the resource into an array.
      *
@@ -47,31 +81,15 @@ final class UserResource extends JsonResource
                 // ],
             ],
             'relationships' => [
-                'posts_count' => $this->posts->count(),
-                'posts' => $this->posts->map(
-                    function (Post $post) {
-                        return collect([
-                            'id' => $post->uuid,
-                            'type' => $post->type->name,
-                            'type_id' => $post->type->uuid,
-                            'attributes' => [
-                                'slug' => $post->slug,
-                                'title' => $post->title,
-                                'description' => $post->description,
-                                'body' => $post->body,
-                                'published' => $post->published,
-                                'published_at' => null === $post->published_at ? $post->published_at : date('Y-m-d H:i:s', strtotime((string) $post->published_at)),
-                                'created_at' => null === $post->created_at ? $post->created_at : date('Y-m-d H:i:s', strtotime((string) $post->created_at)),
-                                'updated_at' => null === $post->updated_at ? $post->updated_at : date('Y-m-d H:i:s', strtotime((string) $post->updated_at)),
-                            ],
-                            // TODO : Add links for relationships.
-                            // 'links' => [
-                            //     'self' => route('api.'.config('app.api_version').'.posts.show', $post->uuid),
-                            //     'parent' => route('api.'.config('app.api_version').'.posts.index'),
-                            // ],
-                        ]);
-                    }
-                ),
+                ...$this->appointments($this, 'users'),
+                ...$this->appointments_has_profile($this, 'users'),
+                ...$this->assemblies($this, 'users'),
+                ...$this->assemblies_has_profile($this, 'users'),
+                ...$this->assignments($this, 'users'),
+                ...$this->assignments_has_profile($this, 'users'),
+                ...$this->establishments($this, 'users'),
+                ...$this->establishments_has_profile($this, 'users'),
+                ...$this->posts($this, 'users'),
             ],
             'links' => [
                 'self' => route('api.' . config('app.api_version') . '.users.show', $this->uuid),

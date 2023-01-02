@@ -16,6 +16,13 @@ trait HasPosts
     use HasLinks;
     use FormatDates;
 
+    /**
+     * posts
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function posts(JsonResource $resource, string $name): array
     {
         return (array) [

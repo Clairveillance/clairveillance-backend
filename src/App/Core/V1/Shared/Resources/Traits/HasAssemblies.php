@@ -19,6 +19,13 @@ trait HasAssemblies
     use HasProfile;
     use FormatDates;
 
+    /**
+     * assemblies
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function assemblies(JsonResource $resource, string $name): array
     {
         return (array) [
@@ -47,6 +54,13 @@ trait HasAssemblies
         ];
     }
 
+    /**
+     * assemblies_has_profile
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function assemblies_has_profile(JsonResource $resource, string $name): array
     {
         return (array) [

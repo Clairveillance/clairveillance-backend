@@ -13,6 +13,13 @@ trait HasType
 
     use HasLinks;
 
+    /**
+     * type
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function type(JsonResource|Model $resource, string $name): array|null
     {
         return

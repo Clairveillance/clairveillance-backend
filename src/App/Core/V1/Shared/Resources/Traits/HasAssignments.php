@@ -18,6 +18,13 @@ trait HasAssignments
     use HasProfile;
     use FormatDates;
 
+    /**
+     * assignments
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function assignments(JsonResource $resource, string $name): array
     {
         return (array) [
@@ -46,6 +53,13 @@ trait HasAssignments
         ];
     }
 
+    /**
+     * assignments_has_profile
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function assignments_has_profile(JsonResource $resource, string $name): array
     {
         return (array) [

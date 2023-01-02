@@ -17,6 +17,9 @@ use App\Core\V1\Shared\Resources\Traits\HasAssignments;
 use App\Core\V1\Shared\Resources\Traits\HasAppointments;
 use App\Core\V1\Shared\Resources\Traits\HasEstablishments;
 
+/**
+ * UserCollection
+ */
 final class UserCollection extends ResourceCollection
 {
     use HasPosts;
