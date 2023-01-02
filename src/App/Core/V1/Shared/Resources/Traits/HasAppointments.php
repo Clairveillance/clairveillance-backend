@@ -18,6 +18,13 @@ trait HasAppointments
     use HasProfile;
     use FormatDates;
 
+    /**
+     * appointments
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function appointments(JsonResource $resource, string $name): array
     {
         return (array) [
@@ -49,6 +56,13 @@ trait HasAppointments
         ];
     }
 
+    /**
+     * appointments_has_profile
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function appointments_has_profile(JsonResource $resource, string $name): array
     {
         return (array) [

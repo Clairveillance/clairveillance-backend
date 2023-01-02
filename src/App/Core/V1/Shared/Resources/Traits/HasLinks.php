@@ -9,6 +9,11 @@ trait HasLinks
     private array $self;
     private array $parent;
 
+    /**
+     * getLinks
+     *
+     * @return array
+     */
     public function getLinks(): array
     {
         try {
@@ -28,6 +33,11 @@ trait HasLinks
         }
     }
 
+    /**
+     * selfLink
+     *
+     * @return self
+     */
     public function selfLink(
         string $name,
         array|string $parameters = [],
@@ -41,6 +51,11 @@ trait HasLinks
         return $this;
     }
 
+    /**
+     * parentLink
+     *
+     * @return self
+     */
     public function parentLink(
         string $name,
         array|string $parameters = [],

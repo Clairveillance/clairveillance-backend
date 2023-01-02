@@ -18,6 +18,13 @@ trait HasEstablishments
     use HasProfile;
     use FormatDates;
 
+    /**
+     * establishments
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function establishments(JsonResource $resource, string $name): array
     {
         return (array) [
@@ -46,6 +53,13 @@ trait HasEstablishments
         ];
     }
 
+    /**
+     * establishments_has_profile
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function establishments_has_profile(JsonResource $resource, string $name): array
     {
         return (array) [

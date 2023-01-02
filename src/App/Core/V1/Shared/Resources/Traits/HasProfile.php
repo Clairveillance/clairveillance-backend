@@ -16,6 +16,13 @@ trait HasProfile
     use HasLinks;
     use FormatDates;
 
+    /**
+     * profile
+     *
+     * @param  mixed $resource
+     * @param  string $name
+     * @return array
+     */
     public function profile(JsonResource|Model $resource, string $name): array|null
     {
         return
