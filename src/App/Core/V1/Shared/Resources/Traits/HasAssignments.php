@@ -20,7 +20,7 @@ trait HasAssignments
 
     public function assignments(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'assignments_count' => $resource->assignables_count ?? null,
             'assignments' =>
             $resource->relationLoaded('assignables') ?
@@ -36,7 +36,8 @@ trait HasAssignments
                         'uuid' => $assignable->uuid,
                         'name' => $assignable->name,
                         'description' => $assignable->description,
-                        'published_at' => $this::dateTimeToString($assignable->published_at),
+                        'published_at' => $this->dateTimeToString($assignable->published_at),
+                        // 'likes_total' => $assignable->likes_total,
                         'likes_count' => $assignable->likes_count,
                         'dislikes_count' => $assignable->dislikes_count,
                         'type'  => $this->type($assignable, 'assignments'),
@@ -47,7 +48,7 @@ trait HasAssignments
 
     public function assignments_has_profile(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'assignments_has_profile_count' => $resource->assignables_has_profile_count ?? null,
             'assignments_has_profile' =>
             $resource->relationLoaded('assignables_has_profile') ?
@@ -64,7 +65,7 @@ trait HasAssignments
                         'name' => $assignable->name,
                         'slug' => $assignable->slug,
                         'description' => $assignable->description,
-                        'published_at' => $this::dateTimeToString($assignable->published_at),
+                        'published_at' => $this->dateTimeToString($assignable->published_at),
                         'profile'  => $this->profile($assignable, 'assignments'),
                         'type'  => $this->type($assignable, 'assignments'),
                     ])

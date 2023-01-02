@@ -17,7 +17,7 @@ trait HasType
     {
         return
             $resource->relationLoaded('type') ?
-            [
+            (array) [
                 'uuid' => $resource->type->uuid ?? null,
                 'name' => $resource->type->name ?? null,
             ] : null;

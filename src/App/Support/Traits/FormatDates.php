@@ -15,7 +15,7 @@ trait FormatDates
      * @param  string|null $format
      * @return string|null
      */
-    public static function dateTimeToString(Carbon|string|null $date, string $format = 'Y-m-d H:i:s'): ?string
+    public function dateTimeToString(Carbon|string|null $date, string $format = 'Y-m-d H:i:s'): ?string
     {
         return
             null === $date ? $date :

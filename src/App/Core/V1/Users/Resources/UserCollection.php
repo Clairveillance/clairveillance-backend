@@ -34,7 +34,7 @@ final class UserCollection extends ResourceCollection
 
     public function toArray($request): array|Arrayable|JsonSerializable
     {
-        return [
+        return (array) [
             'succes' => true,
             'status' => 200,
             'message' => 'OK',
@@ -49,9 +49,9 @@ final class UserCollection extends ResourceCollection
                         'lastname' => $user->lastname,
                         'description' => $user->description,
                         'email' => $user->email,
-                        'created_at' => $this::dateTimeToString($user->created_at),
-                        'updated_at' => $this::dateTimeToString($user->updated_at),
-                        'email_verified_at' => $this::dateTimeToString($user->email_verified_at),
+                        'created_at' => $this->dateTimeToString($user->created_at),
+                        'updated_at' => $this->dateTimeToString($user->updated_at),
+                        'email_verified_at' => $this->dateTimeToString($user->email_verified_at),
                     ],
                     // TODO: Add links to profile and relationships.
                     'profile'  => $this->profile($user, 'users'),

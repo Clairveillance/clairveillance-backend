@@ -12,7 +12,7 @@ trait ApplicationHelpers
      * @param  string $segments
      * @return string
      */
-    public static function setPath(string ...$segments): string
+    public function setPath(string ...$segments): string
     {
         return join(
             separator: DIRECTORY_SEPARATOR,

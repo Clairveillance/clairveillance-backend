@@ -18,7 +18,7 @@ trait HasPosts
 
     public function posts(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'posts_count' => $resource->posts_count ?? null,
             'posts' =>
             $resource->relationLoaded('posts') ?
@@ -30,7 +30,8 @@ trait HasPosts
                         'title' => $post->title,
                         'slug' => $post->slug,
                         'description' => $post->description,
-                        'published_at' => $this::dateTimeToString($post->published_at),
+                        'published_at' => $this->dateTimeToString($post->published_at),
+                        // 'likes_total' => $post->likes_total ?? null,
                         'likes_count' => $post->likes_count,
                         'dislikes_count' => $post->dislikes_count,
                         'type'  => $this->type($post, 'posts'),

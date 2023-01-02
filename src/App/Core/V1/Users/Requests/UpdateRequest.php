@@ -16,7 +16,7 @@ final class UpdateRequest extends FormRequest
     public function rules(): array
     {
         // FIXME: Add new rules for username,email. Must be unique if not null.
-        return [
+        return (array) [
             'username' => [
                 'nullable',
                 'string',

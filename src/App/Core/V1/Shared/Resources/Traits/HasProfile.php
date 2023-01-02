@@ -20,10 +20,11 @@ trait HasProfile
     {
         return
             $resource->relationLoaded('profile') ?
-            [
+            (array) [
                 'uuid' => $resource->profile->uuid ?? null,
                 'published_at' => isset($resource->profile->published_at) ?
-                    $this::dateTimeToString($resource->profile->published_at) : null,
+                    $this->dateTimeToString($resource->profile->published_at) : null,
+                // 'likes_total' => $resource->profile->likes_total ?? null,
                 'likes_count' => $resource->profile->likes_count ?? null,
                 'dislikes_count' => $resource->profile->dislikes_count ?? null,
                 'type'  => isset(

@@ -22,8 +22,8 @@ final class IndexRequest extends FormRequest
     public function rules(): array
     {
         // TODO: Add Rule::prohibitedIf() method for certain use cases.
-        // For example, we probably want to block access to some requests if the user is not authenticated or depending on his role.
-        return [
+        // For example, we probably want to block access to some requests if the user is not authenticated nor has an appropriate role.
+        return (array) [
             'order_by' => [
                 'nullable',
                 'in:id,username,firstname,lastname,email,created_at,updated_at',
@@ -173,7 +173,7 @@ final class IndexRequest extends FormRequest
 
     public function messages(): array
     {
-        return [
+        return (array) [
             'order_by.in' => "Available values: 'id', 'username', 'firstname', 'lastname', 'email', 'created_at' or 'updated_at'.",
             'order_direction.in' => "Available values: 'asc' or 'desc'.",
             'per_page.min' => "Only a minimum of 1 and a maximum of 100 is allowed.",

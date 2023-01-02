@@ -15,7 +15,7 @@ final class StoreRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
+        return (array) [
             'username' => [
                 'required',
                 'string',

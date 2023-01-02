@@ -21,7 +21,7 @@ trait HasAssemblies
 
     public function assemblies(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'assemblies_count' => $resource->assemblables_count ?? null,
             'assemblies' =>
             $resource->relationLoaded('assemblables') ?
@@ -37,7 +37,8 @@ trait HasAssemblies
                         'uuid' => $assemblable->uuid,
                         'name' => $assemblable->name,
                         'description' => $assemblable->description,
-                        'published_at' => $this::dateTimeToString($assemblable->published_at),
+                        'published_at' => $this->dateTimeToString($assemblable->published_at),
+                        // 'likes_total' => $assemblable->likes_total,
                         'likes_count' => $assemblable->likes_count,
                         'dislikes_count' => $assemblable->dislikes_count,
                         'type'  => $this->type($assemblable, 'assemblies'),
@@ -48,7 +49,7 @@ trait HasAssemblies
 
     public function assemblies_has_profile(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'assemblies_has_profile_count' => $resource->assemblables_has_profile_count ?? null,
             'assemblies_has_profile' =>
             $resource->relationLoaded('assemblables_has_profile') ?
@@ -65,7 +66,7 @@ trait HasAssemblies
                         'name' => $assemblable->name,
                         'slug' => $assemblable->slug,
                         'description' => $assemblable->description,
-                        'published_at' => $this::dateTimeToString($assemblable->published_at),
+                        'published_at' => $this->dateTimeToString($assemblable->published_at),
                         'profile'  => $this->profile($assemblable, 'assemblies'),
                         'type'  => $this->type($assemblable, 'assemblies'),
                     ])

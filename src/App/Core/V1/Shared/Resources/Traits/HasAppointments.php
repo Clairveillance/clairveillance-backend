@@ -20,7 +20,7 @@ trait HasAppointments
 
     public function appointments(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'appointments_count' => $resource->appointables_count ?? null,
             'appointments' =>
             $resource->relationLoaded('appointables') ?
@@ -37,9 +37,10 @@ trait HasAppointments
                         'name' => $appointable->name,
                         'description' => $appointable->description,
                         'note' => $appointable->note,
-                        'start_at' => $this::dateTimeToString($appointable->start_at),
-                        'end_at' => $this::dateTimeToString($appointable->end_at),
-                        'published_at' => $this::dateTimeToString($appointable->published_at),
+                        'start_at' => $this->dateTimeToString($appointable->start_at),
+                        'end_at' => $this->dateTimeToString($appointable->end_at),
+                        'published_at' => $this->dateTimeToString($appointable->published_at),
+                        // 'likes_total' => $appointable->likes_total,
                         'likes_count' => $appointable->likes_count,
                         'dislikes_count' => $appointable->dislikes_count,
                         'type'  => $this->type($appointable, 'appointments'),
@@ -50,7 +51,7 @@ trait HasAppointments
 
     public function appointments_has_profile(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'appointments_has_profile_count' => $resource->appointables_has_profile_count ?? null,
             'appointments_has_profile' =>
             $resource->relationLoaded('appointables_has_profile') ?
@@ -68,9 +69,9 @@ trait HasAppointments
                         'slug' => $appointable->slug,
                         'description' => $appointable->description,
                         'note' => $appointable->note,
-                        'start_at' => $this::dateTimeToString($appointable->start_at),
-                        'end_at' => $this::dateTimeToString($appointable->end_at),
-                        'published_at' => $this::dateTimeToString($appointable->published_at),
+                        'start_at' => $this->dateTimeToString($appointable->start_at),
+                        'end_at' => $this->dateTimeToString($appointable->end_at),
+                        'published_at' => $this->dateTimeToString($appointable->published_at),
                         'profile'  => $this->profile($appointable, 'appointments'),
                         'type'  => $this->type($appointable, 'appointments'),
                     ])
