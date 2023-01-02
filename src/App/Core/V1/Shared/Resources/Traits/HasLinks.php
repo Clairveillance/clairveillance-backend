@@ -12,7 +12,7 @@ trait HasLinks
     public function getLinks(): array
     {
         try {
-            return [
+            return (array) [
                 'self' => route(
                     name: (string) 'api.' . config('app.api_version') . $this->self['name'],
                     parameters: $this->self['parameters'],

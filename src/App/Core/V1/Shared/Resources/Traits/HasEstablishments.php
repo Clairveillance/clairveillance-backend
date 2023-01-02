@@ -20,7 +20,7 @@ trait HasEstablishments
 
     public function establishments(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'establishments_count' => $resource->establishables_count ?? null,
             'establishments' =>
             $resource->relationLoaded('establishables') ?
@@ -36,7 +36,8 @@ trait HasEstablishments
                         'uuid' => $establishable->uuid,
                         'name' => $establishable->name,
                         'description' => $establishable->description,
-                        'published_at' => $this::dateTimeToString($establishable->published_at),
+                        'published_at' => $this->dateTimeToString($establishable->published_at),
+                        // 'likes_total' => $establishable->likes_total,
                         'likes_count' => $establishable->likes_count,
                         'dislikes_count' => $establishable->dislikes_count,
                         'type'  => $this->type($establishable, 'establishments'),
@@ -47,7 +48,7 @@ trait HasEstablishments
 
     public function establishments_has_profile(JsonResource $resource, string $name): array
     {
-        return [
+        return (array) [
             'establishments_has_profile_count' => $resource->establishables_has_profile_count ?? null,
             'establishments_has_profile' =>
             $resource->relationLoaded('establishables_has_profile') ?
@@ -64,7 +65,7 @@ trait HasEstablishments
                         'name' => $establishable->name,
                         'slug' => $establishable->slug,
                         'description' => $establishable->description,
-                        'published_at' => $this::dateTimeToString($establishable->published_at),
+                        'published_at' => $this->dateTimeToString($establishable->published_at),
                         'profile'  => $this->profile($establishable, 'establishments'),
                         'type'  => $this->type($establishable, 'establishments'),
                     ])

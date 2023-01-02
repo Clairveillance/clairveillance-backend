@@ -7,10 +7,10 @@ namespace App;
 use App\Support\Traits\ApplicationHelpers;
 use Illuminate\Foundation\Application as BaseApplication;
 
-define('API_PATH', ApplicationHelpers::setPath('src', 'Interface', 'routes', 'api') . DIRECTORY_SEPARATOR);
-define('WEB_PATH', ApplicationHelpers::setPath('src', 'Interface', 'routes', 'web') . DIRECTORY_SEPARATOR);
+define('API_PATH', 'src/Interface/routes/api/');
+define('WEB_PATH', 'src/Interface/routes/web/');
 
-class Application extends BaseApplication
+final class Application extends BaseApplication
 {
     use ApplicationHelpers;
 
@@ -25,7 +25,7 @@ class Application extends BaseApplication
      */
     public function path($path = ''): string
     {
-        return $this::setPath(
+        return $this->setPath(
             $this->basePath,
             'src',
             'App',
@@ -40,7 +40,7 @@ class Application extends BaseApplication
      */
     public function configPath($path = ''): string
     {
-        return $this::setPath(
+        return $this->setPath(
             $this->basePath,
             'src',
             'App',
@@ -56,7 +56,7 @@ class Application extends BaseApplication
      */
     public function databasePath($path = ''): string
     {
-        return $this::setPath(
+        return $this->setPath(
             $this->basePath,
             'src',
             'Infrastructure',
@@ -71,7 +71,7 @@ class Application extends BaseApplication
      */
     public function publicPath(): string
     {
-        return $this::setPath(
+        return $this->setPath(
             $this->basePath,
             'src',
             'Interface',
@@ -86,7 +86,7 @@ class Application extends BaseApplication
      */
     public function storagePath(): string
     {
-        return  $this::setPath(
+        return  $this->setPath(
             $this->basePath,
             'src',
             'Infrastructure',
@@ -102,7 +102,7 @@ class Application extends BaseApplication
      */
     public function resourcePath($path = ''): string
     {
-        return  $this::setPath(
+        return  $this->setPath(
             $this->basePath,
             'src',
             'Interface',
@@ -117,7 +117,7 @@ class Application extends BaseApplication
      */
     public function langPath(): string
     {
-        return $this::setPath(
+        return $this->setPath(
             $this->basePath,
             'src',
             'Interface',

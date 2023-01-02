@@ -10,21 +10,21 @@ trait HasRelationships
 {
     protected function getMorphOneRelationships(IndexRequest $request): array
     {
-        return [
+        return (array) [
             'profile' => (array)$request->validated()['profile'],
         ];
     }
 
     protected function getHasManyRelationships(IndexRequest $request): array
     {
-        return [
+        return (array) [
             'posts' => (array)$request->validated()['posts'],
         ];
     }
 
     protected function getMorphToManyRelationships(IndexRequest $request): array
     {
-        return [
+        return (array) [
             'appointables' => (array)$request->validated()['appointables'],
             'assemblables' => (array)$request->validated()['assemblables'],
             'assignables' => (array)$request->validated()['assignables'],
@@ -34,7 +34,7 @@ trait HasRelationships
 
     protected function getMorphToManyRelationshipsHasProfile(IndexRequest $request): array
     {
-        return [
+        return (array) [
             'appointables_has_profile' => (array)$request->validated()['appointables_has_profile'],
             'assemblables_has_profile' => (array)$request->validated()['assemblables_has_profile'],
             'assignables_has_profile' => (array)$request->validated()['assignables_has_profile'],
